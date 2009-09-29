@@ -1,0 +1,227 @@
+==========
+2009/06/12
+==========
+
+
+Starting with the simplest example from Osgart toolkit
+(osgartsimple.cpp), I made some performance tests to measure the
+behavior in different kinds of situations, in particular on
+limit conditions like half views (splitting) of the markers
+and high inclinations of the camera with respect to the markers
+positions.
+
+The results were better than expected in the case of high
+inclinations, as the markers can be recognized even on 180 degrees
+scenarios. However, in the half views tests, the markers
+could not be recognized. This will probably be a problem and
+in the future some solutions should be proposed.
+
+
+==========
+2009/06/19
+==========
+
+
+The simple example provided with the Osgart toolkit was
+improved. I added another marker to the setting in order to
+evaluate the behavior in this case.  The toolkit was able to
+differentiate between the two markers even when they were in the
+same video frame
+
+I investigated how to execute a process on every iteration of the
+marker recognition procedure. I found out that the
+implementation was actually based on a callback for debugging
+purposes (MarkerDebugCallback). It was tricky to find how the
+Osgart callbacks system works due to the lack of documentation
+about the development version of the toolkit.
+
+Using this discovered callback mechanism I created a simple demo
+that determines the distance between two markers.
+
+
+==========
+2009/06/26
+==========
+
+
+This week, I tried to fix the problem of the coordinates changes
+from the camera point of view; when the camera is moving the view-port
+is changing and the coordinates of the located markers are changing
+too.
+
+The markers are recognized with a coordinate system relative to the
+camera position and this represents an obstacle when we try to get
+information like the exact distance or the level of alignment between
+two markers.
+
+This problem turn out to be more complicated that I expected so after
+reading some examples on-line (1*) and running some concept tests I
+concluded that the best solution --at least for now-- would be to
+ignore this phenomenon because we can use ranges when we compare the
+coordinates among the markers, this is possible due to the low
+probability that the camera reaches a point of high inclination
+relatively to the markers position, so the coordinates change
+enough to be out of range.
+
+Another more simplistic, but at the same time more radical
+solution, would be to use a static camera: this would cut the
+coordinates problem at the root and, considering the inconvenience
+of the range system, this seems a good trade-off.
+
+*** References:
+
+1. Interaction Tutorial 4: Multiple Marker Proximity, http://www.osgart.org/node/23
+
+
+==========
+2009/07/10
+==========
+
+
+I finished the first demo. The program handles internally two
+kinds of marker blocks and lists. A list is a special block in
+charge of a group of blocks and a block is a normal
+marker that represents a data item, which could be variable names
+or constant data. The biggest challenge this week was to debug the
+C++ code because it has been a long time since I have not
+worked on a considerable amount of C++ code and I had to review
+some common issues.
+
+I decided to use git (1*) as my revision[-]control system, [starting
+at] the end of this version.
+
+*** References:
+
+1. Git website, http://git-scm.com/
+
+
+==========
+2009/09/04
+==========
+
+
+This week, my work was devoted to establish the state of the art
+in gesture recognition software, in order to improve the Human
+Computer Interface of our system. The first approach will be to
+use OpenCV functions capabilities. OpenCV (Open Source Computer
+Vision) is a library of programming functions mainly aimed at real
+time computer vision. (1*)
+
+After gathering and analyzing information on different approaches such
+as
+
+* O.G.R.E. -- Open Gestures Recognition Engine (2*)
+* Computer Vision Based Human-Computer Interaction (3*)
+* IGesture (4*)
+* Gesture Recognition for Human Machine Interfaces (5*)
+* The HandVu vision-based hand gesture interface (6*)
+
+I decided to try HandVu mainly because (1) it is the the only
+library in C++ whose source code is open source (GPL2) and
+IGesture is also free (but only available on Java platforms);
+(2) it is compatible with ARToolkit, one of the libraries used for
+the marker recognition process.
+
+<Begin personal note> It is disappointing to realise that in
+Computer Science, many investigators don't publish the
+resulting application or library source code, impeding further
+investigations by other researchers.<End personal note>
+
+The available HandVu source code was reluctant to compile on the
+Linux operating system, in particular due to some changes in the
+libraries requiring GCC version 4. These fixes are kept in a
+series of patches that I will try to submit to the developers.
+
+Next week I will try to execute the available examples included in
+the HandVu package and also I will study the library API and some
+of its internal features.
+
+*** References:
+
+1. http://opencv.willowgarage.com/wiki/FullOpenCVWiki#Welcome.2BAC8-Introduction.WhatisOpenCV.3F
+2. http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.59.4787
+3. http://www.nada.kth.se/cvap/gvmdi/index.html
+4. http://www.igesture.org
+5. http://paloma.isr.uc.pt/gesture-reco/index.html
+6. http://ilab.cs.ucsb.edu/projects/mathias/handvu_ilab.html
+
+
+==========
+2009/09/11
+==========
+
+I started my week by contacting HandVu developers in order to send them the generated
+patches; after a couple of email exchanges they notify me that the library is not
+currently under develop, which means that probably there will be no stable release
+(the current release is a beta version).
+
+These days Ive tried to run the provided examples with no good results, I couldn't
+see any of the demos in action.
+
+Due to all these inconveniences I will focus next week in propose a new HCI method
+that allow the system to differentiate among the different states (snapshots) of
+the captured environment, as mentioned before this is a very important step in the
+communication between the user and the system because the user have to inform the
+system that he has made changes in the environment and that he wants to commit
+these changes.
+
+
+==========
+2009/09/18
+==========
+
+My progress this week has not been very notorious, the main conclusion is that
+we are considering not to use hand recognition in the stage recognition process,
+we will evaluate if it's possible to use the visibility property of one of the
+markers, the user/developer will cover a specially located marker to inform
+the system that the current state represents the next stage of his abstract
+representation of the problem. 
+
+To get that, we'll run some tests to gather information related to the
+continuity of the markers recognition flow, we will add basically a debugging
+system that prints frame by frame the current recognized environment, after that
+we will run similar tests with videos that represents a possible user
+interaction, this is, a user hiding the special marker and the current
+recognized state.
+
+We contacted one of the VIP Laboratory's students and her feedback was that
+their projects are only related with face recognition techniques; I tried,
+however, to contact professor Eun Yi Kim (the professor in charge of VIP
+Laboratory) about another possible projects in his Laboratory that could be
+useful in our research but I haven't had any answer yet, it seems like there
+isn't enough developed material that we can reuse.
+
+The initial idea is still opened, if we receive a positive answer from professor
+Eun Yi Kim we will reconsider to use hand recognition in the state recognition
+procedure.
+
+
+==========
+2009/09/25
+==========
+
+After a couple days of work I finally could execute the HandVu library demos,
+the changes that I made -a part of the previous patches to compile on gcc4.4
+systems- were stop using the ARToolkit capture method and instead, I started
+using OpenCV capture capabilities.
+
+I had some initial problems problems with OpenCV as well because the
+cvCaptureFromFile method was returning null value, after a couple of hours
+searching I discovered that there was a new beta release for Linux systems with
+some new features, among this features was the addition of GStreamer Framework
+as capturing interface.
+
+According with their website (*1) GStreamer is a library for constructing graphs
+of media-handling components, this means that applications can take advantage of
+advances in codec and filter technology transparently, GStreamer is a very
+stable library included in many Linux distributions.
+
+This new capturing interface solved all the HandVu demos execution problems and
+also added the capabilities to all the video input formats and devices supported
+by GStreamer.
+
+
+*** References:
+
+1. GStreamer website: http://gstreamer.freedesktop.org/
+
