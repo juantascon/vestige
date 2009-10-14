@@ -1,16 +1,32 @@
 #include "BlockManager.h"
 
-BlockManager::BlockManager(osgART::Tracker* tracker) : blocks (), lists() {
+BlockManager* BlockManager::_instance = 0;
+
+BlockManager::BlockManager() :
+	blocks (),
+	lists()
+{
+}
+
+BlockManager* BlockManager::instance() {
+	if (!_instance) {
+		_instance = new BlockManager();
+	}
+	return _instance;
+}
+
+void BlockManager::initialize(osgART::Tracker* tracker) {
 	this->tracker = tracker;
 }
 
 void BlockManager::addBlock(std::string marker_args) {
-	EBlock* b = new EBlock(tracker, this, marker_args);
+	EBlock* b = new EBlock(tracker, marker_args);
 	blocks.push_back(b);
 }
 
+
 void BlockManager::addList(std::string marker_args) {
-	EList* l = new EList(tracker, this, marker_args);
+	EList* l = new EList(tracker, marker_args);
 	lists.push_back(l);
 }
 
@@ -22,16 +38,18 @@ void BlockManager::addModelsToCam(osg::Camera* cam) {
 		cam->addChild(lists[i]->model());
 }
 
-void BlockManager::operator() (osg::Node* node, osg::NodeVisitor* nv) {
-	int count = 0;
-	
-	for (int i = 0; i < blocks.size(); i++)
-		count += lists[0]->block_aligned(blocks[i]);
-	
-	std::cout << "y aligned: " << count << std::endl;
-	std::cout << std::endl;
-	
-	// must traverse the Node's subgraph
-	traverse(node,nv);
+void BlockManager::blockUpdated(EBlock *b) {
 }
 
+void BlockManager::listUpdated(EList *l) {
+	l->clear();
+	
+	for (int i = 0; i < blocks.size(); i++){
+		if ( l->block_aligned(blocks[i]) ){
+			l->add(blocks[i]);
+		}
+	}
+	
+	l->print();
+	
+}

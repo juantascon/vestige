@@ -3,7 +3,7 @@
 
 #include "EIncludes.h"
 
-class EMarker
+class EMarker : public osg::NodeCallback
 {
 	protected:
 		void initMarker(osgART::Tracker* tracker, std::string args);
@@ -13,13 +13,16 @@ class EMarker
 		osg::MatrixTransform* _model;
 		
 	public:
+		EMarker(osgART::Tracker* tracker, std::string marker_args, std::string model_file);
+		
+		std::string label;
+		
 		osgART::Marker* marker();
 		osg::MatrixTransform* model();
 		
-		osg::Vec3 getPos();
-		
-		EMarker(osgART::Tracker* tracker, osg::NodeCallback* callback, std::string marker_args, std::string model_file); 
+		osg::Vec3 position();
+		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);
+		virtual void update() = 0;
 };
 
 #endif
-

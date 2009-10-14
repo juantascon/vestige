@@ -1,19 +1,21 @@
 #include "EMarker.h"
 
-EMarker::EMarker(osgART::Tracker* tracker, osg::NodeCallback* callback, std::string marker_args, std::string model_file)
+EMarker::EMarker(osgART::Tracker* tracker, std::string marker_args, std::string model_file)
 {
 	initMarker(tracker, marker_args);
 	initModel(model_file);
 	
+	this->label = "label";
+	
 	// attach the model to the marker
 	osgART::attachDefaultEventCallbacks(_model, _marker);
-	osgART::addEventCallback(_model, callback);
+	osgART::addEventCallback(_model, this);
 }
 
 osgART::Marker* EMarker::marker(){ return this->_marker; }
 osg::MatrixTransform* EMarker::model() { return this->_model; }
 
-osg::Vec3 EMarker::getPos() {
+osg::Vec3 EMarker::position() {
 	return this->_marker->getTransform().getTrans();
 }
 
@@ -35,3 +37,8 @@ void EMarker::initModel(std::string model_file) {
 	_model->getOrCreateStateSet()->setRenderBinDetails(100, "RenderBin");
 }
 
+void EMarker::operator() (osg::Node* node, osg::NodeVisitor* nv) {
+	update();
+	// must traverse the Node's subgraph
+	traverse(node,nv);
+}

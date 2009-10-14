@@ -66,13 +66,13 @@ int main(int argc, char* argv[]) {
 	// the camera
 	osg::ref_ptr<osg::Camera> cam = calibration->createCamera();
 	
-	osg::ref_ptr<BlockManager> bm = new BlockManager( tracker.get() );
-	bm->addList("single;data/patt/patt.sample2;100;0;0");
-	bm->addBlock("single;data/patt/patt.hiro;100;0;0");
-	bm->addBlock("single;data/patt/patt.kanji;100;0;0");
-	bm->addBlock("single;data/patt/patt.sample1;100;0;0");
+	BlockManager::instance()->initialize( tracker.get() );
+	BlockManager::instance()->addList("single;data/patt/patt.sample2;100;0;0");
+	BlockManager::instance()->addBlock("single;data/patt/patt.hiro;100;0;0");
+	BlockManager::instance()->addBlock("single;data/patt/patt.kanji;100;0;0");
+	BlockManager::instance()->addBlock("single;data/patt/patt.sample1;100;0;0");
 	
-	bm->addModelsToCam(cam);
+	BlockManager::instance()->addModelsToCam(cam);
 	cam->addChild(createImageBackground(video.get()));
 	
 	// create the viewer
@@ -81,6 +81,9 @@ int main(int argc, char* argv[]) {
 	viewer.addEventHandler(new osgViewer::WindowSizeHandler);
 	viewer.addEventHandler(new osgViewer::ThreadingHandler);
 	viewer.addEventHandler(new osgViewer::HelpHandler);
+	
+	viewer.setUpViewInWindow(0, 0, 800, 600);
+	viewer.realize();
 	
 	// create a root node
 	osg::ref_ptr<osg::Group> root = new osg::Group;
@@ -94,4 +97,3 @@ int main(int argc, char* argv[]) {
 	video->start();
 	return viewer.run();
 }
-

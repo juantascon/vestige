@@ -2,25 +2,31 @@
 #define __BLOCKMANAGER_H 1
 
 #include <vector>
-
 #include "EList.h"
 
-class BlockManager : public osg::NodeCallback
+class EList;
+class EBlock;
+
+class BlockManager
 {
 	private:
-		
+		static BlockManager* _instance;
 	protected:
 		std::vector <EBlock*> blocks;
 		std::vector <EList*> lists;
 		osgART::Tracker* tracker;
+		BlockManager();
 		
 	public:
+		static BlockManager* instance();
+		void initialize(osgART::Tracker* tracker);
+		
 		void addBlock(std::string marker_args);
 		void addList(std::string marker_args);
 		void addModelsToCam(osg::Camera* cam);
 		
-		BlockManager (osgART::Tracker* tracker);
-		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);
+		void blockUpdated(EBlock *b);
+		void listUpdated(EList *l);
 };
 
 #endif

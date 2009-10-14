@@ -3,13 +3,16 @@
 
 #include "EMarker.h"
 
+class BlockManager;
+
 class EBlock : public EMarker
 {
 	private:
 		static const std::string model_file;
-		
+	
 	public:
-		EBlock (osgART::Tracker* tracker, osg::NodeCallback* callback, std::string marker_args);
+		EBlock (osgART::Tracker* tracker, std::string marker_args);
+		virtual void update();
 };
 
 #endif
