@@ -225,3 +225,38 @@ by GStreamer.
 
 1. GStreamer website: http://gstreamer.freedesktop.org/
 
+
+==========
+= Week 40
+==========
+
+It was very frustrating to finally compile and execute the demos provided by the
+HandVu library but at the same time not to be able to make it run in the
+expected way by keeping the minimum requirements such as good hand recognition
+results and a decent execution speed having a modest overhead in the system's
+general load.
+
+The tracker was unable to identify the shape of my hand, we tried executing it
+in different backgrounds and environments without getting better results, after
+a couple of runnings the binaries refused to execute because of problems in the
+OpenCV Library (we are using a beta version of this library) procedures.
+
+I experimented very low frame rates during the tracking process and after a
+quick search in the HandVu website (1*) I discovered, that the Linux version
+doesn't have good tracking speed with high frame rates, this was planned as one
+of the "coming soon" features for future releases but this features never became
+real.   
+
+Our conclusion for this week is to continue with the secondary plan that was to
+use the visibility property of a special marker, when the marker gets covered
+bye the user/developer the system will understand this action as a change of
+the current state, taking a snapshot of the current representation of the
+problem.
+
+As an extra point, the ability to show any string on top of the markers has been
+added to the project's TO-DO list. 
+
+
+*** References:
+
+1. HandVu website: http://www.movesinstitute.org/~kolsch/HandVu/HandVu.html
