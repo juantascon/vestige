@@ -1,7 +1,14 @@
 #! /bin/bash
 
-export ARTOOLKIT_CONFIG="filesrc location=data/video/4markers_3aligned.mov ! decodebin ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink"
+root=$HOME/demo1/
+
+cd $root
+
+bin=./build/src/demo1
+video=./data/video
+
+export ARTOOLKIT_CONFIG="filesrc location=$video/4markers_3aligned.mov ! decodebin ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink"
 #export ARTOOLKIT_CONFIG="v4l2src device=/dev/video0 use-fixed-fps=false ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink"
 
-./demo1
+gdb $bin
 
