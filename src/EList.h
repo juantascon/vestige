@@ -5,6 +5,7 @@
 
 #include "EMarker.h"
 #include "EBlock.h"
+#include "EContainer.h"
 
 class EList : public EMarker
 {

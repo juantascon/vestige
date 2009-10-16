@@ -7,6 +7,7 @@ EList::EList(osgART::Tracker* tracker, std::string marker_args) :
 	blocks ()
 {
 	this->label = "list1";
+	EContainer::instance()->addList(this);
 }
 
 void EList::add(EBlock *b) {
@@ -40,7 +41,18 @@ int EList::block_aligned(EBlock* b) {
 	return 0;
 }
 
-void EList::update(){
+void EList::update() {
 	std::cout << "list pos changed" << std::endl;
-	//bm->listUpdated(this);
+	
+	EBlockVector *v = EContainer::instance()->blocks();
+	
+	this->clear();
+	
+	for (int i = 0; i < v->size(); i++){
+		if ( this->block_aligned( (*v)[i] ) ) {
+			this->add( (*v)[i] );
+		}
+	}
+	
+	this->print();
 }

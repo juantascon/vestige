@@ -1,9 +1,7 @@
-#ifndef __EBlOCK_H
+#ifndef __EBLOCK_H
 #define __EBLOCK_H 1
 
 #include "EMarker.h"
-
-class BlockManager;
 
 class EBlock : public EMarker
 {

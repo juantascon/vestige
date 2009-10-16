@@ -1,6 +1,6 @@
-#include "BlockManager.h"
-
 #include <osgART/GeometryUtils>
+
+#include "EFactory.h"
 
 osg::Group* createImageBackground(osg::Image* video) {
 	
@@ -66,13 +66,9 @@ int main(int argc, char* argv[]) {
 	// the camera
 	osg::ref_ptr<osg::Camera> cam = calibration->createCamera();
 	
-	BlockManager::instance()->initialize( tracker.get() );
-	BlockManager::instance()->addList("single;data/patt/patt.sample2;100;0;0");
-	BlockManager::instance()->addBlock("single;data/patt/patt.hiro;100;0;0");
-	BlockManager::instance()->addBlock("single;data/patt/patt.kanji;100;0;0");
-	BlockManager::instance()->addBlock("single;data/patt/patt.sample1;100;0;0");
+	EFactory::instance()->initialize( tracker.get() );
+	EFactory::instance()->addModelsToCam(cam);
 	
-	BlockManager::instance()->addModelsToCam(cam);
 	cam->addChild(createImageBackground(video.get()));
 	
 	// create the viewer
