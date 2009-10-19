@@ -2,10 +2,10 @@
 
 EMarker::EMarker(osgART::Tracker* tracker, std::string marker_args, std::string model_file)
 {
+	this->label = new ELabel("key", "value");
+	
 	initMarker(tracker, marker_args);
 	initModel(model_file);
-	
-	this->label = "label";
 	
 	// attach the model to the marker
 	osgART::attachDefaultEventCallbacks(_model, _marker);
@@ -20,7 +20,6 @@ osg::Vec3 EMarker::position() {
 }
 
 void EMarker::initMarker(osgART::Tracker* tracker, std::string args) {
-	
 	_marker = tracker->addMarker(args);
 	if (!_marker)
 	{
@@ -31,9 +30,9 @@ void EMarker::initMarker(osgART::Tracker* tracker, std::string args) {
 }
 
 void EMarker::initModel(std::string model_file) {
-	
 	_model = new osg::MatrixTransform();
-	_model->addChild(osgDB::readNodeFile(model_file));
+	_model->addChild(label->node());
+	//_model->addChild(osgDB::readNodeFile(model_file));
 	_model->getOrCreateStateSet()->setRenderBinDetails(100, "RenderBin");
 }
 

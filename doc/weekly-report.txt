@@ -260,3 +260,50 @@ added to the project's TO-DO list.
 *** References:
 
 1. HandVu website: http://www.movesinstitute.org/~kolsch/HandVu/HandVu.html
+
+
+==========
+= Week 42
+==========
+
+My work this week is very notorious, mainly because the output is visible
+progress in the development of the software (new features).
+
+I made a redesign in the code for better performance, in the old days the
+position recognition process was done by a single callback in charge of analyze
+which markers were align with each other, this was changed to new callbacks
+in the scope of each list and each block (a block and a list are specializations
+of markers) with this the process will only have to iterate through the markers
+whose position have changed.
+
+I finally build a good debug interface, we can now print on screen in real-time
+the current state of the recognized system all the lists and their aligned
+blocks.
+
+And the most visual feature of all, finally, the ability to show a marker as a
+variable, this is, on top of each marker we show a string with the form
+"key = value", key representing the name of the variable and value as its name
+indicates the value of the variable.
+
+Additionally to this I contacted designer JanEun Cho in order to coordinate with
+her our designs needs, I found the plug-in to make 3d studio max (her design
+tool) to export in osg format (the format accepted by osgart Toolkit) as
+previously mentioned this was a hitch for us to use her designs.
+
+The next week I want to continue with the improvement of some of this new
+features, for instance right now when we show the variable string on the marker
+we are unable to show the 3d model that represents the type of marker, the
+debugging system doesn't print properly blocks that aren't aligned with any list
+marker, and, if I have time, I will start with the development of the special
+marker that will indicates states changes.
+
+As a personal comment I would like to say that I feel an important improvement
+on my English writing skills, this little reports use to take me almost a full
+afternoon but now I finish them in about 60-90 minutes and I can successfully
+put on the report all of my ideas without the previous feeling that I'm leaving
+something out.
+
+
+==========
+= Week 43
+==========

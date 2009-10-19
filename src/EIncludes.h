@@ -14,5 +14,6 @@
 
 #include <osgDB/FileUtils>
 #include <osgDB/ReadFile>
+#include <osgText/Text>
 
 #endif

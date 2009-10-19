@@ -3,6 +3,8 @@
 
 #include "EIncludes.h"
 
+#include "ELabel.h"
+
 class EMarker : public osg::NodeCallback
 {
 	protected:
@@ -11,11 +13,10 @@ class EMarker : public osg::NodeCallback
 		
 		osgART::Marker* _marker;
 		osg::MatrixTransform* _model;
+		ELabel *label;
 		
 	public:
 		EMarker(osgART::Tracker* tracker, std::string marker_args, std::string model_file);
-		
-		std::string label;
 		
 		osgART::Marker* marker();
 		osg::MatrixTransform* model();

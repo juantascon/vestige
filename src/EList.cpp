@@ -6,7 +6,6 @@ EList::EList(osgART::Tracker* tracker, std::string marker_args) :
 	EMarker(tracker, marker_args, EList::model_file),
 	blocks ()
 {
-	this->label = "list1";
 	EContainer::instance()->addList(this);
 }
 
@@ -25,7 +24,7 @@ void EList::print(){
 	std::cout << "-------------" << std::endl;
 	std::cout << "|           |" << std::endl;
 	for (int i = 0; i < blocks.size(); i++){
-		std::cout << " *" << blocks[i]->label << "*" << std::endl;
+		std::cout << " *" << "blocks[i]->label" << "*" << std::endl;
 	}
 }
 
