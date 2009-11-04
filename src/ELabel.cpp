@@ -17,14 +17,17 @@ void ELabel::set_value(std::string value) {
 	_value = value;
 }
 
+std::string ELabel::text() {
+	return ( _key + " = " + _value );
+}
+
 osg::Node* ELabel::node() {
 	osg::Geode* texts = new osg::Geode();
 	texts->setName("name");
 	
-	osgText::Text* text = new osgText::Text();
-	std::cout << "key: "<< _key << std::endl;
-	text->setText( _key + " = " + _value);
-	texts->addDrawable(text);
+	osgText::Text* osgtext = new osgText::Text();
+	osgtext->setText( this->text() );
+	texts->addDrawable(osgtext);
 	
 	return ( dynamic_cast<osg::Node*> (texts) );
 }

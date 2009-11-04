@@ -18,17 +18,22 @@ class EContainer
 		EBlockVector _blocks;
 		EListVector _lists;
 		
+		osgART::Tracker* _tracker;
+		
 		EContainer();
 		
 	public:
 		static EContainer* instance();
-		void initialize(osgART::Tracker* tracker);
+		void initialize();
 		
 		void addBlock(EBlock *b);
-		void addList(EList *b);
-		
-		EListVector* lists();
 		EBlockVector* blocks();
+		
+		void addList(EList *b);
+		EListVector* lists();
+		
+		void setTracker(osgART::Tracker* tracker);
+		osgART::Tracker* tracker();
 };
 
 #endif

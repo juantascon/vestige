@@ -19,6 +19,10 @@ void EContainer::addBlock(EBlock *b) {
 	_blocks.push_back(b);
 }
 
+EBlockVector* EContainer::blocks() {
+	return &_blocks;
+}
+
 void EContainer::addList(EList *l) {
 	_lists.push_back(l);
 }
@@ -27,6 +31,10 @@ EListVector* EContainer::lists() {
 	return &_lists;
 }
 
-EBlockVector* EContainer::blocks() {
-	return &_blocks;
+void EContainer::setTracker(osgART::Tracker* tracker) {
+	this->_tracker = tracker;
+}
+
+osgART::Tracker* EContainer::tracker() {
+	return _tracker;
 }

@@ -307,3 +307,22 @@ something out.
 ==========
 = Week 43
 ==========
+
+There is not much to say about what I did this week except that I Improved the
+features built last week, the debug interface had been fixed so that now it can
+print correctly blocks and lists, the floating labels (the ones that indicates
+the variable name and value) are now only in blocks scope, they can also be
+shown altogether with the 3d model.
+
+I also checked some example codes of OpenSceneGraph because I'm thinking to
+change the way that lists are displayed using some variable indicator that will
+be put on top of the child blocks showing only the very last item of the list.
+
+My plan for the next week is to implement the marker that will work as state
+change notifier.
+
+
+==========
+= Week 44
+==========
+

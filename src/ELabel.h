@@ -18,6 +18,7 @@ class ELabel
 		void set_key(std::string key);
 		void set_value(std::string value);
 		
+		std::string text();
 		osg::Node* node();
 };
 

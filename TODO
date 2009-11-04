@@ -1,8 +1,6 @@
-enviar a la pelada esta los templates de los markers AR y de como pasar de 3ds a osg
+preguntar que pasó al fin con lo de los disenos
 
 interfaz:
 
-mostrar cualquier string sobre un marker
-sistema de depuración donde se imprima en consola el estado actual de lo que se ha reconocido
 poder identificar los estados y el cambio de estado, para esto se tendra un marcador especial que cuando este cubierto indicara el cambio de estado
 

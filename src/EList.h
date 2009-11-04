@@ -5,7 +5,6 @@
 
 #include "EMarker.h"
 #include "EBlock.h"
-#include "EContainer.h"
 
 class EList : public EMarker
 {
@@ -13,10 +12,10 @@ class EList : public EMarker
 		static const std::string model_file;
 		
 	protected:
-		std::vector <EBlock*> blocks;
+		std::vector <EBlock*> _blocks;
 		
 	public:
-		EList (osgART::Tracker* tracker, std::string marker_args);
+		EList (std::string marker_args);
 		
 		void add(EBlock *b);
 		void del(EBlock *b);
@@ -24,7 +23,7 @@ class EList : public EMarker
 		
 		void print();
 		
-		int block_aligned(EBlock* b);
+		void reset();
 		virtual void update();
 };
 

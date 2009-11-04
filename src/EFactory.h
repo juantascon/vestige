@@ -4,6 +4,7 @@
 #include "EIncludes.h"
 #include "EBlock.h"
 #include "EList.h"
+#include "EContainer.h"
 
 #include <vector>
 
@@ -14,14 +15,29 @@ class EFactory
 		
 	protected:
 		osgART::Tracker* tracker;
+		osgART::Video* video;
+		
+		osgART::Calibration* calibration;
+		osg::Camera* camera;
+		osgViewer::Viewer* viewer;
+		osg::Group* root;
 		
 		EFactory();
 		
 	public:
 		static EFactory* instance();
 		
-		void initialize(osgART::Tracker* tracker);
-		void addModelsToCam(osg::Camera* cam);
+		void initTracker();
+		void initVideo();
+		
+		void initCalibration();
+		void initCamera();
+		void initViewer();
+		void initRoot();
+		void initMarkers();
+		
+		void initialize();
+		int execute();
 };
 
 #endif
