@@ -1,8 +1,8 @@
 #ifndef __EMARKER_H
 #define __EMARKER_H 1
 
-#include "EIncludes.h"
-#include "EContainer.h"
+#include "EIncludes.hpp"
+#include "EContainer.hpp"
 
 class EMarker : public osg::NodeCallback
 {

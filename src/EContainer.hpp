@@ -1,11 +1,13 @@
 #ifndef __ECONTAINER_H
 #define __ECONTAINER_H 1
 
-#include "EIncludes.h"
 #include <vector>
 
-class EList;
+#include "EIncludes.hpp"
+//#include "EBlock.hpp"
+//#include "EList.hpp"
 class EBlock;
+class EList;
 
 typedef std::vector <EBlock*> EBlockVector;
 typedef std::vector <EList*> EListVector;

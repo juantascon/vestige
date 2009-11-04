@@ -1,10 +1,10 @@
 #ifndef __EFACTORY_H
 #define __EFACTORY_H 1
 
-#include "EIncludes.h"
-#include "EBlock.h"
-#include "EList.h"
-#include "EContainer.h"
+#include "EIncludes.hpp"
+#include "EBlock.hpp"
+#include "EList.hpp"
+#include "EContainer.hpp"
 
 #include <vector>
 

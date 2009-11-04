@@ -1,11 +1,9 @@
 #ifndef __EBLOCK_H
 #define __EBLOCK_H 1
 
-#include "EMarker.h"
-#include "ELabel.h"
-#include "EList.h"
-
-class EList;
+#include "EMarker.hpp"
+#include "ELabel.hpp"
+#include "EList.hpp"
 
 class EBlock : public EMarker
 {

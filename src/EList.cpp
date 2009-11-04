@@ -1,4 +1,4 @@
-#include "EList.h"
+#include "EList.hpp"
 
 const std::string EList::model_file = "data/osg/cessnafire.osg";
 

@@ -1,4 +1,4 @@
-#include "EBlock.h"
+#include "EBlock.hpp"
 
 const std::string EBlock::model_file = "data/osg/cessna.osg";
 
