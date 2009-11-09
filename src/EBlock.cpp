@@ -3,10 +3,12 @@
 const std::string EBlock::model_file = "data/osg/cessna.osg";
 
 EBlock::EBlock(std::string marker_args, std::string key) :
-	EMarker(marker_args, EBlock::model_file)
+	EMarker(marker_args)
 {
 	this->label = new ELabel(key, "empty");
-	this->_model->addChild(label->node());
+	
+	this->addChild(label->node());
+	this->addChild(osgDB::readNodeFile(EBlock::model_file));
 	
 	EContainer::instance()->addBlock(this);
 }

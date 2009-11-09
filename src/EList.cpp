@@ -3,10 +3,11 @@
 const std::string EList::model_file = "data/osg/cessnafire.osg";
 
 EList::EList(std::string marker_args) :
-	EMarker(marker_args, EList::model_file),
+	EMarker(marker_args),
 	_blocks ()
 {
 	EContainer::instance()->addList(this);
+	this->addChild(osgDB::readNodeFile(EList::model_file));
 }
 
 void EList::add(EBlock *b) {

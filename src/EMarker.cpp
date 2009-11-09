@@ -1,9 +1,9 @@
 #include "EMarker.hpp"
 
-EMarker::EMarker(std::string marker_args, std::string model_file)
+EMarker::EMarker(std::string marker_args)
 {
 	initMarker(marker_args);
-	initModel(model_file);
+	initModel();
 	
 	// attach the model to the marker
 	osgART::attachDefaultEventCallbacks(_model, _marker);
@@ -20,13 +20,14 @@ void EMarker::initMarker(std::string args) {
 	_marker->setActive(true);
 }
 
-void EMarker::initModel(std::string model_file) {
+void EMarker::initModel() {
 	_model = new osg::MatrixTransform();
-	//_model->addChild(label->node());
-	_model->addChild(osgDB::readNodeFile(model_file));
 	_model->getOrCreateStateSet()->setRenderBinDetails(100, "RenderBin");
 }
 
+void EMarker::addChild(osg::Node* child) {
+	_model->addChild(child);
+}
 
 osgART::Marker* EMarker::marker(){ return this->_marker; }
 osg::MatrixTransform* EMarker::model() { return this->_model; }

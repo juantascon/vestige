@@ -8,16 +8,17 @@ class EMarker : public osg::NodeCallback
 {
 	protected:
 		void initMarker(std::string args);
-		void initModel(std::string file);
+		void initModel();
 		
 		osgART::Marker* _marker;
 		osg::MatrixTransform* _model;
 		
 	public:
-		EMarker(std::string marker_args, std::string model_file);
+		EMarker(std::string marker_args);
 		
 		osgART::Marker* marker();
 		osg::MatrixTransform* model();
+		void addChild(osg::Node* child);
 		
 		osg::Vec3 position();
 		int aligned(EMarker* m);

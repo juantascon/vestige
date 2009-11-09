@@ -323,6 +323,41 @@ change notifier.
 
 
 ==========
-= Week 44
+= Week 45
 ==========
 
+- SICK/FEVER -
+
+
+==========
+= Week 45
+==========
+
+My work this week was focused on programming, I had redesigned the application
+making a few changes in the internal structure of the code, there was an overall
+redesign of the way the information is stored.
+
+The first change is that there is a new singleton class called EContainer in
+charge of register all the lists and blocks in the system, this way a block can
+relocate its logical position -when its physical position change- by iterating
+through all the lists in order to check which one is aligned with it and
+dynamically adding itself to the logic internal structure of the list, this
+fixed a little bug opened when I changed the callbacks from a default one to a
+specialized one on each list and block scopes.
+
+Another new singleton class is the EFactory class, in charge of create all the
+OSGart related object such as Video, Tracker, Calibration, Camera, Viewer, etc.
+It also stores these objects in a global environment so that other classes can
+have instant access to this information, for now the only data used is the
+Tracker object used in the creation of markers.
+
+The lists and blocks are now more specialized objects, only blocks have an
+internal label object, blocks now know how to print themselves so the lists
+fallback on this ability.
+
+One last minor change was the renaming of the header files by changing the
+extension from .h to the more modern and highly recommended .hpp.
+
+I'm planning to do an even more important redesign by adding the concept of
+state, so part of my work next week might be on the design and not so much on
+the programming.
