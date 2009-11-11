@@ -5,6 +5,7 @@
 
 #include "EMarker.hpp"
 #include "EBlock.hpp"
+#include "EVectorTypes.hpp"
 
 class EList : public EMarker
 {
@@ -26,5 +27,7 @@ class EList : public EMarker
 		void reset();
 		virtual void update();
 };
+
+typedef std::vector <EList*> EListVector;
 
 #endif

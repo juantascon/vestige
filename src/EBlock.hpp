@@ -22,4 +22,6 @@ class EBlock : public EMarker
 		virtual void update();
 };
 
+typedef std::vector <EBlock*> EBlockVector;
+
 #endif

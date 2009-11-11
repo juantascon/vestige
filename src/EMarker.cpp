@@ -29,7 +29,7 @@ void EMarker::addChild(osg::Node* child) {
 	_model->addChild(child);
 }
 
-osgART::Marker* EMarker::marker(){ return this->_marker; }
+osgART::Marker* EMarker::marker() { return this->_marker; }
 osg::MatrixTransform* EMarker::model() { return this->_model; }
 
 osg::Vec3 EMarker::position() {

@@ -6,8 +6,6 @@
 #include "EList.hpp"
 #include "EContainer.hpp"
 
-#include <vector>
-
 class EFactory
 {
 	private:

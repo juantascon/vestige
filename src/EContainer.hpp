@@ -4,18 +4,13 @@
 #include <vector>
 
 #include "EIncludes.hpp"
-//#include "EBlock.hpp"
-//#include "EList.hpp"
-class EBlock;
-class EList;
-
-typedef std::vector <EBlock*> EBlockVector;
-typedef std::vector <EList*> EListVector;
+#include "EVectorTypes.hpp"
 
 class EContainer
 {
 	private:
 		static EContainer* _instance;
+		
 	protected:
 		EBlockVector _blocks;
 		EListVector _lists;
