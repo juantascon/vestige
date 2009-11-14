@@ -1,10 +1,7 @@
 #ifndef __EMARKERCONTAINER_H
-#define __EMARKERCONTAINER_H 1
+#define __EMARKERCONTAINER_H
 
 #include "EIncludes.hpp"
-#include "EVectorTypes.hpp"
-
-class EMarker;
 
 class EMarkerContainer : public EMarkerVector
 {

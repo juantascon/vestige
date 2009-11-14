@@ -1,5 +1,5 @@
 #ifndef __ELABEL_H
-#define __ELABEL_H 1
+#define __ELABEL_H
 
 #include "EIncludes.hpp"
 

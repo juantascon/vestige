@@ -1,4 +1,4 @@
-#include "EMarkerBlock.hpp"
+#include "EIncludes.hpp"
 
 const std::string EMarkerBlock::model_file = "data/osg/cessna.osg";
 
@@ -11,6 +11,7 @@ EMarkerBlock::EMarkerBlock(std::string marker_args, std::string key) : EMarker(m
 }
 
 void EMarkerBlock::update() {
+	EStateManager::instance()->capture();
 }
 
 //TODO: move esto de aqui

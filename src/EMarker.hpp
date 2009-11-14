@@ -1,8 +1,7 @@
 #ifndef __EMARKER_H
-#define __EMARKER_H 1
+#define __EMARKER_H
 
 #include "EIncludes.hpp"
-#include "EMarkerContainer.hpp"
 
 class EMarker : public osg::NodeCallback
 {
@@ -26,5 +25,7 @@ class EMarker : public osg::NodeCallback
 		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);
 		virtual void update() = 0;
 };
+
+typedef std::vector <EMarker*> EMarkerVector;
 
 #endif

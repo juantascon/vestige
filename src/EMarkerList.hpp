@@ -1,8 +1,7 @@
 #ifndef __EMARKERLIST_H
-#define __EMARKERLIST_H 1
+#define __EMARKERLIST_H
 
-#include "EMarker.hpp"
-#include "EVectorTypes.hpp"
+#include "EIncludes.hpp"
 
 class EMarkerList : public EMarker
 {

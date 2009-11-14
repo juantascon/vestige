@@ -1,4 +1,4 @@
-#include "ELabel.hpp"
+#include "EIncludes.hpp"
 
 ELabel::ELabel(std::string key, std::string value) {
 	set_key(key);

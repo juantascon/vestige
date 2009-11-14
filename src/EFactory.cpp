@@ -1,4 +1,4 @@
-#include "EFactory.hpp"
+#include "EIncludes.hpp"
 #include <osgART/GeometryUtils>
 
 EFactory* EFactory::_instance = 0;

@@ -1,8 +1,7 @@
 #ifndef __EMARKERBLOCK_H
-#define __EMARKERBLOCK_H 1
+#define __EMARKERBLOCK_H
 
-#include "EMarker.hpp"
-#include "ELabel.hpp"
+#include "EIncludes.hpp"
 
 class EMarkerBlock : public EMarker
 {

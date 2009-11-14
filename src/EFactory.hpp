@@ -2,8 +2,6 @@
 #define __EFACTORY_H 1
 
 #include "EIncludes.hpp"
-#include "EMarkerBlock.hpp"
-#include "EMarkerList.hpp"
 
 class EFactory
 {
