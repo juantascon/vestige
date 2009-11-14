@@ -16,6 +16,8 @@
 #include <osgDB/ReadFile>
 #include <osgText/Text>
 
+#include <boost/foreach.hpp>
+
 #include "ELabel.hpp"
 #include "EMarker.hpp"
 #include "EMarkerContainer.hpp"
@@ -27,6 +29,5 @@
 #include "EState.hpp"
 #include "EStateManager.hpp"
 #include "EFactory.hpp"
-
 
 #endif

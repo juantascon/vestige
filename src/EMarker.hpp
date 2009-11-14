@@ -15,6 +15,8 @@ class EMarker : public osg::NodeCallback
 	public:
 		EMarker(std::string marker_args);
 		
+		int processed;
+		
 		osgART::Marker* marker();
 		osg::MatrixTransform* model();
 		void addChild(osg::Node* child);

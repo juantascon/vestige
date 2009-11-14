@@ -11,6 +11,9 @@ class EStateManager
 	protected:
 		EStateManager();
 		
+		ENode* do_block(EMarkerBlock* b);
+		ENode* do_list(EMarkerList* l);
+		
 	public:
 		static EStateManager* instance();
 		

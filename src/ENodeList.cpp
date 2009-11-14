@@ -15,10 +15,11 @@ ENode* ENodeList::pop() {
 }
 
 void ENodeList::print() {
-	std::cout << "-------------";
+	std::cout << "-------------" << std::endl;
 	for (int i = 0; i < _items.size(); i++) {
-		std::cout << std::endl << "|";
+		std::cout << "-- ";
 		_items[i]->print();
-		std::cout << "|";
+		std::cout << std::endl;
 	}
+	std::cout << "-------------";
 }
