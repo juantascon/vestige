@@ -2,7 +2,7 @@
 #define __EMARKER_H 1
 
 #include "EIncludes.hpp"
-#include "EContainer.hpp"
+#include "EMarkerContainer.hpp"
 
 class EMarker : public osg::NodeCallback
 {

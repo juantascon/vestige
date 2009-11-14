@@ -8,10 +8,13 @@ EMarker::EMarker(std::string marker_args)
 	// attach the model to the marker
 	osgART::attachDefaultEventCallbacks(_model, _marker);
 	osgART::addEventCallback(_model, this);
+	
+	EMarkerContainer::instance()->camera->addChild(_model);
+	EMarkerContainer::instance()->add(this);
 }
 
 void EMarker::initMarker(std::string args) {
-	_marker = EContainer::instance()->tracker()->addMarker(args);
+	_marker = EMarkerContainer::instance()->tracker->addMarker(args);
 	if (!_marker)
 	{
 		osg::notify(osg::FATAL) << "Could not add marker!" << std::endl;
@@ -47,7 +50,6 @@ int EMarker::aligned(EMarker* m) {
 	if (abs(dpos.x()) < 10) { return 1; }
 	return 0;
 }
-
 
 void EMarker::operator() (osg::Node* node, osg::NodeVisitor* nv) {
 	update();

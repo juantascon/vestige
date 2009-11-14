@@ -19,7 +19,7 @@ class ELabel
 		void set_value(std::string value);
 		
 		std::string text();
-		osg::Node* node();
+		osg::Node* model();
 };
 
 #endif

@@ -1,10 +1,12 @@
 #ifndef __EVECTORTYPES_H
 #define __EVECTORTYPES_H 1
 
-class EList;
-class EBlock;
+#include <vector>
 
-typedef std::vector <EList*> EListVector;
-typedef std::vector <EBlock*> EBlockVector;
+class EMarker;
+typedef std::vector <EMarker*> EMarkerVector;
+
+//class ENode;
+//typedef std::vector <ENodeBase*> ENodeBaseVector;
 
 #endif

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-root=$HOME/demo1/
+root=$HOME/dev/demo1/
 
 cd $root
 

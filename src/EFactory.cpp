@@ -36,7 +36,7 @@ void EFactory::initTracker() {
 		exit(-1);
 	}
 	
-	EContainer::instance()->setTracker(tracker);
+	EMarkerContainer::instance()->tracker = tracker;
 }
 
 void EFactory::initCalibration() {
@@ -64,19 +64,14 @@ void EFactory::initCamera() {
 	_layer->getOrCreateStateSet()->setRenderBinDetails(0, "RenderBin");
 	
 	camera->addChild(_layer);
+	EMarkerContainer::instance()->camera = camera;
 }
 
 void EFactory::initMarkers() {
-	new EList("single;data/patt/patt.sample2;100;0;0");
-	new EBlock("single;data/patt/patt.hiro;100;0;0", "name");
-	new EBlock("single;data/patt/patt.kanji;100;0;0", "id");
-	new EBlock("single;data/patt/patt.sample1;100;0;0", "family name");
-	
-	for (int i = 0; i < EContainer::instance()->blocks()->size(); i++)
-		camera->addChild( (*( EContainer::instance()->blocks() ))[i]->model());
-	
-	for (int i = 0; i < EContainer::instance()->lists()->size(); i++)
-		camera->addChild( (*(EContainer::instance()->lists())) [i]->model());
+	new EMarkerList("single;data/patt/patt.sample2;100;0;0");
+	new EMarkerBlock("single;data/patt/patt.hiro;100;0;0", "name");
+	new EMarkerBlock("single;data/patt/patt.kanji;100;0;0", "id");
+	new EMarkerBlock("single;data/patt/patt.sample1;100;0;0", "family name");
 }
 
 void EFactory::initViewer() {

@@ -21,7 +21,7 @@ std::string ELabel::text() {
 	return ( _key + " = " + _value );
 }
 
-osg::Node* ELabel::node() {
+osg::Node* ELabel::model() {
 	osg::Geode* texts = new osg::Geode();
 	texts->setName("name");
 	
