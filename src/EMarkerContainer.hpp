@@ -3,6 +3,7 @@
 
 #include "EIncludes.hpp"
 
+//TODO: usar boost singleton
 class EMarkerContainer : public EMarkerVector
 {
 	private:

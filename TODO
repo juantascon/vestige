@@ -1,6 +1,2 @@
 preguntar que pasó al fin con lo de los disenos
-
-interfaz:
-
-poder identificar los estados y el cambio de estado, para esto se tendra un marcador especial que cuando este cubierto indicara el cambio de estado
-
+crear marker especial para cambio de estado

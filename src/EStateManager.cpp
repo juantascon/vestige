@@ -43,8 +43,7 @@ ENode* EStateManager::do_list(EMarkerList* l) {
 }
 
 EState* EStateManager::capture() {
-	std::cout << "capture()" << std::endl;
-	
+	//TODO: conectar el estado anterior con el siguiente
 	EState* state = new EState();
 	
 	BOOST_FOREACH( EMarker* m, (*EMarkerContainer::instance()) ) {
@@ -71,6 +70,7 @@ EState* EStateManager::capture() {
 		state->push(n);
 	}
 	
-	state->print();
+	//std::cout << "capture()" << std::endl;
+	//state->print();
 	return state;
 }

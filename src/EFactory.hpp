@@ -3,6 +3,7 @@
 
 #include "EIncludes.hpp"
 
+//TODO: Usar boost singleton
 class EFactory
 {
 	private:
