@@ -1,0 +1,25 @@
+-----------------
+Goal:
+-----------------
+The main goal of our research is to develop a system that helps students
+to learn how to program using functional programming languages.
+
+-----------------
+Issues:
+-----------------
+Two different types of issues are detected:
+* Technicals, by try to get to work unstable programming libraries.
+* Interaction, by creating a practical and suitable user interface, that truly
+helps students on learning.
+
+-----------------
+Approaches:
+-----------------
+
+-----------------
+My Contribution:
+-----------------
+There are two main contributions:
+* The use of augmented reality on a didactic system.
+* The use of a block abstraction as basic tools to represent functional
+programming algorithms.
