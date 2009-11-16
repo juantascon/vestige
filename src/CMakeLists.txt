@@ -1,6 +1,6 @@
 set(SRCS
 	Var.cpp
-	marker/Manager.cpp marker/Marker.cpp marker/List.cpp marker/Block.cpp
+	marker/Manager.cpp marker/Marker.cpp marker/List.cpp marker/Block.cpp marker/Switch.cpp
 	state/Node.cpp state/Block.cpp state/List.cpp state/State.cpp state/Manager.cpp
 	Initializer.cpp Main.cpp
 )

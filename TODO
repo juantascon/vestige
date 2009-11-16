@@ -1,2 +1,4 @@
 preguntar que pasó al fin con lo de los disenos
-crear marker especial para cambio de estado
+modificar la forma de visualizar las listas, la lista debe cubrir todos los elementos excepto el último
+dibujar todos los modelos con punto de coordenadas en la mitad (ej los labels deben estar centrados)
+

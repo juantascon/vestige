@@ -3,7 +3,7 @@
 namespace far {
 namespace marker {
 
-const std::string Block::model_file = "data/osg/cessna.osg";
+const std::string Block::model_file = "data/osg/block.osg";
 
 Block::Block(std::string marker_args, std::string key) : Marker(marker_args)
 {
@@ -14,7 +14,6 @@ Block::Block(std::string marker_args, std::string key) : Marker(marker_args)
 }
 
 void Block::update() {
-	state::Manager::instance()->capture();
 }
 
 }}

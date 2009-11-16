@@ -16,13 +16,18 @@
 #include <osgDB/ReadFile>
 #include <osgText/Text>
 
+#include <unistd.h>
+
 #include <boost/foreach.hpp>
+#include <boost/thread/thread.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 #include "Var.hpp"
 #include "marker/Marker.hpp"
 #include "marker/Manager.hpp"
 #include "marker/List.hpp"
 #include "marker/Block.hpp"
+#include "marker/Switch.hpp"
 #include "state/Node.hpp"
 #include "state/Block.hpp"
 #include "state/List.hpp"

@@ -71,10 +71,10 @@ void Initializer::initCamera() {
 }
 
 void Initializer::initMarkers() {
-	new marker::List("single;data/patt/patt.sample2;100;0;0");
-	new marker::Block("single;data/patt/patt.hiro;100;0;0", "name");
-	new marker::Block("single;data/patt/patt.kanji;100;0;0", "id");
-	new marker::Block("single;data/patt/patt.sample1;100;0;0", "family name");
+	new marker::List("single;data/patt/patt.hiro;100;0;0");
+	new marker::Switch("single;data/patt/patt.kanji;100;0;0");
+	new marker::Block("single;data/patt/patt.sample1;100;0;0", "name");
+	new marker::Block("single;data/patt/patt.sample2;100;0;0", "family name");
 }
 
 void Initializer::initViewer() {

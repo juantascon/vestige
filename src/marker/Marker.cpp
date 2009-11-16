@@ -49,8 +49,10 @@ int Marker::aligned(Marker* m) {
 	osg::Vec3 dpos = mp - tp;
 	
 	//std::cout << "mpos:" << bp << " tpos: " << lp << std::endl;
-	//std::cout << dpos << std::endl;
-	if (abs(dpos.x()) < 10) { return 1; }
+	//std::cout << "dpos: " << dpos << std::endl;
+	//std::cout << "abs-x: " << abs(dpos.x()) << std::endl;
+	
+	if (abs(dpos.x()) < 40) { return 1; }
 	return 0;
 }
 

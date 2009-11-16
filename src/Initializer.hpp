@@ -14,7 +14,7 @@ class Initializer
 		
 	protected:
 		osgART::Tracker* tracker;
-		osgART::Video* video;
+		
 		
 		osgART::Calibration* calibration;
 		osg::Camera* camera;
@@ -24,6 +24,7 @@ class Initializer
 		Initializer();
 		
 	public:
+		osgART::Video* video;
 		static Initializer* instance();
 		
 		void initTracker();

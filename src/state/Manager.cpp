@@ -73,8 +73,8 @@ State* Manager::capture() {
 		s->push(n);
 	}
 	
-	//std::cout << "capture()" << std::endl;
-	//s->print();
+	std::cout << "capture()" << std::endl;
+	s->print();
 	return s;
 }
 
