@@ -1,18 +1,23 @@
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-EMarkerContainer* EMarkerContainer::_instance = 0;
+namespace far {
+namespace marker {
 
-EMarkerContainer::EMarkerContainer() : EMarkerVector()
+Manager* Manager::_instance = 0;
+
+Manager::Manager() : Vector()
 {
 }
 
-EMarkerContainer* EMarkerContainer::instance() {
+Manager* Manager::instance() {
 	if (!_instance) {
-		_instance = new EMarkerContainer();
+		_instance = new Manager();
 	}
 	return _instance;
 }
 
-void EMarkerContainer::add(EMarker *m) {
+void Manager::add(Marker *m) {
 	this->push_back(m);
 }
+
+}}

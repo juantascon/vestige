@@ -1,13 +1,16 @@
 #ifndef __EFACTORY_H
 #define __EFACTORY_H 1
 
-#include "EIncludes.hpp"
+#include "Includes.hpp"
+
+namespace far
+{
 
 //TODO: Usar boost singleton
-class EFactory
+class Initializer
 {
 	private:
-		static EFactory* _instance;
+		static Initializer* _instance;
 		
 	protected:
 		osgART::Tracker* tracker;
@@ -18,10 +21,10 @@ class EFactory
 		osgViewer::Viewer* viewer;
 		osg::Group* root;
 		
-		EFactory();
+		Initializer();
 		
 	public:
-		static EFactory* instance();
+		static Initializer* instance();
 		
 		void initTracker();
 		void initVideo();
@@ -35,5 +38,7 @@ class EFactory
 		void initialize();
 		int execute();
 };
+
+}
 
 #endif

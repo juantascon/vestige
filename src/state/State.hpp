@@ -1,19 +1,24 @@
-#ifndef __ESTATE_H
-#define __ESTATE_H
+#ifndef __FAR_STATE_STATE_HPP
+#define __FAR_STATE_STATE_HPP
 
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-class EState : public ENodeList
+namespace far{
+namespace state{
+
+class State : public List
 {
 	protected:
 		
 	public:
-		EState();
+		State();
 		
-		EState* previous;
-		EState* next;
+		State* previous;
+		State* next;
 		
 		virtual void print();
 };
+
+}}
 
 #endif

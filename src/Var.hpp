@@ -1,16 +1,19 @@
-#ifndef __ELABEL_H
-#define __ELABEL_H
+#ifndef __VAR_H
+#define __VAR_H
 
-#include "EIncludes.hpp"
+#include "Includes.hpp"
 
-class ELabel
+namespace far
+{
+
+class Var
 {
 	protected:
 		std::string _key;
 		std::string _value;
 		
 	public:
-		ELabel(std::string key, std::string value);
+		Var(std::string key, std::string value);
 		
 		std::string get_key();
 		std::string get_value(); 
@@ -21,5 +24,7 @@ class ELabel
 		std::string text();
 		osg::Node* model();
 };
+
+}
 
 #endif

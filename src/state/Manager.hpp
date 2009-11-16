@@ -1,27 +1,31 @@
 #ifndef __ESTATEMANAGER_H
 #define __ESTATEMANAGER_H
 
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
+
+namespace far{
+namespace state{
 
 //TODO: usar boost singleton
-class EStateManager
+class Manager
 {
 	private:
-		static EStateManager* _instance;
+		static Manager* _instance;
 		
 	protected:
-		EStateManager();
+	Manager();
 		
-		ENode* do_block(EMarkerBlock* b);
-		ENode* do_list(EMarkerList* l);
+		Node* do_block(marker::Block* b);
+		Node* do_list(marker::List* l);
 		
 	public:
-		static EStateManager* instance();
+		static Manager* instance();
 		
-		EState* current;
-		
-		EState* capture();
+		State* current;
+		State* capture();
 		
 };
+
+}}
 
 #endif

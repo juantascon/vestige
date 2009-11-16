@@ -1,10 +1,10 @@
 #! /bin/bash
 
-root=$HOME/dev/demo1/
+root=$HOME/dev/farcode/
 
 cd $root
 
-bin=./build/src/demo1
+bin=./build/src/farcode
 video=./data/video
 
 export ARTOOLKIT_CONFIG="filesrc location=$video/4markers_3aligned.mov ! decodebin ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink"

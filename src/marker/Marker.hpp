@@ -1,9 +1,12 @@
 #ifndef __EMARKER_H
 #define __EMARKER_H
 
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-class EMarker : public osg::NodeCallback
+namespace far {
+namespace marker {
+
+class Marker : public osg::NodeCallback
 {
 	protected:
 		void initMarker(std::string args);
@@ -13,7 +16,7 @@ class EMarker : public osg::NodeCallback
 		osg::MatrixTransform* _model;
 		
 	public:
-		EMarker(std::string marker_args);
+		Marker(std::string marker_args);
 		
 		int processed;
 		
@@ -22,12 +25,14 @@ class EMarker : public osg::NodeCallback
 		void addChild(osg::Node* child);
 		
 		osg::Vec3 position();
-		int aligned(EMarker* m);
+		int aligned(Marker* m);
 		
 		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);
 		virtual void update() = 0;
 };
 
-typedef std::vector <EMarker*> EMarkerVector;
+typedef std::vector <Marker*> Vector;
+
+}}
 
 #endif

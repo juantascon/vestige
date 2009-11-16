@@ -1,9 +1,14 @@
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-ENode::ENode()
+namespace far{
+namespace state{
+
+Node::Node()
 {
 	this->parent = 0;
 }
 
-void ENode::print() {
+void Node::print() {
 }
+
+}}

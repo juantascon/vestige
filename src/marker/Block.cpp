@@ -1,15 +1,20 @@
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-const std::string EMarkerBlock::model_file = "data/osg/cessna.osg";
+namespace far {
+namespace marker {
 
-EMarkerBlock::EMarkerBlock(std::string marker_args, std::string key) : EMarker(marker_args)
+const std::string Block::model_file = "data/osg/cessna.osg";
+
+Block::Block(std::string marker_args, std::string key) : Marker(marker_args)
 {
-	this->label = new ELabel(key, "empty");
+	this->label = new Var(key, "empty");
 	
 	this->addChild(label->model());
-	this->addChild(osgDB::readNodeFile(EMarkerBlock::model_file));
+	this->addChild(osgDB::readNodeFile(Block::model_file));
 }
 
-void EMarkerBlock::update() {
-	EStateManager::instance()->capture();
+void Block::update() {
+	state::Manager::instance()->capture();
 }
+
+}}

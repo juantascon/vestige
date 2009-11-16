@@ -18,16 +18,16 @@
 
 #include <boost/foreach.hpp>
 
-#include "ELabel.hpp"
-#include "EMarker.hpp"
-#include "EMarkerContainer.hpp"
-#include "EMarkerList.hpp"
-#include "EMarkerBlock.hpp"
-#include "ENode.hpp"
-#include "ENodeBlock.hpp"
-#include "ENodeList.hpp"
-#include "EState.hpp"
-#include "EStateManager.hpp"
-#include "EFactory.hpp"
+#include "Var.hpp"
+#include "marker/Marker.hpp"
+#include "marker/Manager.hpp"
+#include "marker/List.hpp"
+#include "marker/Block.hpp"
+#include "state/Node.hpp"
+#include "state/Block.hpp"
+#include "state/List.hpp"
+#include "state/State.hpp"
+#include "state/Manager.hpp"
+#include "Initializer.hpp"
 
 #endif

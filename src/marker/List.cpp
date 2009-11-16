@@ -1,10 +1,15 @@
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-const std::string EMarkerList::model_file = "data/osg/cessnafire.osg";
+namespace far {
+namespace marker {
 
-EMarkerList::EMarkerList(std::string marker_args) : EMarker(marker_args) {
-	this->addChild(osgDB::readNodeFile(EMarkerList::model_file));
+const std::string List::model_file = "data/osg/cessnafire.osg";
+
+List::List(std::string marker_args) : Marker(marker_args) {
+	this->addChild(osgDB::readNodeFile(List::model_file));
 }
 
-void EMarkerList::update() {
+void List::update() {
 }
+
+}}

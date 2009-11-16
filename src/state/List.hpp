@@ -1,21 +1,26 @@
 #ifndef __ENODELIST_H
 #define __ENODELIST_H
 
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-class ENodeList : public ENode
+namespace far{
+namespace state{
+
+class List : public Node
 {
 	private:
 		
 	protected:
-		ENodeVector _items;
+		NodeVector _items;
 		
 	public:
-		ENodeList();
+		List();
 		
-		void push(ENode* n);
-		ENode* pop();
+		void push(Node* n);
+		Node* pop();
 		virtual void print();
 };
+
+}}
 
 #endif

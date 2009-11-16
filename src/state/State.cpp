@@ -1,10 +1,13 @@
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-EState::EState() : ENodeList()
+namespace far{
+namespace state{
+
+State::State() : List()
 {
 }
 
-void EState::print() {
+void State::print() {
 	std::cout << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" << std::endl;
 	
 	for (int i = 0; i < _items.size(); i++) {
@@ -14,3 +17,5 @@ void EState::print() {
 	
 	std::cout << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" << std::endl << std::endl;
 }
+
+}}

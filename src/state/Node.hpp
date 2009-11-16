@@ -1,16 +1,21 @@
 #ifndef __ENODE_H
 #define __ENODE_H 1
 
-class ENode
+namespace far{
+namespace state{
+
+class Node
 {
 	public:
-		ENode();
+		Node();
 		
-		ENode* parent;
+		Node* parent;
 		
 		virtual void print();
 };
 
-typedef std::vector <ENode*> ENodeVector;
+typedef std::vector <Node*> NodeVector;
+
+}}
 
 #endif

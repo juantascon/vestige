@@ -1,76 +1,81 @@
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-EStateManager* EStateManager::_instance = 0;
+namespace far{
+namespace state{
 
-EStateManager* EStateManager::instance() {
+Manager* Manager::_instance = 0;
+
+Manager* Manager::instance() {
 	if (!_instance) {
-		_instance = new EStateManager();
+		_instance = new Manager();
 	}
 	return _instance;
 }
 
 
-EStateManager::EStateManager()
+Manager::Manager()
 {
 	current = 0;
 }
 
-ENode* EStateManager::do_block(EMarkerBlock* b) {
-	ENodeBlock* n = new ENodeBlock();
+Node* Manager::do_block(marker::Block* b) {
+	Block* n = new Block();
 	//TODO: aqui deberia sacarse el valor de la variable del block
 	
 	b->processed = 1;
-	return static_cast<ENode*>(n);
+	return static_cast<Node*>(n);
 }
 
-ENode* EStateManager::do_list(EMarkerList* l) {
-	ENodeList* n = new ENodeList();
+Node* Manager::do_list(marker::List* l) {
+	List* n = new List();
 	
-	BOOST_FOREACH( EMarker* m, (*EMarkerContainer::instance()) ) {
+	BOOST_FOREACH( marker::Marker* m, (*marker::Manager::instance()) ) {
 		if (m->processed) { continue; }
 		
-		EMarkerBlock* b = dynamic_cast<EMarkerBlock*>( m );
+		marker::Block* b = dynamic_cast<marker::Block*>( m );
 		if (!b) { continue; }
 		
 		if ( l->aligned(b)) {
-			ENode* child = do_block(b);
+			Node* child = do_block(b);
 			n->push(child);
 		}
 	}
 	
 	l->processed = 1;
-	return static_cast<ENode*>(n);
+	return static_cast<Node*>(n);
 }
 
-EState* EStateManager::capture() {
+State* Manager::capture() {
 	//TODO: conectar el estado anterior con el siguiente
-	EState* state = new EState();
+	State* s = new State();
 	
-	BOOST_FOREACH( EMarker* m, (*EMarkerContainer::instance()) ) {
+	BOOST_FOREACH( marker::Marker* m, (*marker::Manager::instance()) ) {
 		m->processed = 0;
 	}
 	
-	BOOST_FOREACH( EMarker* m, (*EMarkerContainer::instance()) ) {
+	BOOST_FOREACH( marker::Marker* m, (*marker::Manager::instance()) ) {
 		if (m->processed) { continue; }
 		
-		EMarkerList* l = dynamic_cast<EMarkerList*>( m );
+		marker::List* l = dynamic_cast<marker::List*>( m );
 		if (!l) { continue; }
 		
-		ENode* n = do_list(l);
-		state->push(n);
+		Node* n = do_list(l);
+		s->push(n);
 	}
 	
-	BOOST_FOREACH( EMarker* m, (*EMarkerContainer::instance()) ) {
+	BOOST_FOREACH( marker::Marker* m, (*marker::Manager::instance()) ) {
 		if (m->processed) { continue; }
 		
-		EMarkerBlock* b = dynamic_cast<EMarkerBlock*>( m );
+		marker::Block* b = dynamic_cast<marker::Block*>( m );
 		if (!b) { continue; }
 		
-		ENode* n = do_block(b);
-		state->push(n);
+		Node* n = do_block(b);
+		s->push(n);
 	}
 	
 	//std::cout << "capture()" << std::endl;
-	//state->print();
-	return state;
+	//s->print();
+	return s;
 }
+
+}}

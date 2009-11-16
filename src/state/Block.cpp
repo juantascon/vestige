@@ -1,10 +1,15 @@
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-ENodeBlock::ENodeBlock() : ENode()
+namespace far{
+namespace state{
+
+Block::Block() : Node()
 {
 }
 
-void ENodeBlock::print() {
+void Block::print() {
 	//TODO: agregar label
 	std::cout << "block";
 }
+
+}}

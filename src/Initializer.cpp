@@ -1,18 +1,21 @@
-#include "EIncludes.hpp"
+#include "Includes.hpp"
 #include <osgART/GeometryUtils>
 
-EFactory* EFactory::_instance = 0;
+namespace far
+{
 
-EFactory::EFactory() { }
+Initializer* Initializer::_instance = 0;
 
-EFactory* EFactory::instance() {
+Initializer::Initializer() { }
+
+Initializer* Initializer::instance() {
 	if (!_instance) {
-		_instance = new EFactory();
+		_instance = new Initializer();
 	}
 	return _instance;
 }
 
-void EFactory::initVideo() {
+void Initializer::initVideo() {
 	int _video_id = osgART::PluginManager::instance()->load("osgart_video_artoolkit2");
 	video = dynamic_cast<osgART::Video*>(osgART::PluginManager::instance()->get(_video_id));
 	
@@ -26,7 +29,7 @@ void EFactory::initVideo() {
 }
 
 
-void EFactory::initTracker() {
+void Initializer::initTracker() {
 	int _tracker_id = osgART::PluginManager::instance()->load("osgart_tracker_artoolkit2");
 	tracker = dynamic_cast<osgART::Tracker*>(osgART::PluginManager::instance()->get(_tracker_id));
 	
@@ -36,10 +39,10 @@ void EFactory::initTracker() {
 		exit(-1);
 	}
 	
-	EMarkerContainer::instance()->tracker = tracker;
+	marker::Manager::instance()->tracker = tracker;
 }
 
-void EFactory::initCalibration() {
+void Initializer::initCalibration() {
 	calibration = tracker->getOrCreateCalibration();
 	if (!calibration->load(std::string("data/camera_para.dat")))
 	{
@@ -50,7 +53,7 @@ void EFactory::initCalibration() {
 	tracker->setImage(video);
 }
 
-void EFactory::initCamera() {
+void Initializer::initCamera() {
 	camera = calibration->createCamera();
 	//this->addModelsToCam(cam);
 	
@@ -64,17 +67,17 @@ void EFactory::initCamera() {
 	_layer->getOrCreateStateSet()->setRenderBinDetails(0, "RenderBin");
 	
 	camera->addChild(_layer);
-	EMarkerContainer::instance()->camera = camera;
+	marker::Manager::instance()->camera = camera;
 }
 
-void EFactory::initMarkers() {
-	new EMarkerList("single;data/patt/patt.sample2;100;0;0");
-	new EMarkerBlock("single;data/patt/patt.hiro;100;0;0", "name");
-	new EMarkerBlock("single;data/patt/patt.kanji;100;0;0", "id");
-	new EMarkerBlock("single;data/patt/patt.sample1;100;0;0", "family name");
+void Initializer::initMarkers() {
+	new marker::List("single;data/patt/patt.sample2;100;0;0");
+	new marker::Block("single;data/patt/patt.hiro;100;0;0", "name");
+	new marker::Block("single;data/patt/patt.kanji;100;0;0", "id");
+	new marker::Block("single;data/patt/patt.sample1;100;0;0", "family name");
 }
 
-void EFactory::initViewer() {
+void Initializer::initViewer() {
 	viewer = new osgViewer::Viewer();
 	
 	viewer->addEventHandler(new osgViewer::StatsHandler);
@@ -86,12 +89,12 @@ void EFactory::initViewer() {
 	viewer->realize();
 }
 
-void EFactory::initRoot(){
+void Initializer::initRoot(){
 	root = new osg::Group();
 	root->addChild(camera);
 }
 
-void EFactory::initialize(){
+void Initializer::initialize(){
 	initVideo();
 	initTracker();
 	initCalibration();
@@ -101,10 +104,12 @@ void EFactory::initialize(){
 	initRoot();
 }
 
-int EFactory::execute() {
+int Initializer::execute() {
 	viewer->setSceneData(root);
 	osgART::TrackerCallback::addOrSet(root, tracker);
 	
 	video->start();
 	return viewer->run();
+}
+
 }

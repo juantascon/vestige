@@ -1,9 +1,12 @@
 #ifndef __EMARKERLIST_H
 #define __EMARKERLIST_H
 
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-class EMarkerList : public EMarker
+namespace far {
+namespace marker {
+
+class List : public Marker
 {
 	private:
 		static const std::string model_file;
@@ -11,9 +14,11 @@ class EMarkerList : public EMarker
 	protected:
 		
 	public:
-		EMarkerList (std::string marker_args);
+		List (std::string marker_args);
 		
 		virtual void update();
 };
+
+}}
 
 #endif

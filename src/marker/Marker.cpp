@@ -1,6 +1,9 @@
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-EMarker::EMarker(std::string marker_args)
+namespace far {
+namespace marker {
+
+Marker::Marker(std::string marker_args)
 {
 	initMarker(marker_args);
 	initModel();
@@ -9,12 +12,12 @@ EMarker::EMarker(std::string marker_args)
 	osgART::attachDefaultEventCallbacks(_model, _marker);
 	osgART::addEventCallback(_model, this);
 	
-	EMarkerContainer::instance()->camera->addChild(_model);
-	EMarkerContainer::instance()->add(this);
+	Manager::instance()->camera->addChild(_model);
+	Manager::instance()->add(this);
 }
 
-void EMarker::initMarker(std::string args) {
-	_marker = EMarkerContainer::instance()->tracker->addMarker(args);
+void Marker::initMarker(std::string args) {
+	_marker = Manager::instance()->tracker->addMarker(args);
 	if (!_marker)
 	{
 		osg::notify(osg::FATAL) << "Could not add marker!" << std::endl;
@@ -23,23 +26,23 @@ void EMarker::initMarker(std::string args) {
 	_marker->setActive(true);
 }
 
-void EMarker::initModel() {
+void Marker::initModel() {
 	_model = new osg::MatrixTransform();
 	_model->getOrCreateStateSet()->setRenderBinDetails(100, "RenderBin");
 }
 
-void EMarker::addChild(osg::Node* child) {
+void Marker::addChild(osg::Node* child) {
 	_model->addChild(child);
 }
 
-osgART::Marker* EMarker::marker() { return this->_marker; }
-osg::MatrixTransform* EMarker::model() { return this->_model; }
+osgART::Marker* Marker::marker() { return this->_marker; }
+osg::MatrixTransform* Marker::model() { return this->_model; }
 
-osg::Vec3 EMarker::position() {
+osg::Vec3 Marker::position() {
 	return this->_marker->getTransform().getTrans();
 }
 
-int EMarker::aligned(EMarker* m) {
+int Marker::aligned(Marker* m) {
 	osg::Vec3 mp = m->position();
 	osg::Vec3 tp = this->position();
 	
@@ -51,8 +54,10 @@ int EMarker::aligned(EMarker* m) {
 	return 0;
 }
 
-void EMarker::operator() (osg::Node* node, osg::NodeVisitor* nv) {
+void Marker::operator() (osg::Node* node, osg::NodeVisitor* nv) {
 	update();
 	// must traverse the Node's subgraph
 	traverse(node,nv);
 }
+
+}}

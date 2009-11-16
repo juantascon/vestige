@@ -1,24 +1,30 @@
 #ifndef __EMARKERCONTAINER_H
 #define __EMARKERCONTAINER_H
 
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
+
+namespace far {
+namespace marker {
 
 //TODO: usar boost singleton
-class EMarkerContainer : public EMarkerVector
+
+class Manager : public Vector
 {
 	private:
-		static EMarkerContainer* _instance;
+		static Manager* _instance;
 		
 	protected:
-		EMarkerContainer();
+		Manager();
 		
 	public:
-		static EMarkerContainer* instance();
+		static Manager* instance();
 		
 		osgART::Tracker* tracker;
 		osg::Camera* camera;
 		
-		void add(EMarker *m);
+		void add(marker::Marker *m);
 };
+
+}}
 
 #endif

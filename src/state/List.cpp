@@ -1,20 +1,23 @@
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-ENodeList::ENodeList() : ENode(), _items()
+namespace far{
+namespace state{
+
+List::List() : Node(), _items()
 {
 }
 
-void ENodeList::push(ENode *n) {
+void List::push(Node *n) {
 	_items.push_back(n);
 	n->parent = this;
 }
 
-ENode* ENodeList::pop() {
+Node* List::pop() {
 	//TODO: implementar
 	return NULL;
 }
 
-void ENodeList::print() {
+void List::print() {
 	std::cout << "-------------" << std::endl;
 	for (int i = 0; i < _items.size(); i++) {
 		std::cout << "-- ";
@@ -23,3 +26,5 @@ void ENodeList::print() {
 	}
 	std::cout << "-------------";
 }
+
+}}

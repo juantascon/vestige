@@ -1,8 +1,8 @@
 set(SRCS
-	ELabel.cpp
-	EMarkerContainer.cpp EMarker.cpp EMarkerList.cpp EMarkerBlock.cpp
-	ENode.cpp ENodeBlock.cpp ENodeList.cpp EState.cpp EStateManager.cpp
-	EFactory.cpp Main.cpp
+	Var.cpp
+	marker/Manager.cpp marker/Marker.cpp marker/List.cpp marker/Block.cpp
+	state/Node.cpp state/Block.cpp state/List.cpp state/State.cpp state/Manager.cpp
+	Initializer.cpp Main.cpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${SRCS})

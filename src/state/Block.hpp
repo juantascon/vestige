@@ -1,16 +1,21 @@
 #ifndef __ENODEBLOCK_H
 #define __ENODEBLOCK_H
 
-#include "EIncludes.hpp"
+#include "../Includes.hpp"
 
-class ENodeBlock : public ENode
+namespace far{
+namespace state{
+
+class Block : public Node
 {
 	private:
 		
 	public:
-		ENodeBlock ();
+		Block ();
 		
 		virtual void print();
 };
+
+}}
 
 #endif
