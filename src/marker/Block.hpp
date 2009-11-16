@@ -1,5 +1,5 @@
-#ifndef __EMARKERBLOCK_H
-#define __EMARKERBLOCK_H
+#ifndef __FAR_MARKER_BLOCK_HPP
+#define __FAR_MARKER_BLOCK_HPP
 
 #include "../Includes.hpp"
 

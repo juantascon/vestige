@@ -1,5 +1,5 @@
-#ifndef __ENODE_H
-#define __ENODE_H 1
+#ifndef __FAR_STATE_NODE_HPP
+#define __FAR_STATE_NODE_HPP
 
 namespace far{
 namespace state{

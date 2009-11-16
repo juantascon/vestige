@@ -1,5 +1,5 @@
-#ifndef __ENODEBLOCK_H
-#define __ENODEBLOCK_H
+#ifndef __FAR_STATE_BLOCK_HPP
+#define __FAR_STATE_BLOCK_HPP
 
 #include "../Includes.hpp"
 

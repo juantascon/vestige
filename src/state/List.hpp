@@ -1,5 +1,5 @@
-#ifndef __ENODELIST_H
-#define __ENODELIST_H
+#ifndef __FAR_STATE_LIST_HPP
+#define __FAR_STATE_LIST_HPP
 
 #include "../Includes.hpp"
 

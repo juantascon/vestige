@@ -1,5 +1,5 @@
-#ifndef __EMARKERLIST_H
-#define __EMARKERLIST_H
+#ifndef __FAR_MARKER_LIST_HPP
+#define __FAR_MARKER_LIST_HPP
 
 #include "../Includes.hpp"
 

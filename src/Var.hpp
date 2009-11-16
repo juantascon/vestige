@@ -1,5 +1,5 @@
-#ifndef __VAR_H
-#define __VAR_H
+#ifndef __FAR_VAR_HPP
+#define __FAR_VAR_HPP
 
 #include "Includes.hpp"
 

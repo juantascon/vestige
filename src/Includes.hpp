@@ -1,5 +1,5 @@
-#ifndef __EINCLUDES_H
-#define __EINCLUDES_H
+#ifndef __FAR_INCLUDES_HPP
+#define __FAR_INCLUDES_HPP
 
 #include <osgART/Foundation>
 #include <osgART/VideoLayer>

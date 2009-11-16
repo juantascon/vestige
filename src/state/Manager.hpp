@@ -1,5 +1,5 @@
-#ifndef __ESTATEMANAGER_H
-#define __ESTATEMANAGER_H
+#ifndef __FAR_STATE_MANAGER_HPP
+#define __FAR_STATE_MANAGER_HPP
 
 #include "../Includes.hpp"
 

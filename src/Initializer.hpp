@@ -1,5 +1,5 @@
-#ifndef __EFACTORY_H
-#define __EFACTORY_H 1
+#ifndef __FAR_INITIALIZER_HPP
+#define __FAR_INITIALIZER_HPP
 
 #include "Includes.hpp"
 
