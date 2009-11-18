@@ -3,15 +3,7 @@
 namespace far{
 namespace state{
 
-Manager* Manager::_instance = 0;
-
-Manager* Manager::instance() {
-	if (!_instance) {
-		_instance = new Manager();
-	}
-	return _instance;
-}
-
+Manager* Manager::instance() { return &boost::serialization::singleton<far::state::Manager>::get_mutable_instance(); }
 
 Manager::Manager()
 {
@@ -31,6 +23,7 @@ Node* Manager::do_list(marker::List* l) {
 	
 	BOOST_FOREACH( marker::Marker* m, (*marker::Manager::instance()) ) {
 		if (m->processed) { continue; }
+		if (!m->visible()) { continue; }
 		
 		marker::Block* b = dynamic_cast<marker::Block*>( m );
 		if (!b) { continue; }
@@ -55,6 +48,7 @@ State* Manager::capture() {
 	
 	BOOST_FOREACH( marker::Marker* m, (*marker::Manager::instance()) ) {
 		if (m->processed) { continue; }
+		if (!m->visible()) { continue; }
 		
 		marker::List* l = dynamic_cast<marker::List*>( m );
 		if (!l) { continue; }
@@ -65,6 +59,7 @@ State* Manager::capture() {
 	
 	BOOST_FOREACH( marker::Marker* m, (*marker::Manager::instance()) ) {
 		if (m->processed) { continue; }
+		if (!m->visible()) { continue; }
 		
 		marker::Block* b = dynamic_cast<marker::Block*>( m );
 		if (!b) { continue; }

@@ -22,9 +22,11 @@ class Marker : public osg::NodeCallback
 		
 		osgART::Marker* marker();
 		osg::MatrixTransform* model();
-		void addChild(osg::Node* child);
 		
+		void addChild(osg::Node* child);
+		int visible();
 		osg::Vec3 position();
+		
 		int aligned(Marker* m);
 		
 		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);

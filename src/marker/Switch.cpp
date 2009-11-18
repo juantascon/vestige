@@ -11,7 +11,7 @@ Switch::Switch(std::string marker_args) : Marker(marker_args) {
 }
 
 void Switch::update() {
-	if (this->marker()->valid()) {
+	if (this->visible()) {
 		captured = 0;
 	}
 	else {

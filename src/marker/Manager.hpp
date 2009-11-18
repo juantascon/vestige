@@ -6,13 +6,8 @@
 namespace far {
 namespace marker {
 
-//TODO: usar boost singleton
-
 class Manager : public Vector
 {
-	private:
-		static Manager* _instance;
-		
 	protected:
 		Manager();
 		

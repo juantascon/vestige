@@ -18,9 +18,8 @@
 
 #include <unistd.h>
 
+#include <boost/serialization/singleton.hpp>
 #include <boost/foreach.hpp>
-#include <boost/thread/thread.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
 
 #include "Var.hpp"
 #include "marker/Marker.hpp"

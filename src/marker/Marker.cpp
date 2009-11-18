@@ -31,12 +31,16 @@ void Marker::initModel() {
 	_model->getOrCreateStateSet()->setRenderBinDetails(100, "RenderBin");
 }
 
+osgART::Marker* Marker::marker() { return this->_marker; }
+osg::MatrixTransform* Marker::model() { return this->_model; }
+
 void Marker::addChild(osg::Node* child) {
 	_model->addChild(child);
 }
 
-osgART::Marker* Marker::marker() { return this->_marker; }
-osg::MatrixTransform* Marker::model() { return this->_model; }
+int Marker::visible() {
+	return this->marker()->valid();
+}
 
 osg::Vec3 Marker::position() {
 	return this->_marker->getTransform().getTrans();

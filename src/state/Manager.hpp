@@ -6,14 +6,10 @@
 namespace far{
 namespace state{
 
-//TODO: usar boost singleton
 class Manager
 {
-	private:
-		static Manager* _instance;
-		
 	protected:
-	Manager();
+		Manager();
 		
 		Node* do_block(marker::Block* b);
 		Node* do_list(marker::List* l);

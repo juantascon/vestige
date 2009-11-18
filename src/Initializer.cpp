@@ -4,16 +4,9 @@
 namespace far
 {
 
-Initializer* Initializer::_instance = 0;
-
 Initializer::Initializer() { }
 
-Initializer* Initializer::instance() {
-	if (!_instance) {
-		_instance = new Initializer();
-	}
-	return _instance;
-}
+Initializer* Initializer::instance() { return &boost::serialization::singleton<far::Initializer>::get_mutable_instance(); }
 
 void Initializer::initVideo() {
 	int _video_id = osgART::PluginManager::instance()->load("osgart_video_artoolkit2");

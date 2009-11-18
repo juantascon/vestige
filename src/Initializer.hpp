@@ -6,27 +6,19 @@
 namespace far
 {
 
-//TODO: Usar boost singleton
 class Initializer
 {
-	private:
-		static Initializer* _instance;
-		
 	protected:
 		osgART::Tracker* tracker;
-		
-		
+		osgART::Video* video;
 		osgART::Calibration* calibration;
 		osg::Camera* camera;
 		osgViewer::Viewer* viewer;
 		osg::Group* root;
-		
 		Initializer();
-		
+				
 	public:
-		osgART::Video* video;
-		static Initializer* instance();
-		
+		static Initializer *instance();
 		void initTracker();
 		void initVideo();
 		
