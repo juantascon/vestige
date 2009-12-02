@@ -2,6 +2,7 @@
 #define __FAR_MARKER_MANAGER_HPP
 
 #include "../Includes.hpp"
+#include "Marker.hpp"
 
 namespace far {
 namespace marker {

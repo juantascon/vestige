@@ -2,6 +2,10 @@
 #define __FAR_INITIALIZER_HPP
 
 #include "Includes.hpp"
+#include "marker/Manager.hpp"
+#include "marker/Switch.hpp"
+#include "marker/Block.hpp"
+#include "marker/List.hpp"
 
 namespace far
 {

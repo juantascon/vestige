@@ -21,17 +21,17 @@
 #include <boost/serialization/singleton.hpp>
 #include <boost/foreach.hpp>
 
-#include "Var.hpp"
-#include "marker/Marker.hpp"
-#include "marker/Manager.hpp"
-#include "marker/List.hpp"
-#include "marker/Block.hpp"
-#include "marker/Switch.hpp"
-#include "state/Node.hpp"
-#include "state/Block.hpp"
-#include "state/List.hpp"
-#include "state/State.hpp"
-#include "state/Manager.hpp"
-#include "Initializer.hpp"
+//#include "Var.hpp"
+//#include "marker/Marker.hpp"
+//#include "marker/Manager.hpp"
+//#include "marker/List.hpp"
+//#include "marker/Block.hpp"
+//#include "marker/Switch.hpp"
+//#include "state/Node.hpp"
+//#include "state/Block.hpp"
+//#include "state/List.hpp"
+//#include "state/State.hpp"
+//#include "state/Manager.hpp"
+//#include "Initializer.hpp"
 
 #endif

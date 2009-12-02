@@ -1,7 +1,12 @@
 #ifndef __FAR_STATE_MANAGER_HPP
 #define __FAR_STATE_MANAGER_HPP
 
-#include "../Includes.hpp"
+#include "Node.hpp"
+#include "State.hpp"
+#include "Block.hpp"
+#include "../marker/Block.hpp"
+#include "../marker/List.hpp"
+#include "../marker/Manager.hpp"
 
 namespace far{
 namespace state{

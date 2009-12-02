@@ -1,4 +1,5 @@
 #include "Includes.hpp"
+#include "Initializer.hpp"
 
 int main(int argc, char* argv[]) {
 	far::Initializer::instance()->initialize();

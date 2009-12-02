@@ -1,7 +1,8 @@
 #ifndef __FAR_MARKER_BLOCK_HPP
 #define __FAR_MARKER_BLOCK_HPP
 
-#include "../Includes.hpp"
+#include "Marker.hpp"
+#include "../Var.hpp"
 
 namespace far {
 namespace marker {

@@ -1,4 +1,5 @@
-#include "../Includes.hpp"
+#include "Switch.hpp"
+#include "../state/Manager.hpp"
 
 namespace far {
 namespace marker {

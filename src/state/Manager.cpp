@@ -1,4 +1,5 @@
-#include "../Includes.hpp"
+#include "Manager.hpp"
+#include "../marker/Block.hpp"
 
 namespace far{
 namespace state{

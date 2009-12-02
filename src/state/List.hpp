@@ -1,7 +1,7 @@
 #ifndef __FAR_STATE_LIST_HPP
 #define __FAR_STATE_LIST_HPP
 
-#include "../Includes.hpp"
+#include "Node.hpp"
 
 namespace far{
 namespace state{
