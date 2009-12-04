@@ -1,8 +1,13 @@
 preguntar que pasó al fin con lo de los disenos
-modificar la forma de visualizar las listas, la lista debe cubrir todos los elementos excepto el último
-dibujar todos los modelos con punto de coordenadas en la mitad (ej los labels deben estar centrados)
-tener en cuenta el orden fisico de los bloques (ej el bloque con posicion mas alto debe ir a final)
-probar con 2 markadores que sean iguales
-buscar porque al resolver un problema es mejor volver a empezar que devolverse un paso
-reconocer cual es el dato de entrada y cual es el de salida (I/O)
 
+modificar la forma de visualizar las listas, la lista debe cubrir todos los elementos excepto el último
+
+dibujar todos los modelos con punto de coordenadas en la mitad (ej los labels deben estar centrados)
+
+tener en cuenta el orden fisico de los bloques (ej el bloque con posicion mas alto debe ir a final)
+
+probar con 2 markadores que sean iguales
+
+buscar porque al resolver un problema es mejor volver a empezar que devolverse un paso
+
+reconocer cual es el dato de entrada y cual es el de salida (I/O)
