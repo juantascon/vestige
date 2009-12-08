@@ -1,6 +1,7 @@
 #! /bin/bash
 
 video=1list_2block_1switch.mov
+#video=2hiro_1switch.mov
 
 
 ROOT=$HOME/dev/farcode/
