@@ -55,6 +55,7 @@ int Marker::aligned(Marker* m) {
 	
 	osg::Vec3 dpos = mpos - tpos;
 	
+	//D(("mpos: %s | tpos: %s", mpos.c_str(), tpos.c_str()))
 	//std::cout << "mpos:" << bp << " tpos: " << lp << std::endl;
 	//std::cout << "dpos: " << dpos << std::endl;
 	//std::cout << "abs-x: " << abs(dpos.x()) << std::endl;

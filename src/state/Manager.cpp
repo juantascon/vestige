@@ -12,12 +12,12 @@ Manager::Manager()
 }
 
 void Manager::sort_markers() {
-	std::cout << "sort_markers()" << std::endl;
+	D(("BEGIN"));
 	
 	markers = new marker::Marker::List();
 	
 	BOOST_FOREACH( marker::Marker* m, (*marker::Manager::instance()) ) {
-		std::cout << ":: check marker: " << m->id << std::endl;
+		D((":: check marker: "));
 		
 		if (!m->visible()) { continue; }
 		if (! dynamic_cast<marker::Block*>(m) && !dynamic_cast<marker::List*>(m) ) { continue; }
@@ -25,7 +25,7 @@ void Manager::sort_markers() {
 		int inserted = 0;
 		
 		for (marker::Marker::List::iterator it = markers->begin(); it != markers->end(); ++it) {
-			//std::cout << ((*it)->value) << std::endl;
+			//D(( (*it)->value ));
 			
 			if ( (*it)->position().y() > m->position().y() ) {
 				markers->insert( it, m );
@@ -38,32 +38,32 @@ void Manager::sort_markers() {
 	}
 	
 	for (marker::Marker::List::iterator it = markers->begin(); it != markers->end(); it++) {
-		std::cout << ":: marker : " << (*it)->id << " ref: " << *it << std::endl;
+		D(("marker: %s ref: %x", (*it)->id.c_str(), *it));
 	}
 	
-	std::cout << "end_sort_markers" << std::endl;
+	D(( "END" ));
 }
 
 Node* Manager::do_block(marker::Marker* m) {
-	std::cout << ":: cast block" << std::endl;
+	D(( ":: cast block" ));
 	marker::Block* b = dynamic_cast<marker::Block*>( m );
 	if (!b) { return NULL; }
 	
-	std::cout << "do_block()" << std::endl;
+	D(( "BEGIN" ));
 	
 	state::Block* n = new state::Block();
 	n->id = b->id;
 	
-	std::cout << "end_do_block" << std::endl;
+	D(( "END" ));
 	return static_cast<Node*>(n);
 }
 
 Node* Manager::do_list(marker::Marker* m) {
-	std::cout << ":: cast list" << std::endl;
+	D(( "cast list" ));
 	marker::List* l = dynamic_cast<marker::List*>( m );
 	if (!l) { return NULL; }
 	
-	std::cout << "do_list()" << std::endl;
+	D(( "BEGIN" ));
 	
 	state::List* n = new state::List();
 	
@@ -78,12 +78,12 @@ Node* Manager::do_list(marker::Marker* m) {
 		}
 	}
 	
-	std::cout << "end_do_list" << std::endl;
+	D(( "END" ));
 	return static_cast<Node*>(n);
 }
 
 State* Manager::capture() {
-	std::cout << "capture()" << std::endl;
+	D(( "BEGIN" ));
 	//TODO: conectar el estado anterior con el siguiente
 	State* s = new State();
 	
@@ -107,7 +107,7 @@ State* Manager::capture() {
 		}
 	}
 	
-	std::cout << "end_capture" << std::endl;
+	D(( "END" ));
 	s->print();
 	return s;
 }

@@ -20,6 +20,7 @@
 
 #include <boost/serialization/singleton.hpp>
 #include <boost/foreach.hpp>
+#include "Debug.c"
 
 //#include "Var.hpp"
 //#include "marker/Marker.hpp"
