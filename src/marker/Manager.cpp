@@ -5,7 +5,7 @@ namespace marker {
 
 Manager* Manager::instance() { return &boost::serialization::singleton<far::marker::Manager>::get_mutable_instance(); }
 
-Manager::Manager() : Vector()
+Manager::Manager() : marker::Marker::Vector()
 {
 }
 

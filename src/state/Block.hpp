@@ -12,6 +12,7 @@ class Block : public Node
 		
 	public:
 		Block ();
+		std::string id;
 		
 		virtual void print();
 };

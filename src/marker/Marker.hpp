@@ -16,9 +16,12 @@ class Marker : public osg::NodeCallback
 		osg::MatrixTransform* _model;
 		
 	public:
+		typedef std::vector <Marker*> Vector;
+		typedef std::list <Marker*> List;
+
 		Marker(std::string marker_args);
 		
-		int processed;
+		std::string id;
 		
 		osgART::Marker* marker();
 		osg::MatrixTransform* model();
@@ -32,8 +35,6 @@ class Marker : public osg::NodeCallback
 		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);
 		virtual void update() = 0;
 };
-
-typedef std::vector <Marker*> Vector;
 
 }}
 

@@ -13,6 +13,8 @@ Marker::Marker(std::string marker_args)
 	osgART::attachDefaultEventCallbacks(_model, _marker);
 	osgART::addEventCallback(_model, this);
 	
+	this->id = marker_args;
+	
 	Manager::instance()->camera->addChild(_model);
 	Manager::instance()->add(this);
 }
@@ -48,10 +50,10 @@ osg::Vec3 Marker::position() {
 }
 
 int Marker::aligned(Marker* m) {
-	osg::Vec3 mp = m->position();
-	osg::Vec3 tp = this->position();
+	osg::Vec3 mpos = m->position();
+	osg::Vec3 tpos = this->position();
 	
-	osg::Vec3 dpos = mp - tp;
+	osg::Vec3 dpos = mpos - tpos;
 	
 	//std::cout << "mpos:" << bp << " tpos: " << lp << std::endl;
 	//std::cout << "dpos: " << dpos << std::endl;

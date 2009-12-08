@@ -16,8 +16,11 @@ class Manager
 	protected:
 		Manager();
 		
-		Node* do_block(marker::Block* b);
-		Node* do_list(marker::List* l);
+		marker::Marker::List* markers;
+		void sort_markers();
+		
+		Node* do_block(marker::Marker* m);
+		Node* do_list(marker::Marker* m);
 		
 	public:
 		static Manager* instance();

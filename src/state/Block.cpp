@@ -5,11 +5,11 @@ namespace state{
 
 Block::Block() : Node()
 {
+	id = "block";
 }
 
 void Block::print() {
-	//TODO: agregar label
-	std::cout << "block";
+	std::cout << id;
 }
 
 }}

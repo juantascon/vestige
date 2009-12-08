@@ -67,8 +67,9 @@ void Initializer::initMarkers() {
 	new marker::Switch("single;data/patt/patt.kanji;100;0;0");
 	
 	new marker::List("single;data/patt/patt.hiro;100;0;0");
-	new marker::List("single;data/patt/patt.sample1;100;0;0");
 	
+	new marker::Block("single;data/patt/patt.sample1;100;0;0", "11111");
+	new marker::Block("single;data/patt/patt.sample2;100;0;0", "22222");
 	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "AAAAA");
 	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "BBBBB");
 	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "CCCCC");

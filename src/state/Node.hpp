@@ -9,14 +9,16 @@ namespace state{
 class Node
 {
 	public:
+		typedef std::vector <Node*> Vector;
+		
 		Node();
 		
 		Node* parent;
 		
 		virtual void print();
+		
+		
 };
-
-typedef std::vector <Node*> NodeVector;
 
 }}
 

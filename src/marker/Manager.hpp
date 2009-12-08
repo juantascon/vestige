@@ -7,7 +7,7 @@
 namespace far {
 namespace marker {
 
-class Manager : public Vector
+class Manager : public marker::Marker::Vector
 {
 	protected:
 		Manager();

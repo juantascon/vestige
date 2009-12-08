@@ -11,7 +11,7 @@ class List : public Node
 	private:
 		
 	protected:
-		NodeVector _items;
+		state::Node::Vector _items;
 		
 	public:
 		List();
