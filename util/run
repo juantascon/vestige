@@ -1,18 +1,22 @@
 #! /bin/bash
 
-video=1list_2block_1switch.mov
-#video=2hiro_1switch.mov
+v=1list_2block_1switch.mov
+#v=2hiro_1switch.mov
 
 
-ROOT=$HOME/dev/farcode/
-BIN=./build/src/farcode
-VIDEOPATH=./data/video
+
+ROOT=$(dirname $0)/../
 
 cd $ROOT
 
-export ARTOOLKIT_CONFIG="filesrc location=$VIDEOPATH/$video ! decodebin ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink"
+BIN=build/src/farcode
+GDB_COMMANDS=util/gdb_commands
+VIDEO=data/video
+
+export ARTOOLKIT_CONFIG="filesrc location=$VIDEO/$v ! decodebin ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink"
 
 #export ARTOOLKIT_CONFIG="v4l2src device=/dev/video0 use-fixed-fps=false ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink"
 
-gdb $BIN
+gdb $BIN -x $GDB_COMMANDS
+
 
