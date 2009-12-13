@@ -226,9 +226,9 @@ by GStreamer.
 1. GStreamer website: http://gstreamer.freedesktop.org/
 
 
-==========
+==============
 = Week 40
-==========
+==============
 
 It was very frustrating to finally compile and execute the demos provided by the
 HandVu library but at the same time not to be able to make it run in the
@@ -262,9 +262,9 @@ added to the project's TO-DO list.
 1. HandVu website: http://www.movesinstitute.org/~kolsch/HandVu/HandVu.html
 
 
-==========
+==============
 = Week 42
-==========
+==============
 
 My work this week is very notorious, mainly because the output is visible
 progress in the development of the software (new features).
@@ -304,9 +304,9 @@ put on the report all of my ideas without the previous feeling that I'm leaving
 something out.
 
 
-==========
+==============
 = Week 43
-==========
+==============
 
 There is not much to say about what I did this week except that I Improved the
 features built last week, the debug interface had been fixed so that now it can
@@ -321,17 +321,16 @@ be put on top of the child blocks showing only the very last item of the list.
 My plan for the next week is to implement the marker that will work as state
 change notifier.
 
-
-==========
-= Week 45
-==========
+==============
+= Week 44
+==============
 
 - SICK/FEVER -
 
 
-==========
+==============
 = Week 45
-==========
+==============
 
 My work this week was focused on programming, I had redesigned the application
 making a few changes in the internal structure of the code, there was an overall
@@ -361,3 +360,54 @@ extension from .h to the more modern and highly recommended .hpp.
 I'm planning to do an even more important redesign by adding the concept of
 state, so part of my work next week might be on the design and not so much on
 the programming.
+
+==============
+= Week 46-48
+==============
+
+
+Ill briefly summarize my work during the last couples of weeks, basically I did
+run some test to understand the behavior of the marker recognition library.
+
+The first test was to use two markers with the same figure (two equals markers),
+to see how the marker recognizer would react, the result, as expected, only one
+of the markers was recognized and the other was ignored by the system, this will
+create a limit: all the markers have to be different to each other.
+
+The second test was to use smaller markers on bigger cube faces resulting in a
+bigger and more clear white frame surrounding the marker, this improved the
+marker recognition process by giving us much better results and reducing the
+errors on video frames where the cube was inclined.
+
+I also modified the code so that it has in consideration the Y axes position of
+the markers, this means that the recognized lists will have its items ordered in
+the same way as it is show by the cubes.
+
+==============
+= Week 50
+==============
+
+This week I based my work on a very vital part of the program, to build a unit
+in charge of supervise the changes made through states. I designed it as a
+change recognition process which output will be the description of one of the
+following possible movements:
+
+*** Board is the base where all the items (blocks and lists) are on.
+
+* Pop: move a block from a list to the board.
+* Push: move a block from the board to a list.
+* Pop-Push: move a block from a list to another.
+  Logically this will represent two movements (first pop and then push) but
+  physically the user can move in one single movement.
+* Discard-Block: discard a block.
+* Discard-List: discard a list.
+  The list can be discarded only when it doesn't have items.
+* Invalid: invalid movement.
+  This will be basically any movement that doesn't belongs into any of the
+  previous categories
+
+The supervisor will detect each one of this possibilities by looking for changes
+between the last state and the current state; in case of an invalid movement
+arises it will display a visual alert on top of the wrong moved item.
+
+I expect to finish the development of this module by the end of this week.
