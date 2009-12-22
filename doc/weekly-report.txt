@@ -21,7 +21,6 @@ in the future some solutions should be proposed.
 2009/06/19
 ==========
 
-
 The simple example provided with the Osgart toolkit was
 improved. I added another marker to the setting in order to
 evaluate the behavior in this case.  The toolkit was able to
@@ -42,7 +41,6 @@ that determines the distance between two markers.
 ==========
 2009/06/26
 ==========
-
 
 This week, I tried to fix the problem of the coordinates changes
 from the camera point of view; when the camera is moving the view-port
@@ -77,7 +75,6 @@ of the range system, this seems a good trade-off.
 2009/07/10
 ==========
 
-
 I finished the first demo. The program handles internally two
 kinds of marker blocks and lists. A list is a special block in
 charge of a group of blocks and a block is a normal
@@ -98,7 +95,6 @@ at] the end of this version.
 ==========
 2009/09/04
 ==========
-
 
 This week, my work was devoted to establish the state of the art
 in gesture recognition software, in order to improve the Human
@@ -361,10 +357,10 @@ I'm planning to do an even more important redesign by adding the concept of
 state, so part of my work next week might be on the design and not so much on
 the programming.
 
+
 ==============
 = Week 46-48
 ==============
-
 
 Ill briefly summarize my work during the last couples of weeks, basically I did
 run some test to understand the behavior of the marker recognition library.
@@ -382,6 +378,7 @@ errors on video frames where the cube was inclined.
 I also modified the code so that it has in consideration the Y axes position of
 the markers, this means that the recognized lists will have its items ordered in
 the same way as it is show by the cubes.
+
 
 ==============
 = Week 50
@@ -411,3 +408,22 @@ between the last state and the current state; in case of an invalid movement
 arises it will display a visual alert on top of the wrong moved item.
 
 I expect to finish the development of this module by the end of this week.
+
+
+==============
+= Week 51
+==============
+
+My work this week was to build the previously mentioned supervisor module in
+charge of detect changes between states, it currently detect the next possible
+movements: Pop, Push, PopPush, DiscardedItem, Invalid and None (when there was no
+movement in the blocks), when an Invalid state is detected the system throws an
+alert signal on the moved blocks.
+
+The next part of the development will be to show a visual alert on the invalid
+moved items, the infrastructure is there but the visual signal is not shown yet,
+I will also add a small rules system that will indicate the right movements
+order that the user will have to follow in order to complete the game.
+
+
+

@@ -1,25 +1,67 @@
------------------
-Goal:
------------------
-The main goal of our research is to develop a system that helps students
-to learn how to program using functional programming languages.
+*******************
+** Goal
+*******************
 
------------------
-Issues:
------------------
-Two different types of issues are detected:
-* Technicals, by try to get to work unstable programming libraries.
-* Interaction, by creating a practical and suitable user interface, that truly
-helps students on learning.
+To help students on the process of learning functional programming with a tool
+that models a tangible block world boosted by augmented reality and software
+feedback.
 
------------------
-Approaches:
------------------
+To combine a tangible interface with software feedback to guide the student on
+the understanding of the problem's solutions
 
------------------
-My Contribution:
------------------
-There are two main contributions:
-* The use of augmented reality on a didactic system.
-* The use of a block abstraction as basic tools to represent functional
-programming algorithms.
+
+*******************
+** Issues
+*******************
+
+* Technical: by developing a multi-platform open source software application
+using unstable libraries.
+
+* Interactive: by detecting errors matching them against negative traces in a
+database and providing complementary feedback.
+
+* Practical: by testing the application on real programming students and gather
+their feedback in order to improve the method.
+
+* Conceptual: by focusing on students to overcome the main difficulty when
+learning functional programming, this is, data that you are working with is
+implicit.
+
+
+*******************
+** Approaches
+*******************
+
+Elenbogen, B.S., Maxim, B.R. & McDonald, C. (2000). Yet, more Web exercises for
+learning C++, Proc. of the 31st SIGCSE Technical Symposium on Computer Science
+Education SIGCSE Bulletin, pp. 290-294.
+
+Rowe, G., Thorburn, G. (2000). VINCE - an on-line tutorial tool for teaching
+introductory programming, British Journal of Educational Technology, 31(4), pp.
+359-11p.
+
+
+*******************
+** Motivation
+*******************
+
+A working group on Improving the Educational Impact of Algorithm Visualization
+studied the use of visualizations in computer science education with three
+surveys and an extensive literature review. The results of the work are
+published in Naps et al. Milne, I., Rowe, G. (2002). Difficulties in Learning
+and teaching Programming - Views of Students and Tutors, Education and
+Information Technologies, 7(1), pp. 55-66.).
+According to the surveys, all respondents were confident that visualizations
+help students understanding and learning of concepts.
+
+
+***************************************************************
+
+1. Problem definition
+* order of data
+* interaction
+* visual representation
+
+2. Probe why the solution is the proper solution
+3. Validate that the method worked
+4. explain why is difficult (why on master thesis)
