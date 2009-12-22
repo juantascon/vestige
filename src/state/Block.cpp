@@ -3,13 +3,22 @@
 namespace far{
 namespace state{
 
-Block::Block() : Node()
+Block::Block(marker::Marker *m) : Node(m)
 {
-	id = "block";
 }
 
 void Block::print() {
-	std::cout << id;
+	std::cout << "BLOCK-ID: " << id;
+}
+
+Node::List* Block::flat_view() {
+	Node::List* l = new Node::List();
+	
+	l->push_back(this);
+	
+	//D(("BLOCK SIZE=%i", l->size()));
+	
+	return l;
 }
 
 }}

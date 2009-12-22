@@ -4,16 +4,16 @@
 namespace far {
 namespace marker {
 
-Marker::Marker(std::string marker_args)
+Marker::Marker(std::string marker_args, std::string id)
 {
+	this->id = id;
+	
 	initMarker(marker_args);
 	initModel();
 	
 	// attach the model to the marker
 	osgART::attachDefaultEventCallbacks(_model, _marker);
 	osgART::addEventCallback(_model, this);
-	
-	this->id = marker_args;
 	
 	Manager::instance()->camera->addChild(_model);
 	Manager::instance()->add(this);
@@ -62,6 +62,10 @@ int Marker::aligned(Marker* m) {
 	
 	if (abs(dpos.x()) < 40) { return 1; }
 	return 0;
+}
+
+void Marker::alert() {
+	
 }
 
 void Marker::operator() (osg::Node* node, osg::NodeVisitor* nv) {

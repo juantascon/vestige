@@ -11,6 +11,7 @@
 
 #include <osgViewer/Viewer>
 #include <osgViewer/ViewerEventHandlers>
+#include <osg/ShapeDrawable>
 
 #include <osgDB/FileUtils>
 #include <osgDB/ReadFile>

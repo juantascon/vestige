@@ -3,12 +3,32 @@
 namespace far{
 namespace state{
 
-Node::Node()
+Node::Node(marker::Marker *m)
 {
-	this->parent = 0;
+	this->parent = NULL;
+	this->m = NULL;
+	this->id = "null";
+	
+	if (m) {
+		this->m = m;
+		this->id = m->id;
+	}
 }
 
 void Node::print() {
+}
+
+Node::List* Node::flat_view() {
+	return new Node::List();
+}
+
+std::string Node::path() {
+	if (parent) {
+		return parent->path() + " / " + id;
+	}
+	else {
+		return id;
+	}
 }
 
 }}

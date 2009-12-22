@@ -14,7 +14,7 @@ class List : public Marker
 	protected:
 		
 	public:
-		List (std::string marker_args);
+		List (std::string marker_args, std::string id);
 		
 		virtual void update();
 };

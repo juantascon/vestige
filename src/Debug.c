@@ -6,7 +6,8 @@
 
 static void err_info(const char *file, const char *func, const int line)
 {
-	fprintf(stderr,"[%s:%s(%d)] ",file, func, line);
+	//fprintf(stderr,"[%s:%s(%d)] ", file, func, line);
+	fprintf(stderr,"[%s(%d)] ", func, line);
 	fflush(stderr);
 }
 
@@ -22,7 +23,7 @@ static void err_msg(const char *format, ...)
 	va_end(args);
 }
 
-#define D(x) { err_info(__FILE__, __FUNCTION__, __LINE__); err_msg x; } 
+#define D(x) { err_info(__FILE__, __FUNCTION__, __LINE__); err_msg x; }
 
 #else
 #define D(x) {}

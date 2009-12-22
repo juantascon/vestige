@@ -11,10 +11,10 @@ class Block : public Node
 	private:
 		
 	public:
-		Block ();
-		std::string id;
+		Block(marker::Marker *m);
 		
 		virtual void print();
+		virtual Node::List* flat_view();
 };
 
 }}

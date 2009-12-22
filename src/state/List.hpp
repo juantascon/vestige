@@ -8,17 +8,18 @@ namespace state{
 
 class List : public Node
 {
-	private:
-		
 	protected:
 		state::Node::Vector _items;
 		
 	public:
-		List();
+		List(marker::Marker *m);
 		
 		void push(Node* n);
 		Node* pop();
+		
 		virtual void print();
+		
+		virtual Node::List* flat_view();
 };
 
 }}

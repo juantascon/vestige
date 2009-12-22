@@ -64,20 +64,15 @@ void Initializer::initCamera() {
 }
 
 void Initializer::initMarkers() {
-	new marker::Switch("single;data/patt/patt.kanji;100;0;0");
+	new marker::Switch("single;data/patt/patt.kanji;100;0;0", "switch");
 	
-	new marker::List("single;data/patt/patt.hiro;100;0;0");
+	new marker::List("single;data/patt/patt.hiro;100;0;0", "list.hiro");
 	
-	new marker::Block("single;data/patt/patt.sample1;100;0;0", "11111");
-	new marker::Block("single;data/patt/patt.sample2;100;0;0", "22222");
-	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "AAAAA");
-	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "BBBBB");
-	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "CCCCC");
-	
-	/*new marker::List("single;data/patt/patt.hiro;100;0;0");
-	new marker::Switch("single;data/patt/patt.kanji;100;0;0");
-	new marker::Block("single;data/patt/patt.sample1;100;0;0", "name");
-	new marker::Block("single;data/patt/patt.sample2;100;0;0", "family name");*/
+	new marker::Block("single;data/patt/patt.sample1;100;0;0", "sample1", "11111");
+	new marker::Block("single;data/patt/patt.sample2;100;0;0", "sample2", "22222");
+	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "a", "AAAAA");
+	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "b", "BBBBB");
+	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "b", "CCCCC");
 }
 
 void Initializer::initViewer() {

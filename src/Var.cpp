@@ -30,6 +30,7 @@ osg::Node* Var::model() {
 	
 	osgText::Text* osgtext = new osgText::Text();
 	osgtext->setText( this->text() );
+	osgtext->setColor(osg::Vec4(0, 0, 1, 1));
 	texts->addDrawable(osgtext);
 	
 	return ( dynamic_cast<osg::Node*> (texts) );

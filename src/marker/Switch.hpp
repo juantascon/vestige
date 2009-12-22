@@ -15,7 +15,7 @@ class Switch : public Marker
 		static int captured;
 		
 	public:
-		Switch (std::string marker_args);
+		Switch (std::string marker_args, std::string id);
 		
 		virtual void update();
 };

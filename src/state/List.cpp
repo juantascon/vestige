@@ -3,7 +3,7 @@
 namespace far{
 namespace state{
 
-List::List() : Node(), _items()
+List::List(marker::Marker *m) : Node(m), _items()
 {
 }
 
@@ -18,13 +18,29 @@ Node* List::pop() {
 }
 
 void List::print() {
-	std::cout << "-------------" << std::endl;
-	for (int i = 0; i < _items.size(); i++) {
-		std::cout << "-- ";
-		_items[i]->print();
+	std::cout << "-------------------------------------------------------------" << std::endl;
+	std::cout << "--- LIST-ID: " << this->id << std::endl;
+	
+	BOOST_FOREACH(Node *n, _items) {
+		std::cout << "| ";
+		n->print();
 		std::cout << std::endl;
 	}
-	std::cout << "-------------";
+	std::cout << "-------------------------------------------------------------";
+}
+
+Node::List* List::flat_view() {
+	Node::List* l = new Node::List();
+	
+	l->push_back(this);
+	
+	BOOST_FOREACH(Node *n, _items) {
+		l->splice(l->end(), *(n->flat_view()));
+	}
+	
+	//D(("LIST SIZE=%i", l->size()));
+	
+	return l;
 }
 
 }}

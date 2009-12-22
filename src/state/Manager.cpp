@@ -12,12 +12,12 @@ Manager::Manager()
 }
 
 void Manager::sort_markers() {
-	D(("BEGIN"));
+	//D(("BEGIN"));
 	
 	markers = new marker::Marker::List();
 	
 	BOOST_FOREACH( marker::Marker* m, (*marker::Manager::instance()) ) {
-		D((":: check marker: "));
+		//D((":: check marker: "));
 		
 		if (!m->visible()) { continue; }
 		if (! dynamic_cast<marker::Block*>(m) && !dynamic_cast<marker::List*>(m) ) { continue; }
@@ -41,31 +41,30 @@ void Manager::sort_markers() {
 		D(("marker: %s ref: %x", (*it)->id.c_str(), *it));
 	}
 	
-	D(( "END" ));
+	//D(( "END" ));
 }
 
 Node* Manager::do_block(marker::Marker* m) {
-	D(( ":: cast block" ));
+	//D(( ":: cast block" ));
 	marker::Block* b = dynamic_cast<marker::Block*>( m );
 	if (!b) { return NULL; }
 	
-	D(( "BEGIN" ));
+	//D(( "BEGIN" ));
 	
-	state::Block* n = new state::Block();
-	n->id = b->id;
+	state::Block* n = new state::Block(m);
 	
-	D(( "END" ));
+	//D(( "END" ));
 	return static_cast<Node*>(n);
 }
 
 Node* Manager::do_list(marker::Marker* m) {
-	D(( "cast list" ));
+	//D(( "cast list" ));
 	marker::List* l = dynamic_cast<marker::List*>( m );
 	if (!l) { return NULL; }
 	
-	D(( "BEGIN" ));
+	//D(( "BEGIN" ));
 	
-	state::List* n = new state::List();
+	state::List* n = new state::List(m);
 	
 	for (marker::Marker::List::iterator it = markers->begin(); it != markers->end(); ++it) {
 		if ( l->aligned(*it)) {
@@ -78,16 +77,18 @@ Node* Manager::do_list(marker::Marker* m) {
 		}
 	}
 	
-	D(( "END" ));
+	//D(( "END" ));
 	return static_cast<Node*>(n);
 }
 
 State* Manager::capture() {
-	D(( "BEGIN" ));
-	//TODO: conectar el estado anterior con el siguiente
-	State* s = new State();
+	//D(( "BEGIN" ));
 	
 	sort_markers();
+	
+	if (markers->size() <= 0) { return NULL; }
+	
+	State* s = new State();
 	
 	for (marker::Marker::List::iterator it = markers->begin(); it != markers->end(); ++it) {
 		Node* n = do_list(*it);
@@ -107,9 +108,24 @@ State* Manager::capture() {
 		}
 	}
 	
-	D(( "END" ));
-	s->print();
+	//D(( "END" ));
 	return s;
+}
+
+void Manager::step() {
+	State *s = capture();
+	
+	if(!s) { return; }
+	
+	s->create_flat_view();
+	
+	if (current) {
+		Supervisor::instance()->detect_action(current, s);
+		s->previous = current;
+		current->next = s;
+	}
+	
+	current = s;
 }
 
 }}

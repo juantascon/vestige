@@ -13,7 +13,7 @@ class Block : public Marker
 		static const std::string model_file;
 		
 	public:
-		Block(std::string marker_args, std::string key);
+		Block(std::string marker_args, std::string id, std::string key);
 		
 		Var *label;
 		
