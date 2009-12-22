@@ -11,5 +11,6 @@ include_directories ( ${Boost_INCLUDE_DIRS} )
 add_subdirectory(foreach)
 add_subdirectory(list)
 add_subdirectory(class)
+add_subdirectory(splice)
 
 
