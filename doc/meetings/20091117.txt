@@ -1,0 +1,60 @@
+- Goal:
+
+To help students on the process of learning functional programming
+with a tool that physically models the 
+supported by a tangible interface featuring augmented reality and
+software feedback.
+
+on procedural programming the structure of both the code and data are explicit
+the main problem on functional programming is that the data that you are
+working with is explicit
+
+To build a physical interactive tool.
+
+
+- Issues:
+
+Detecting errors by matching them against negative traces in a
+database and providing feedback as emendation.
+
+Developing a (rather) portable open source software interface based on
+unstable third-party libraries.
+
+Experimenting the method and the interface on students.
+
+
+* Technical difficulties.
+* 
+
+- Approaches:
+
+The bridge between functional programming and the interface relies on
+the pervasive list data structure which can be made tangible as a
+stack of cubes, a special block world.
+
+By learning, in a first phase, how to solve simple problems with these
+stacks and, in a second phase, by introducing abstraction (information
+hiding and variables), the student is expected to move smoothly to
+writing programs without system mediation.
+
+
+
+
+- Evaluation
+
+
+General motivation:
+
+* physical representation of the data instead of the code representation will give
+better feedback 
+in a interactivity way will show step by step of the procedure so that students understand better
+
+1. Problem definition
+* order of data
+* interaction
+* visual reprensentation
+
+2. Probe why the solution is the proper solution
+3. Validate that the method worked
+4. explain why is difficult (why on master thesis)
+

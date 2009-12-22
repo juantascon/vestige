@@ -1,0 +1,85 @@
+\section{Current State}
+
+Lists are algorithmically stacks, that is, linear data structure
+allowing only two basic operations: \emph{push} and item on the top of
+the stack or \emph{pop} the topmost item of the stack. We have been
+investigating the best visual representation of stacks.
+
+Our initial ideas included the use of a kind of domino chips
+distributed across a board or surface, in this case a list would be
+represented by a series of chips attached to each other, setting up a
+row or a column.
+
+Another option involved some fancy devices that would give us the
+ability to attach objects in a given surface using magnetic fields,
+but we abandoned the idea due to lack of information on previous
+devices.
+
+We finally set up our mind on a block\hyp{}world representation to
+model lists. A block represents an element and a sequence of blocks
+represents a list. The initial intuition is that real stacks of cubes
+would be subjected to gravity, thus forcing the student to only handle
+the topmost item of each list, as the model mandates. (Manipulating
+another cube would lead the whole stack to collapse.) We then decided
+to build a virtual block\hyp{}world which would analogous to a real
+block\hyp{}world, more precisely, we will use technologies from the
+field of \emph{Augmented Reality} (AR). This is a real time process
+that creates the illusion of additional objects in a real life scene,
+making the user experiment with an alternate reality as a mix between
+real life and virtual reality. It is a four\hyp{}step loop procedure:
+\begin{enumerate}
+	
+	\item \emph{Real life image acquisition.} This could be done using
+      cameras for real\hyp{}time experience or using previously taken
+      videos for testing and developing purposes.
+	
+	\item \emph{Locating the new objects target position and
+      inclination.} This is the more complex process, which consists
+      in recognising predefined patterns by means of several
+      approaches such as the use of markers, body parts recognition,
+      pre\hyp{}modelling of objects, etc.
+	
+	\item \emph{Overlapping the new objects (2D or 3D) on the initial
+      video.} This is a very simple task, given a system of
+      coordinates and and inclination transformation matrix.
+	
+	\item \emph{Displaying the resulting image.} The resulting image
+      is the combination of the initial image and the new objects.
+	
+\end{enumerate}
+We have been working and testing some of the most popular
+implementations of Augmented Reality, first of all \ARtoolkit
+(\emph{Augmented Reality toolkit}). The main strengths of \ARtoolkit
+are, on the one hand, the royalty\hyp{}free licence (GNU General
+Public License) which allowed us to receive feedback in the form of
+patches, comments, bug reports, etc. from a community of users and
+developers around the world, and, on the other hand, the simplicity of
+the mark detection process (a mark is a image\hyp{}description couple
+processed by \ARtoolkit to recognise targets position and inclination
+on the initial image).
+
+Some troubles emerged while testing \ARtoolkit on Linux platforms,
+specially in the image handling, acquisition and re\hyp{}displaying
+procedures, because the video back\hyp{}ends were outdated and
+unstable. Efforts spent searching for a fix lead us to a stable and
+portable development branch of \ARtoolkit. It is a common occurrence
+in free software that the development branch is very stable.) So we
+were able to run the demos on Linux systems without any troubles,
+while retaining the portability to the Windows operating system.
+
+At this point we discovered \Osgart, which is a library that mixes in
+an efficient and simple \emph{Application Programing Interface} (API)
+the four AR steps, using plug\hyp{}ins. The default \Osgart
+plug\hyp{}ins are: \ARtoolkit for the image acquisition and target
+detection and \Openscenegraph for the image overlapping and display
+(it is a toolkit to display, order and adapt images and 3D objects
+scenes). We did not use systematically this tool because it was not
+necessary for our first tests, but we plan to give it serious
+consideration in future stages.
+
+Special AR glasses have become popular in AR applications, enabling
+both recording of video images (with integrated cameras) and
+displaying (on the lens) images from the real world. Optionally, the
+image could be preprocessed and modified before displaying. This
+process is made fast enough in order to not be detected by a human
+giving to the user an unique real time augmented reality experience.

@@ -1,0 +1,60 @@
+%-*-latex-*-
+
+\section{Interaction and Scenarios}
+
+Another aspect of our research consists in exploring different
+interface technologies, as augmented reality, several interactivity
+devices, programming by demonstration, etc. The main concern here is
+to find the best fitted interactive process in order to get the
+student to learn the concepts to be programmed. We could use different
+technologies to teach different concepts, for instance we could use
+augmented reality to teach stacks and queues but use haptic devices to
+teach trees. Once the interface capabilities have been explored, the
+research can move forward. Let us consider a likely scenario of
+interaction:
+\begin{enumerate}
+
+  \item Following the classification set previously on our \Erlang
+    functions, a function is chosen by the system.
+
+  \item The didactic goals are, as expected, to help the student to
+    write \Erlang code and help her when she is erring. An example
+    here is a trace of execution of the chosen function, i.e., some
+    input is chosen (perhaps randomly, perhaps not), and the sequence
+    of steps of the execution is visually shown to the student as
+    blocks moving around in stacks, until the final state is reached.
+
+  \item Then the system proposes an initial state and the student is
+    expected to move the blocks herself to find the result. This
+    supposes an interaction with the virtual representation. This is
+    where the scenarios are used, in order to detect a
+    misunderstanding. In case this happens, another example can be
+    completely demonstrated by the system, or a simpler example can be
+    proposed, showing clearly the wrong assumption to the student when
+    she tries to solve it.
+
+  \item When the system is convinced that the student has grasped the
+    concept represented in \Erlang by a (hidden) given function on
+    stacks (that is, lists), the next level is to introduce
+    \emph{abstraction}. Until now, everything involved in the
+    interaction was concrete: a block is an atomic piece of data,
+    identified with a specific mark (a letter or a number on
+    it). Abstraction consists in understanding an infinite number of
+    examples. The process proposed here is based on induction from a
+    series of examples. Notationally, the key to abstraction is the
+    variable, which is a symbol (like a name) denoting an infinite
+    number of things. In the example of removing the bottom-most block
+    in a stack, the number of blocks on top of it does not really
+    makes a difference, because, if there are more than one the
+    operations consists simply in repeating the same gesture. The
+    system would replay the previous examples but making use of
+    variables.
+
+  \item The last stage consists in demonstrating the \Erlang code,
+    after several exercises, the student will be prompted to write the
+    \Erlang code by herself.
+
+\end{enumerate}
+Therefore, there are (1)~the HCI, (2)~the code database with
+scenarios, (3)~a protocol of interaction between the user and the
+system through the interface, (4)~a didactic methodology.

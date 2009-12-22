@@ -1,0 +1,46 @@
+%%-*-latex-*-
+
+\section{Programming Topics}
+
+At the end of the system\hyp{}student interaction she should be able
+to write and understand short and simple \Erlang programs operating on
+integers, atoms (an enumerated type) and lists. We classified the
+algorithms based on the concepts they embody as follows.
+
+\begin{description}
+
+  \item[Purely structural] These programs rely solely on the structure
+    of the data, not its denotation (abstract value). Here, that
+    translates as traversals and/or transformation of lists,
+    regardless of the nature of the items. Examples: extracting the
+    last or penultimate element of a list, joining two lists,
+    reversing a list.
+
+  \item[Structural with equality] These programs are structural but
+    also require the equality operator, which can be implicit in
+    \Erlang as non\hyp{}linear patterns, where a variable occurs
+    several times. Examples: copying a list without the first
+    occurrence of a given element, ditto but filtering out all the
+    occurrences, ditto but avoiding the last occurrence, compressing a
+    list by removing repetitive and consecutive items in a list.
+
+  \item [Structural with nesting] These programs work on lists whose
+    items are in turn lists. (Two levels of such an embedding are
+    enough for most interesting cases.). Examples: making the list of
+    the repeated consecutive items in a list), flattening a list so
+    the result is a list containing the same original non\hyp{}list
+    items but no lists.
+
+  \item[Structural with partial or total ordering] These programs rely
+    on some total order on values, like sorting by insertion.
+
+  \item [Structural with arithmetic] They require the usual
+    arithmetic operations \((+)\), \((-)\), \((\times)\), \((/)\)
+    etc). Examples: duplicating \(n\) times the items of a list in the
+    same input order, the factorial function.
+
+  \item [Structural with higher\hyp{}order] These programs make use of
+    functions as arguments. The classical example is sorting using a
+    caller\hyp{}supplied function to compare any two elements.
+
+\end{description}

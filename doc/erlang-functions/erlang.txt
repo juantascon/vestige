@@ -1,0 +1,57 @@
+The functional programs can be divided in categories based on the
+concept they require.
+
+ * Purely structural. These programs rely solely on the structure of
+   the data, not its denotation (abstract value). Here, that
+   translates as traversals and/or transformation of lists, regardless
+   of the nature of the items. Examples: last/1, penult/1,
+   rev_append/2, append/2, rev/1.
+
+ * Structural with equality. These programs are structural but also
+   require the equality operator, which can be implicit in Erlang as
+   non-linear patterns (where a variable occurs several
+   times). Example: rem_fst/2, rem_all/2, rem_last/2, compress/1,
+   dupli/1.
+
+ * Structural with nesting. These programs work on lists whose items
+   are lists. (Two levels are enough for most cases.)
+
+    * With equality: pack/1.
+
+    * Without equality: flatten/1.
+
+   These functions can be rewritten so their heads are flat, i.e., no
+   nesting in the patterns. See flatten4/1.
+
+ * Structural with partial or total ordering (>). These programs rely
+   on some order on values. To keep things simple, let us say a total
+   order on integers. Example: all sorting algorithms based on
+   comparison of key, like isort1/1 (one-way insertion sort) and
+   isort_2w/1 (two-way insertion sort).
+ 
+ * Structural with arithmetic. Example: 
+
+    * With equality: encode/1, repli/2.
+
+    * Without equality: fact/1, prod/1, len/1, drop/2, split/2,
+      rotate/2.
+
+ * Structural with higher-order. These programs make use of functions
+   as arguments. Probably too abstract for an interface based on
+   `Programming by Example'. See isort_g/2 and foldl/3.
+
+Another view is whether a definition involves some other function or
+not. If so, a way to express function composition is needed. See for
+instance rev1/1, rem_last1/2 and rotate2/2. Since the audience is
+supposed to be beginners, we can choose definitions which do not
+involve other definitions. Except, perhaps, we can allow the use of
+append/2, since it is very intuitive. See flatten1/1. Actually, even
+if a definition is recursive and does not involve another function,
+composition may be needed. See flatten2/1.
+
+Another view, more syntactical in nature, is whether a function is in
+tail form or not. If not, a way to express the control context
+(pending computations when a call is made) is required. To keep things
+as simple as possible, let us stick with definitions in tail
+form. (Although they are in general more complex. See rotate1/2 and
+isort7/1.)
