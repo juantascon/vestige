@@ -1,3 +1,18 @@
+/**
+ * Actions:
+ *
+ * - (pop) move a block from a list to the board
+ * - (push) move a block from the board to a list
+ * - (pop-push) move a block from a list to another
+ *
+ * - (discard) discard an item
+ * - (invalid) invalid movement
+ *
+ * ** Board is the base where all the items are on
+ *
+ **
+ */
+
 #ifndef __FAR_ACTION_ACTION_HPP
 #define __FAR_ACTION_ACTION_HPP
 
@@ -10,17 +25,16 @@ class Action
 {
 	protected:
 		state::Node* item;
-		int type;
 		
 	public:
 		typedef std::vector <Action*> Vector;
-		enum Type { PopPush, Pop, Push, DiscardBlock, DiscardList, Invalid, None };
-		static std::string type_to_string(int type);
 		
-		Action(state::Node* item, int type);
+		Action(state::Node* item);
+		
+		std::string item_id();
 		
 		void alert();
-		void print();
+		virtual void print();
 };
 
 }}

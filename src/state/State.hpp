@@ -2,7 +2,7 @@
 #define __FAR_STATE_STATE_HPP
 
 #include "List.hpp"
-#include "../action/Action.hpp"
+#include "../action/Actions.hpp"
 
 namespace far{
 namespace state{
@@ -19,6 +19,8 @@ class State : public List
 		
 		State* previous;
 		State* next;
+		
+		virtual void push(Node *n);
 		
 		virtual void print();
 		

@@ -92,6 +92,10 @@ void Initializer::initRoot(){
 	root->addChild(camera);
 }
 
+void initRuleSet() {
+	rule::RuleSet::instance()->add(new rule::Pop("sample1", "list.hiro"));
+}
+
 void Initializer::initialize(){
 	initVideo();
 	initTracker();
@@ -100,6 +104,7 @@ void Initializer::initialize(){
 	initMarkers();
 	initViewer();
 	initRoot();
+	initRuleSet();
 }
 
 int Initializer::execute() {

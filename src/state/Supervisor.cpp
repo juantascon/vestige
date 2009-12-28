@@ -11,7 +11,7 @@ Supervisor::Supervisor()
 
 action::Action* Supervisor::detect_action(State* past, State* present) {
 	if (! past || ! present) {
-		return new action::Action(NULL, action::Action::None);
+		return NULL;
 	}
 	
 	//D(("past::")); past->print();
@@ -19,16 +19,23 @@ action::Action* Supervisor::detect_action(State* past, State* present) {
 	
 	action::Action::Vector* v = past->diff(present);
 	
+	// no movements
+	if (v->size() == 0) {
+		return NULL;
+	}
+	
+	// 2 or more movements implies error
 	if (v->size() >= 2) {
+		//TODO: modificar todas las acciones para que sean invalidas,
+		// probablemente invalid action debe tener un array de items
 		BOOST_FOREACH(action::Action *a, *v) {
 			a->alert();
 		}
-		return new action::Action(NULL, action::Action::Invalid);
+		return new action::Invalid(NULL);
 	}
-	else if (v->size() <= 0) {
-		return new action::Action(NULL, action::Action::None);
-	}
-	else {
+	
+	// only 1 difference means good movement
+	if (v->size() == 1) {
 		return (*v)[0];
 	}
 }

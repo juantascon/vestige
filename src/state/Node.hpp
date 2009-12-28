@@ -18,6 +18,7 @@ class Node
 		marker::Marker* m;
 		Node* parent;
 		std::string id;
+		int index;
 		
 		virtual void print();
 		virtual Node::List* flat_view();

@@ -8,6 +8,13 @@ State::State() : List(NULL)
 {
 }
 
+void State::push(Node *n) {
+	n->index = 0;
+	n->parent = this;
+	
+	_items.push_back(n);
+}
+
 void State::print() {
 	std::cout << "*******************************************************************" << std::endl;
 	
@@ -54,20 +61,20 @@ action::Action::Vector* State::diff(State* comp) {
 					// si antes estaba sobre el tablero o si estaba en una lista y ahora está en el tabler
 					if (this_n->parent->id == this->id) {
 						// el bloque pasó del tablero a una lista
-						v->push_back( new action::Action( this_n, action::Action::Push) );
+						v->push_back( new action::Push( comp_n, comp_n->parent) );
 					}
 					else {
 						if (comp_n->parent->id == comp->id) {
 							// el bloque pasó de una lista al tablero
-							v->push_back( new action::Action( this_n, action::Action::Pop) );
+							v->push_back( new action::Pop( comp_n, this_n->parent) );
 						} else {
 							// el bloque pasó de una lista a otra lista
-							v->push_back( new action::Action( this_n, action::Action::PopPush) );
+							v->push_back( new action::PopPush( comp_n, this_n->parent, comp_n->parent) );
 						}
 					}
 				}
-				else {
-					//TODO: verificar si el nodo cambió de posición en la lista
+				else if (this_n->index != comp_n->index) {
+					v->push_back( new action::Invalid( comp_n ) );
 				}
 				
 				found = 1;
@@ -76,8 +83,7 @@ action::Action::Vector* State::diff(State* comp) {
 		}
 		
 		if (!found) {
-			//TODO: verificar cuando sea DiscardList
-			v->push_back( new action::Action( this_n, action::Action::DiscardBlock) );
+			v->push_back( new action::Discard( this_n ) );
 		}
 	}
 	

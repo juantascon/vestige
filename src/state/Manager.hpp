@@ -5,9 +5,12 @@
 #include "State.hpp"
 #include "Block.hpp"
 #include "Supervisor.hpp"
+
 #include "../marker/Block.hpp"
 #include "../marker/List.hpp"
 #include "../marker/Manager.hpp"
+
+#include "../rule/RuleSet.hpp"
 
 namespace far{
 namespace state{

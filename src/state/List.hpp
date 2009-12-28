@@ -14,7 +14,7 @@ class List : public Node
 	public:
 		List(marker::Marker *m);
 		
-		void push(Node* n);
+		virtual void push(Node* n);
 		Node* pop();
 		
 		virtual void print();

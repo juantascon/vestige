@@ -3,32 +3,19 @@
 namespace far {
 namespace action {
 
-std::string Action::type_to_string(int type) {
-	switch(type) {
-		case PopPush: return "PopPush";
-		case Pop: return "Pop";
-		case Push: return "Push";
-		case DiscardBlock: return "DiscardBlock";
-		case DiscardList: return "DiscardList";
-		case Invalid: return "Invalid";
-		case None: return "None";
-	}
-	
-	return "Invalid";
-}
-
-Action::Action(state::Node* item, int type)
+Action::Action(state::Node* item)
 {
 	this->item = item;
-	this->type = type;
 }
+
+std::string Action::item_id() { return item->id; }
 
 void Action::alert() {
 	item->m->alert();
 }
 
 void Action::print() {
-	std::cout << "Action: " << Action::type_to_string(this->type) << " Item: " << item->path() << std::endl;
+	std::cout << "Action [NULL] | Item: " << item->path() << std::endl;
 }
 
 }}

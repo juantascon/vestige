@@ -6,6 +6,7 @@
 #include "marker/Switch.hpp"
 #include "marker/Block.hpp"
 #include "marker/List.hpp"
+#include "rule/RuleSet.hpp"
 
 namespace far
 {

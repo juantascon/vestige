@@ -8,8 +8,10 @@ List::List(marker::Marker *m) : Node(m), _items()
 }
 
 void List::push(Node *n) {
-	_items.push_back(n);
+	n->index = _items.size();
 	n->parent = this;
+	
+	_items.push_back(n);
 }
 
 Node* List::pop() {

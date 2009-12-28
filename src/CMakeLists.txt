@@ -2,7 +2,8 @@ set(SRCS
 	Var.cpp
 	marker/Manager.cpp marker/Marker.cpp marker/List.cpp marker/Block.cpp marker/Switch.cpp
 	state/Node.cpp state/Block.cpp state/List.cpp state/State.cpp state/Manager.cpp state/Supervisor.cpp
-	action/Action.cpp
+	action/Action.cpp action/Pop.cpp action/Push.cpp action/PopPush.cpp action/Invalid.cpp action/Discard.cpp
+	rule/Rule.cpp rule/Pop.cpp rule/Push.cpp rule/PopPush.cpp rule/Discard.cpp rule/RuleSet.cpp
 	Initializer.cpp Main.cpp
 )
 

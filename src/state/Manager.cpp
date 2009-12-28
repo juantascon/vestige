@@ -120,7 +120,10 @@ void Manager::step() {
 	s->create_flat_view();
 	
 	if (current) {
-		Supervisor::instance()->detect_action(current, s);
+		action::Action *a = Supervisor::instance()->detect_action(current, s);
+		int ret = rule::RuleSet::instance()->step(a);
+		D(("RULESET-STEP:: %i", ret));
+		
 		s->previous = current;
 		current->next = s;
 	}
