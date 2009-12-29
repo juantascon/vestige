@@ -4,7 +4,6 @@
 #include "Node.hpp"
 #include "State.hpp"
 #include "Block.hpp"
-#include "Supervisor.hpp"
 
 #include "../marker/Block.hpp"
 #include "../marker/List.hpp"
@@ -30,8 +29,10 @@ class Manager
 		static Manager* instance();
 		
 		State* current;
+		State* previous;
+		
 		State* capture();
-		void step();
+		void sync();
 };
 
 }}

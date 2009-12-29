@@ -16,7 +16,7 @@ void RuleSet::add(Rule* rule) {
 	current = items->begin();
 }
 
-int RuleSet::step(action::Action* action) {
+int RuleSet::apply(action::Action* action) {
 	if ( (*current)->valid(action) ) {
 		++current;
 		return 1;

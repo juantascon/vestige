@@ -5,9 +5,10 @@ namespace state{
 
 Node::Node(marker::Marker *m)
 {
-	this->parent = NULL;
-	this->m = NULL;
+	this->parent = 0;
+	this->m = 0;
 	this->id = "null";
+	this->index = 0;
 	
 	if (m) {
 		this->m = m;

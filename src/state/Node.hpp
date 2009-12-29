@@ -15,8 +15,8 @@ class Node
 		
 		Node(marker::Marker *m);
 		
-		marker::Marker* m;
 		Node* parent;
+		marker::Marker* m;
 		std::string id;
 		int index;
 		

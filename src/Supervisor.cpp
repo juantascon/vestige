@@ -1,15 +1,14 @@
 #include "Supervisor.hpp"
 
 namespace far{
-namespace state{
 
-Supervisor* Supervisor::instance() { return &boost::serialization::singleton<far::state::Supervisor>::get_mutable_instance(); }
+Supervisor* Supervisor::instance() { return &boost::serialization::singleton<far::Supervisor>::get_mutable_instance(); }
 
 Supervisor::Supervisor()
 {
 }
 
-action::Action* Supervisor::detect_action(State* past, State* present) {
+action::Action* Supervisor::detect_action(state::State* past, state::State* present) {
 	if (! past || ! present) {
 		return NULL;
 	}
@@ -38,6 +37,21 @@ action::Action* Supervisor::detect_action(State* past, State* present) {
 	if (v->size() == 1) {
 		return (*v)[0];
 	}
+	
+	// this point shouldnt be reached
+	return NULL;
 }
 
-}}
+void Supervisor::step() {
+	state::Manager* manager = state::Manager::instance();
+	
+	manager->sync();
+	
+	if ( manager->previous ) {
+		action::Action *a = detect_action(manager->previous, manager->current);
+		int ret = rule::RuleSet::instance()->apply(a);
+		D(("RULESET-STEP:: %i", ret));
+	}
+}
+
+}

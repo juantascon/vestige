@@ -19,7 +19,7 @@ class RuleSet
 		static RuleSet* instance();
 		
 		void add(Rule* rule);
-		int step(action::Action* action);
+		int apply(action::Action* action);
 };
 
 }}

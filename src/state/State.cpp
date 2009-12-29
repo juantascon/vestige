@@ -52,6 +52,8 @@ action::Action::Vector* State::diff(State* comp) {
 		
 		BOOST_FOREACH(Node *comp_n, *(comp->flat_items)) {
 			
+			D(("Comp: %s This: %s", comp_n->id.c_str(), this_n->id.c_str()));
+			
 			if (this_n->id == comp_n->id) {
 				
 				// verifica si el nodo tiene una nueva ruta
@@ -74,6 +76,7 @@ action::Action::Vector* State::diff(State* comp) {
 					}
 				}
 				else if (this_n->index != comp_n->index) {
+					D(("invalid: %s (index0: %i index1: %i)", comp_n->id.c_str(), this_n->index, comp_n->index ));
 					v->push_back( new action::Invalid( comp_n ) );
 				}
 				

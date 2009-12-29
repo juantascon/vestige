@@ -11,17 +11,12 @@ class State : public List
 {
 	protected:
 		
-		
 	public:
 		State();
 		
 		Node::List* flat_items;
 		
-		State* previous;
-		State* next;
-		
 		virtual void push(Node *n);
-		
 		virtual void print();
 		
 		void create_flat_view();

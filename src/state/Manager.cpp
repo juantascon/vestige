@@ -112,22 +112,13 @@ State* Manager::capture() {
 	return s;
 }
 
-void Manager::step() {
+void Manager::sync() {
 	State *s = capture();
-	
 	if(!s) { return; }
 	
 	s->create_flat_view();
 	
-	if (current) {
-		action::Action *a = Supervisor::instance()->detect_action(current, s);
-		int ret = rule::RuleSet::instance()->step(a);
-		D(("RULESET-STEP:: %i", ret));
-		
-		s->previous = current;
-		current->next = s;
-	}
-	
+	previous = current;
 	current = s;
 }
 
