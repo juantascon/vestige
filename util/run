@@ -1,8 +1,10 @@
 #! /bin/bash
 
-v=1list_2block_1switch.mov
-#v=2hiro_1switch.mov
 
+v=reverse2_2l_3b.mov
+#v=reverse1_2l_3b.mov
+#v=1list_2block_1switch.mov
+#v=2hiro_1switch.mov
 
 
 ROOT=$(dirname $0)/../

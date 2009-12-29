@@ -21,7 +21,7 @@ class Initializer
 		osgViewer::Viewer* viewer;
 		osg::Group* root;
 		Initializer();
-				
+		
 	public:
 		static Initializer *instance();
 		void initTracker();

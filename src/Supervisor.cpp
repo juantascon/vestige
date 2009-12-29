@@ -51,6 +51,9 @@ void Supervisor::step() {
 		action::Action *a = detect_action(manager->previous, manager->current);
 		int ret = rule::RuleSet::instance()->apply(a);
 		D(("RULESET-STEP:: %i", ret));
+		if (! ret) {
+			a->alert();
+		}
 	}
 }
 

@@ -52,7 +52,7 @@ action::Action::Vector* State::diff(State* comp) {
 		
 		BOOST_FOREACH(Node *comp_n, *(comp->flat_items)) {
 			
-			D(("Comp: %s This: %s", comp_n->id.c_str(), this_n->id.c_str()));
+			//D(("Comp: %s This: %s", comp_n->id.c_str(), this_n->id.c_str()));
 			
 			if (this_n->id == comp_n->id) {
 				

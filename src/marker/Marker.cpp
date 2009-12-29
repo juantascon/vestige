@@ -4,6 +4,8 @@
 namespace far {
 namespace marker {
 
+const std::string Marker::invalid_model_file = "data/model/invalid.osg";
+
 Marker::Marker(std::string marker_args, std::string id)
 {
 	this->id = id;
@@ -41,6 +43,10 @@ void Marker::addChild(osg::Node* child) {
 	_model->addChild(child);
 }
 
+void Marker::resetModel() {
+	_model->removeChildren(0, _model->getNumChildren());
+}
+
 int Marker::visible() {
 	return this->marker()->valid();
 }
@@ -60,12 +66,20 @@ int Marker::aligned(Marker* m) {
 	//std::cout << "dpos: " << dpos << std::endl;
 	//std::cout << "abs-x: " << abs(dpos.x()) << std::endl;
 	
-	if (abs(dpos.x()) < 40) { return 1; }
+	if (abs(dpos.x()) < 90) { return 1; }
 	return 0;
 }
 
 void Marker::alert() {
+	D(("ALERT: %s", id.c_str()));
+	this->resetModel();
 	
+	float boxSize = 100.0f;
+	osg::ShapeDrawable* sd = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, boxSize / 2.0f), boxSize));
+	sd->setColor(osg::Vec4(1, 0, 0, 1));
+	osg::Geode* geode = new osg::Geode();
+	geode->addDrawable(sd);
+	this->addChild(geode);
 }
 
 void Marker::operator() (osg::Node* node, osg::NodeVisitor* nv) {

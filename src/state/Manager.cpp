@@ -37,9 +37,9 @@ void Manager::sort_markers() {
 		if (!inserted) { markers->push_back( m ); }
 	}
 	
-	for (marker::Marker::List::iterator it = markers->begin(); it != markers->end(); it++) {
+	/*for (marker::Marker::List::iterator it = markers->begin(); it != markers->end(); it++) {
 		D(("marker: %s ref: %x", (*it)->id.c_str(), *it));
-	}
+	}*/
 	
 	//D(( "END" ));
 }

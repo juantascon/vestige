@@ -8,6 +8,9 @@ namespace marker {
 
 class Marker : public osg::NodeCallback
 {
+	private:
+		static const std::string invalid_model_file;
+		
 	protected:
 		void initMarker(std::string args);
 		void initModel();
@@ -26,6 +29,7 @@ class Marker : public osg::NodeCallback
 		osgART::Marker* marker();
 		osg::MatrixTransform* model();
 		void addChild(osg::Node* child);
+		void resetModel();
 		
 		osg::Vec3 position();
 		int visible();

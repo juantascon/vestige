@@ -66,13 +66,13 @@ void Initializer::initCamera() {
 void Initializer::initMarkers() {
 	new marker::Switch("single;data/patt/patt.kanji;100;0;0", "switch");
 	
-	new marker::List("single;data/patt/patt.hiro;100;0;0", "list.hiro");
+	new marker::List("single;data/patt/patt.hiro;100;0;0", "l.hiro");
+	new marker::List("single;data/patt/patt.sample1;100;0;0", "l.sample1");
+	new marker::List("single;data/patt/patt.sample2;100;0;0", "l.sample2");
 	
-	new marker::Block("single;data/patt/patt.sample1;100;0;0", "sample1", "11111");
-	new marker::Block("single;data/patt/patt.sample2;100;0;0", "sample2", "22222");
-	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "a", "AAAAA");
-	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "b", "BBBBB");
-	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "b", "CCCCC");
+	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "b.A", "AAAAA");
+	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "b.B", "BBBBB");
+	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "b.C", "CCCCC");
 }
 
 void Initializer::initViewer() {
@@ -87,13 +87,16 @@ void Initializer::initViewer() {
 	viewer->realize();
 }
 
-void Initializer::initRoot(){
+void Initializer::initRoot() {
 	root = new osg::Group();
 	root->addChild(camera);
 }
 
 void initRuleSet() {
-	rule::RuleSet::instance()->add(new rule::Pop("sample1", "list.hiro"));
+	//rule::RuleSet::instance()->add(new rule::Pop("b.C", "l.sample1"));
+	rule::RuleSet::instance()->add(new rule::PopPush("b.C", "l.hiro", "l.sample1"));
+	rule::RuleSet::instance()->add(new rule::PopPush("b.B", "l.hiro", "l.sample1"));
+	rule::RuleSet::instance()->add(new rule::PopPush("b.A", "l.hiro", "l.sample1"));
 }
 
 void Initializer::initialize(){
