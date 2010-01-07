@@ -8,3 +8,7 @@ buscar porque al resolver un problema es mejor volver a empezar que devolverse u
 
 reconocer cual es el dato de entrada y cual es el de salida (I/O)
 
+generar num aleatorios para el valor de cada bloque
+cambiar las reglas para que permitan pop o push del ultimo elemento sin importar quien es el elemento
+identificar visualmente las pilas de entrada y salida
+

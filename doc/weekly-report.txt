@@ -426,4 +426,23 @@ I will also add a small rules system that will indicate the right movements
 order that the user will have to follow in order to complete the game.
 
 
+==============
+= Week 52
+==============
 
+I created a very rudimentary rules system, it works by matching each detected
+action across states with a set of ordered rules that are declared using as
+parameters the information expected from the detected action (ie: [Pop
+block "B" from list "L"] "B" and "L" are parameters for a POP rule).
+
+I added the capability of showing a red block as visual alert on invalid actions
+or invalid steps (as defined on the new rules system) as well as some small bugs
+fixed such as the action detection system can now detect invalid movements
+caused by wrong ordering of blocks in the same list.
+
+The next week Ill focus my work on fixing some small things such as:
+
+* Improve the rules system to allow actions on the last element of lists.
+* Visually identify the input and output lists.
+* Show a big label in the middle of the block (right now it shows a blue block)
+* Generate the block labels with random information.

@@ -1,0 +1,83 @@
+====================================================
+=== REVERSE
+====================================================
+
+reverse the items in a list
+
+reverse(   [],M) -> M;
+reverse([I|L],M) -> reverse(L,[I|M]);
+
+
+====================================================
+=== APPEND
+====================================================
+
+append the content of 2 lists
+
+append(   [],M) -> M;
+append([I|L],M) -> [I|append(L,M)];
+
+
+====================================================
+=== REMOVE FIRST
+====================================================
+
+remove the first appearance of a value in a list
+
+** REQUIRED: a way to compare (==) internal values
+
+remove_first(   [],_) -> [];
+remove_first([I|L],I) -> L;
+remove_first([J|L],I) -> [J|remove_first(L,I)];
+
+
+====================================================
+=== LENGHT
+====================================================
+
+the number of items in a list
+
+*** REQUIRED: a way to asign (=) internal values
+*** REQUIRED: mathematics -- the sum (+) function
+
+lenght(   []) -> 0;
+lenght([_|L]) -> 1 + lenght(L);
+
+
+====================================================
+=== FACTORIAL
+====================================================
+
+The factorial of a number
+
+*** REQUIRED: a way to asign (=) internal values
+*** REQUIRED: mathematics -- the product (*) function
+
+factorial(0)            -> 1;
+factorial(N) when N > 0 -> N * factorial(N-1);
+
+
+====================================================
+=== COMPRESS
+====================================================
+
+remove the repeating consecutive items in a list
+
+*** REQUIRED: a way to compare (==) internal values
+
+compress(     []) -> [];
+compress([I,I|L]) -> compress([I|L]);
+
+
+====================================================
+=== DUPLICATE
+====================================================
+
+duplicate each item in a list
+
+*** REQUIRED: a way to easily create new blocks ????
+
+duplicate(   []) -> [];
+duplicate([I|L]) -> [I,I|duplicate(L)];
+
+
