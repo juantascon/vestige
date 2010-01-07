@@ -21,19 +21,30 @@ void Var::set_value(std::string value) {
 }
 
 std::string Var::text() {
-	return ( _key + " = " + _value );
+	//return ( _key + " = " + _value );
+	return ( _key  );
 }
 
 osg::Node* Var::model() {
-	osg::Geode* texts = new osg::Geode();
-	texts->setName("name");
+	/*osgText::Text3D* osgtext = new osgText::Text3D();
+	osgtext->setFont("data/fonts/verdana.ttf");
+	osgtext->setCharacterSize(100);
+	osgtext->setCharacterDepth(10);
+	osgtext->setAlignment( osgText::Text3D::CENTER_CENTER );
+	osgtext->setText( this->text() );
+	osg::Geode* geode = new osg::Geode();
+	geode->addDrawable(osgtext);*/
 	
 	osgText::Text* osgtext = new osgText::Text();
+	osgtext->setFont("data/fonts/verdana.ttf");
+	osgtext->setCharacterSize(100);
+	osgtext->setAlignment( osgText::Text3D::CENTER_CENTER );
+	//osgtext->setBackdropType(osgText::Text::OUTLINE);
 	osgtext->setText( this->text() );
-	osgtext->setColor(osg::Vec4(0, 0, 1, 1));
-	texts->addDrawable(osgtext);
+	osg::Geode* geode = new osg::Geode();
+	geode->addDrawable(osgtext);
 	
-	return ( dynamic_cast<osg::Node*> (texts) );
+	return ( dynamic_cast<osg::Node*> (geode) );
 }
 
 }

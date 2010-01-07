@@ -70,9 +70,9 @@ void Initializer::initMarkers() {
 	new marker::List("single;data/patt/patt.sample1;100;0;0", "l.sample1");
 	new marker::List("single;data/patt/patt.sample2;100;0;0", "l.sample2");
 	
-	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "b.A", "AAAAA");
-	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "b.B", "BBBBB");
-	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "b.C", "CCCCC");
+	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "b.A", "A");
+	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "b.B", "B");
+	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "b.C", "C");
 }
 
 void Initializer::initViewer() {

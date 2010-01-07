@@ -35,10 +35,10 @@ class Marker : public osg::NodeCallback
 		int visible();
 		int aligned(Marker* m);
 		
-		void alert();
-		
 		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);
 		virtual void update() = 0;
+		
+		virtual void alert();
 };
 
 }}

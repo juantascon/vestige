@@ -1,7 +1,6 @@
 #ifndef __FAR_STATE_NODE_HPP
 #define __FAR_STATE_NODE_HPP
 
-#include "../Includes.hpp"
 #include "../marker/Marker.hpp"
 
 namespace far{

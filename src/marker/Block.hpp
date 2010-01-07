@@ -12,12 +12,16 @@ class Block : public Marker
 	private:
 		static const std::string model_file;
 		
+	protected:
+		osg::Node* background(int valid);
+		
 	public:
 		Block(std::string marker_args, std::string id, std::string key);
 		
 		Var *label;
 		
 		virtual void update();
+		virtual void alert();
 };
 
 }}

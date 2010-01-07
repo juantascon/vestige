@@ -15,7 +15,9 @@
 
 #include <osgDB/FileUtils>
 #include <osgDB/ReadFile>
+
 #include <osgText/Text>
+#include <osgText/Text3D>
 
 #include <unistd.h>
 
