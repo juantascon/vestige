@@ -1,5 +1,5 @@
-#ifndef __FAR_ACTION_ACTIONS_HPP
-#define __FAR_ACTION_ACTIONS_HPP
+#ifndef __FAR_ACTION_TYPES_HPP
+#define __FAR_ACTION_TYPES_HPP
 
 #include "Action.hpp"
 

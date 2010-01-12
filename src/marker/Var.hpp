@@ -1,10 +1,10 @@
-#ifndef __FAR_VAR_HPP
-#define __FAR_VAR_HPP
+#ifndef __FAR_MARKER_VAR_HPP
+#define __FAR_MARKER_VAR_HPP
 
-#include "Includes.hpp"
+#include "../Includes.hpp"
 
-namespace far
-{
+namespace far {
+namespace marker {
 
 class Var
 {
@@ -25,6 +25,6 @@ class Var
 		osg::Node* model();
 };
 
-}
+}}
 
 #endif

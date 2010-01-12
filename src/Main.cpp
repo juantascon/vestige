@@ -1,7 +1,7 @@
 #include "Includes.hpp"
-#include "Initializer.hpp"
+#include "core/Initializer.hpp"
 
 int main(int argc, char* argv[]) {
-	far::Initializer::instance()->initialize();
-	return far::Initializer::instance()->execute();
+	far::core::Initializer::instance()->initialize();
+	return far::core::Initializer::instance()->execute();
 }

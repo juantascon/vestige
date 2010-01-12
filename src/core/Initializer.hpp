@@ -1,15 +1,16 @@
-#ifndef __FAR_INITIALIZER_HPP
-#define __FAR_INITIALIZER_HPP
+#ifndef __FAR_CORE_INITIALIZER_HPP
+#define __FAR_CORE_INITIALIZER_HPP
 
-#include "Includes.hpp"
-#include "marker/Manager.hpp"
-#include "marker/Switch.hpp"
-#include "marker/Block.hpp"
-#include "marker/List.hpp"
-#include "rule/RuleSet.hpp"
+#include "../Includes.hpp"
+#include "GlobalStorage.hpp"
 
-namespace far
-{
+#include "../marker/Types.hpp"
+#include "../rule/Types.hpp"
+
+#include "../rule/RuleSet.hpp"
+
+namespace far {
+namespace core {
 
 class Initializer
 {
@@ -37,6 +38,6 @@ class Initializer
 		int execute();
 };
 
-}
+}}
 
 #endif

@@ -1,7 +1,7 @@
 #include "List.hpp"
 
-namespace far{
-namespace state{
+namespace far {
+namespace state {
 
 List::List(marker::Marker *m) : Node(m), _items()
 {

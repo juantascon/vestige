@@ -1,8 +1,7 @@
 #ifndef __FAR_RULE_RULESET_HPP
 #define __FAR_RULE_RULESET_HPP
 
-#include "RuleSet.hpp"
-#include "Rules.hpp"
+#include "Rule.hpp"
 
 namespace far{
 namespace rule{

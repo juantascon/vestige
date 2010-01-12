@@ -1,12 +1,12 @@
 #include "Initializer.hpp"
 #include <osgART/GeometryUtils>
 
-namespace far
-{
+namespace far {
+namespace core {
 
 Initializer::Initializer() { }
 
-Initializer* Initializer::instance() { return &boost::serialization::singleton<far::Initializer>::get_mutable_instance(); }
+Initializer* Initializer::instance() { return &boost::serialization::singleton<far::core::Initializer>::get_mutable_instance(); }
 
 void Initializer::initVideo() {
 	int _video_id = osgART::PluginManager::instance()->load("osgart_video_artoolkit2");
@@ -32,7 +32,7 @@ void Initializer::initTracker() {
 		exit(-1);
 	}
 	
-	marker::Manager::instance()->tracker = tracker;
+	GlobalStorage::instance()->tracker = tracker;
 }
 
 void Initializer::initCalibration() {
@@ -60,7 +60,7 @@ void Initializer::initCamera() {
 	_layer->getOrCreateStateSet()->setRenderBinDetails(0, "RenderBin");
 	
 	camera->addChild(_layer);
-	marker::Manager::instance()->camera = camera;
+	GlobalStorage::instance()->camera = camera;
 }
 
 void Initializer::initMarkers() {
@@ -70,9 +70,9 @@ void Initializer::initMarkers() {
 	new marker::List("single;data/patt/patt.sample1;100;0;0", "l.sample1");
 	new marker::List("single;data/patt/patt.sample2;100;0;0", "l.sample2");
 	
-	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "b.A", "A");
-	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "b.B", "B");
-	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "b.C", "C");
+	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "b.A", "B1");
+	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "b.B", "B2");
+	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "b.C", "B3");
 }
 
 void Initializer::initViewer() {
@@ -93,7 +93,7 @@ void Initializer::initRoot() {
 }
 
 void initRuleSet() {
-	//rule::RuleSet::instance()->add(new rule::Pop("b.C", "l.sample1"));
+	rule::RuleSet::instance()->add(new rule::Pop("b.C", "l.sample1"));
 	rule::RuleSet::instance()->add(new rule::PopPush("b.C", "l.hiro", "l.sample1"));
 	rule::RuleSet::instance()->add(new rule::PopPush("b.B", "l.hiro", "l.sample1"));
 	rule::RuleSet::instance()->add(new rule::PopPush("b.A", "l.hiro", "l.sample1"));
@@ -118,4 +118,4 @@ int Initializer::execute() {
 	return viewer->run();
 }
 
-}
+}}

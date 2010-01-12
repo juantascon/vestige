@@ -2,10 +2,10 @@
 #define __FAR_STATE_STATE_HPP
 
 #include "List.hpp"
-#include "../action/Actions.hpp"
+#include "../action/Types.hpp"
 
-namespace far{
-namespace state{
+namespace far {
+namespace state {
 
 class State : public List
 {
@@ -20,6 +20,7 @@ class State : public List
 		virtual void print();
 		
 		void create_flat_view();
+		
 		action::Action::Vector* diff(State* comp);
 };
 

@@ -3,8 +3,8 @@
 
 #include "../marker/Marker.hpp"
 
-namespace far{
-namespace state{
+namespace far {
+namespace state {
 
 class Node
 {

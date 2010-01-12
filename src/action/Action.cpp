@@ -11,6 +11,7 @@ Action::Action(state::Node* item)
 std::string Action::item_id() { return item->id; }
 
 void Action::alert() {
+	D(("Alert::"));
 	item->m->alert();
 }
 

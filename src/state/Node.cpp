@@ -1,7 +1,7 @@
 #include "Node.hpp"
 
-namespace far{
-namespace state{
+namespace far {
+namespace state {
 
 Node::Node(marker::Marker *m)
 {

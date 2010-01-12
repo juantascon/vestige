@@ -1,8 +1,7 @@
 #include "State.hpp"
-#include "List.hpp"
 
-namespace far{
-namespace state{
+namespace far {
+namespace state {
 
 State::State() : List(NULL)
 {

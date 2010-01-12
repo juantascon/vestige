@@ -1,5 +1,5 @@
 #include "Switch.hpp"
-#include "../Supervisor.hpp"
+#include "../core/Supervisor.hpp"
 
 namespace far {
 namespace marker {
@@ -17,7 +17,7 @@ void Switch::update() {
 	}
 	else {
 		if (!captured) {
-			Supervisor::instance()->step();
+			core::Supervisor::instance()->step();
 			captured = 1;
 		}
 	}

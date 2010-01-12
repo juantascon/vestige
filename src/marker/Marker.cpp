@@ -1,5 +1,5 @@
 #include "Marker.hpp"
-#include "Manager.hpp"
+#include "../core/GlobalStorage.hpp"
 
 namespace far {
 namespace marker {
@@ -17,12 +17,12 @@ Marker::Marker(std::string marker_args, std::string id)
 	osgART::attachDefaultEventCallbacks(_model, _marker);
 	osgART::addEventCallback(_model, this);
 	
-	Manager::instance()->camera->addChild(_model);
-	Manager::instance()->add(this);
+	core::GlobalStorage::instance()->camera->addChild(_model);
+	core::GlobalStorage::instance()->add_marker(this);
 }
 
 void Marker::initMarker(std::string args) {
-	_marker = Manager::instance()->tracker->addMarker(args);
+	_marker = core::GlobalStorage::instance()->tracker->addMarker(args);
 	if (!_marker)
 	{
 		osg::notify(osg::FATAL) << "Could not add marker!" << std::endl;

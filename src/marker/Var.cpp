@@ -1,7 +1,7 @@
 #include "Var.hpp"
 
-namespace far
-{
+namespace far {
+namespace marker {
 
 Var::Var(std::string key, std::string value) {
 	set_key(key);
@@ -47,4 +47,4 @@ osg::Node* Var::model() {
 	return ( dynamic_cast<osg::Node*> (geode) );
 }
 
-}
+}}
