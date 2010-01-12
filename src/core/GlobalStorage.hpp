@@ -1,7 +1,8 @@
 #ifndef __FAR_CORE_GLOBALSTORAGE_HPP
 #define __FAR_CORE_GLOBALSTORAGE_HPP
 
-#include "../Includes.hpp"
+#include "../lib/osgart.hpp"
+
 #include "../marker/Marker.hpp"
 #include "../state/State.hpp"
 

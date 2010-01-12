@@ -2,6 +2,7 @@
 #define __FAR_STATE_LIST_HPP
 
 #include "Node.hpp"
+#include "../lib/boost.hpp"
 
 namespace far {
 namespace state {

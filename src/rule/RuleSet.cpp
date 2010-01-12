@@ -1,7 +1,7 @@
 #include "RuleSet.hpp"
 
-namespace far{
-namespace rule{
+namespace far {
+namespace rule {
 
 RuleSet* RuleSet::instance() { return &boost::serialization::singleton<far::rule::RuleSet>::get_mutable_instance(); }
 

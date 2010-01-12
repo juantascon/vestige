@@ -1,7 +1,7 @@
 #ifndef __FAR_MARKER_VAR_HPP
 #define __FAR_MARKER_VAR_HPP
 
-#include "../Includes.hpp"
+#include "../lib/osg.hpp"
 
 namespace far {
 namespace marker {

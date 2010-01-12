@@ -1,6 +1,8 @@
 #ifndef __FAR_ACTION_DETECT_HPP
 #define __FAR_ACTION_DETECT_HPP
 
+#include "../lib/boost.hpp"
+
 #include "Action.hpp"
 #include "Invalid.hpp"
 

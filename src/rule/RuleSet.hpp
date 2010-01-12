@@ -1,10 +1,12 @@
 #ifndef __FAR_RULE_RULESET_HPP
 #define __FAR_RULE_RULESET_HPP
 
+#include "../lib/boost.hpp"
+
 #include "Rule.hpp"
 
-namespace far{
-namespace rule{
+namespace far {
+namespace rule {
 
 class RuleSet
 {

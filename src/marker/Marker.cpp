@@ -26,7 +26,7 @@ void Marker::initMarker(std::string args) {
 	if (!_marker)
 	{
 		osg::notify(osg::FATAL) << "Could not add marker!" << std::endl;
-		exit(-1);
+		return;
 	}
 	_marker->setActive(true);
 }

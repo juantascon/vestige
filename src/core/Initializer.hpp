@@ -1,8 +1,9 @@
 #ifndef __FAR_CORE_INITIALIZER_HPP
 #define __FAR_CORE_INITIALIZER_HPP
 
-#include "../Includes.hpp"
 #include "GlobalStorage.hpp"
+
+#include "../lib/osgart.hpp"
 
 #include "../marker/Types.hpp"
 #include "../rule/Types.hpp"
