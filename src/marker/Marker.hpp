@@ -4,6 +4,7 @@
 #include "../lib/osg.hpp"
 #include "../lib/osgart.hpp"
 
+#include "../core/Parameters.hpp"
 #include "../core/Debug.hpp"
 
 namespace far {
@@ -11,9 +12,6 @@ namespace marker {
 
 class Marker : public osg::NodeCallback
 {
-	private:
-		static const std::string invalid_model_file;
-		
 	protected:
 		void initMarker(std::string args);
 		void initModel();

@@ -4,8 +4,6 @@
 namespace far {
 namespace marker {
 
-const std::string Marker::invalid_model_file = "data/model/invalid.osg";
-
 Marker::Marker(std::string marker_args, std::string id)
 {
 	this->id = id;
@@ -66,8 +64,7 @@ int Marker::aligned(Marker* m) {
 	//std::cout << "dpos: " << dpos << std::endl;
 	//std::cout << "abs-x: " << abs(dpos.x()) << std::endl;
 	
-	if (abs(dpos.x()) < 90) { return 1; }
-	return 0;
+	return (abs(dpos.x()) < core::Parameters::instance()->ALIGN_FACTOR());
 }
 
 void Marker::alert() {

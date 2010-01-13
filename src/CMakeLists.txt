@@ -3,7 +3,7 @@ set(SRCS
 	action/Action.cpp action/Pop.cpp action/Push.cpp action/PopPush.cpp action/Invalid.cpp action/Discard.cpp action/Detect.cpp
 	rule/Rule.cpp rule/Pop.cpp rule/Push.cpp rule/PopPush.cpp rule/Discard.cpp rule/RuleSet.cpp
 	state/Node.cpp state/Block.cpp state/List.cpp state/State.cpp state/Capture.cpp
-	core/GlobalStorage.cpp core/Supervisor.cpp core/Initializer.cpp 
+	core/Parameters core/GlobalStorage.cpp core/Supervisor.cpp core/Initializer.cpp 
 	Main.cpp
 )
 

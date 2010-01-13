@@ -8,11 +8,8 @@ namespace marker {
 
 class Switch : public Marker
 {
-	private:
-		static const std::string model_file;
-		
 	protected:
-		static int captured;
+		int captured;
 		
 	public:
 		Switch (std::string marker_args, std::string id);

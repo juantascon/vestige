@@ -8,10 +8,8 @@ namespace marker {
 
 class List : public Marker
 {
-	private:
-		static const std::string model_file;
-		
 	protected:
+		osg::Node* background(int valid);
 		
 	public:
 		List (std::string marker_args, std::string id);

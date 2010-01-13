@@ -9,9 +9,6 @@ namespace marker {
 
 class Block : public Marker
 {
-	private:
-		static const std::string model_file;
-		
 	protected:
 		osg::Node* background(int valid);
 		
