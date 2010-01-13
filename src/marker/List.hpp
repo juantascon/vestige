@@ -2,6 +2,7 @@
 #define __FAR_MARKER_LIST_HPP
 
 #include "Marker.hpp"
+#include "../core/DrawHelper.hpp"
 
 namespace far {
 namespace marker {

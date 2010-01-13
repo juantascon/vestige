@@ -1,10 +1,10 @@
 set(SRCS
-	marker/Marker.cpp marker/List.cpp marker/Block.cpp marker/Switch.cpp marker/Var.cpp
-	action/Action.cpp action/Pop.cpp action/Push.cpp action/PopPush.cpp action/Invalid.cpp action/Discard.cpp action/Detect.cpp
-	rule/Rule.cpp rule/Pop.cpp rule/Push.cpp rule/PopPush.cpp rule/Discard.cpp rule/RuleSet.cpp
-	state/Node.cpp state/Block.cpp state/List.cpp state/State.cpp state/Capture.cpp
-	core/Parameters core/GlobalStorage.cpp core/Supervisor.cpp core/Initializer.cpp 
-	Main.cpp
+	marker/Marker marker/List marker/Block marker/Switch marker/Output marker/Var
+	action/Action action/Pop action/Push action/PopPush action/Invalid action/Discard action/Detect
+	rule/Rule rule/Pop rule/Push rule/PopPush rule/Discard rule/RuleSet
+	state/Node state/Block state/List state/State state/Capture
+	core/DrawHelper core/Parameters core/GlobalStorage core/Supervisor core/Initializer 
+	Main
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${SRCS})

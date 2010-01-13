@@ -3,6 +3,7 @@
 
 #include "Marker.hpp"
 #include "Var.hpp"
+#include "../core/DrawHelper.hpp"
 
 namespace far {
 namespace marker {

@@ -6,5 +6,6 @@
 #include "Block.hpp"
 #include "List.hpp"
 #include "Switch.hpp"
+#include "Output.hpp"
 
 #endif

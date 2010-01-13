@@ -17,58 +17,36 @@ osg::Node* List::background(int valid) {
 	float line_width = 20.0;
 	float z = 1.0;
 	
-	osg::Vec4Array* colors = new osg::Vec4Array();
-	if (valid){
-		colors->push_back(osg::Vec4(1, 1, 0, 0));
-	}
-	else{
-		colors->push_back(osg::Vec4(1, 0, 0, 0));
-	}
 	
-	// MAIN RECTANGLE
-	osg::Geometry* rectangle = new osg::Geometry();
+	osg::Vec4* color = new osg::Vec4(1, 1, 0, 0);
+	if (!valid) { color =  new osg::Vec4(1, 0, 0, 0); }
 	
-	osg::Vec3Array* rectangle_v = new osg::Vec3Array();
-	rectangle_v->push_back( osg::Vec3(size+(align_factor/2.0), size, z) );
-	rectangle_v->push_back( osg::Vec3(size+(align_factor/2.0), -size, z) );
-	rectangle_v->push_back( osg::Vec3(-size-(align_factor/2.0), -size, z) );
-	rectangle_v->push_back( osg::Vec3(-size-(align_factor/2.0), size, z) );
-	
-	rectangle->setVertexArray( rectangle_v );
-	rectangle->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::POLYGON, 0, 4));
-	rectangle->setColorArray(colors);
-	rectangle->setColorBinding(osg::Geometry::BIND_OVERALL);
-	
+	// RECTANGLE
+	osg::Geometry* rectangle = core::DrawHelper::instance()->rectangle (
+		new osg::Vec3(size+(align_factor/2.0), size, z),
+		new osg::Vec3(size+(align_factor/2.0), -size, z),
+		new osg::Vec3(-size-(align_factor/2.0), -size, z),
+		new osg::Vec3(-size-(align_factor/2.0), size, z),
+		color
+	);
 	
 	// LEFT LINE
-	osg::Geometry* line1 = new osg::Geometry();
-	
-	osg::Vec3Array* line1_v = new osg::Vec3Array();
-	line1_v->push_back( osg::Vec3(-size-(align_factor/2.0), size+range, z) );
-	line1_v->push_back( osg::Vec3(-size-(align_factor/2.0), -size, z) );
-	line1_v->push_back( osg::Vec3(-size-line_width-(align_factor/2.0), -size, z) );
-	line1_v->push_back( osg::Vec3(-size-line_width-(align_factor/2.0), size+range, z) );
-	
-	line1->setVertexArray( line1_v );
-	line1->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::POLYGON, 0, 4));
-	line1->setColorArray(colors);
-	line1->setColorBinding(osg::Geometry::BIND_OVERALL);
-	
+	osg::Geometry* line1 = core::DrawHelper::instance()->rectangle (
+		new osg::Vec3(-size-(align_factor/2.0), size+range, z),
+		new osg::Vec3(-size-(align_factor/2.0), -size, z),
+		new osg::Vec3(-size-line_width-(align_factor/2.0), -size, z),
+		new osg::Vec3(-size-line_width-(align_factor/2.0), size+range, z),
+		color
+	);
 	
 	// RIGHT LINE
-	osg::Geometry* line2 = new osg::Geometry();
-	
-	osg::Vec3Array* line2_v = new osg::Vec3Array();
-	line2_v->push_back( osg::Vec3(size+(align_factor/2.0), size+range, z) );
-	line2_v->push_back( osg::Vec3(size+(align_factor/2.0), -size, z) );
-	line2_v->push_back( osg::Vec3(size+line_width+(align_factor/2.0), -size, z) );
-	line2_v->push_back( osg::Vec3(size+line_width+(align_factor/2.0), size+range, z) );
-	
-	line2->setVertexArray( line2_v );
-	line2->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::POLYGON, 0, 4));
-	line2->setColorArray(colors);
-	line2->setColorBinding(osg::Geometry::BIND_OVERALL);
-	
+	osg::Geometry* line2 = core::DrawHelper::instance()->rectangle (
+		new osg::Vec3(size+(align_factor/2.0), size+range, z),
+		new osg::Vec3(size+(align_factor/2.0), -size, z),
+		new osg::Vec3(size+line_width+(align_factor/2.0), -size, z),
+		new osg::Vec3(size+line_width+(align_factor/2.0), size+range, z),
+		color
+	);
 	
 	// Container
 	osg::Geode* geode = new osg::Geode();
