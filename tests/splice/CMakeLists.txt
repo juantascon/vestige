@@ -1,4 +1,4 @@
 set(NAME splice_test)
 
-add_executable(${NAME} ${NAME}.cpp)
+add_executable(${NAME} ${NAME})
 target_link_libraries(${NAME} ${Boost_LIBRARIES})

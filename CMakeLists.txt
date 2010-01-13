@@ -7,8 +7,8 @@ find_package( Boost 1.39 REQUIRED )
 link_directories ( ${Boost_LIBRARY_DIRS} )
 include_directories ( ${Boost_INCLUDE_DIRS} )
 
-add_subdirectory(src)
 add_subdirectory(tests)
+add_subdirectory(src)
 
 #add_custom_target(run COMMAND test/run WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} COMMENT "Running ... ")
 #add_dependencies(run ${CMAKE_PROJECT_NAME})
