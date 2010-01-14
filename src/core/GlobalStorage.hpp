@@ -18,6 +18,8 @@ class GlobalStorage
 		static GlobalStorage* instance();
 		
 		marker::Marker::Vector markers;
+		void add_marker(marker::Marker *m);
+		marker::Marker::List* sorted_markers_y_axis();
 		
 		state::State* current_state;
 		state::State* previous_state;
@@ -25,7 +27,6 @@ class GlobalStorage
 		osgART::Tracker* tracker;
 		osg::Camera* camera;
 		
-		void add_marker(marker::Marker *m);
 };
 
 }}

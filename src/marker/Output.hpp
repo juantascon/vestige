@@ -12,8 +12,9 @@ class Output : public Marker
 		Marker* value;
 		
 	public:
-		Output (std::string marker_args, std::string id);
+		Output (std::string marker_args);
 		
+		void update_value();
 		virtual void update();
 };
 

@@ -4,7 +4,7 @@
 namespace far {
 namespace marker {
 
-Switch::Switch(std::string marker_args, std::string id) : Marker(marker_args, id) {
+Switch::Switch(std::string marker_args) : Marker(marker_args, "SWITCH") {
 	captured = 0;
 	this->addChild(osgDB::readNodeFile("data/model/switch.osg"));
 }

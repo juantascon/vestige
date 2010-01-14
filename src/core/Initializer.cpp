@@ -64,15 +64,15 @@ void Initializer::initCamera() {
 }
 
 void Initializer::initMarkers() {
-	new marker::Switch("single;data/patt/patt.kanji;100;0;0", "switch");
+	new marker::Switch("single;data/patt/patt.kanji;100;0;0");
 	
 	new marker::List("single;data/patt/patt.hiro;100;0;0", "l.hiro");
 	new marker::List("single;data/patt/patt.sample1;100;0;0", "l.sample1");
 	new marker::List("single;data/patt/patt.sample2;100;0;0", "l.sample2");
 	
-	new marker::Block("single;data/patt/multi/patt.a;100;0;0", "b.A", "B1");
-	new marker::Block("single;data/patt/multi/patt.b;100;0;0", "b.B", "B2");
-	new marker::Block("single;data/patt/multi/patt.c;100;0;0", "b.C", "B3");
+	new marker::Block("single;data/patt/patt.a;100;0;0", "b.A", "B1");
+	new marker::Block("single;data/patt/patt.b;100;0;0", "b.B", "B2");
+	new marker::Block("single;data/patt/patt.c;100;0;0", "b.C", "B3");
 }
 
 void Initializer::initViewer() {
@@ -93,7 +93,7 @@ void Initializer::initRoot() {
 }
 
 void initRuleSet() {
-	rule::RuleSet::instance()->add(new rule::Pop("b.C", "l.sample1"));
+	//rule::RuleSet::instance()->add(new rule::Pop("b.C", "l.sample1"));
 	rule::RuleSet::instance()->add(new rule::PopPush("b.C", "l.hiro", "l.sample1"));
 	rule::RuleSet::instance()->add(new rule::PopPush("b.B", "l.hiro", "l.sample1"));
 	rule::RuleSet::instance()->add(new rule::PopPush("b.A", "l.hiro", "l.sample1"));

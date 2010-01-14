@@ -13,7 +13,7 @@ cd $ROOT
 
 BIN=build/src/farcode
 GDB_COMMANDS=util/gdb_commands
-VIDEO=data/video
+VIDEO=video/
 
 export ARTOOLKIT_CONFIG="filesrc location=$VIDEO/$v ! decodebin ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink"
 

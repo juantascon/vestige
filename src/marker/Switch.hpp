@@ -12,7 +12,7 @@ class Switch : public Marker
 		int captured;
 		
 	public:
-		Switch (std::string marker_args, std::string id);
+		Switch (std::string marker_args);
 		
 		virtual void update();
 };

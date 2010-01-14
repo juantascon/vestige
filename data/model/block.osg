@@ -1,0 +1,216 @@
+Group {
+  UniqueID Group_0
+  DataVariance STATIC
+  nodeMask 0xffffffff
+  cullingActive TRUE
+  StateSet {
+    rendering_hint DEFAULT_BIN
+    renderBinMode INHERIT
+    GL_NORMALIZE ON
+  }
+  num_children 1
+  Geode {
+    DataVariance DYNAMIC
+    name "cube.osg"
+    nodeMask 0xffffffff
+    cullingActive TRUE
+    num_drawables 2
+    Geometry {
+      DataVariance DYNAMIC
+      StateSet {
+        DataVariance STATIC
+        rendering_hint DEFAULT_BIN
+        renderBinMode INHERIT
+        Material {
+          DataVariance STATIC
+          ColorMode OFF
+          ambientColor 1 1 1 1
+          diffuseColor 1 1 1 1
+          specularColor 0.9 0.9 0.9 1
+          emissionColor 0 0 0 1
+          shininess 0
+        }
+        textureUnit 0 {
+          GL_TEXTURE_2D ON
+          Texture2D {
+            UniqueID Texture2D_1
+            DataVariance STATIC
+            wrap_s CLAMP
+            wrap_t CLAMP
+            wrap_r CLAMP
+            min_filter LINEAR_MIPMAP_LINEAR
+            mag_filter LINEAR
+            maxAnisotropy 1
+            borderColor 0 0 0 0
+            borderWidth 0
+            useHardwareMipMapGeneration TRUE
+            unRefImageDataAfterApply TRUE
+            internalFormatMode USE_IMAGE_DATA_FORMAT
+            resizeNonPowerOfTwo TRUE
+          }
+        }
+      }
+      useDisplayList TRUE
+      useVertexBufferObjects FALSE
+      PrimitiveSets 1
+      {
+        DrawArrays TRIANGLES 0 24
+      }
+      VertexArray Vec3Array 24
+      {
+        -23.438 -4.41192 56.9992
+        -20.198 53.6754 61.946
+        34.2382 53.6754 61.946
+        34.2382 53.6754 61.946
+        30.9981 -4.41192 56.9992
+        -23.438 -4.41192 56.9992
+        -23.438 -4.41192 56.9992
+        30.9981 -4.41192 56.9992
+        30.9981 -4.41192 100.909
+        30.9981 -4.41192 100.909
+        -23.438 -4.41192 100.909
+        -23.438 -4.41192 56.9992
+        30.9981 -4.41192 56.9992
+        34.2382 53.6754 61.946
+        34.2382 53.6754 105.856
+        34.2382 53.6754 105.856
+        30.9981 -4.41192 100.909
+        30.9981 -4.41192 56.9992
+        -20.198 53.6754 61.946
+        -23.438 -4.41192 56.9992
+        -23.438 -4.41192 100.909
+        -23.438 -4.41192 100.909
+        -20.198 53.6754 105.856
+        -20.198 53.6754 61.946
+      }
+      NormalBinding PER_VERTEX
+      NormalArray Vec3Array 24
+      {
+        0 0.0848542 -0.996393
+        0 0.0848542 -0.996393
+        0 0.0848542 -0.996393
+        0 0.0848542 -0.996393
+        0 0.0848542 -0.996393
+        0 0.0848542 -0.996393
+        0 -1 0
+        0 -1 0
+        0 -1 0
+        0 -1 0
+        0 -1 0
+        0 -1 0
+        0.998448 -0.0556907 0
+        0.998448 -0.0556907 0
+        0.998448 -0.0556907 0
+        0.998448 -0.0556907 0
+        0.998448 -0.0556907 0
+        0.998448 -0.0556907 0
+        -0.998448 0.0556907 0
+        -0.998448 0.0556907 0
+        -0.998448 0.0556907 0
+        -0.998448 0.0556907 0
+        -0.998448 0.0556907 0
+        -0.998448 0.0556907 0
+      }
+      TexCoordArray 0 Vec2Array 24
+      {
+        0.0280875 0.127214
+        0.0842625 1.12721
+        1.02809 1.12721
+        1.02809 1.12721
+        0.971913 0.127214
+        0.0280875 0.127214
+        0.0280875 0.127214
+        0.971913 0.127214
+        0.971913 0.127214
+        0.971913 0.127214
+        0.0280875 0.127214
+        0.0280875 0.127214
+        0.971913 0.127214
+        1.02809 1.12721
+        1.02809 1.12721
+        1.02809 1.12721
+        0.971913 0.127214
+        0.971913 0.127214
+        0.0842625 1.12721
+        0.0280875 0.127214
+        0.0280875 0.127214
+        0.0280875 0.127214
+        0.0842625 1.12721
+        0.0842625 1.12721
+      }
+    }
+    Geometry {
+      DataVariance DYNAMIC
+      StateSet {
+        DataVariance STATIC
+        rendering_hint DEFAULT_BIN
+        renderBinMode INHERIT
+        Material {
+          DataVariance STATIC
+          ColorMode OFF
+          ambientColor 0.588235 0.588235 0.588235 1
+          diffuseColor 0.588235 0.588235 0.588235 1
+          specularColor 0.9 0.9 0.9 1
+          emissionColor 0 0 0 1
+          shininess 0
+        }
+        textureUnit 0 {
+          GL_TEXTURE_2D ON
+          Use Texture2D_1
+        }
+      }
+      useDisplayList TRUE
+      useVertexBufferObjects FALSE
+      PrimitiveSets 1
+      {
+        DrawArrays TRIANGLES 0 12
+      }
+      VertexArray Vec3Array 12
+      {
+        -23.438 -4.41192 100.909
+        30.9981 -4.41192 100.909
+        34.2382 53.6754 105.856
+        34.2382 53.6754 105.856
+        -20.198 53.6754 105.856
+        -23.438 -4.41192 100.909
+        34.2382 53.6754 61.946
+        -20.198 53.6754 61.946
+        -20.198 53.6754 105.856
+        -20.198 53.6754 105.856
+        34.2382 53.6754 105.856
+        34.2382 53.6754 61.946
+      }
+      NormalBinding PER_VERTEX
+      NormalArray Vec3Array 12
+      {
+        0 -0.0848542 0.996393
+        0 -0.0848542 0.996393
+        0 -0.0848542 0.996393
+        0 -0.0848542 0.996393
+        0 -0.0848542 0.996393
+        0 -0.0848542 0.996393
+        0 1 0
+        0 1 0
+        0 1 0
+        0 1 0
+        0 1 0
+        0 1 0
+      }
+      TexCoordArray 0 Vec2Array 12
+      {
+        0.0280875 0.127214
+        0.971913 0.127214
+        1.02809 1.12721
+        1.02809 1.12721
+        0.0842625 1.12721
+        0.0280875 0.127214
+        1.02809 1.12721
+        0.0842625 1.12721
+        0.0842625 1.12721
+        0.0842625 1.12721
+        1.02809 1.12721
+        1.02809 1.12721
+      }
+    }
+  }
+}
