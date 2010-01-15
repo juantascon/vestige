@@ -67,16 +67,16 @@ int Marker::aligned(Marker* m) {
 	return (abs(dpos.x()) < core::Parameters::instance()->ALIGN_FACTOR());
 }
 
-void Marker::alert() {
-	D(("ALERT: %s", id.c_str()));
+void Marker::alert(std::string message) {
+	D(("ALERT [%s]: %s", message.c_str(), id.c_str()));
 	this->resetModel();
 	
-	float boxSize = 100.0f;
+	/*float boxSize = 100.0f;
 	osg::ShapeDrawable* sd = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, boxSize / 2.0f), boxSize));
 	sd->setColor(osg::Vec4(1, 0, 0, 1));
 	osg::Geode* geode = new osg::Geode();
 	geode->addDrawable(sd);
-	this->addChild(geode);
+	this->addChild(geode);*/
 }
 
 void Marker::operator() (osg::Node* node, osg::NodeVisitor* nv) {

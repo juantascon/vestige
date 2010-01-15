@@ -34,8 +34,8 @@ osg::Node* Block::background(int valid) {
 	return ( dynamic_cast<osg::Node*> (geode) );
 }
 
-void Block::alert() {
-	D(("ALERT: %s", id.c_str()));
+void Block::alert(std::string message) {
+	D(("ALERT [%s]: %s", message.c_str(), id.c_str()));
 	this->resetModel();
 	
 	this->addChild(label->model());

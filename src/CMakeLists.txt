@@ -3,6 +3,7 @@ set(SRCS
 	action/Action action/Pop action/Push action/PopPush action/Invalid action/Discard action/Detect
 	rule/Rule rule/Pop rule/Push rule/PopPush rule/Discard rule/RuleSet
 	state/Node state/Block state/List state/State state/Capture
+	problem/Problem problem/Reverse
 	core/DrawHelper core/Parameters core/GlobalStorage core/Supervisor core/Initializer 
 	Main
 )

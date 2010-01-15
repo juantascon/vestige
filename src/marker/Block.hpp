@@ -19,7 +19,7 @@ class Block : public Marker
 		Var *label;
 		
 		virtual void update();
-		virtual void alert();
+		virtual void alert(std::string message);
 };
 
 }}

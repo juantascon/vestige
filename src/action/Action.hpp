@@ -33,7 +33,7 @@ class Action
 		
 		std::string item_id();
 		
-		void alert();
+		void alert(std::string message);
 		virtual void print();
 };
 

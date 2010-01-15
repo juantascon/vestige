@@ -5,6 +5,7 @@ namespace state {
 
 State::State() : List(NULL)
 {
+	this->id = "";
 }
 
 void State::push(Node *n) {
@@ -16,7 +17,6 @@ void State::push(Node *n) {
 
 void State::print() {
 	std::cout << "*******************************************************************" << std::endl;
-	
 	
 	BOOST_FOREACH(Node *n, _items) {
 		n->print();

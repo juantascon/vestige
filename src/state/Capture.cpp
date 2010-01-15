@@ -73,7 +73,10 @@ State* Capture::capture() {
 		}
 	}
 	
+	s->create_flat_view();
+	
 	//D(( "END" ));
+	
 	return s;
 }
 

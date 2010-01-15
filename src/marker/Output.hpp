@@ -10,11 +10,13 @@ class Output : public Marker
 {
 	protected:
 		Marker* value;
+		void update_value();
+		
+		osg::Node* background();
 		
 	public:
 		Output (std::string marker_args);
 		
-		void update_value();
 		virtual void update();
 };
 

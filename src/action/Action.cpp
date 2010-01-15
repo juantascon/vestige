@@ -10,9 +10,8 @@ Action::Action(state::Node* item)
 
 std::string Action::item_id() { return item->id; }
 
-void Action::alert() {
-	D(("Alert::"));
-	item->m->alert();
+void Action::alert(std::string message) {
+	item->m->alert(message);
 }
 
 void Action::print() {

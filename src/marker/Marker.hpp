@@ -39,7 +39,7 @@ class Marker : public osg::NodeCallback
 		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);
 		virtual void update() = 0;
 		
-		virtual void alert();
+		virtual void alert(std::string message);
 };
 
 }}

@@ -3,8 +3,6 @@
 namespace far {
 namespace rule {
 
-RuleSet* RuleSet::instance() { return &boost::serialization::singleton<far::rule::RuleSet>::get_mutable_instance(); }
-
 RuleSet::RuleSet()
 {
 	items = new Rule::Vector();
@@ -22,6 +20,7 @@ int RuleSet::apply(action::Action* action) {
 		return 1;
 	}
 	
+	action->alert("APPLY-RULE");
 	return 0;
 }
 

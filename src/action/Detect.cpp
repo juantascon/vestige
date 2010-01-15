@@ -33,7 +33,7 @@ Action* Detect::detect(state::State* past, state::State* present) {
 		//TODO: modificar todas las acciones para que sean invalidas,
 		// probablemente invalid action debe tener un array de items
 		BOOST_FOREACH(Action *a, *v) {
-			a->alert();
+			a->alert("INVALID-ACTION");
 		}
 		return new Invalid(NULL);
 	}

@@ -13,20 +13,23 @@ void Supervisor::step() {
 	state::State *s = state::Capture::instance()->capture();
 	if(!s) { return; }
 	
-	s->create_flat_view();
-	
 	GlobalStorage::instance()->previous_state = GlobalStorage::instance()->current_state;
 	GlobalStorage::instance()->current_state = s;
+	
+	if (!GlobalStorage::instance()->first_state) {
+		// save first state
+		GlobalStorage::instance()->first_state = s;
+		// create problem rules
+		GlobalStorage::instance()->rules = GlobalStorage::instance()->current_problem->rules();
+		
+		return;
+	}
 	
 	action::Action *a = action::Detect::instance()->detect();
 	if(!a) { return; }
 	
-	int ret = rule::RuleSet::instance()->apply(a);
-	D(("RULESET-STEP:: %i", ret));
-	
-	if (! ret) {
-		a->alert();
-	}
+	int ret = GlobalStorage::instance()->rules->apply(a);
+	D(("RULESET-APPLY:: %i", ret));
 }
 
 }}
