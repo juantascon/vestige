@@ -469,3 +469,22 @@ report about the tests that we will execute, this reports explains:
 
 My plan for this week is to finish this report before continuing with any major
 software change.
+
+
+=========================================================
+== 2010 / Week 02
+=========================================================
+
+I had delayed the work in the previously mentioned report in order to finish
+some general developments.
+
+I created a better visual representation for the List data type; it doesn't show
+the crashing plane anymore, now is displayed a box with two delimiters, one on
+the left and one on the right in order to show the limits of block alignment.
+
+The systems has now a new marker type called Output, this marker will point to
+the function output data, the visual representation is a line that starts in the
+middle of the marker and ends in the middle of the output data marker, logically
+it will helps to identify the output of the function represented by either a
+Block marker (ex: in the highest value of a list exercise) or a List marker (ex:
+in the reverse list exercise).

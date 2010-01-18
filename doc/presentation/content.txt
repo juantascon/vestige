@@ -1,0 +1,49 @@
+Goal:
+
+To help students on the process of learning functional programming with an
+interactive application based on a tangible block world boosted by augmented
+reality and software feedback.
+
+tags: functional programming, block world, AR, software feedback
+
+------------------------------------------
+
+Issues:
+
+* Conceptual: by focusing on students to overcome the main difficulty when
+learning functional programming (data is not explicit).
+
+* Technical: by developing a multi-platform open source software application
+using unstable libraries.
+
+* Interactive: by implementing the best fit software feedback.
+
+* Practical: by testing the application on real programming students to analyse
+the effectiveness of the method.
+
+------------------------------------------
+
+Proposed solution:
+
+Development phase:
+
+* Open source (GPL)
+* CPP
+* OSGArt
+
+Test phase:
+
+* Test design
+* System deployment
+* Measure Transfer-of-Training (Erlang)
+
+------------------------------------------
+
+Future work
+
+* Finish the base development (ASAP)
+* Choose the tests problems wisely
+* Run the tests on the subjects
+* Write paper and thesis
+* Graduate
+
