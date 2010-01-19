@@ -20,6 +20,10 @@ Node* Capture::do_block(marker::Marker* m) {
 	
 	state::Block* n = new state::Block(m);
 	
+	if (marker::GlobalMarkers::instance()->m_output->value(), m) {
+		tmp_state->output = n;
+	}
+	
 	//D(( "END" ));
 	return static_cast<Node*>(n);
 }
@@ -44,6 +48,10 @@ Node* Capture::do_list(marker::Marker* m) {
 		}
 	}
 	
+	if (marker::GlobalMarkers::instance()->m_output->value(), m) {
+		tmp_state->output = n;
+	}
+	
 	//D(( "END" ));
 	return static_cast<Node*>(n);
 }
@@ -55,13 +63,13 @@ State* Capture::capture() {
 	
 	if (tmp_markers->size() <= 0) { return NULL; }
 	
-	State* s = new State();
+	tmp_state = new State();
 	
 	for (marker::Marker::List::iterator it = tmp_markers->begin(); it != tmp_markers->end(); ++it) {
 		//D(("IT: %x, OUTPUT: %x", *it, ))
 		Node* n = do_list(*it);
 		if (n) {
-			s->push(n);
+			tmp_state->push(n);
 			tmp_markers->erase(it);
 			it--;
 		}
@@ -70,17 +78,17 @@ State* Capture::capture() {
 	for (marker::Marker::List::iterator it = tmp_markers->begin(); it != tmp_markers->end(); ++it) {
 		Node* n = do_block(*it);
 		if (n) {
-			s->push(n);
+			tmp_state->push(n);
 			tmp_markers->erase(it);
 			it--;
 		}
 	}
 	
-	s->create_flat_view();
+	tmp_state->create_flat_view();
 	
 	//D(( "END" ));
 	
-	return s;
+	return tmp_state;
 }
 
 }}

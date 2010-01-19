@@ -13,6 +13,7 @@ class Capture
 		Capture();
 		
 		marker::Marker::List* tmp_markers;
+		state::State* tmp_state;
 		
 		Node* do_block(marker::Marker* m);
 		Node* do_list(marker::Marker* m);

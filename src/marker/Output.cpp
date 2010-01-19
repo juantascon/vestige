@@ -1,17 +1,18 @@
 #include "Output.hpp"
 
-#include "Types.hpp"
 #include "GlobalMarkers.hpp"
 
 namespace far {
 namespace marker {
 
 Output::Output(std::string marker_args) : Marker(marker_args, "OUTPUT") {
-	value = 0;
+	_value = 0;
 }
 
+Marker* Output::value() { return _value; }
+
 osg::Node* Output::background() {
-	if ( ! this->visible() || ! value->visible() ) {
+	if ( ! this->visible() || ! _value->visible() ) {
 		return ( dynamic_cast<osg::Node*> (new osg::Geode()) );
 	}
 	
@@ -20,9 +21,9 @@ osg::Node* Output::background() {
 	
 	osg::Vec4* color = new osg::Vec4(0, 0, 0, 0);
 	
-	//D(("VALUE: %s", value->id.c_str()));
+	//D(("VALUE: %s", _value->id.c_str()));
 	
-	osg::Vec3 value_pos = value->position();
+	osg::Vec3 value_pos = _value->position();
 	osg::Vec3 output_pos = this->position();
 	
 	// LEFT LINE
@@ -43,24 +44,22 @@ osg::Node* Output::background() {
 
 
 void Output::update_value() {
-	value = 0;
+	_value = 0;
 	
 	if ( ! this->visible() ) {
 		return;
 	}
 	
 	BOOST_FOREACH( marker::Marker* m, *marker::GlobalMarkers::instance()->sort_y_axis() ) {
-		if ( ! dynamic_cast<marker::List*>( m ) && ! dynamic_cast<marker::Block*>( m ) ) { continue; }
-		
 		if ( this->aligned(m) ) {
-			value = m;
+			_value = m;
 			return;
 		}
 	}
 }
 
 void Output::update() {
-	if ( value && this->aligned(value) ) {
+	if ( _value && this->aligned(_value) ) {
 		this->resetModel();
 		this->addChild(this->background());
 		return;

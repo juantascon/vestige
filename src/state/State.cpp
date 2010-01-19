@@ -31,6 +31,8 @@ void State::create_flat_view() {
 	
 	D(("FLAT PRINT"));
 	
+	D(("output: %s", output->path().c_str()));
+	
 	BOOST_FOREACH(Node *n, *flat_items) {
 		D(( n->path().c_str() ));
 	}
