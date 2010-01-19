@@ -7,28 +7,31 @@ Supervisor* Supervisor::instance() { return &boost::serialization::singleton<far
 
 Supervisor::Supervisor()
 {
+	p = new problem::Reverse();
 }
 
 void Supervisor::step() {
 	state::State *s = state::Capture::instance()->capture();
-	if(!s) { return; }
+	if (!s) { return; }
 	
-	GlobalStorage::instance()->previous_state = GlobalStorage::instance()->current_state;
-	GlobalStorage::instance()->current_state = s;
+	state::GlobalStates* gs = state::GlobalStates::instance();
 	
-	if (!GlobalStorage::instance()->first_state) {
+	gs->previous = gs->current;
+	gs->current = s;
+	
+	if (!gs->first) {
 		// save first state
-		GlobalStorage::instance()->first_state = s;
+		state::GlobalStates::instance()->first = s;
 		// create problem rules
-		GlobalStorage::instance()->rules = GlobalStorage::instance()->current_problem->rules();
+		r = p->rules();
 		
 		return;
 	}
 	
 	action::Action *a = action::Detect::instance()->detect();
-	if(!a) { return; }
+	if (!a) { return; }
 	
-	int ret = GlobalStorage::instance()->rules->apply(a);
+	int ret = r->apply(a);
 	D(("RULESET-APPLY:: %i", ret));
 }
 

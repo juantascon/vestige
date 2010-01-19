@@ -1,7 +1,9 @@
 #include "Capture.hpp"
 
-namespace far{
-namespace state{
+#include "../marker/GlobalMarkers.hpp"
+
+namespace far {
+namespace state {
 
 Capture* Capture::instance() { return &boost::serialization::singleton<far::state::Capture>::get_mutable_instance(); }
 
@@ -49,13 +51,14 @@ Node* Capture::do_list(marker::Marker* m) {
 State* Capture::capture() {
 	//D(( "BEGIN" ));
 	
-	tmp_markers = core::GlobalStorage::instance()->sorted_markers_y_axis();
+	tmp_markers = marker::GlobalMarkers::instance()->sort_y_axis();
 	
 	if (tmp_markers->size() <= 0) { return NULL; }
 	
 	State* s = new State();
 	
 	for (marker::Marker::List::iterator it = tmp_markers->begin(); it != tmp_markers->end(); ++it) {
+		//D(("IT: %x, OUTPUT: %x", *it, ))
 		Node* n = do_list(*it);
 		if (n) {
 			s->push(n);

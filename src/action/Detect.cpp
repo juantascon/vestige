@@ -1,5 +1,7 @@
 #include "Detect.hpp"
 
+#include "../state/GlobalStates.hpp"
+
 namespace far {
 namespace action {
 
@@ -10,7 +12,7 @@ Detect::Detect()
 }
 
 Action* Detect::detect() {
-	return detect(core::GlobalStorage::instance()->previous_state, core::GlobalStorage::instance()->current_state);
+	return detect(state::GlobalStates::instance()->previous, state::GlobalStates::instance()->current);
 }
 
 Action* Detect::detect(state::State* past, state::State* present) {

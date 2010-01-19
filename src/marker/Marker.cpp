@@ -16,7 +16,6 @@ Marker::Marker(std::string marker_args, std::string id)
 	osgART::addEventCallback(_model, this);
 	
 	core::GlobalStorage::instance()->camera->addChild(_model);
-	core::GlobalStorage::instance()->add_marker(this);
 }
 
 void Marker::initMarker(std::string args) {

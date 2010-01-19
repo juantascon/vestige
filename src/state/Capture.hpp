@@ -4,8 +4,6 @@
 #include "Types.hpp"
 #include "../marker/Types.hpp"
 
-#include "../core/GlobalStorage.hpp"
-
 namespace far {
 namespace state {
 

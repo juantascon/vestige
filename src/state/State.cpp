@@ -26,12 +26,10 @@ void State::print() {
 	std::cout << "*******************************************************************" << std::endl << std::endl;
 }
 
-
 void State::create_flat_view() {
 	flat_items = flat_view();
 	
 	D(("FLAT PRINT"));
-	//D(("FLAT ITEMS SIZE = %i", flat_items->size()));
 	
 	BOOST_FOREACH(Node *n, *flat_items) {
 		D(( n->path().c_str() ));

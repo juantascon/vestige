@@ -64,22 +64,20 @@ void Initializer::initCamera() {
 }
 
 void Initializer::initMarkers() {
-	new marker::Switch("single;data/patt/patt.kanji;100;0;0");
-	new marker::Output("single;data/patt/patt.hiro;100;0;0");
+	marker::GlobalMarkers* gm = marker::GlobalMarkers::instance();
 	
-	new marker::List("single;data/patt/patt.sample1;100;0;0", "l.sample1");
-	new marker::List("single;data/patt/patt.sample2;100;0;0", "l.sample2");
+	gm->m_switch = new marker::Switch("single;data/patt/patt.kanji;100;0;0");
+	gm->m_output = new marker::Output("single;data/patt/patt.hiro;100;0;0");
 	
-	new marker::Block("single;data/patt/patt.a;100;0;0", "b.A", "B:A");
-	new marker::Block("single;data/patt/patt.b;100;0;0", "b.B", "B:B");
-	new marker::Block("single;data/patt/patt.c;100;0;0", "b.C", "B:C");
-	new marker::Block("single;data/patt/patt.d;100;0;0", "b.D", "B:D");
-	new marker::Block("single;data/patt/patt.f;100;0;0", "b.F", "B:F");
-	new marker::Block("single;data/patt/patt.g;100;0;0", "b.G", "B:G");
-}
-
-void Initializer::initProblem() {
-	GlobalStorage::instance()->current_problem = new problem::Reverse();
+	gm->add( new marker::List("single;data/patt/patt.sample1;100;0;0", "l.sample1") );
+	gm->add( new marker::List("single;data/patt/patt.sample2;100;0;0", "l.sample2") );
+	
+	gm->add( new marker::Block("single;data/patt/patt.a;100;0;0", "b.A", "B:A") );
+	gm->add( new marker::Block("single;data/patt/patt.b;100;0;0", "b.B", "B:B") );
+	gm->add( new marker::Block("single;data/patt/patt.c;100;0;0", "b.C", "B:C") );
+	gm->add( new marker::Block("single;data/patt/patt.d;100;0;0", "b.D", "B:D") );
+	gm->add( new marker::Block("single;data/patt/patt.f;100;0;0", "b.F", "B:F") );
+	gm->add( new marker::Block("single;data/patt/patt.g;100;0;0", "b.G", "B:G") );
 }
 
 void Initializer::initViewer() {
@@ -105,7 +103,6 @@ void Initializer::initialize(){
 	initCalibration();
 	initCamera();
 	initMarkers();
-	initProblem();
 	initViewer();
 	initRoot();
 }

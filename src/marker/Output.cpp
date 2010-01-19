@@ -1,7 +1,7 @@
 #include "Output.hpp"
-#include "Types.hpp"
 
-#include "../core/GlobalStorage.hpp"
+#include "Types.hpp"
+#include "GlobalMarkers.hpp"
 
 namespace far {
 namespace marker {
@@ -49,7 +49,7 @@ void Output::update_value() {
 		return;
 	}
 	
-	BOOST_FOREACH( marker::Marker* m, *core::GlobalStorage::instance()->sorted_markers_y_axis() ) {
+	BOOST_FOREACH( marker::Marker* m, *marker::GlobalMarkers::instance()->sort_y_axis() ) {
 		if ( ! dynamic_cast<marker::List*>( m ) && ! dynamic_cast<marker::Block*>( m ) ) { continue; }
 		
 		if ( this->aligned(m) ) {

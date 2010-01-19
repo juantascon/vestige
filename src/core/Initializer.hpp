@@ -4,8 +4,9 @@
 #include "../lib/osgart.hpp"
 
 #include "GlobalStorage.hpp"
+
+#include "../marker/GlobalMarkers.hpp"
 #include "../marker/Types.hpp"
-#include "../problem/Types.hpp"
 
 namespace far {
 namespace core {
@@ -24,7 +25,6 @@ class Initializer
 		void initTracker();
 		void initCalibration();
 		void initMarkers();
-		void initProblem();
 		void initCamera();
 		void initViewer();
 		void initRoot();

@@ -12,6 +12,7 @@ class Reverse : public Problem
 		
 	public:
 		Reverse();
+		
 		virtual rule::RuleSet* rules();
 };
 
