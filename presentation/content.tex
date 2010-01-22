@@ -1,0 +1,153 @@
+% **
+\section{Goal}
+% **
+
+\begin{frame}{Goal}
+To help students on the process of learning functional programming with an
+interactive application based on a tangible block world boosted by augmented
+reality and software feedback.
+\footnote{tags: functional programming, tangible user interface, block world,
+AR, software feedback}
+\end{frame}
+
+
+
+% **
+\section{Functional Programming}
+% **
+
+\subsection {Definition}
+\begin{frame} {Definition}
+Functional programming is a programming style that focuses on computation as the
+evaluation of mathematical functions and avoids mutable data
+\cite{wikipedia_functional_programming}.
+\end{frame}
+
+\subsection {Benefits}
+\begin{frame} {Benefits}
+\begin{description}
+\pause \item [Unit Testing] the result of a function depends only on its
+arguments
+\pause \item [Debugging] if a return value of a function is wrong, it is always
+wrong, regardless of what code you execute before running the function
+\pause \item [Concurrency] a functional program is ready for implicit
+concurrency without any further modifications. e.g. \emph{ f(g(),h()) }
+\pause \item [Hot Code Deployment]
+\pause \item [Machine Assisted Proofs and Optimizations]
+\end{description}
+\end{frame}
+
+\subsection {Difficulties}
+\begin{frame} {Difficulties}
+\begin{itemize}
+\pause \item Base cases are hard to identify \cite{haberman02}
+\pause \item Students usually think in a "looping" model of recursion and not a "copies" model \cite{kahney83}
+\pause \item It is hard to trace, an instantiation starts and ends, before its preceding instantiation ends \cite{ginat99}
+\end{itemize}
+\end{frame}
+
+
+
+% **
+\section{HCI}
+% **
+
+\subsection {Tangible User Interface}
+\begin{frame} {Tangible User Interface}
+\begin{itemize}
+\pause \item Manipulation of physical objects can be of particular educational benefit \cite{montessori12}
+\pause \item There have been positive precedent of TUIs on the field of learning programming \cite{fernaeus06} \cite{suzuki95}
+\pause \item Physical manipulation might support more effective or more natural learning \cite{sluis04} \cite{terrenghi05} \cite{zuckerman05}  
+\end{itemize}
+\end{frame}
+
+\subsection {Block World}
+\begin{frame} {Block World}
+\begin{itemize}
+\pause \item Simplicity (blocks on top of other blocks)
+\pause \item List is the basic data structure in functional programming languages
+\pause \item Gravity
+\end{itemize} 
+\end{frame}
+%TODO: imagen: [img: http://www.cksinfo.com/clipart/toys/abc-blocks.png]
+
+\subsection {Augmented Reality}
+\begin{frame} {Augmented Reality}
+AR gives us the capability to alter the way the user visualize its physical
+environment by adding virtual objects used to hide or show extra information.
+\end{frame}
+
+\subsection {Software Feedback}
+\begin{frame} {Software Feedback}
+Errors, tips and guides will be popped out on the block-world using the
+augmented reality layer, helping the student through the process of solving the
+proposed problem.
+\end{frame}
+
+\subsection {Demo}
+\begin{frame}[fragile] {Demo}
+Reverse a list's items (Erlang):
+\begin{lstlisting}[language=erlang]
+reverse(       [ ],Output) -> Output;
+reverse([Top|Rest],Output) -> reverse(Rest,[Top|Output]).
+\end{lstlisting}
+\end{frame}
+
+
+
+
+% **
+\section {Issues}
+% **
+
+\begin{frame} {Issues}
+\begin{description}
+\pause \item [Conceptual] by focusing on students to overcome the difficulties
+when learning functional programming
+\pause \item [Technical] by developing a multi-platform open source software
+application using unstable libraries
+\pause \item [Interactive] by implementing the best fit software feedback
+\pause \item [Practical] by testing the application on real programming students
+to analyze the effectiveness of the method
+\end{description}
+\end{frame}
+
+
+
+% **
+\section {Proposed Solution}
+% **
+
+\subsection {Development phase}
+\begin{frame} {Development phase}
+\begin{itemize}
+\pause \item Open source (GPL)
+\pause \item CPP
+\pause \item OSGArt
+\end{itemize}
+\end{frame}
+
+\subsection {Test phase}
+\begin{frame} {Test phase}
+\begin{itemize}
+\pause \item Problems design
+\pause \item System deployment
+\pause \item Measure Transfer-of-Training
+\end{itemize}
+\end{frame}
+
+
+
+% **
+\section {Future Work}
+% **
+
+\begin{frame}{Future Work}
+\begin{itemize}
+\pause \item Finish the base development (ASAP)
+\pause \item Choose the tests problems wisely
+\pause \item Run the tests on the subjects
+\pause \item Write paper and thesis
+\pause \item Graduate
+\end{itemize}
+\end{frame}

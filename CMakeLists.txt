@@ -7,6 +7,7 @@ find_package( Boost 1.39 REQUIRED )
 link_directories ( ${Boost_LIBRARY_DIRS} )
 include_directories ( ${Boost_INCLUDE_DIRS} )
 
+#add_subdirectory(presentation)
 add_subdirectory(tests)
 add_subdirectory(src)
 
