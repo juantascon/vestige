@@ -488,3 +488,47 @@ middle of the marker and ends in the middle of the output data marker, logically
 it will helps to identify the output of the function represented by either a
 Block marker (ex: in the highest value of a list exercise) or a List marker (ex:
 in the reverse list exercise).
+
+
+=========================================================
+== 2010 / Week 03
+=========================================================
+
+My work this week was focused on improving the subsystem in charge of control
+the transitions among states.
+
+The first main change is the validation of both the initial and final states,
+the user is forced to put in organize the initial state of blocks depending on
+the problem, for the Reverse problem the expected state must contain:
+
+* One empty list representing the output.
+* One list with at least two elements representing the input.
+
+Any state that doesn't conform with this specification will be marked as an
+invalid initial state and the user will have to fix it.
+
+The final state validation is based on the initial state, the later will be
+stored with additional information regarding on the expected final state, for
+the Reverse problem the expected final state must be:
+
+* All the initial input list's items must be placed in reversed order on the
+output list.
+
+Once this validation is done the program can terminate with a successfully
+solved problem message.
+
+The second big change is that the rules are generated dynamically according to
+the initial state information, this is a much better way to deal with rules
+compared with the more simple previous one.
+
+The last change is that now there are 2 modes of execution based on the user's
+levels of freedom:
+
+* Step by step check, where the system will be strict and will not allow the
+user to do out-of-the-rules movements.
+
+* Output only check, where the user can move the blocks freely, invalid
+movements are still detected, but rules doesn't apply.
+
+So, now that I have a base working system I can finally start designing the
+tests cases report before I continue with important program changes.
