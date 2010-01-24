@@ -9,7 +9,7 @@ Reverse::Reverse() : Problem()
 }
 
 // the only valid init state is an output empty list
-// and 
+// and an input list with a minimum of 2 elements
 int Reverse::valid_init_state(state::State* s) {
 	//TODO: poner cada comentario de return 0; en un mensaje de tooltip
 	
@@ -36,7 +36,7 @@ int Reverse::valid_init_state(state::State* s) {
 	BOOST_FOREACH(state::Node *n, *(s->items)) {
 		if (n == s->output) { continue; }
 		
-		D(("node: %s, mem: 0x%x", n->path().c_str(), n ));
+		//D(("node: %s, mem: 0x%x", n->path().c_str(), n ));
 		
 		if ( ! dynamic_cast<state::List*>(n) ) {
 			// input is not a list
@@ -53,17 +53,38 @@ int Reverse::valid_init_state(state::State* s) {
 }
 
 rule::RuleSet* Reverse::rules() {
-	//TODO: implementar este metodo
+	//TODO: poner cada comentario de return NULL; en un mensaje de tooltip
+	rule::RuleSet* ret = new rule::RuleSet();
 	
 	state::State* s = state::GlobalStates::instance()->first;
 	
-	rule::RuleSet* ret = new rule::RuleSet();
-	//rule::RuleSet::instance()->add(new rule::Pop("b.C", "l.sample1"));
-	ret->add(new rule::PopPush("b.C", "l.hiro", "l.sample1"));
-	ret->add(new rule::PopPush("b.B", "l.hiro", "l.sample1"));
-	ret->add(new rule::PopPush("b.A", "l.hiro", "l.sample1"));
+	// 1. find the input and output lists
+	state::List* input;
+	state::List* output;
+	
+	BOOST_FOREACH(state::Node *n, *(s->items)) {
+		if (n == s->output) {
+			output = dynamic_cast<state::List*>(n);
+		}
+		else {
+			input = dynamic_cast<state::List*>(n);
+		}
+	}
+	
+	if ( !input || !output ) {
+		// problem finding input and output lists
+		return NULL;
+	}
+	
+	// 2. generate a reversed order of poppush instructions
+	BOOST_REVERSE_FOREACH(state::Node *n, *(input->items)) {
+		//D(("node: %s, from: %s, to: %s", n->id.c_str(), input->id.c_str(), output->id.c_str() ));
+		ret->add(new rule::PopPush(n->id, input->id, output->id));
+	}
 	
 	return ret;
 }
+
+
 
 }}
