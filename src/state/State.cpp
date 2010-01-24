@@ -12,13 +12,13 @@ void State::push(Node *n) {
 	n->index = 0;
 	n->parent = this;
 	
-	_items.push_back(n);
+	items->push_back(n);
 }
 
 void State::print() {
 	std::cout << "*******************************************************************" << std::endl;
 	
-	BOOST_FOREACH(Node *n, _items) {
+	BOOST_FOREACH(Node *n, *items) {
 		n->print();
 		std::cout << std::endl;
 	}

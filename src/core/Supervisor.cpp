@@ -20,19 +20,22 @@ void Supervisor::step() {
 	gs->current = s;
 	
 	if (!gs->first) {
-		// save first state
-		state::GlobalStates::instance()->first = s;
-		// create problem rules
-		r = p->rules();
-		
-		return;
+		// check if the current state is a valid init state
+		if (p->valid_init_state(s)) {
+			// save first state
+			gs->first = s;
+			
+			// create problem rules
+			r = p->rules();
+		}
 	}
-	
-	action::Action *a = action::Detect::instance()->detect();
-	if (!a) { return; }
-	
-	int ret = r->apply(a);
-	D(("RULESET-APPLY:: %i", ret));
+	else {
+		action::Action *a = action::Detect::instance()->detect(gs->previous, gs->current);
+		if (!a) { return; }
+		
+		int ret = r->apply(a);
+		D(("RULESET-APPLY:: %i", ret));
+	}
 }
 
 }}

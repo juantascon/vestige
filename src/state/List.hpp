@@ -10,13 +10,14 @@ namespace state {
 class List : public Node
 {
 	protected:
-		state::Node::Vector _items;
+		
 		
 	public:
 		List(marker::Marker *m);
 		
+		state::Node::Vector* items;
+		
 		virtual void push(Node* n);
-		Node* pop();
 		
 		virtual void print();
 		

@@ -1,4 +1,4 @@
-set(SRCS
+add_executable( farcode
 	marker/Marker marker/List marker/Block marker/Switch marker/Output marker/Var marker/GlobalMarkers
 	action/Action action/Pop action/Push action/PopPush action/Invalid action/Discard action/Detect
 	rule/Rule rule/Pop rule/Push rule/PopPush rule/Discard rule/RuleSet
@@ -8,5 +8,4 @@ set(SRCS
 	Main
 )
 
-add_executable(${CMAKE_PROJECT_NAME} ${SRCS})
-target_link_libraries(${CMAKE_PROJECT_NAME} osgART osgViewer osgText ${Boost_LIBRARIES})
+target_link_libraries(farcode osgART osgViewer osgText ${Boost_LIBRARIES})

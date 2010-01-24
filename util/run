@@ -21,4 +21,3 @@ export ARTOOLKIT_CONFIG="filesrc location=$VIDEO/$v ! decodebin ! ffmpegcolorspa
 
 gdb $BIN -x $GDB_COMMANDS
 
-

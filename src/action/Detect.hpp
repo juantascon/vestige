@@ -14,12 +14,10 @@ class Detect
 	protected:
 		Detect();
 		
-		Action* detect(state::State* past, state::State* present);
-				
 	public:
 		static Detect* instance();
 		
-		Action* detect();
+		Action* detect(state::State* past, state::State* present);
 };
 
 }}

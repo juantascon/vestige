@@ -3,6 +3,7 @@
 
 #include "Problem.hpp"
 
+
 namespace far {
 namespace problem {
 
@@ -13,6 +14,7 @@ class Reverse : public Problem
 	public:
 		Reverse();
 		
+		virtual int valid_init_state(state::State* s);
 		virtual rule::RuleSet* rules();
 };
 
