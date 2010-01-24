@@ -14,6 +14,7 @@ class List : public Node
 		
 	public:
 		List(marker::Marker *m);
+		List(std::string id);
 		
 		state::Node::Vector* items;
 		

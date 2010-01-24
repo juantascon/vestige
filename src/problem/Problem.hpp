@@ -16,8 +16,13 @@ class Problem
 	public:
 		Problem();
 		
+		rule::RuleSet* rules;
+		
 		virtual int valid_init_state(state::State* s) = 0;
-		virtual rule::RuleSet* rules() = 0;
+		virtual int valid_final_state(state::State* s) = 0;
+		
+		virtual void prepare_final_state() = 0;
+		virtual void prepare_rules() = 0;
 };
 
 }}

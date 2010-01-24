@@ -3,18 +3,19 @@
 namespace far {
 namespace state {
 
-Node::Node(marker::Marker *m)
-{
-	this->parent = 0;
-	this->index = 0;
-	
-	this->m = 0;
-	this->id = "null";
-	
-	if (m) {
-		this->m = m;
-		this->id = m->id;
-	}
+Node::Node(marker::Marker *m) {
+	_initialize(m->id, m, NULL, 0);
+}
+
+Node::Node(std::string id) {
+	_initialize(id, NULL, NULL, 0);
+}
+
+void Node::_initialize(std::string id, marker::Marker* m, Node* parent, int index) {
+	this->id = id;
+	this->m = m;
+	this->parent = parent;
+	this->index = index;
 }
 
 void Node::print() {

@@ -19,22 +19,35 @@ void Supervisor::step() {
 	gs->previous = gs->current;
 	gs->current = s;
 	
+	// first state record
 	if (!gs->first) {
 		// check if the current state is a valid init state
 		if (p->valid_init_state(s)) {
 			// save first state
 			gs->first = s;
 			
-			// create problem rules
-			r = p->rules();
+			// initialize problem information
+			p->prepare_rules();
+			p->prepare_final_state();
 		}
+		return;
 	}
-	else {
-		action::Action *a = action::Detect::instance()->detect(gs->previous, gs->current);
-		if (!a) { return; }
+	
+	action::Action *a = action::Detect::instance()->detect(gs->previous, gs->current);
+	if (!a) { return; }
+	
+	// Invalid step end the game
+	// TODO: esto sólo se debe ejecutar en modo supervisado
+	if (!p->rules->apply(a)) {
+		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-LOSE");
+		marker::GlobalMarkers::instance()->m_switch->deactivate();
 		
-		int ret = r->apply(a);
-		D(("RULESET-APPLY:: %i", ret));
+	}
+	
+	// check if this state is the valid final state
+	if (p->valid_final_state(s)) {
+		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-WIN");
+		marker::GlobalMarkers::instance()->m_switch->deactivate();
 	}
 }
 

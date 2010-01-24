@@ -3,9 +3,8 @@
 namespace far {
 namespace state {
 
-State::State() : List(NULL)
+State::State() : List("")
 {
-	this->id = "";
 }
 
 void State::push(Node *n) {

@@ -10,9 +10,12 @@ class Switch : public Marker
 {
 	protected:
 		int captured;
+		int active;
 		
 	public:
 		Switch (std::string marker_args);
+		
+		void deactivate();
 		
 		virtual void update();
 };

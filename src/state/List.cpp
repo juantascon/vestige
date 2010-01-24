@@ -8,6 +8,11 @@ List::List(marker::Marker *m) : Node(m)
 	items = new state::Node::Vector();
 }
 
+List::List(std::string id) : Node(id)
+{
+	items = new state::Node::Vector();
+}
+
 void List::push(Node *n) {
 	n->index = items->size();
 	n->parent = this;

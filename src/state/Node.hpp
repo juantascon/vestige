@@ -8,18 +8,23 @@ namespace state {
 
 class Node
 {
+	private:
+		void _initialize(std::string id, marker::Marker* m, Node* parent, int index);
+		
 	public:
 		typedef std::vector <Node*> Vector;
 		typedef std::list <Node*> List;
 		
 		Node(marker::Marker *m);
+		Node(std::string id);
 		
-		Node* parent;
-		marker::Marker* m;
 		std::string id;
+		marker::Marker* m;
+		Node* parent;
 		int index;
 		
 		virtual void print();
+		
 		virtual Node::List* flat_view();
 		
 		std::string path();

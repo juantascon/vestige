@@ -7,6 +7,10 @@ Block::Block(marker::Marker *m) : Node(m)
 {
 }
 
+Block::Block(std::string id) : Node(id)
+{
+}
+
 void Block::print() {
 	std::cout << "BLOCK-ID: " << id;
 }
