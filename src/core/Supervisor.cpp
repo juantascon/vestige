@@ -5,8 +5,7 @@ namespace core {
 
 Supervisor* Supervisor::instance() { return &boost::serialization::singleton<far::core::Supervisor>::get_mutable_instance(); }
 
-Supervisor::Supervisor()
-{
+Supervisor::Supervisor() {
 	p = new problem::Reverse();
 }
 
@@ -38,10 +37,9 @@ void Supervisor::step() {
 	
 	// Invalid step end the game
 	// TODO: esto sólo se debe ejecutar en modo supervisado
-	if (!p->rules->apply(a)) {
+	if ( !a->valid() || !p->rules->apply(a) ) {
 		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-LOSE");
 		marker::GlobalMarkers::instance()->m_switch->deactivate();
-		
 	}
 	
 	// check if this state is the valid final state

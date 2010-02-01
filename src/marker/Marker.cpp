@@ -52,6 +52,18 @@ osg::Vec3 Marker::position() {
 	return this->_marker->getTransform().getTrans();
 }
 
+int Marker::under(Marker* m) {
+	osg::Vec3 mpos = m->position();
+	osg::Vec3 tpos = this->position();
+	
+	if (tpos.y() < mpos.y()) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+
 int Marker::aligned(Marker* m) {
 	osg::Vec3 mpos = m->position();
 	osg::Vec3 tpos = this->position();

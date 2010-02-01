@@ -1,6 +1,7 @@
 #! /bin/bash
 
-v=reverse3_2l_3b_s_o.mov
+v=fail/9.mov
+#v=reverse3_2l_3b_s_o.mov
 #v=reverse2_2l_3b.mov
 #v=reverse1_2l_3b.mov
 #v=1list_2block_1switch.mov

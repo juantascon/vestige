@@ -12,8 +12,8 @@ class Capture
 	protected:
 		Capture();
 		
-		marker::Marker::List* tmp_markers;
-		state::State* tmp_state;
+		marker::Marker::List* _markers;
+		state::State* _state;
 		
 		Node* do_block(marker::Marker* m);
 		Node* do_list(marker::Marker* m);

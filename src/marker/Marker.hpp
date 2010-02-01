@@ -35,6 +35,7 @@ class Marker : public osg::NodeCallback
 		osg::Vec3 position();
 		int visible();
 		int aligned(Marker* m);
+		int under(Marker* m);
 		
 		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);
 		virtual void update() = 0;

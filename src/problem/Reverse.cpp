@@ -9,28 +9,28 @@ Reverse::Reverse() : Problem()
 }
 
 state::List* Reverse::get_input(state::State *s) {
-	BOOST_FOREACH(state::Node *n, *(s->items)) {
-		if (n == s->output) {
-			continue;
-		}
-		else {
-			return dynamic_cast<state::List*>(n);
-		}
-	}
-	
-	return NULL;
+  BOOST_FOREACH(state::Node *n, *(s->items)) {
+    if (n == s->output) {
+      continue;
+    }
+    else {
+      return dynamic_cast<state::List*>(n);
+    }
+  }
+  
+  return NULL;
 }
 
 state::List* Reverse::get_output(state::State *s) {
-	return dynamic_cast<state::List*>(s->output);
+  return dynamic_cast<state::List*>(s->output);
 }
 
 // the only valid init state is an output empty list
 // and an input list with a minimum of 2 elements
 int Reverse::valid_init_state(state::State* s) {
-	//TODO: poner cada comentario de return 0; en un mensaje de tooltip
-	
-	//D(("output: %s, mem: 0x%x", s->output->path().c_str(), s->output ));
+  //TODO: poner cada comentario de return 0; en un mensaje de tooltip
+  
+  //D(("output: %s, mem: 0x%x", s->output->path().c_str(), s->output ));
 	
 	if ( s->items->size() != 2 ) {
 		// only 2 items expected on the board, output and input

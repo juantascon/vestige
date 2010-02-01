@@ -7,8 +7,7 @@ namespace state {
 
 Capture* Capture::instance() { return &boost::serialization::singleton<far::state::Capture>::get_mutable_instance(); }
 
-Capture::Capture ()
-{
+capture::Capture () {
 }
 
 Node* Capture::do_block(marker::Marker* m) {
@@ -20,8 +19,8 @@ Node* Capture::do_block(marker::Marker* m) {
 	
 	state::Block* n = new state::Block(m);
 	
-	if (marker::GlobalMarkers::instance()->m_output->value(), m) {
-		tmp_state->output = n;
+	if (marker::GlobalMarkers::instance()->m_output->value() == m) {
+		_state->output = n;
 	}
 	
 	//D(( "END" ));
@@ -37,19 +36,19 @@ Node* Capture::do_list(marker::Marker* m) {
 	
 	state::List* n = new state::List(m);
 	
-	for (marker::Marker::List::iterator it = tmp_markers->begin(); it != tmp_markers->end(); ++it) {
-		if ( l->aligned(*it)) {
+	for (marker::Marker::List::iterator it = _markers->begin(); it != _markers->end(); ++it) {
+		if ( l->aligned(*it) ) {
 			Node* child = do_block(*it);
 			if (child) {
 				n->push(child);
-				tmp_markers->erase(it);
+				_markers->erase(it);
 				it--;
 			}
 		}
 	}
 	
-	if (marker::GlobalMarkers::instance()->m_output->value(), m) {
-		tmp_state->output = n;
+	if (marker::GlobalMarkers::instance()->m_output->value() == m) {
+		_state->output = n;
 	}
 	
 	//D(( "END" ));
@@ -59,36 +58,36 @@ Node* Capture::do_list(marker::Marker* m) {
 State* Capture::capture() {
 	//D(( "BEGIN" ));
 	
-	tmp_markers = marker::GlobalMarkers::instance()->sort_y_axis();
+	_markers = marker::GlobalMarkers::instance()->sort_y_axis();
 	
-	if (tmp_markers->size() <= 0) { return NULL; }
+	if (_markers->size() <= 0) { return NULL; }
 	
-	tmp_state = new State();
+	_state = new State();
 	
-	for (marker::Marker::List::iterator it = tmp_markers->begin(); it != tmp_markers->end(); ++it) {
+	for (marker::Marker::List::iterator it = _markers->begin(); it != _markers->end(); ++it) {
 		//D(("IT: %x, OUTPUT: %x", *it, ))
 		Node* n = do_list(*it);
 		if (n) {
-			tmp_state->push(n);
-			tmp_markers->erase(it);
+			_state->push(n);
+			_markers->erase(it);
 			it--;
 		}
 	}
 	
-	for (marker::Marker::List::iterator it = tmp_markers->begin(); it != tmp_markers->end(); ++it) {
+	for (marker::Marker::List::iterator it = _markers->begin(); it != _markers->end(); ++it) {
 		Node* n = do_block(*it);
 		if (n) {
-			tmp_state->push(n);
-			tmp_markers->erase(it);
+			_state->push(n);
+			_markers->erase(it);
 			it--;
 		}
 	}
 	
-	tmp_state->create_flat_view();
+	_state->create_flat_view();
 	
 	//D(( "END" ));
 	
-	return tmp_state;
+	return _state;
 }
 
 }}

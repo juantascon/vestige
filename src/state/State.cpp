@@ -5,6 +5,9 @@ namespace state {
 
 State::State() : List("")
 {
+	invalid_items = new Node::List();
+	flat_items = 0;
+	output = 0;
 }
 
 void State::push(Node *n) {
@@ -30,7 +33,7 @@ void State::create_flat_view() {
 	
 	D(("FLAT PRINT"));
 	
-	D(("output: %s", output->path().c_str()));
+	D(("output: %s", output ? output->path().c_str() : "NULL"));
 	
 	BOOST_FOREACH(Node *n, *flat_items) {
 		D(( n->path().c_str() ));
@@ -45,7 +48,7 @@ action::Action::Vector* State::diff(State* comp) {
 	action::Action::Vector* v = new action::Action::Vector();
 	
 	BOOST_FOREACH(Node *this_n, *flat_items) {
-		
+	
 		int found = 0;
 		
 		BOOST_FOREACH(Node *comp_n, *(comp->flat_items)) {

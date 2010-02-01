@@ -15,6 +15,7 @@ class State : public List
 		State();
 		
 		Node::List* flat_items;
+		Node::List* invalid_items;
 		Node* output;
 		
 		virtual void push(Node *n);

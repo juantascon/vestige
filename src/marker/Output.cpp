@@ -51,7 +51,7 @@ void Output::update_value() {
 	}
 	
 	BOOST_FOREACH( marker::Marker* m, *marker::GlobalMarkers::instance()->sort_y_axis() ) {
-		if ( this->aligned(m) ) {
+	 	if ( this->aligned(m) && this->under(m) ) {
 			_value = m;
 			return;
 		}

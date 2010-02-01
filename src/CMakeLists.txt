@@ -8,4 +8,8 @@ add_executable( farcode
 	Main
 )
 
+
+
+
+
 target_link_libraries(farcode osgART osgViewer osgText ${Boost_LIBRARIES})
