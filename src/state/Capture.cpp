@@ -7,7 +7,7 @@ namespace state {
 
 Capture* Capture::instance() { return &boost::serialization::singleton<far::state::Capture>::get_mutable_instance(); }
 
-capture::Capture () {
+Capture::Capture () {
 }
 
 Node* Capture::do_block(marker::Marker* m) {

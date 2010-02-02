@@ -1,6 +1,7 @@
 #! /bin/bash
 
-v=fail/9.mov
+#v=fail/9.mov
+v=new_markers.mov
 #v=reverse3_2l_3b_s_o.mov
 #v=reverse2_2l_3b.mov
 #v=reverse1_2l_3b.mov
