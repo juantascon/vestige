@@ -1,7 +1,6 @@
 #ifndef __FAR_CORE_SUPERVISOR_HPP
 #define __FAR_CORE_SUPERVISOR_HPP
 
-#include "../state/GlobalStates.hpp"
 #include "../marker/GlobalMarkers.hpp"
 #include "../problem/Types.hpp"
 
@@ -18,6 +17,9 @@ class Supervisor
 		Supervisor();
 		
 		problem::Problem* p;
+		
+		state::State* previous_state;
+		state::State* current_state;
 		
 	public:
 		static Supervisor* instance();

@@ -12,17 +12,17 @@ namespace problem {
 class Problem
 {
 	protected:
+		int _active;;
+		rule::RuleSet* _rules;
 		
 	public:
 		Problem();
 		
-		rule::RuleSet* rules;
+		int active();
+		rule::RuleSet* rules();
 		
-		virtual int valid_init_state(state::State* s) = 0;
+		virtual int initialize(state::State* s) = 0;
 		virtual int valid_final_state(state::State* s) = 0;
-		
-		virtual void prepare_final_state() = 0;
-		virtual void prepare_rules() = 0;
 };
 
 }}

@@ -9,7 +9,7 @@ Pop::Pop(std::string item, std::string from) : Rule(item)
 }
 
 int Pop::valid(action::Action* action) {
-	action::Pop* a = dynamic_cast<action::Pop*>( action );
+    action::Pop* a = dynamic_cast<action::Pop*>( action );
 	if (!a) { return 0; }
 	
 	if (a->item_id() != item) { return 0; }

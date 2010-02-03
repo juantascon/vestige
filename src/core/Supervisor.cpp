@@ -3,41 +3,36 @@
 namespace far {
 namespace core {
 
-Supervisor* Supervisor::instance() { return &boost::serialization::singleton<far::core::Supervisor>::get_mutable_instance(); }
+Supervisor* Supervisor::instance() {
+	return &boost::serialization::singleton<far::core::Supervisor>::get_mutable_instance();
+}
 
 Supervisor::Supervisor() {
+	previous_state = 0;
+	current_state = 0;
 	p = new problem::Reverse();
+	//p = new problem::Append();
 }
 
 void Supervisor::step() {
 	state::State *s = state::Capture::instance()->capture();
 	if (!s) { return; }
 	
-	state::GlobalStates* gs = state::GlobalStates::instance();
-	
-	gs->previous = gs->current;
-	gs->current = s;
-	
-	// first state record
-	if (!gs->first) {
-		// check if the current state is a valid init state
-		if (p->valid_init_state(s)) {
-			// save first state
-			gs->first = s;
-			
-			// initialize problem information
-			p->prepare_rules();
-			p->prepare_final_state();
-		}
-		return;
+	// has been the problem activated
+	if (!p->active()) {
+		// Check initial state, create rules and prepare final state
+		if (!p->initialize(s)) { return; }
 	}
 	
-	action::Action *a = action::Detect::instance()->detect(gs->previous, gs->current);
+	previous_state = current_state;
+	current_state = s;
+	
+	action::Action *a = action::Detect::instance()->detect(previous_state, current_state);
 	if (!a) { return; }
 	
 	// Invalid step end the game
 	// TODO: esto sólo se debe ejecutar en modo supervisado
-	if ( !a->valid() || !p->rules->apply(a) ) {
+	if ( !a->valid() || !p->rules()->apply(a) ) {
 		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-LOSE");
 		marker::GlobalMarkers::instance()->m_switch->deactivate();
 	}
