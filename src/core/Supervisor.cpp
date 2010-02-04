@@ -10,8 +10,9 @@ Supervisor* Supervisor::instance() {
 Supervisor::Supervisor() {
 	previous_state = 0;
 	current_state = 0;
+	
 	p = new problem::Reverse();
-	//p = new problem::Append();
+	//p = new problem::Join();
 }
 
 void Supervisor::step() {
@@ -21,14 +22,20 @@ void Supervisor::step() {
 	// has been the problem activated
 	if (!p->active()) {
 		// Check initial state, create rules and prepare final state
-		if (!p->initialize(s)) { return; }
+		if (!p->initialize(s)) {
+			marker::GlobalMarkers::instance()->m_switch->alert("INVALID-INIT-STATE");
+			return;
+		}
 	}
 	
 	previous_state = current_state;
 	current_state = s;
 	
 	action::Action *a = action::Detect::instance()->detect(previous_state, current_state);
-	if (!a) { return; }
+	if (!a) {
+		marker::GlobalMarkers::instance()->m_switch->alert("EMPTY-ACTION");
+		return;
+	}
 	
 	// Invalid step end the game
 	// TODO: esto sólo se debe ejecutar en modo supervisado
@@ -38,7 +45,7 @@ void Supervisor::step() {
 	}
 	
 	// check if this state is the valid final state
-	if (p->valid_final_state(s)) {
+	if (p->validate_return(s->output)) {
 		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-WIN");
 		marker::GlobalMarkers::instance()->m_switch->deactivate();
 	}

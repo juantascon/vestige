@@ -13,6 +13,7 @@ Switch::Switch(std::string marker_args) : Marker(marker_args, "SWITCH") {
 
 void Switch::deactivate() {
 	active = 0;
+	this->resetModel();
 }
 
 void Switch::update() {

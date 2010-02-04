@@ -80,7 +80,6 @@ int Marker::aligned(Marker* m) {
 
 void Marker::alert(std::string message) {
 	D(("ALERT [%s]: %s", message.c_str(), id.c_str()));
-	this->resetModel();
 	
 	/*float boxSize = 100.0f;
 	osg::ShapeDrawable* sd = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, boxSize / 2.0f), boxSize));

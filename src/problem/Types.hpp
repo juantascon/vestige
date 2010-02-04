@@ -4,5 +4,6 @@
 #include "Problem.hpp"
 
 #include "Reverse.hpp"
+#include "Join.hpp"
 
 #endif

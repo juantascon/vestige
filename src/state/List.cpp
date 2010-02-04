@@ -20,6 +20,23 @@ void List::push(Node *n) {
 	items->push_back(n);
 }
 
+int List::check_items_ids(std::vector<std::string>* ids) {
+	// sizes must match
+	if ( items->size() != ids->size() ) {
+		return 0;
+	}
+	
+	int index = 0;
+	BOOST_FOREACH(state::Node *n, *(items)) {
+		if (n->id != (*ids)[index]) {
+			return 0;
+		}
+		index++;
+	}
+	
+	return 1;
+}
+
 void List::print() {
 	std::cout << "-------------------------------------------------------------" << std::endl;
 	std::cout << "--- LIST-ID: " << this->id << std::endl;

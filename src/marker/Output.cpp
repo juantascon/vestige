@@ -5,7 +5,8 @@
 namespace far {
 namespace marker {
 
-Output::Output(std::string marker_args) : Marker(marker_args, "OUTPUT") {
+Output::Output(std::string marker_args) : Marker(marker_args, "OUTPUT")
+{
 	_value = 0;
 }
 
@@ -26,7 +27,7 @@ osg::Node* Output::background() {
 	osg::Vec3 value_pos = _value->position();
 	osg::Vec3 output_pos = this->position();
 	
-	// LEFT LINE
+	// LINE
 	osg::Geometry* line = core::DrawHelper::instance()->rectangle (
 		new osg::Vec3(abs(output_pos.x()-value_pos.x())+(line_width/2.0), abs(output_pos.y()-value_pos.y()), z),
 		new osg::Vec3(0+(line_width/2.0), 0, z),

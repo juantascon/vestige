@@ -3,11 +3,13 @@
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <string.h>
+#include <libgen.h>
 
 static void err_info(const char *file, const char *func, const int line)
 {
-	//fprintf(stderr,"[%s:%s(%d)] ", file, func, line);
-	fprintf(stderr,"[%s(%d)] ", func, line);
+	fprintf(stderr,"%s/%s#%s(%d) :: ", basename(dirname(strdup(file))), basename(strdup(file)), func, line);
+	//fprintf(stderr,"[%s(%d)] ", func, line);
 	fflush(stderr);
 }
 

@@ -19,7 +19,6 @@ class GlobalStorage
 		// OSG General
 		osgART::Tracker* tracker;
 		osg::Camera* camera;
-		
 };
 
 }}

@@ -1,6 +1,8 @@
 #ifndef __FAR_PROBLEM_PROBLEM_HPP
 #define __FAR_PROBLEM_PROBLEM_HPP
 
+#include "Variables.hpp"
+
 #include "../state/Types.hpp"
 #include "../rule/Types.hpp"
 
@@ -14,6 +16,7 @@ class Problem
 	protected:
 		int _active;;
 		rule::RuleSet* _rules;
+		Variables* _vars;
 		
 	public:
 		Problem();
@@ -21,8 +24,8 @@ class Problem
 		int active();
 		rule::RuleSet* rules();
 		
+		virtual int validate_return(state::Node* ret) = 0;
 		virtual int initialize(state::State* s) = 0;
-		virtual int valid_final_state(state::State* s) = 0;
 };
 
 }}

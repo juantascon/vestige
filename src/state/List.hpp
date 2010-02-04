@@ -17,8 +17,8 @@ class List : public Node
 		List(std::string id);
 		
 		state::Node::Vector* items;
-		
 		virtual void push(Node* n);
+		int check_items_ids(std::vector<std::string>* ids);
 		
 		virtual void print();
 		

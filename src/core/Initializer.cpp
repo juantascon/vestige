@@ -68,15 +68,24 @@ void Initializer::initMarkers() {
 	
 	gm->m_switch = new marker::Switch("single;data/patt/artk/patt.kanji;100;0;0");
 	gm->m_output = new marker::Output("single;data/patt/artk/patt.hiro;100;0;0");
+
+	gm->add( new marker::List("single;data/patt/artk/patt.sample1;100;0;0", "l.s1") );
+	gm->add( new marker::List("single;data/patt/artk/patt.sample2;100;0;0", "l.s2") );
+	gm->add( new marker::Block("single;data/patt/artk/patt.a;100;0;0", "b.a", "a") );
+	gm->add( new marker::Block("single;data/patt/artk/patt.b;100;0;0", "b.b", "b") );
+	gm->add( new marker::Block("single;data/patt/artk/patt.c;100;0;0", "b.c", "c") );
+	gm->add( new marker::Block("single;data/patt/artk/patt.d;100;0;0", "b.d", "d") );
+	gm->add( new marker::Block("single;data/patt/artk/patt.f;100;0;0", "b.f", "f") );
+	gm->add( new marker::Block("single;data/patt/artk/patt.g;100;0;0", "b.g", "g") );
 	
-	gm->add( new marker::List("single;data/patt/artk/patt.a;100;0;0", "l.a") );
+	/*gm->add( new marker::List("single;data/patt/artk/patt.a;100;0;0", "l.a") );
 	gm->add( new marker::List("single;data/patt/artk/patt.b;100;0;0", "l.b") );
 	gm->add( new marker::List("single;data/patt/artk/patt.c;100;0;0", "l.c") );
 	gm->add( new marker::List("single;data/patt/artk/patt.d;100;0;0", "l.d") );
 	gm->add( new marker::List("single;data/patt/artk/patt.f;100;0;0", "l.f") );
 	gm->add( new marker::List("single;data/patt/artk/patt.g;100;0;0", "l.g") );
-
-	gm->add( new marker::Block("single;data/patt/artk/4x4_1.patt;100;0;0", "b.1", "1") );
+	
+	/*gm->add( new marker::Block("single;data/patt/artk/4x4_1.patt;100;0;0", "b.1", "1") );
 	gm->add( new marker::Block("single;data/patt/artk/4x4_2.patt;100;0;0", "b.2", "2") );
 	gm->add( new marker::Block("single;data/patt/artk/4x4_3.patt;100;0;0", "b.3", "3") );
 	gm->add( new marker::Block("single;data/patt/artk/4x4_4.patt;100;0;0", "b.4", "4") );
@@ -91,7 +100,7 @@ void Initializer::initMarkers() {
 	gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.13", "13") );
 	gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.14", "14") );
 	gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.15", "15") );
-	gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.16", "16") );
+	gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.16", "16") );*/
 }
 
 void Initializer::initViewer() {
