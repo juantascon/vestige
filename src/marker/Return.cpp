@@ -1,18 +1,18 @@
-#include "Output.hpp"
+#include "Return.hpp"
 
 #include "GlobalMarkers.hpp"
 
 namespace far {
 namespace marker {
 
-Output::Output(std::string marker_args) : Marker(marker_args, "OUTPUT")
+Return::Return(std::string marker_args) : Marker(marker_args, "RETURN")
 {
 	_value = 0;
 }
 
-Marker* Output::value() { return _value; }
+Marker* Return::value() { return _value; }
 
-osg::Node* Output::background() {
+osg::Node* Return::background() {
 	if ( ! this->visible() || ! _value->visible() ) {
 		return ( dynamic_cast<osg::Node*> (new osg::Geode()) );
 	}
@@ -25,14 +25,14 @@ osg::Node* Output::background() {
 	//D(("VALUE: %s", _value->id.c_str()));
 	
 	osg::Vec3 value_pos = _value->position();
-	osg::Vec3 output_pos = this->position();
+	osg::Vec3 this_pos = this->position();
 	
 	// LINE
 	osg::Geometry* line = core::DrawHelper::instance()->rectangle (
-		new osg::Vec3(abs(output_pos.x()-value_pos.x())+(line_width/2.0), abs(output_pos.y()-value_pos.y()), z),
+		new osg::Vec3(abs(this_pos.x()-value_pos.x())+(line_width/2.0), abs(this_pos.y()-value_pos.y()), z),
 		new osg::Vec3(0+(line_width/2.0), 0, z),
 		new osg::Vec3(0-(line_width/2.0), 0, z),
-		new osg::Vec3(abs(output_pos.x()-value_pos.x())-(line_width/2.0), abs(output_pos.y()-value_pos.y()), z),
+		new osg::Vec3(abs(this_pos.x()-value_pos.x())-(line_width/2.0), abs(this_pos.y()-value_pos.y()), z),
 		color
 	);
 	
@@ -44,7 +44,7 @@ osg::Node* Output::background() {
 }
 
 
-void Output::update_value() {
+void Return::update_value() {
 	_value = 0;
 	
 	if ( ! this->visible() ) {
@@ -59,7 +59,7 @@ void Output::update_value() {
 	}
 }
 
-void Output::update() {
+void Return::update() {
 	if ( _value && this->aligned(_value) ) {
 		this->resetModel();
 		this->addChild(this->background());

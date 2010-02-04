@@ -19,7 +19,7 @@ class GlobalMarkers
 		void add(marker::Marker *m);
 		marker::Marker::List* sort_y_axis();
 		
-		marker::Output* m_output;
+		marker::Return* m_return;
 		marker::Switch* m_switch;
 		
 };

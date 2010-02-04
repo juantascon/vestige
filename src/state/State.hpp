@@ -16,13 +16,13 @@ class State : public List
 		
 		Node::List* flat_items;
 		Node::List* invalid_items;
-		Node* output;
+		Node* return_value;
 		
 		virtual void push(Node *n);
 		
 		virtual std::string text();
-		void create_flat_view();
 		
+		void create_flat_view();
 		action::Action::Vector* diff(State* comp);
 };
 

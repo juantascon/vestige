@@ -45,7 +45,7 @@ void Supervisor::step() {
 	}
 	
 	// check if this state is the valid final state
-	if (p->validate_return(s->output)) {
+	if (p->validate_return(s->return_value)) {
 		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-WIN");
 		marker::GlobalMarkers::instance()->m_switch->deactivate();
 	}

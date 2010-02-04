@@ -19,8 +19,8 @@ Node* Capture::do_block(marker::Marker* m) {
 	
 	state::Block* n = new state::Block(m);
 	
-	if (marker::GlobalMarkers::instance()->m_output->value() == m) {
-		_state->output = n;
+	if (marker::GlobalMarkers::instance()->m_return->value() == m) {
+		_state->return_value = n;
 	}
 	
 	//D(( "END" ));
@@ -47,8 +47,8 @@ Node* Capture::do_list(marker::Marker* m) {
 		}
 	}
 	
-	if (marker::GlobalMarkers::instance()->m_output->value() == m) {
-		_state->output = n;
+	if (marker::GlobalMarkers::instance()->m_return->value() == m) {
+		_state->return_value = n;
 	}
 	
 	//D(( "END" ));
@@ -65,7 +65,7 @@ State* Capture::capture() {
 	_state = new State();
 	
 	for (marker::Marker::List::iterator it = _markers->begin(); it != _markers->end(); ++it) {
-		//D(("IT: %x, OUTPUT: %x", *it, ))
+		//D(("IT: %x, RETURN: %x", *it, ))
 		Node* n = do_list(*it);
 		if (n) {
 			_state->push(n);

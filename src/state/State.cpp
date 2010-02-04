@@ -7,7 +7,7 @@ State::State() : List("")
 {
 	invalid_items = new Node::List();
 	flat_items = 0;
-	output = 0;
+	return_value = 0;
 }
 
 void State::push(Node *n) {
@@ -37,7 +37,7 @@ void State::create_flat_view() {
 	BOOST_FOREACH(Node *n, *flat_items) {
 		D(( n->path().c_str() ));
 	}
-	D(("output: %s", output ? output->path().c_str() : "NULL"));
+	D(("return_value: %s", return_value ? return_value->path().c_str() : "NULL"));
 	
 	D(("------------------"));
 }

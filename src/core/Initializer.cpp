@@ -67,7 +67,7 @@ void Initializer::initMarkers() {
 	marker::GlobalMarkers* gm = marker::GlobalMarkers::instance();
 	
 	gm->m_switch = new marker::Switch("single;data/patt/artk/patt.kanji;100;0;0");
-	gm->m_output = new marker::Output("single;data/patt/artk/patt.hiro;100;0;0");
+	gm->m_return = new marker::Return("single;data/patt/artk/patt.hiro;100;0;0");
 
 	gm->add( new marker::List("single;data/patt/artk/patt.sample1;100;0;0", "l.s1") );
 	gm->add( new marker::List("single;data/patt/artk/patt.sample2;100;0;0", "l.s2") );

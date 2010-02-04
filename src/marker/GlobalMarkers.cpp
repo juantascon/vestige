@@ -12,7 +12,7 @@ GlobalMarkers* GlobalMarkers::instance() {
 
 GlobalMarkers::GlobalMarkers() : _items()
 {
-	m_output = 0;
+	m_return = 0;
 	m_switch = 0;
 }
 

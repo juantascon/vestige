@@ -1,12 +1,12 @@
-#ifndef __FAR_MARKER_OUTPUT_HPP
-#define __FAR_MARKER_OUTPUT_HPP
+#ifndef __FAR_MARKER_RETURN_HPP
+#define __FAR_MARKER_RETURN_HPP
 
 #include "Marker.hpp"
 
 namespace far {
 namespace marker {
 
-class Output : public Marker
+class Return : public Marker
 {
 	protected:
 		Marker* _value;
@@ -15,7 +15,7 @@ class Output : public Marker
 		osg::Node* background();
 		
 	public:
-		Output (std::string marker_args);
+		Return (std::string marker_args);
 		
 		Marker* value();
 		
