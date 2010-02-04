@@ -19,8 +19,8 @@ class State : public List
 		Node* output;
 		
 		virtual void push(Node *n);
-		virtual void print();
 		
+		virtual std::string text();
 		void create_flat_view();
 		
 		action::Action::Vector* diff(State* comp);

@@ -20,8 +20,7 @@ class List : public Node
 		virtual void push(Node* n);
 		int check_items_ids(std::vector<std::string>* ids);
 		
-		virtual void print();
-		
+		virtual std::string text();
 		virtual Node::List* flat_view();
 };
 

@@ -14,7 +14,7 @@ class Discard : public Rule
 		Discard(std::string item);
 		
 		virtual int valid(action::Action* action);
-		virtual void print();
+		virtual std::string text();
 };
 
 }}

@@ -17,7 +17,7 @@ class PopPush : public Rule
 		PopPush(std::string item, std::string from, std::string into);
 		
 		virtual int valid(action::Action* action);
-		virtual void print();
+		virtual std::string text();
 };
 
 }}

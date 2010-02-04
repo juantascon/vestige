@@ -37,16 +37,15 @@ int List::check_items_ids(std::vector<std::string>* ids) {
 	return 1;
 }
 
-void List::print() {
-	std::cout << "-------------------------------------------------------------" << std::endl;
-	std::cout << "--- LIST-ID: " << this->id << std::endl;
+std::string List::text() {
+	std::string ret = "--- LIST-ID: " + this->id + " BLOCKS: | " ;
 	
 	BOOST_FOREACH(Node *n, *items) {
-		std::cout << "| ";
-		n->print();
-		std::cout << std::endl;
+		ret += n->text() + " ";
 	}
-	std::cout << "-------------------------------------------------------------";
+	ret += "|";
+	
+	return ret;
 }
 
 Node::List* List::flat_view() {

@@ -16,7 +16,7 @@ class Push : public Action
 		
 		std::string into_id();
 		
-		virtual void print();
+		std::string text();
 };
 
 }}

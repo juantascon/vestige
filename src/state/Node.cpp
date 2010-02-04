@@ -18,9 +18,6 @@ void Node::_initialize(std::string id, marker::Marker* m, Node* parent, int inde
 	this->index = index;
 }
 
-void Node::print() {
-}
-
 Node::List* Node::flat_view() {
 	return new Node::List();
 }

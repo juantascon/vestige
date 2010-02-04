@@ -12,8 +12,4 @@ int Rule::valid(action::Action* action) {
 	return 0;
 }
 
-void Rule::print() {
-	std::cout << "Rule [NULL] | Item: " << item << std::endl;
-}
-
 }}

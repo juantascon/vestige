@@ -12,7 +12,7 @@ class Invalid : public Action
 	public:
 		Invalid(state::Node* item);
 		
-		virtual void print();
+		virtual std::string text();
 };
 
 }}

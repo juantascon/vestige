@@ -23,8 +23,7 @@ class Node
 		Node* parent;
 		int index;
 		
-		virtual void print();
-		
+		virtual std::string text() = 0;
 		virtual Node::List* flat_view();
 		
 		std::string path();

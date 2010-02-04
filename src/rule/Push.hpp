@@ -16,7 +16,7 @@ class Push : public Rule
 		Push(std::string item, std::string into);
 		
 		virtual int valid(action::Action* action);
-		virtual void print();
+		virtual std::string text();
 };
 
 }}

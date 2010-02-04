@@ -19,8 +19,8 @@ int Pop::valid(action::Action* action) {
 	return 1;
 }
 
-void Pop::print() {
-	std::cout << "Rule [Pop] | Item: " << item << " | From: " << from << std::endl;
+std::string Pop::text() {
+	return "Rule [Pop] | Item: " + item + " | From: " + from;
 }
 
 }}

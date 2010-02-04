@@ -36,7 +36,7 @@ class Action
 	  	int valid();
 		
 		void alert(std::string message);
-		virtual void print();
+		virtual std::string text() = 0;
 };
 
 }}

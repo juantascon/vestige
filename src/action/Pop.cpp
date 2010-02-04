@@ -10,8 +10,8 @@ Pop::Pop(state::Node* item, state::Node* from) : Action(item)
 
 std::string Pop::from_id() { return from->id; }
 
-void Pop::print() {
-	std::cout << "Action [Pop] | Item: " << item->path() << " | From: " << from->path() << std::endl;
+std::string Pop::text() {
+	return "Action [Pop] | Item: " + item->path() + " | From: " + from->path();
 }
 
 }}

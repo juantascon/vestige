@@ -10,8 +10,8 @@ Push::Push(state::Node* item, state::Node* into) : Action(item)
 
 std::string Push::into_id() { return into->id; }
 
-void Push::print() {
-	std::cout << "Action [Push] || Item: " << item->path() << " || Into: " << into->path() << std::endl;
+std::string Push::text() {
+	return "Action [Push] || Item: " + item->path() + " || Into: " + into->path();
 }
 
 }}

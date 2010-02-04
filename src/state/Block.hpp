@@ -14,7 +14,7 @@ class Block : public Node
 		Block(marker::Marker *m);
 		Block(std::string id);
 		
-		virtual void print();
+		virtual std::string text();
 		virtual Node::List* flat_view();
 };
 

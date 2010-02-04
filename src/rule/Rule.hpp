@@ -31,7 +31,7 @@ class Rule
 		Rule(std::string item);
 		
 		virtual int valid(action::Action* action);
-		virtual void print();
+		virtual std::string text() = 0;
 };
 
 }}

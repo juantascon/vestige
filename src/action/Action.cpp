@@ -16,8 +16,4 @@ void Action::alert(std::string message) {
 	item->m->alert(message);
 }
 
-void Action::print() {
-	std::cout << "Action [NULL] | Item: " << item->path() << std::endl;
-}
-
 }}

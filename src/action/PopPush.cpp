@@ -12,8 +12,8 @@ PopPush::PopPush(state::Node* item, state::Node* from, state::Node* into) : Acti
 std::string PopPush::from_id() { return from->id; }
 std::string PopPush::into_id() { return into->id; }
 
-void PopPush::print() {
-	std::cout << "Action [PopPush] | Item: " << item->path() << " | From: " << from->path() << " | Into: " << into->path() << std::endl;
+std::string PopPush::text() {
+	return "Action [PopPush] | Item: " + item->path() + " | From: " + from->path() + " | Into: " + into->path();
 }
 
 }}

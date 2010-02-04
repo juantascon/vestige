@@ -16,7 +16,7 @@ class Pop : public Action
 		
 		std::string from_id();
 		
-		virtual void print();
+		virtual std::string text();
 };
 
 }}

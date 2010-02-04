@@ -16,8 +16,8 @@ int Discard::valid(action::Action* action) {
 	return 1;
 }
 
-void Discard::print() {
-	std::cout << "Rule [Discard] | Item: " << item << std::endl;
+std::string Discard::text() {
+	return "Rule [Discard] | Item: " + item;
 }
 
 }}

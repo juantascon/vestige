@@ -18,7 +18,7 @@ class PopPush : public Action
 		std::string from_id();
 		std::string into_id();
 		
-		virtual void print();
+		virtual std::string text();
 };
 
 }}

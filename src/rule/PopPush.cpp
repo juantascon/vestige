@@ -20,8 +20,8 @@ int PopPush::valid(action::Action* action) {
 	return 1;
 }
 
-void PopPush::print() {
-	std::cout << "Rule [PopPush] | Item: " << item << " | From: " << from << " | Into: " << into << std::endl;
+std::string PopPush::text() {
+	return "Rule [PopPush] | Item: " + item + " | From: " + from + " | Into: " + into;
 }
 
 }}

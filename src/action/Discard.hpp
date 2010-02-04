@@ -12,7 +12,7 @@ class Discard : public Action
 	public:
 		Discard(state::Node* item);
 		
-		virtual void print();
+		std::string text();
 };
 
 }}

@@ -14,8 +14,8 @@ Action* Detect::detect(state::State* past, state::State* present) {
 		return NULL;
 	}
 	
-	//D(("past::")); past->print();
-	//D(("present::")); present->print();
+	//D(("past::%s", past->text().c_str()));
+	//D(("present::%s", present->text().c_str()));
 	
 	Action::Vector* v = past->diff(present);
 	

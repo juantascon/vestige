@@ -17,29 +17,29 @@ void State::push(Node *n) {
 	items->push_back(n);
 }
 
-void State::print() {
-	std::cout << "*******************************************************************" << std::endl;
+std::string State::text() {
+	std::string ret = "LISTS: [[ ";
 	
 	BOOST_FOREACH(Node *n, *items) {
-		n->print();
-		std::cout << std::endl;
+		ret += n->text() + " ";
 	}
+	ret += "]]";
 	
-	std::cout << "*******************************************************************" << std::endl << std::endl;
+	return ret;
 }
 
 void State::create_flat_view() {
 	flat_items = flat_view();
 	
-	D(("FLAT PRINT"));
-	
-	D(("output: %s", output ? output->path().c_str() : "NULL"));
+	D(("STATE:"));
+	D(("------------------"));
 	
 	BOOST_FOREACH(Node *n, *flat_items) {
 		D(( n->path().c_str() ));
 	}
+	D(("output: %s", output ? output->path().c_str() : "NULL"));
 	
-	D(("END"));
+	D(("------------------"));
 }
 
 // *this* should be past and *comp* should be present
@@ -91,13 +91,14 @@ action::Action::Vector* State::diff(State* comp) {
 		}
 	}
 	
-	D(("DIFF PRINT"));
+	D(("ACTIONS: "));
+	D(("------------------"));
 	
 	BOOST_FOREACH(action::Action *a, *v) {
-		a->print();
+		D(( a->text().c_str() ));
 	}
 	
-	D(("END"));
+	D(("------------------"));
 	
 	return v;
 }

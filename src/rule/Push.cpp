@@ -18,8 +18,8 @@ int Push::valid(action::Action* action) {
 	return 1;
 }
 
-void Push::print() {
-	std::cout << "Rule [Push] || Item: " << item << " || Into: " << into << std::endl;
+std::string Push::text() {
+	return "Rule [Push] || Item: " + item + " || Into: " + into;
 }
 
 }}

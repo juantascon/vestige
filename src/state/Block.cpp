@@ -11,8 +11,8 @@ Block::Block(std::string id) : Node(id)
 {
 }
 
-void Block::print() {
-	std::cout << "BLOCK-ID: " << id;
+std::string Block::text() {
+	return "BLOCK-ID: " + id;
 }
 
 Node::List* Block::flat_view() {

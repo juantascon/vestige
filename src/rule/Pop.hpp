@@ -16,7 +16,7 @@ class Pop : public Rule
 		Pop(std::string item, std::string from);
 		
 		virtual int valid(action::Action* action);
-		virtual void print();
+		virtual std::string text();
 };
 
 }}
