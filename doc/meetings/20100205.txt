@@ -1,0 +1,63 @@
+1. usar el marcador de return en lugar del señalador de salida
+
+*experimentar porque tal vez en algún caso no sea así
+*en reverse funciona y en join funciona si se obliga a colocar una lista dada sobre la otra
+
+2. es necesario detectar movimientos que requieran informacion adicional
+
+*siempre ocultar los bloques (excepto el último) de las listas
+*en el caso de join sin supervision es posible un movimiento incorrecto cuando se pasan
+bloques de un lado a otro:
+
+|e| | | | |
+|d| |b| | |
+|c| |a| | |
+|-| |-| |-|
+
+| | |e| | |
+|d| |b| | |
+|c| |a| | |
+|-| |-| |-|
+
+| | |d| | |
+| | |e| | |
+| | |b| | |
+|c| |a| | |
+|-| |-| |-|
+
+| | |c| | |
+| | |d| | |
+| | |e| | |
+| | |b| | |
+| | |a| | |
+|-| |-| |-|
+
+| | |d| | |
+| | |e| | |
+| | |b| | |
+| | |a| |c|
+|-| |-| |-|
+
+| | |e| | |
+| | |b| |d|
+| | |a| |c|
+|-| |-| |-|
+
+| | | | |e|
+| | |b| |d|
+| | |a| |c|
+|-| |-| |-|
+
+---- En este punto se necesita información adicional
+---- para poder mover b a la primer lista
+
+| | | | |e|
+| | | | |d|
+|b| |a| |c|
+|-| |-| |-|
+
+3. en el caso de rem_fst se debe reconocer un cambio de estado el cual es identico logicamente
+pero no con los bloques
+
+4. hacer rem_fst en erlang
+5. intentar hacer el ejemplo de join con 3 listas (complejidad).
