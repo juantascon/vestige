@@ -11,8 +11,8 @@ Supervisor::Supervisor() {
 	previous_state = 0;
 	current_state = 0;
 	
-	p = new problem::Reverse();
-	//p = new problem::Join();
+	//p = new problem::Reverse();
+	p = new problem::Join();
 }
 
 void Supervisor::step() {

@@ -3,6 +3,8 @@
 
 #include "Marker.hpp"
 
+#include "../draw/Rectangle.hpp"
+
 namespace far {
 namespace marker {
 

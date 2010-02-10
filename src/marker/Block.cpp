@@ -5,7 +5,7 @@ namespace marker {
 
 Block::Block(std::string marker_args, std::string id, std::string key) : Marker(marker_args, id)
 {
-	this->label = new Var(key, "empty");
+	this->label = new draw::Label(key);
 	
 	this->addChild(label->model());
 	//this->addChild(osgDB::readNodeFile("data/model/block.osg"));
@@ -19,7 +19,7 @@ osg::Node* Block::background(int valid) {
 	osg::Vec4* color = new osg::Vec4(0, 1, 0, 0);
 	if (!valid) { color =  new osg::Vec4(1, 0, 0, 0); }
 	
-	osg::Geometry* rectangle = core::DrawHelper::instance()->rectangle (
+	osg::Geometry* rectangle = draw::Rectangle::instance()->create (
 		new osg::Vec3(size, size, z),
 		new osg::Vec3(size, -size, z),
 		new osg::Vec3(-size, -size, z),

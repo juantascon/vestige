@@ -64,6 +64,13 @@ State* Capture::capture() {
 	
 	_state = new State();
 	
+	D(("MARKERS:"));
+	D(("------------------"));
+	for (marker::Marker::List::iterator it = _markers->begin(); it != _markers->end(); ++it) {
+		D(( "%s", (*it)->id.c_str() ));
+	}
+	D(("------------------"));
+	
 	for (marker::Marker::List::iterator it = _markers->begin(); it != _markers->end(); ++it) {
 		//D(("IT: %x, RETURN: %x", *it, ))
 		Node* n = do_list(*it);

@@ -22,7 +22,7 @@ osg::Node* List::background(int valid) {
 	if (!valid) { color =  new osg::Vec4(1, 0, 0, 0); }
 	
 	// RECTANGLE
-	osg::Geometry* rectangle = core::DrawHelper::instance()->rectangle (
+	osg::Geometry* rectangle = draw::Rectangle::instance()->create (
 		new osg::Vec3(size+(align_factor/2.0), size, z),
 		new osg::Vec3(size+(align_factor/2.0), -size, z),
 		new osg::Vec3(-size-(align_factor/2.0), -size, z),
@@ -31,7 +31,7 @@ osg::Node* List::background(int valid) {
 	);
 	
 	// LEFT LINE
-	osg::Geometry* line1 = core::DrawHelper::instance()->rectangle (
+	osg::Geometry* line1 = draw::Rectangle::instance()->create (
 		new osg::Vec3(-size-(align_factor/2.0), size+range, z),
 		new osg::Vec3(-size-(align_factor/2.0), -size, z),
 		new osg::Vec3(-size-line_width-(align_factor/2.0), -size, z),
@@ -40,7 +40,7 @@ osg::Node* List::background(int valid) {
 	);
 	
 	// RIGHT LINE
-	osg::Geometry* line2 = core::DrawHelper::instance()->rectangle (
+	osg::Geometry* line2 = draw::Rectangle::instance()->create (
 		new osg::Vec3(size+(align_factor/2.0), size+range, z),
 		new osg::Vec3(size+(align_factor/2.0), -size, z),
 		new osg::Vec3(size+line_width+(align_factor/2.0), -size, z),
