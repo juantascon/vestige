@@ -18,13 +18,24 @@ Rectangle::Rectangle(osg::Vec3 A, osg::Vec3 B, osg::Vec3 C, osg::Vec3 D, osg::Ve
 	this->setColorArray(colors);
 	this->setColorBinding(osg::Geometry::BIND_OVERALL);
 	
-	//this->addPrimitiveSet(new osg::DrawArrays(GL_QUADS, 0, 4));
-	this->addPrimitiveSet(new osg::DrawArrays(GL_POLYGON, 0, 4));
+	this->addPrimitiveSet(new osg::DrawArrays(GL_QUADS, 0, 4));
+	//this->addPrimitiveSet(new osg::DrawArrays(GL_POLYGON, 0, 4));
 	//this->addPrimitiveSet(new osg::DrawArrays(GL_LINE_LOOP, 0, 4));
 	
-	//osg::StateSet* stateset = this->getOrCreateStateSet();
-	//stateset->setMode(GL_BLEND,osg::StateAttribute::ON);
-	//stateset->setRenderingHint(osg::StateSet::TRANSPARENT_BIN);
+	osg::StateSet* stateset = this->getOrCreateStateSet();
+	// Enable blending, select transparent bin
+	stateset->setMode(GL_BLEND, osg::StateAttribute::ON);
+	stateset->setRenderingHint(osg::StateSet::TRANSPARENT_BIN);
+	// Enable depth test so that an opaque polygon will occlude a transparent one behind it
+	stateset->setMode(GL_DEPTH_TEST, osg::StateAttribute::ON);
+	// Conversely, disable writing to depth buffer so that
+	// a transparent polygon will allow polygons behind it to shine thru
+	// OSG renders transparent polygons after opaque ones
+	//osg::Depth* depth = new osg::Depth;
+	//depth->setWriteMask( false );
+	//stateset->setAttributeAndModes( depth, osg::StateAttribute::ON );
+	// Disable conflicting modes.
+	stateset->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
 }
 
 }}

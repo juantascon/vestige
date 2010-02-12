@@ -9,7 +9,7 @@ Switch::Switch(std::string marker_args) : Marker(marker_args, "SWITCH") {
 	active = 1;
 	
 	std::string msg = "INVALID INIT STATE:\nvariable L not found,\nexpected list with at least 2 items";
-	//this->addChild(new draw::ToolTip(msg, 35));
+	this->addChild(new draw::ToolTip(msg, 35));
 	this->addChild(osgDB::readNodeFile("data/model/switch.3ds"));
 }
 

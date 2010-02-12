@@ -2,6 +2,7 @@
 #define __FAR_LIB_OSG_HPP
 
 #include <osg/ShapeDrawable>
+#include <osg/Depth>
 
 #include <osgViewer/Viewer>
 #include <osgViewer/ViewerEventHandlers>
