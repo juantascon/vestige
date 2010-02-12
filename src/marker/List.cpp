@@ -15,37 +15,36 @@ osg::Node* List::background(int valid) {
 	float align_factor = core::Parameters::instance()->ALIGN_FACTOR();
 	float range = (size*2.0) * (float) blocks_on_list;
 	float line_width = 20.0;
-	float z = 1.0;
+	float z = -2.0;
 	
-	
-	osg::Vec4* color = new osg::Vec4(1, 1, 0, 0);
-	if (!valid) { color =  new osg::Vec4(1, 0, 0, 0); }
+	osg::Vec4* color = new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f);
+	if (!valid) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
 	
 	// RECTANGLE
-	osg::Geometry* rectangle = draw::Rectangle::instance()->create (
-		new osg::Vec3(size+(align_factor/2.0), size, z),
-		new osg::Vec3(size+(align_factor/2.0), -size, z),
-		new osg::Vec3(-size-(align_factor/2.0), -size, z),
-		new osg::Vec3(-size-(align_factor/2.0), size, z),
-		color
+	draw::Rectangle* rectangle = new draw::Rectangle(
+		osg::Vec3(size+(align_factor/2.0), size, z),
+		osg::Vec3(size+(align_factor/2.0), -size, z),
+		osg::Vec3(-size-(align_factor/2.0), -size, z),
+		osg::Vec3(-size-(align_factor/2.0), size, z),
+		*color
 	);
 	
 	// LEFT LINE
-	osg::Geometry* line1 = draw::Rectangle::instance()->create (
-		new osg::Vec3(-size-(align_factor/2.0), size+range, z),
-		new osg::Vec3(-size-(align_factor/2.0), -size, z),
-		new osg::Vec3(-size-line_width-(align_factor/2.0), -size, z),
-		new osg::Vec3(-size-line_width-(align_factor/2.0), size+range, z),
-		color
+	draw::Rectangle* line1 = new draw::Rectangle(
+		osg::Vec3(-size-(align_factor/2.0), size+range, z),
+		osg::Vec3(-size-(align_factor/2.0), -size, z),
+		osg::Vec3(-size-line_width-(align_factor/2.0), -size, z),
+		osg::Vec3(-size-line_width-(align_factor/2.0), size+range, z),
+		*color
 	);
 	
 	// RIGHT LINE
-	osg::Geometry* line2 = draw::Rectangle::instance()->create (
-		new osg::Vec3(size+(align_factor/2.0), size+range, z),
-		new osg::Vec3(size+(align_factor/2.0), -size, z),
-		new osg::Vec3(size+line_width+(align_factor/2.0), -size, z),
-		new osg::Vec3(size+line_width+(align_factor/2.0), size+range, z),
-		color
+	draw::Rectangle* line2 = new draw::Rectangle(
+		osg::Vec3(size+(align_factor/2.0), size+range, z),
+		osg::Vec3(size+(align_factor/2.0), -size, z),
+		osg::Vec3(size+line_width+(align_factor/2.0), -size, z),
+		osg::Vec3(size+line_width+(align_factor/2.0), size+range, z),
+		*color
 	);
 	
 	// Container

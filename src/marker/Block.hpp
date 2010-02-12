@@ -4,7 +4,8 @@
 #include "Marker.hpp"
 
 #include "../draw/Rectangle.hpp"
-#include "../draw/Label.hpp"
+#include "../draw/Text.hpp"
+#include "../draw/ToolTip.hpp"
 
 namespace far {
 namespace marker {
@@ -13,11 +14,10 @@ class Block : public Marker
 {
 	protected:
 		osg::Node* background(int valid);
+		std::string key;
 		
 	public:
 		Block(std::string marker_args, std::string id, std::string key);
-		
-		draw::Label *label;
 		
 		virtual void update();
 		virtual void alert(std::string message);

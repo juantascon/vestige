@@ -5,26 +5,25 @@ namespace marker {
 
 Block::Block(std::string marker_args, std::string id, std::string key) : Marker(marker_args, id)
 {
-	this->label = new draw::Label(key);
+	this->key = key;
 	
-	this->addChild(label->model());
-	//this->addChild(osgDB::readNodeFile("data/model/block.osg"));
+	this->addChild((new draw::Text(key))->wrap());
 	this->addChild(this->background(1));
 }
 
 osg::Node* Block::background(int valid) {
 	float size = core::Parameters::instance()->BLOCK_SIZE();
-	float z = -1.0;
+	float z = -2.0;
 	
-	osg::Vec4* color = new osg::Vec4(0, 1, 0, 0);
-	if (!valid) { color =  new osg::Vec4(1, 0, 0, 0); }
+	osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 0.0f, 1.0f);
+	if (!valid) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
 	
-	osg::Geometry* rectangle = draw::Rectangle::instance()->create (
-		new osg::Vec3(size, size, z),
-		new osg::Vec3(size, -size, z),
-		new osg::Vec3(-size, -size, z),
-		new osg::Vec3( -size, size, z),
-		color
+	draw::Rectangle* rectangle = new draw::Rectangle(
+		osg::Vec3(size, size, z),
+		osg::Vec3(size, -size, z),
+		osg::Vec3(-size, -size, z),
+		osg::Vec3( -size, size, z),
+		*color
 	);
 	
 	// Container
@@ -38,7 +37,8 @@ void Block::alert(std::string message) {
 	D(("ALERT [%s]: %s", message.c_str(), id.c_str()));
 	this->resetModel();
 	
-	this->addChild(label->model());
+	this->addChild((new draw::Text(key))->wrap());
+	this->addChild(new draw::ToolTip(message));
 	this->addChild(this->background(0));
 }
 

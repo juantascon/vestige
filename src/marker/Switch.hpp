@@ -2,6 +2,7 @@
 #define __FAR_MARKER_SWITCH_HPP
 
 #include "Marker.hpp"
+#include "../draw/ToolTip.hpp"
 
 namespace far {
 namespace marker {

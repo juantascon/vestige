@@ -5,7 +5,7 @@ add_executable( farcode
 	state/Node state/Block state/List state/State state/Capture
 	problem/Problem problem/Reverse problem/Join problem/Variables
 	core/Parameters core/GlobalStorage core/Supervisor core/Initializer
-	draw/Rectangle draw/Label
+	draw/Rectangle draw/Text draw/ToolTip
 	Main
 )
 

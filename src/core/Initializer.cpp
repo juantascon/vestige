@@ -48,7 +48,6 @@ void Initializer::initCalibration() {
 
 void Initializer::initCamera() {
 	camera = calibration->createCamera();
-	//this->addModelsToCam(cam);
 	
 	osgART::VideoLayer* _layer = new osgART::VideoLayer();
 	_layer->setSize(*video);
@@ -60,6 +59,7 @@ void Initializer::initCamera() {
 	_layer->getOrCreateStateSet()->setRenderBinDetails(0, "RenderBin");
 	
 	camera->addChild(_layer);
+	
 	GlobalStorage::instance()->camera = camera;
 }
 

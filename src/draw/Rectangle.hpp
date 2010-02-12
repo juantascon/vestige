@@ -8,15 +8,12 @@
 namespace far {
 namespace draw {
 
-class Rectangle
+class Rectangle : public osg::Geometry
 {
 	protected:
-		Rectangle();
-		
+	
 	public:
-		static Rectangle* instance();
-		
-		osg::Geometry* create(osg::Vec3* A, osg::Vec3* B, osg::Vec3* C, osg::Vec3* D, osg::Vec4* color);
+		 Rectangle(osg::Vec3 A, osg::Vec3 B, osg::Vec3 C, osg::Vec3 D, osg::Vec4 color);
 };
 
 }}
