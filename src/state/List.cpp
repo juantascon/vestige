@@ -1,6 +1,6 @@
 #include "List.hpp"
 
-namespace far {
+namespace vestige {
 namespace state {
 
 List::List(marker::Marker *m) : Node(m)

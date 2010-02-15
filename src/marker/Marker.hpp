@@ -1,5 +1,5 @@
-#ifndef __FAR_MARKER_MARKER_HPP
-#define __FAR_MARKER_MARKER_HPP
+#ifndef __VESTIGE_MARKER_MARKER_HPP
+#define __VESTIGE_MARKER_MARKER_HPP
 
 #include "../lib/osg.hpp"
 #include "../lib/osgart.hpp"
@@ -7,7 +7,7 @@
 #include "../core/Parameters.hpp"
 #include "../core/Debug.hpp"
 
-namespace far {
+namespace vestige {
 namespace marker {
 
 class Marker : public osg::NodeCallback

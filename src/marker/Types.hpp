@@ -1,5 +1,5 @@
-#ifndef __FAR_MARKER_TYPES_HPP
-#define __FAR_MARKER_TYPES_HPP
+#ifndef __VESTIGE_MARKER_TYPES_HPP
+#define __VESTIGE_MARKER_TYPES_HPP
 
 #include "Marker.hpp"
 

@@ -1,6 +1,6 @@
 #include "Discard.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 Discard::Discard(state::Node* item) : Action(item)

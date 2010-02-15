@@ -1,6 +1,6 @@
 #include "Rule.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 Rule::Rule(std::string item)

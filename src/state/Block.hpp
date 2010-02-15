@@ -1,9 +1,9 @@
-#ifndef __FAR_STATE_BLOCK_HPP
-#define __FAR_STATE_BLOCK_HPP
+#ifndef __VESTIGE_STATE_BLOCK_HPP
+#define __VESTIGE_STATE_BLOCK_HPP
 
 #include "Node.hpp"
 
-namespace far{
+namespace vestige{
 namespace state{
 
 class Block : public Node

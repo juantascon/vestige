@@ -1,12 +1,12 @@
 #include "Initializer.hpp"
 #include <osgART/GeometryUtils>
 
-namespace far {
+namespace vestige {
 namespace core {
 
 Initializer::Initializer() { }
 
-Initializer* Initializer::instance() { return &boost::serialization::singleton<far::core::Initializer>::get_mutable_instance(); }
+Initializer* Initializer::instance() { return &boost::serialization::singleton<core::Initializer>::get_mutable_instance(); }
 
 void Initializer::initVideo() {
 	int _video_id = osgART::PluginManager::instance()->load("osgart_video_artoolkit2");

@@ -1,6 +1,6 @@
 #include "Node.hpp"
 
-namespace far {
+namespace vestige {
 namespace state {
 
 Node::Node(marker::Marker *m) {

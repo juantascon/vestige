@@ -1,6 +1,6 @@
 #include "Pop.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 Pop::Pop(state::Node* item, state::Node* from) : Action(item)

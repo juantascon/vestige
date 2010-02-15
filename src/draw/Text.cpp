@@ -1,6 +1,6 @@
 #include "Text.hpp"
 
-namespace far {
+namespace vestige {
 namespace draw {
 
 Text::Text(std::string value) : osgText::Text() {

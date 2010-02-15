@@ -2,7 +2,7 @@
 
 #include "GlobalMarkers.hpp"
 
-namespace far {
+namespace vestige {
 namespace marker {
 
 Return::Return(std::string marker_args) : Marker(marker_args, "RETURN")

@@ -1,9 +1,9 @@
 #include "GlobalStorage.hpp"
 
-namespace far {
+namespace vestige {
 namespace core {
 
-GlobalStorage* GlobalStorage::instance() { return &boost::serialization::singleton<far::core::GlobalStorage>::get_mutable_instance(); }
+GlobalStorage* GlobalStorage::instance() { return &boost::serialization::singleton<core::GlobalStorage>::get_mutable_instance(); }
 
 GlobalStorage::GlobalStorage()
 {

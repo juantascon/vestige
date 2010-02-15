@@ -1,6 +1,6 @@
 #include "Problem.hpp"
 
-namespace far {
+namespace vestige {
 namespace problem {
 
 Problem::Problem() {

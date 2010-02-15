@@ -1,9 +1,9 @@
-#ifndef __FAR_MARKER_GLOBALMARKERS_HPP
-#define __FAR_MARKER_GLOBALMARKERS_HPP
+#ifndef __VESTIGE_MARKER_GLOBALMARKERS_HPP
+#define __VESTIGE_MARKER_GLOBALMARKERS_HPP
 
 #include "Types.hpp"
 
-namespace far {
+namespace vestige {
 namespace marker {
 
 class GlobalMarkers

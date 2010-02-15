@@ -1,6 +1,6 @@
 #include "Variables.hpp"
 
-namespace far {
+namespace vestige {
 namespace problem {
 
 

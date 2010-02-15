@@ -1,9 +1,9 @@
-#ifndef __FAR_PROBLEM_JOIN_HPP
-#define __FAR_PROBLEM_JOIN_HPP
+#ifndef __VESTIGE_PROBLEM_JOIN_HPP
+#define __VESTIGE_PROBLEM_JOIN_HPP
 
 #include "Problem.hpp"
 
-namespace far {
+namespace vestige {
 namespace problem {
 
 class Join : public Problem

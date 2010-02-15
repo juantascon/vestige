@@ -1,10 +1,10 @@
-#ifndef __FAR_STATE_STATE_HPP
-#define __FAR_STATE_STATE_HPP
+#ifndef __VESTIGE_STATE_STATE_HPP
+#define __VESTIGE_STATE_STATE_HPP
 
 #include "List.hpp"
 #include "../action/Types.hpp"
 
-namespace far {
+namespace vestige {
 namespace state {
 
 class State : public List

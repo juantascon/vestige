@@ -1,7 +1,7 @@
 #include "Marker.hpp"
 #include "../core/GlobalStorage.hpp"
 
-namespace far {
+namespace vestige {
 namespace marker {
 
 Marker::Marker(std::string marker_args, std::string id)

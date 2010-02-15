@@ -1,6 +1,6 @@
 #include "ToolTip.hpp"
 
-namespace far {
+namespace vestige {
 namespace draw {
 
 ToolTip::ToolTip(std::string value, float size) {

@@ -1,5 +1,5 @@
-#ifndef __FAR_LIB_OSG_HPP
-#define __FAR_LIB_OSG_HPP
+#ifndef __VESTIGE_LIB_OSG_HPP
+#define __VESTIGE_LIB_OSG_HPP
 
 #include <osg/ShapeDrawable>
 #include <osg/Depth>

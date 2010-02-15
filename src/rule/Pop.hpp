@@ -1,10 +1,10 @@
-#ifndef __FAR_RULE_POP_HPP
-#define __FAR_RULE_POP_HPP
+#ifndef __VESTIGE_RULE_POP_HPP
+#define __VESTIGE_RULE_POP_HPP
 
 #include "Rule.hpp"
 #include "../action/Pop.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 class Pop : public Rule

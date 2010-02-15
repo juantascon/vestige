@@ -1,5 +1,5 @@
-#ifndef __FAR_LIB_OSGART_HPP
-#define __FAR_LIB_OSGART_HPP
+#ifndef __VESTIGE_LIB_OSGART_HPP
+#define __VESTIGE_LIB_OSGART_HPP
 
 #include <osgART/Foundation>
 #include <osgART/VideoLayer>

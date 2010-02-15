@@ -1,6 +1,6 @@
 #include "Reverse.hpp"
 
-namespace far {
+namespace vestige {
 namespace problem {
 
 Reverse::Reverse() : Problem()

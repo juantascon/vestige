@@ -1,9 +1,9 @@
 #include "Detect.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
-Detect* Detect::instance() { return &boost::serialization::singleton<far::action::Detect>::get_mutable_instance(); }
+Detect* Detect::instance() { return &boost::serialization::singleton<action::Detect>::get_mutable_instance(); }
 
 Detect::Detect()
 {

@@ -1,10 +1,10 @@
 #include "Supervisor.hpp"
 
-namespace far {
+namespace vestige {
 namespace core {
 
 Supervisor* Supervisor::instance() {
-	return &boost::serialization::singleton<far::core::Supervisor>::get_mutable_instance();
+	return &boost::serialization::singleton<core::Supervisor>::get_mutable_instance();
 }
 
 Supervisor::Supervisor() {

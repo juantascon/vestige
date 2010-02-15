@@ -1,9 +1,9 @@
-#ifndef __FAR_ACTION_PUSH_HPP
-#define __FAR_ACTION_PUSH_HPP
+#ifndef __VESTIGE_ACTION_PUSH_HPP
+#define __VESTIGE_ACTION_PUSH_HPP
 
 #include "Action.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 class Push : public Action

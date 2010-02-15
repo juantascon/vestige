@@ -1,10 +1,10 @@
-#ifndef __FAR_RULE_PUSH_HPP
-#define __FAR_RULE_PUSH_HPP
+#ifndef __VESTIGE_RULE_PUSH_HPP
+#define __VESTIGE_RULE_PUSH_HPP
 
 #include "Rule.hpp"
 #include "../action/Push.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 class Push : public Rule

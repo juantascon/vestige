@@ -1,10 +1,10 @@
-#ifndef __FAR_RULE_POPPUSH_HPP
-#define __FAR_RULE_POPPUSH_HPP
+#ifndef __VESTIGE_RULE_POPPUSH_HPP
+#define __VESTIGE_RULE_POPPUSH_HPP
 
 #include "Rule.hpp"
 #include "../action/PopPush.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 class PopPush : public Rule

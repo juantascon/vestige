@@ -1,6 +1,6 @@
 #include "Push.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 Push::Push(state::Node* item, state::Node* into) : Action(item)

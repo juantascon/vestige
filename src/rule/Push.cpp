@@ -1,6 +1,6 @@
 #include "Push.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 Push::Push(std::string item, std::string into) : Rule(item)

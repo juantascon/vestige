@@ -1,10 +1,10 @@
-#ifndef __FAR_STATE_CAPTURE_HPP
-#define __FAR_STATE_CAPTURE_HPP
+#ifndef __VESTIGE_STATE_CAPTURE_HPP
+#define __VESTIGE_STATE_CAPTURE_HPP
 
 #include "Types.hpp"
 #include "../marker/Types.hpp"
 
-namespace far {
+namespace vestige {
 namespace state {
 
 class Capture

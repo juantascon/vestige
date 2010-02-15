@@ -1,5 +1,5 @@
-#ifndef __FAR_MARKER_BLOCK_HPP
-#define __FAR_MARKER_BLOCK_HPP
+#ifndef __VESTIGE_MARKER_BLOCK_HPP
+#define __VESTIGE_MARKER_BLOCK_HPP
 
 #include "Marker.hpp"
 
@@ -7,7 +7,7 @@
 #include "../draw/Text.hpp"
 #include "../draw/ToolTip.hpp"
 
-namespace far {
+namespace vestige {
 namespace marker {
 
 class Block : public Marker

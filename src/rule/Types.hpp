@@ -1,5 +1,5 @@
-#ifndef __FAR_RULE_TYPES_HPP
-#define __FAR_RULE_TYPES_HPP
+#ifndef __VESTIGE_RULE_TYPES_HPP
+#define __VESTIGE_RULE_TYPES_HPP
 
 #include "Rule.hpp"
 

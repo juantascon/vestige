@@ -1,6 +1,6 @@
 #include "Rectangle.hpp"
 
-namespace far {
+namespace vestige {
 namespace draw {
 
 Rectangle::Rectangle(osg::Vec3 A, osg::Vec3 B, osg::Vec3 C, osg::Vec3 D, osg::Vec4 color)

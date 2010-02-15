@@ -1,5 +1,5 @@
-#ifndef __FAR_STATE_TYPES_HPP
-#define __FAR_STATE_TYPES_HPP
+#ifndef __VESTIGE_STATE_TYPES_HPP
+#define __VESTIGE_STATE_TYPES_HPP
 
 #include "Node.hpp"
 

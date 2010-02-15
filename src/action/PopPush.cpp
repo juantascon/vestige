@@ -1,6 +1,6 @@
 #include "PopPush.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 PopPush::PopPush(state::Node* item, state::Node* from, state::Node* into) : Action(item)

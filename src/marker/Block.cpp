@@ -1,6 +1,6 @@
 #include "Block.hpp"
 
-namespace far {
+namespace vestige {
 namespace marker {
 
 Block::Block(std::string marker_args, std::string id, std::string key) : Marker(marker_args, id)

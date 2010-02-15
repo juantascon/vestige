@@ -1,5 +1,5 @@
-#ifndef __FAR_CORE_INITIALIZER_HPP
-#define __FAR_CORE_INITIALIZER_HPP
+#ifndef __VESTIGE_CORE_INITIALIZER_HPP
+#define __VESTIGE_CORE_INITIALIZER_HPP
 
 #include "../lib/osgart.hpp"
 
@@ -8,7 +8,7 @@
 #include "../marker/GlobalMarkers.hpp"
 #include "../marker/Types.hpp"
 
-namespace far {
+namespace vestige {
 namespace core {
 
 class Initializer

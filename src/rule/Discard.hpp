@@ -1,10 +1,10 @@
-#ifndef __FAR_RULE_DISCARD_HPP
-#define __FAR_RULE_DISCARD_HPP
+#ifndef __VESTIGE_RULE_DISCARD_HPP
+#define __VESTIGE_RULE_DISCARD_HPP
 
 #include "Rule.hpp"
 #include "../action/Discard.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 class Discard : public Rule

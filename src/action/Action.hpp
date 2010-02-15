@@ -13,12 +13,12 @@
  **
  */
 
-#ifndef __FAR_ACTION_ACTION_HPP
-#define __FAR_ACTION_ACTION_HPP
+#ifndef __VESTIGE_ACTION_ACTION_HPP
+#define __VESTIGE_ACTION_ACTION_HPP
 
 #include "../state/Node.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 class Action

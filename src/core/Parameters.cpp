@@ -1,9 +1,9 @@
 #include "Parameters.hpp"
 
-namespace far {
+namespace vestige {
 namespace core {
 
-Parameters* Parameters::instance() { return &boost::serialization::singleton<far::core::Parameters>::get_mutable_instance(); }
+Parameters* Parameters::instance() { return &boost::serialization::singleton<core::Parameters>::get_mutable_instance(); }
 
 Parameters::Parameters()
 {

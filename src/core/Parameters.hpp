@@ -1,9 +1,9 @@
-#ifndef __FAR_CORE_PARAMETERS_HPP
-#define __FAR_CORE_PARAMETERS_HPP
+#ifndef __VESTIGE_CORE_PARAMETERS_HPP
+#define __VESTIGE_CORE_PARAMETERS_HPP
 
 #include "../lib/boost.hpp"
 
-namespace far {
+namespace vestige {
 namespace core {
 
 class Parameters

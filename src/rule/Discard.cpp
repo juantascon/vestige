@@ -1,6 +1,6 @@
 #include "Discard.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 Discard::Discard(std::string item) : Rule(item)

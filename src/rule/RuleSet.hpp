@@ -1,9 +1,9 @@
-#ifndef __FAR_RULE_RULESET_HPP
-#define __FAR_RULE_RULESET_HPP
+#ifndef __VESTIGE_RULE_RULESET_HPP
+#define __VESTIGE_RULE_RULESET_HPP
 
 #include "Rule.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 class RuleSet

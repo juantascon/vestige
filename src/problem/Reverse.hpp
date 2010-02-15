@@ -1,9 +1,9 @@
-#ifndef __FAR_PROBLEM_REVERSE_HPP
-#define __FAR_PROBLEM_REVERSE_HPP
+#ifndef __VESTIGE_PROBLEM_REVERSE_HPP
+#define __VESTIGE_PROBLEM_REVERSE_HPP
 
 #include "Problem.hpp"
 
-namespace far {
+namespace vestige {
 namespace problem {
 
 class Reverse : public Problem

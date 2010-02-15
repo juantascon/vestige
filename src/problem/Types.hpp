@@ -1,5 +1,5 @@
-#ifndef __FAR_PROBLEM_TYPES_HPP
-#define __FAR_PROBLEM_TYPES_HPP
+#ifndef __VESTIGE_PROBLEM_TYPES_HPP
+#define __VESTIGE_PROBLEM_TYPES_HPP
 
 #include "Problem.hpp"
 

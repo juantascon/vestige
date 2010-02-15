@@ -1,10 +1,10 @@
-#ifndef __FAR_STATE_LIST_HPP
-#define __FAR_STATE_LIST_HPP
+#ifndef __VESTIGE_STATE_LIST_HPP
+#define __VESTIGE_STATE_LIST_HPP
 
 #include "Node.hpp"
 #include "../lib/boost.hpp"
 
-namespace far {
+namespace vestige {
 namespace state {
 
 class List : public Node

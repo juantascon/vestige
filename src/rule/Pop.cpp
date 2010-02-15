@@ -1,6 +1,6 @@
 #include "Pop.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 Pop::Pop(std::string item, std::string from) : Rule(item)

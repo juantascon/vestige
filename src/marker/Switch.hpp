@@ -1,10 +1,10 @@
-#ifndef __FAR_MARKER_SWITCH_HPP
-#define __FAR_MARKER_SWITCH_HPP
+#ifndef __VESTIGE_MARKER_SWITCH_HPP
+#define __VESTIGE_MARKER_SWITCH_HPP
 
 #include "Marker.hpp"
 #include "../draw/ToolTip.hpp"
 
-namespace far {
+namespace vestige {
 namespace marker {
 
 class Switch : public Marker

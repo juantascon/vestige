@@ -12,12 +12,12 @@
  **
  */
 
-#ifndef __FAR_RULE_RULE_HPP
-#define __FAR_RULE_RULE_HPP
+#ifndef __VESTIGE_RULE_RULE_HPP
+#define __VESTIGE_RULE_RULE_HPP
 
 #include "../action/Action.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 class Rule

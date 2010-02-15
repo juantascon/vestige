@@ -3,11 +3,11 @@
 #include "../lib/osgart.hpp"
 #include "../lib/boost.hpp"
 
-namespace far {
+namespace vestige {
 namespace marker {
 
 GlobalMarkers* GlobalMarkers::instance() {
-	return &boost::serialization::singleton<far::marker::GlobalMarkers>::get_mutable_instance();
+	return &boost::serialization::singleton<marker::GlobalMarkers>::get_mutable_instance();
 }
 
 GlobalMarkers::GlobalMarkers() : _items()

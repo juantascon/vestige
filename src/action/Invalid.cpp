@@ -1,6 +1,6 @@
 #include "Invalid.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 Invalid::Invalid(state::Node* item) : Action(item)

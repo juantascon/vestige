@@ -1,9 +1,9 @@
-#ifndef __FAR_DRAW_TEXT_HPP
-#define __FAR_DRAW_TEXT_HPP
+#ifndef __VESTIGE_DRAW_TEXT_HPP
+#define __VESTIGE_DRAW_TEXT_HPP
 
 #include "../lib/osg.hpp"
 
-namespace far {
+namespace vestige {
 namespace draw {
 
 class Text : public osgText::Text

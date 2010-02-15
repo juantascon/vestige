@@ -1,11 +1,11 @@
-#ifndef __FAR_PROBLEM_VARIABLES_HPP
-#define __FAR_PROBLEM_VARIABLES_HPP
+#ifndef __VESTIGE_PROBLEM_VARIABLES_HPP
+#define __VESTIGE_PROBLEM_VARIABLES_HPP
 
 #include <limits>
 
 #include "../state/Types.hpp"
 
-namespace far {
+namespace vestige {
 namespace problem {
 
 class Variables

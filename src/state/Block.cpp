@@ -1,6 +1,6 @@
 #include "Block.hpp"
 
-namespace far{
+namespace vestige{
 namespace state{
 
 Block::Block(marker::Marker *m) : Node(m)

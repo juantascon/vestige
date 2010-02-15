@@ -1,6 +1,6 @@
 #include "Action.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 Action::Action(state::Node* item)

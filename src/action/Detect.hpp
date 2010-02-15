@@ -1,12 +1,12 @@
-#ifndef __FAR_ACTION_DETECT_HPP
-#define __FAR_ACTION_DETECT_HPP
+#ifndef __VESTIGE_ACTION_DETECT_HPP
+#define __VESTIGE_ACTION_DETECT_HPP
 
 #include "Action.hpp"
 #include "Invalid.hpp"
 
 #include "../state/State.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 class Detect

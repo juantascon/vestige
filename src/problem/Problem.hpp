@@ -1,5 +1,5 @@
-#ifndef __FAR_PROBLEM_PROBLEM_HPP
-#define __FAR_PROBLEM_PROBLEM_HPP
+#ifndef __VESTIGE_PROBLEM_PROBLEM_HPP
+#define __VESTIGE_PROBLEM_PROBLEM_HPP
 
 #include "Variables.hpp"
 
@@ -8,7 +8,7 @@
 
 #include "../rule/RuleSet.hpp"
 
-namespace far {
+namespace vestige {
 namespace problem {
 
 class Problem

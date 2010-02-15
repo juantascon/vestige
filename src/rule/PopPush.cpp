@@ -1,6 +1,6 @@
 #include "PopPush.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 PopPush::PopPush(std::string item, std::string from, std::string into) : Rule(item)

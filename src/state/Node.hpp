@@ -1,9 +1,9 @@
-#ifndef __FAR_STATE_NODE_HPP
-#define __FAR_STATE_NODE_HPP
+#ifndef __VESTIGE_STATE_NODE_HPP
+#define __VESTIGE_STATE_NODE_HPP
 
 #include "../marker/Marker.hpp"
 
-namespace far {
+namespace vestige {
 namespace state {
 
 class Node

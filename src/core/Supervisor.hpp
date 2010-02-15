@@ -1,5 +1,5 @@
-#ifndef __FAR_CORE_SUPERVISOR_HPP
-#define __FAR_CORE_SUPERVISOR_HPP
+#ifndef __VESTIGE_CORE_SUPERVISOR_HPP
+#define __VESTIGE_CORE_SUPERVISOR_HPP
 
 #include "../marker/GlobalMarkers.hpp"
 #include "../problem/Types.hpp"
@@ -8,7 +8,7 @@
 #include "../action/Detect.hpp"
 #include "../rule/RuleSet.hpp"
 
-namespace far {
+namespace vestige {
 namespace core {
 
 class Supervisor

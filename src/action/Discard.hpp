@@ -1,9 +1,9 @@
-#ifndef __FAR_ACTION_DISCARD_HPP
-#define __FAR_ACTION_DISCARD_HPP
+#ifndef __VESTIGE_ACTION_DISCARD_HPP
+#define __VESTIGE_ACTION_DISCARD_HPP
 
 #include "Action.hpp"
 
-namespace far {
+namespace vestige {
 namespace action {
 
 class Discard : public Action

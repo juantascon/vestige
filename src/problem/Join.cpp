@@ -1,6 +1,6 @@
 #include "Join.hpp"
 
-namespace far {
+namespace vestige {
 namespace problem {
 
 Join::Join() : Problem()

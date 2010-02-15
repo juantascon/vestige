@@ -1,6 +1,6 @@
 #include "RuleSet.hpp"
 
-namespace far {
+namespace vestige {
 namespace rule {
 
 RuleSet::RuleSet()

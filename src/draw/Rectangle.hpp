@@ -1,11 +1,11 @@
-#ifndef __FAR_DRAW_RECTANGLE_HPP
-#define __FAR_DRAW_RECTANGLE_HPP
+#ifndef __VESTIGE_DRAW_RECTANGLE_HPP
+#define __VESTIGE_DRAW_RECTANGLE_HPP
 
 #include "../lib/osg.hpp"
 #include "../lib/osgart.hpp"
 #include "../lib/boost.hpp"
 
-namespace far {
+namespace vestige {
 namespace draw {
 
 class Rectangle : public osg::Geometry

@@ -2,10 +2,10 @@
 
 #include "../marker/GlobalMarkers.hpp"
 
-namespace far {
+namespace vestige {
 namespace state {
 
-Capture* Capture::instance() { return &boost::serialization::singleton<far::state::Capture>::get_mutable_instance(); }
+Capture* Capture::instance() { return &boost::serialization::singleton<state::Capture>::get_mutable_instance(); }
 
 Capture::Capture () {
 }

@@ -14,7 +14,7 @@ ROOT=$(dirname $0)/../
 
 cd $ROOT
 
-BIN=build/src/farcode
+BIN=build/src/vestige
 GDB_COMMANDS=util/gdb_commands
 VIDEO=video/
 
