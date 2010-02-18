@@ -53,11 +53,15 @@ void Return::paint() {
 void Return::update_value() {
 	_value = 0;
 	
-	BOOST_FOREACH( marker::Marker* m, *marker::GlobalMarkers::instance()->sort_y_axis() ) {
-		if ( this->aligned(m) && this->under(m) ) {
-			_value = m;
-			return;
-		}
+	marker::MarkerSet* _markers = marker::GlobalMarkers::instance()->items_clone();
+	_markers->filter_by_visible(1);
+	_markers->filter_by_aligned_with_marker(this);
+	_markers->filter_by_over_marker(this);
+	_markers->sort_by_y_axis();
+	
+	if ( _markers->size() > 0 ) {
+		_value = _markers->front();
+		//D(( "return: %s", _value->id().c_str() ));
 	}
 }
 

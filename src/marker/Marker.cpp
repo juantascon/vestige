@@ -57,6 +57,10 @@ int Marker::under(Marker* m) {
 	}
 }
 
+int Marker::over(Marker* m) {
+	return ! under(m);
+}
+
 int Marker::aligned(Marker* m) {
 	osg::Vec3 mpos = m->position();
 	osg::Vec3 tpos = this->position();

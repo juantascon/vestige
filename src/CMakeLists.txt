@@ -1,5 +1,5 @@
 add_executable( vestige
-	marker/Marker marker/List marker/Block marker/Switch marker/Return marker/GlobalMarkers
+	marker/Marker marker/List marker/Block marker/Switch marker/Return marker/MarkerSet marker/GlobalMarkers
 	action/Action action/Pop action/Push action/PopPush action/Invalid action/Discard action/Detect
 	rule/Rule rule/Pop rule/Push rule/PopPush rule/Discard rule/RuleSet
 	state/Node state/Block state/List state/State state/Capture

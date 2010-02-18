@@ -58,18 +58,14 @@ Node* Capture::do_list(marker::Marker* m) {
 State* Capture::capture() {
 	//D(( "BEGIN" ));
 	
-	_markers = marker::GlobalMarkers::instance()->sort_y_axis();
+	_markers = marker::GlobalMarkers::instance()->items_clone();
+	_markers->filter_by_visible(1);
+	_markers->sort_by_y_axis();
+	D(( _markers->text().c_str() ));
 	
 	if (_markers->size() <= 0) { return NULL; }
 	
 	_state = new State();
-	
-	D(("MARKERS:"));
-	D(("------------------"));
-	for (marker::Marker::List::iterator it = _markers->begin(); it != _markers->end(); ++it) {
-		D(( "%s", (*it)->id().c_str() ));
-	}
-	D(("------------------"));
 	
 	for (marker::Marker::List::iterator it = _markers->begin(); it != _markers->end(); ++it) {
 		//D(("IT: %x, RETURN: %x", *it, ))

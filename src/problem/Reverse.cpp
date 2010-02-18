@@ -17,16 +17,13 @@ int Reverse::initialize(state::State* s) {
 	// exactly 2 items variables expected on the board:
 	// * L: list with at least 2 elements
 	// * R: empty list
-	D(("0"));
 	_vars = new Variables(s);
 	if (!_vars->valid_size(2)) { return 0; }
-
-	D(("1"));
+	
 	state::List* L = _vars->next_list_by_size_range(2, (std::numeric_limits<int>::max)());
 	// variable L not found, expected list with at least 2 items
 	if (!L) { return 0; }
-
-	D(("2"));
+	
 	state::List* R = _vars->next_list_by_size_range(0, 0);
 	// variable R not found, expected empty list
 	if (!R) { return 0;	}
@@ -54,7 +51,6 @@ int Reverse::initialize(state::State* s) {
 		_return_items_ids->push_back(n->id());
 	}
 	
-	D(("3"));
 	_active = 1;
 	return 1;
 }

@@ -3,6 +3,7 @@
 
 #include "Types.hpp"
 #include "../marker/Types.hpp"
+#include "../marker/MarkerSet.hpp"
 
 namespace vestige {
 namespace state {
@@ -12,7 +13,7 @@ class Capture
 	protected:
 		Capture();
 		
-		marker::Marker::List* _markers;
+		marker::MarkerSet* _markers;
 		state::State* _state;
 		
 		Node* do_block(marker::Marker* m);

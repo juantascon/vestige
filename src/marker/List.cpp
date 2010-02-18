@@ -10,17 +10,16 @@ List::List(std::string marker_args, std::string id) : Marker(marker_args, id) {
 }
 
 void List::paint() {
-	int blocks_count = 0;
-	BOOST_FOREACH( marker::Marker* m, *marker::GlobalMarkers::instance()->sort_y_axis() ) {
-		if (this->aligned(m) && this->under(m)) {
-			blocks_count++;
-		}
-	}
+	marker::MarkerSet* blocks = marker::GlobalMarkers::instance()->items_clone();
+	blocks->filter_by_visible(1);
+	blocks->filter_by_type(1, 0);
+	blocks->filter_by_aligned_with_marker(this);
+	blocks->filter_by_over_marker(this);
 	
 	float size = core::Parameters::instance()->BLOCK_SIZE();
 	float align_factor = core::Parameters::instance()->ALIGN_FACTOR();
-	float range = (size*2.0*blocks_count)+size;
-	float cover = (size*2.0*(blocks_count-1));
+	float range = (size*2.0*(blocks->size()))+size;
+	float cover = (size*2.0*(blocks->size()-1.0));
 	if (cover < 0) { cover = 0; }
 	float line_width = 20.0;
 	float z = 2.0;

@@ -64,39 +64,39 @@ void Initializer::markers() {
 	gm->m_return = new marker::Return("single;data/patt/artk/patt.hiro;100;0;0");
 
 	//DEMO
-	gm->add( new marker::List("single;data/patt/artk/patt.sample1;100;0;0", "l.s1") );
-	gm->add( new marker::List("single;data/patt/artk/patt.sample2;100;0;0", "l.s2") );
-	gm->add( new marker::Block("single;data/patt/artk/patt.a;100;0;0", "b.a", "a") );
-	gm->add( new marker::Block("single;data/patt/artk/patt.b;100;0;0", "b.b", "b") );
-	gm->add( new marker::Block("single;data/patt/artk/patt.c;100;0;0", "b.c", "c") );
-	gm->add( new marker::Block("single;data/patt/artk/patt.d;100;0;0", "b.d", "d") );
-	gm->add( new marker::Block("single;data/patt/artk/patt.f;100;0;0", "b.f", "f") );
-	gm->add( new marker::Block("single;data/patt/artk/patt.g;100;0;0", "b.g", "g") );
+	gm->items_add( new marker::List("single;data/patt/artk/patt.sample1;100;0;0", "l.s1") );
+	gm->items_add( new marker::List("single;data/patt/artk/patt.sample2;100;0;0", "l.s2") );
+	gm->items_add( new marker::Block("single;data/patt/artk/patt.a;100;0;0", "b.a", "a") );
+	gm->items_add( new marker::Block("single;data/patt/artk/patt.b;100;0;0", "b.b", "b") );
+	gm->items_add( new marker::Block("single;data/patt/artk/patt.c;100;0;0", "b.c", "c") );
+	gm->items_add( new marker::Block("single;data/patt/artk/patt.d;100;0;0", "b.d", "d") );
+	gm->items_add( new marker::Block("single;data/patt/artk/patt.f;100;0;0", "b.f", "f") );
+	gm->items_add( new marker::Block("single;data/patt/artk/patt.g;100;0;0", "b.g", "g") );
 	
 	/*
-	gm->add( new marker::List("single;data/patt/artk/patt.a;100;0;0", "l.a") );
-	gm->add( new marker::List("single;data/patt/artk/patt.b;100;0;0", "l.b") );
-	gm->add( new marker::List("single;data/patt/artk/patt.c;100;0;0", "l.c") );
-	gm->add( new marker::List("single;data/patt/artk/patt.d;100;0;0", "l.d") );
-	gm->add( new marker::List("single;data/patt/artk/patt.f;100;0;0", "l.f") );
-	gm->add( new marker::List("single;data/patt/artk/patt.g;100;0;0", "l.g") );
+	gm->items_add( new marker::List("single;data/patt/artk/patt.a;100;0;0", "l.a") );
+	gm->items_add( new marker::List("single;data/patt/artk/patt.b;100;0;0", "l.b") );
+	gm->items_add( new marker::List("single;data/patt/artk/patt.c;100;0;0", "l.c") );
+	gm->items_add( new marker::List("single;data/patt/artk/patt.d;100;0;0", "l.d") );
+	gm->items_add( new marker::List("single;data/patt/artk/patt.f;100;0;0", "l.f") );
+	gm->items_add( new marker::List("single;data/patt/artk/patt.g;100;0;0", "l.g") );
 	
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_1.patt;100;0;0", "b.1", "1") );
-	gm->add( new marker::Block("single;data/patt/artk/4x4_2.patt;100;0;0", "b.2", "2") );
-	gm->add( new marker::Block("single;data/patt/artk/4x4_3.patt;100;0;0", "b.3", "3") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_4.patt;100;0;0", "b.4", "4") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_5.patt;100;0;0", "b.5", "5") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_6.patt;100;0;0", "b.6", "6") );
-	gm->add( new marker::Block("single;data/patt/artk/4x4_7.patt;100;0;0", "b.7", "7") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_8.patt;100;0;0", "b.8", "8") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_9.patt;100;0;0", "b.9", "9") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_10.patt;100;0;0", "b.10", "10") );
-	gm->add( new marker::Block("single;data/patt/artk/4x4_11.patt;100;0;0", "b.11", "11") );
-	gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.12", "12") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.13", "13") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.14", "14") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.15", "15") );
-	//gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.16", "16") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_1.patt;100;0;0", "b.1", "1") );
+	gm->items_add( new marker::Block("single;data/patt/artk/4x4_2.patt;100;0;0", "b.2", "2") );
+	gm->items_add( new marker::Block("single;data/patt/artk/4x4_3.patt;100;0;0", "b.3", "3") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_4.patt;100;0;0", "b.4", "4") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_5.patt;100;0;0", "b.5", "5") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_6.patt;100;0;0", "b.6", "6") );
+	gm->items_add( new marker::Block("single;data/patt/artk/4x4_7.patt;100;0;0", "b.7", "7") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_8.patt;100;0;0", "b.8", "8") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_9.patt;100;0;0", "b.9", "9") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_10.patt;100;0;0", "b.10", "10") );
+	gm->items_add( new marker::Block("single;data/patt/artk/4x4_11.patt;100;0;0", "b.11", "11") );
+	gm->items_add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.12", "12") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.13", "13") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.14", "14") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.15", "15") );
+	//gm->items_add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.16", "16") );
 	*/
 }
 

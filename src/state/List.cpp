@@ -54,7 +54,6 @@ Node::List* List::flat_view() {
 	l->push_back(this);
 	
 	BOOST_FOREACH(Node *n, *items) {
-	
 		l->splice(l->end(), *(n->flat_view()));
 	}
 	

@@ -36,6 +36,7 @@ class Marker : public osg::NodeCallback
 		
 		int aligned(Marker* m);
 		int under(Marker* m);
+		int over(Marker* m);
 		
 		void operator()(osg::Node* node, osg::NodeVisitor* nv);
 		
