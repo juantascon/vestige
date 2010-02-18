@@ -15,6 +15,14 @@ void List::paint() {
 	blocks->filter_by_type(1, 0);
 	blocks->filter_by_aligned_with_marker(this);
 	blocks->filter_by_over_marker(this);
+	blocks->sort_by_y_axis();
+	
+	BOOST_FOREACH(marker::Marker* m, *blocks) {
+		dynamic_cast<marker::Block*>(m)->set_top(0);
+	}
+	if ( blocks->size() > 0 ) {
+		dynamic_cast<marker::Block*>(blocks->back())->set_top(1);
+	}
 	
 	float size = core::Parameters::instance()->BLOCK_SIZE();
 	float align_factor = core::Parameters::instance()->ALIGN_FACTOR();

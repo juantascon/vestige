@@ -3,8 +3,7 @@
 namespace vestige {
 namespace rule {
 
-RuleSet::RuleSet()
-{
+RuleSet::RuleSet() {
 	items = new Rule::Vector();
 	current = items->begin();
 }

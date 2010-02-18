@@ -14,9 +14,12 @@ class Block : public Marker
 {
 	protected:
 		std::string _key;
+		int _top;
 		
 	public:
 		Block(std::string marker_args, std::string id, std::string key);
+
+		void set_top(int top);
 		
 		virtual void update();
 		virtual void paint();
