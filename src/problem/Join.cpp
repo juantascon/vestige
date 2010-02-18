@@ -41,14 +41,14 @@ int Join::initialize(state::State* s) {
 	
 	// 1. move all the elements from L to TMP
 	BOOST_REVERSE_FOREACH(state::Node *n, *(L->items)) {
-		//D(("node: %s, from: %s, to: %s", n->id.c_str(), L->id.c_str(), TMP->id.c_str() ));
-		_rules->add(new rule::PopPush(n->id, L->id, TMP->id));
+		//D(("node: %s, from: %s, to: %s", n->id().c_str(), L->id().c_str(), TMP->id().c_str() ));
+		_rules->add(new rule::PopPush(n->id(), L->id(), TMP->id()));
 	}
 	
 	// 2. move the same elements from tmp to R
 	BOOST_FOREACH(state::Node *n, *(L->items)) {
-		//D(("node: %s, from: %s, to: %s", n->id.c_str(), TMP->id.c_str(), R->id.c_str() ));
-		_rules->add(new rule::PopPush(n->id, TMP->id, R->id));
+		//D(("node: %s, from: %s, to: %s", n->id().c_str(), TMP->id().c_str(), R->id().c_str() ));
+		_rules->add(new rule::PopPush(n->id(), TMP->id(), R->id()));
 	}
 	
 	/***/
@@ -59,10 +59,10 @@ int Join::initialize(state::State* s) {
 	
 	// items from R plus items from L
 	BOOST_FOREACH(state::Node *n, *(R->items)) {
-		_return_items_ids->push_back(n->id);
+		_return_items_ids->push_back(n->id());
 	}
 	BOOST_FOREACH(state::Node *n, *(L->items)) {
-		_return_items_ids->push_back(n->id);
+		_return_items_ids->push_back(n->id());
 	}
 	
 	_active = 1;

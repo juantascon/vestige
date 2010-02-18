@@ -6,10 +6,17 @@ namespace marker {
 
 Marker::Marker(std::string marker_args, std::string id)
 {
-	this->id = id;
+	this->_id = id;
+	this->set_valid(1);
 	
-	initMarker(marker_args);
-	initModel();
+	// create marker
+	_marker = core::GlobalStorage::instance()->tracker->addMarker(marker_args);
+	if (!_marker) {	D(("invalid marker")); exit(-1); }
+	_marker->setActive(true);
+
+	// create model
+	_model = new osg::MatrixTransform();
+	_model->getOrCreateStateSet()->setRenderBinDetails(100, "RenderBin");
 	
 	// attach the model to the marker
 	osgART::attachDefaultEventCallbacks(_model, _marker);
@@ -18,38 +25,24 @@ Marker::Marker(std::string marker_args, std::string id)
 	core::GlobalStorage::instance()->camera->addChild(_model);
 }
 
-void Marker::initMarker(std::string args) {
-	_marker = core::GlobalStorage::instance()->tracker->addMarker(args);
-	if (!_marker)
-	{
-		osg::notify(osg::FATAL) << "Could not add marker!" << std::endl;
-		return;
-	}
-	_marker->setActive(true);
-}
-
-void Marker::initModel() {
-	_model = new osg::MatrixTransform();
-	_model->getOrCreateStateSet()->setRenderBinDetails(100, "RenderBin");
-}
-
 osgART::Marker* Marker::marker() { return this->_marker; }
 osg::MatrixTransform* Marker::model() { return this->_model; }
+std::string Marker::id() { return this->_id; }
 
-void Marker::addChild(osg::Node* child) {
+void Marker::add(osg::Node* child) {
 	_model->addChild(child);
 }
 
-void Marker::resetModel() {
+void Marker::reset() {
 	_model->removeChildren(0, _model->getNumChildren());
 }
 
 int Marker::visible() {
-	return this->marker()->valid();
+	return _marker->valid();
 }
 
 osg::Vec3 Marker::position() {
-	return this->_marker->getTransform().getTrans();
+	return _marker->getTransform().getTrans();
 }
 
 int Marker::under(Marker* m) {
@@ -78,8 +71,12 @@ int Marker::aligned(Marker* m) {
 	return (abs(dpos.x()) < core::Parameters::instance()->ALIGN_FACTOR());
 }
 
+void Marker::set_valid(int valid) {
+	_valid = valid;
+}
+
 void Marker::alert(std::string message) {
-	D(("ALERT [%s]: %s", message.c_str(), id.c_str()));
+	D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
 	
 	/*float boxSize = 100.0f;
 	osg::ShapeDrawable* sd = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, boxSize / 2.0f), boxSize));

@@ -12,7 +12,7 @@ Return::Return(std::string marker_args) : Marker(marker_args, "RETURN")
 
 Marker* Return::value() { return _value; }
 
-osg::Node* Return::background() {
+void Return::paint() {
 	float z = 2.0;
 	float line_width = 10.0;
 	
@@ -44,8 +44,9 @@ osg::Node* Return::background() {
 	if ( this->visible() && _value->visible() ) {
 		geode->addDrawable(line);
 	}
-	
-	return ( dynamic_cast<osg::Node*> (geode) );
+
+	this->reset();
+	this->add(geode);
 }
 
 
@@ -66,8 +67,7 @@ void Return::update() {
 	}
 	
 	if ( _value && this->aligned(_value) ) {
-		this->resetModel();
-		this->addChild(this->background());
+		this->paint();
 		return;
 	}
 	

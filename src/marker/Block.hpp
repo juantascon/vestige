@@ -13,13 +13,13 @@ namespace marker {
 class Block : public Marker
 {
 	protected:
-		osg::Node* background(int valid);
-		std::string key;
+		std::string _key;
 		
 	public:
 		Block(std::string marker_args, std::string id, std::string key);
 		
 		virtual void update();
+		virtual void paint();
 		virtual void alert(std::string message);
 };
 

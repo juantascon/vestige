@@ -6,70 +6,64 @@ namespace core {
 
 Initializer::Initializer() { }
 
-Initializer* Initializer::instance() { return &boost::serialization::singleton<core::Initializer>::get_mutable_instance(); }
+Initializer* Initializer::instance() {
+	return &boost::serialization::singleton<core::Initializer>::get_mutable_instance();
+}
 
-void Initializer::initVideo() {
+void Initializer::video() {
 	int _video_id = osgART::PluginManager::instance()->load("osgart_video_artoolkit2");
-	video = dynamic_cast<osgART::Video*>(osgART::PluginManager::instance()->get(_video_id));
+	_video = dynamic_cast<osgART::Video*>(osgART::PluginManager::instance()->get(_video_id));
 	
-	if (!video)
-	{
-		osg::notify(osg::FATAL) << "Could not initialize video plugin!" << std::endl;
-		exit(-1);
-	}
+	if (!_video) { D(("Could not initialize video plugin!")); exit(-1); }
 	
-	video->open();
+	_video->open();
 }
 
 
-void Initializer::initTracker() {
+void Initializer::tracker() {
 	int _tracker_id = osgART::PluginManager::instance()->load("osgart_tracker_artoolkit2");
-	tracker = dynamic_cast<osgART::Tracker*>(osgART::PluginManager::instance()->get(_tracker_id));
+	_tracker = dynamic_cast<osgART::Tracker*>(osgART::PluginManager::instance()->get(_tracker_id));
+
+	if (!_tracker) { D(("Could not initialize tracker plugin!")); exit(-1); }
 	
-	if (!tracker)
-	{
-		osg::notify(osg::FATAL) << "Could not initialize tracker plugin!" << std::endl;
-		exit(-1);
-	}
-	
-	GlobalStorage::instance()->tracker = tracker;
+	GlobalStorage::instance()->tracker = _tracker;
 }
 
-void Initializer::initCalibration() {
-	calibration = tracker->getOrCreateCalibration();
-	if (!calibration->load(std::string("data/camera_para.dat")))
-	{
-		osg::notify(osg::FATAL) << "Non existing or incompatible calibration file" << std::endl;
-		exit(-1);
+void Initializer::calibration() {
+	_calibration = _tracker->getOrCreateCalibration();
+	
+	if (!_calibration->load("data/camera_para.dat")) {
+			D(("Non existing or incompatible calibration file!"));
+			exit(-1);
 	}
 	
-	tracker->setImage(video);
+	_tracker->setImage(_video);
 }
 
-void Initializer::initCamera() {
-	camera = calibration->createCamera();
+void Initializer::camera() {
+	_camera = _calibration->createCamera();
 	
 	osgART::VideoLayer* _layer = new osgART::VideoLayer();
-	_layer->setSize(*video);
+	_layer->setSize(*_video);
 	
-	osgART::VideoGeode* _geode = new osgART::VideoGeode(osgART::VideoGeode::USE_TEXTURE_2D, video);
-	addTexturedQuad(*_geode,video->s(),video->t());
+	osgART::VideoGeode* _geode = new osgART::VideoGeode(osgART::VideoGeode::USE_TEXTURE_2D, _video);
+	addTexturedQuad(*_geode,_video->s(),_video->t());
 	_layer->addChild(_geode);
 	
 	_layer->getOrCreateStateSet()->setRenderBinDetails(0, "RenderBin");
 	
-	camera->addChild(_layer);
+	_camera->addChild(_layer);
 	
-	GlobalStorage::instance()->camera = camera;
+	GlobalStorage::instance()->camera = _camera;
 }
 
-void Initializer::initMarkers() {
+void Initializer::markers() {
 	marker::GlobalMarkers* gm = marker::GlobalMarkers::instance();
 	
 	gm->m_switch = new marker::Switch("single;data/patt/artk/patt.kanji;100;0;0");
 	gm->m_return = new marker::Return("single;data/patt/artk/patt.hiro;100;0;0");
 
-	/*
+	//DEMO
 	gm->add( new marker::List("single;data/patt/artk/patt.sample1;100;0;0", "l.s1") );
 	gm->add( new marker::List("single;data/patt/artk/patt.sample2;100;0;0", "l.s2") );
 	gm->add( new marker::Block("single;data/patt/artk/patt.a;100;0;0", "b.a", "a") );
@@ -78,8 +72,8 @@ void Initializer::initMarkers() {
 	gm->add( new marker::Block("single;data/patt/artk/patt.d;100;0;0", "b.d", "d") );
 	gm->add( new marker::Block("single;data/patt/artk/patt.f;100;0;0", "b.f", "f") );
 	gm->add( new marker::Block("single;data/patt/artk/patt.g;100;0;0", "b.g", "g") );
-	*/
 	
+	/*
 	gm->add( new marker::List("single;data/patt/artk/patt.a;100;0;0", "l.a") );
 	gm->add( new marker::List("single;data/patt/artk/patt.b;100;0;0", "l.b") );
 	gm->add( new marker::List("single;data/patt/artk/patt.c;100;0;0", "l.c") );
@@ -103,41 +97,42 @@ void Initializer::initMarkers() {
 	//gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.14", "14") );
 	//gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.15", "15") );
 	//gm->add( new marker::Block("single;data/patt/artk/4x4_12.patt;100;0;0", "b.16", "16") );
+	*/
 }
 
-void Initializer::initViewer() {
-	viewer = new osgViewer::Viewer();
+void Initializer::viewer() {
+	_viewer = new osgViewer::Viewer();
 	
-	viewer->addEventHandler(new osgViewer::StatsHandler);
-	viewer->addEventHandler(new osgViewer::WindowSizeHandler);
-	viewer->addEventHandler(new osgViewer::ThreadingHandler);
-	viewer->addEventHandler(new osgViewer::HelpHandler);
+	_viewer->addEventHandler(new osgViewer::StatsHandler);
+	_viewer->addEventHandler(new osgViewer::WindowSizeHandler);
+	_viewer->addEventHandler(new osgViewer::ThreadingHandler);
+	_viewer->addEventHandler(new osgViewer::HelpHandler);
 	
-	viewer->setUpViewInWindow(0, 0, 800, 600);
-	viewer->realize();
+	_viewer->setUpViewInWindow(0, 0, 800, 600);
+	_viewer->realize();
 }
 
-void Initializer::initRoot() {
-	root = new osg::Group();
-	root->addChild(camera);
+void Initializer::root() {
+	_root = new osg::Group();
+	_root->addChild(_camera);
 }
 
 void Initializer::initialize(){
-	initVideo();
-	initTracker();
-	initCalibration();
-	initCamera();
-	initMarkers();
-	initViewer();
-	initRoot();
+	video();
+	tracker();
+	calibration();
+	camera();
+	markers();
+	viewer();
+	root();
 }
 
 int Initializer::execute() {
-	viewer->setSceneData(root);
-	osgART::TrackerCallback::addOrSet(root, tracker);
+	_viewer->setSceneData(_root);
+	osgART::TrackerCallback::addOrSet(_root, _tracker);
 	
-	video->start();
-	return viewer->run();
+	_video->start();
+	return _viewer->run();
 }
 
 }}

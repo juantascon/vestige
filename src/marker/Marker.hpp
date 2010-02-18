@@ -13,11 +13,11 @@ namespace marker {
 class Marker : public osg::NodeCallback
 {
 	protected:
-		void initMarker(std::string args);
-		void initModel();
-		
 		osgART::Marker* _marker;
 		osg::MatrixTransform* _model;
+		
+		int _valid;
+		std::string _id;
 		
 	public:
 		typedef std::vector <Marker*> Vector;
@@ -25,22 +25,24 @@ class Marker : public osg::NodeCallback
 		
 		Marker(std::string marker_args, std::string id);
 		
-		std::string id;
-		
 		osgART::Marker* marker();
 		osg::MatrixTransform* model();
-		void addChild(osg::Node* child);
-		void resetModel();
+		std::string id();
 		
+		void add(osg::Node* child);
+		virtual void reset();
 		osg::Vec3 position();
 		int visible();
+		
 		int aligned(Marker* m);
 		int under(Marker* m);
 		
-		virtual void operator()(osg::Node* node, osg::NodeVisitor* nv);
-		virtual void update() = 0;
+		void operator()(osg::Node* node, osg::NodeVisitor* nv);
 		
+		virtual void paint() = 0;
+		virtual void update() = 0;
 		virtual void alert(std::string message);
+		virtual void set_valid(int valid);
 };
 
 }}

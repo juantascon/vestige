@@ -11,12 +11,12 @@ namespace marker {
 class List : public Marker
 {
 	protected:
-		osg::Node* background(int valid);
 		
 	public:
 		List (std::string marker_args, std::string id);
 		
 		virtual void update();
+		virtual void paint();
 };
 
 }}

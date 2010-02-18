@@ -10,6 +10,10 @@ class Node
 {
 	private:
 		void _initialize(std::string id, marker::Marker* m, Node* parent, int index);
+	
+	protected:
+		marker::Marker* _m;
+		std::string _id;
 		
 	public:
 		typedef std::vector <Node*> Vector;
@@ -18,10 +22,12 @@ class Node
 		Node(marker::Marker *m);
 		Node(std::string id);
 		
-		std::string id;
-		marker::Marker* m;
+		std::string id();
+		
 		Node* parent;
 		int index;
+		
+		void alert(std::string message);
 		
 		virtual std::string text() = 0;
 		virtual Node::List* flat_view();

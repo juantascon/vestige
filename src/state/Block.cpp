@@ -1,7 +1,7 @@
 #include "Block.hpp"
 
-namespace vestige{
-namespace state{
+namespace vestige {
+namespace state {
 
 Block::Block(marker::Marker *m) : Node(m)
 {
@@ -12,7 +12,7 @@ Block::Block(std::string id) : Node(id)
 }
 
 std::string Block::text() {
-	return "BLOCK-ID: " + id;
+	return "BLOCK-ID: " + _id;
 }
 
 Node::List* Block::flat_view() {

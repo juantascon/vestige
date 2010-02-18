@@ -3,8 +3,8 @@
 
 #include "Node.hpp"
 
-namespace vestige{
-namespace state{
+namespace vestige {
+namespace state {
 
 class Block : public Node
 {

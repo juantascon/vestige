@@ -11,8 +11,8 @@ Supervisor::Supervisor() {
 	previous_state = 0;
 	current_state = 0;
 	
-	//p = new problem::Reverse();
-	p = new problem::Join();
+	p = new problem::Reverse();
+	//p = new problem::Join();
 }
 
 void Supervisor::step() {
@@ -33,7 +33,8 @@ void Supervisor::step() {
 	
 	action::Action *a = action::Detect::instance()->detect(previous_state, current_state);
 	if (!a) {
-		marker::GlobalMarkers::instance()->m_switch->alert("EMPTY-ACTION");
+		//DEMO
+		//marker::GlobalMarkers::instance()->m_switch->alert("EMPTY-ACTION");
 		return;
 	}
 	
@@ -41,13 +42,15 @@ void Supervisor::step() {
 	// TODO: esto sólo se debe ejecutar en modo supervisado
 	if ( !a->valid() || !p->rules()->apply(a) ) {
 		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-LOSE");
-		marker::GlobalMarkers::instance()->m_switch->deactivate();
+		//DEMO
+		//marker::GlobalMarkers::instance()->m_switch->set_valid(0);
 	}
 	
 	// check if this state is the valid final state
 	if (p->validate_return(s->return_value)) {
 		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-WIN");
-		marker::GlobalMarkers::instance()->m_switch->deactivate();
+		//DEMO
+		//marker::GlobalMarkers::instance()->m_switch->set_valid(0);
 	}
 }
 

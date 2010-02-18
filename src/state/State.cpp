@@ -55,19 +55,19 @@ action::Action::Vector* State::diff(State* comp) {
 			
 			//D(("Comp: %s This: %s", comp_n->id.c_str(), this_n->id.c_str()));
 			
-			if (this_n->id == comp_n->id) {
+			if (this_n->id() == comp_n->id()) {
 				
 				// verifica si el nodo tiene una nueva ruta
 				if (this_n->path() != comp_n->path()) {
 					
 					// verifica hacia donde cambio el nodo, tener en cuenta los posibles cambios
 					// si antes estaba sobre el tablero o si estaba en una lista y ahora está en el tabler
-					if (this_n->parent->id == this->id) {
+					if (this_n->parent->id() == this->id()) {
 						// el bloque pasó del tablero a una lista
 						v->push_back( new action::Push( comp_n, comp_n->parent) );
 					}
 					else {
-						if (comp_n->parent->id == comp->id) {
+						if (comp_n->parent->id() == comp->id()) {
 							// el bloque pasó de una lista al tablero
 							v->push_back( new action::Pop( comp_n, this_n->parent) );
 						} else {
@@ -77,7 +77,7 @@ action::Action::Vector* State::diff(State* comp) {
 					}
 				}
 				else if (this_n->index != comp_n->index) {
-					D(("invalid: %s (index0: %i index1: %i)", comp_n->id.c_str(), this_n->index, comp_n->index ));
+					D(("invalid: %s (index0: %i index1: %i)", comp_n->id().c_str(), this_n->index, comp_n->index ));
 					v->push_back( new action::Invalid( comp_n ) );
 				}
 				

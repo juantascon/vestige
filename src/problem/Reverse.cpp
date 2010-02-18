@@ -39,8 +39,8 @@ int Reverse::initialize(state::State* s) {
 	
 	// Generate a reversed order of poppush instructions
 	BOOST_REVERSE_FOREACH(state::Node *n, *(L->items)) {
-		//D(("node: %s, from: %s, to: %s", n->id.c_str(), L->id.c_str(), R->id.c_str() ));
-		_rules->add(new rule::PopPush(n->id, L->id, R->id));
+		//D(("node: %s, from: %s, to: %s", n->id().c_str(), L->id().c_str(), R->id().c_str() ));
+		_rules->add(new rule::PopPush(n->id(), L->id(), R->id()));
 	}
 	
 	/***/
@@ -51,7 +51,7 @@ int Reverse::initialize(state::State* s) {
 	
 	// store an inverse order list of L's items ids
 	BOOST_REVERSE_FOREACH(state::Node *n, *(L->items)) {
-		_return_items_ids->push_back(n->id);
+		_return_items_ids->push_back(n->id());
 	}
 	
 	D(("3"));

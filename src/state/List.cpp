@@ -28,7 +28,7 @@ int List::check_items_ids(std::vector<std::string>* ids) {
 	
 	int index = 0;
 	BOOST_FOREACH(state::Node *n, *(items)) {
-		if (n->id != (*ids)[index]) {
+		if (n->id() != (*ids)[index]) {
 			return 0;
 		}
 		index++;
@@ -38,7 +38,7 @@ int List::check_items_ids(std::vector<std::string>* ids) {
 }
 
 std::string List::text() {
-	std::string ret = "--- LIST-ID: " + this->id + " BLOCKS: | " ;
+	std::string ret = "--- LIST-ID: " + this->_id + " BLOCKS: | " ;
 	
 	BOOST_FOREACH(Node *n, *items) {
 		ret += n->text() + " ";

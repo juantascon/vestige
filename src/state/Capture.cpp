@@ -67,7 +67,7 @@ State* Capture::capture() {
 	D(("MARKERS:"));
 	D(("------------------"));
 	for (marker::Marker::List::iterator it = _markers->begin(); it != _markers->end(); ++it) {
-		D(( "%s", (*it)->id.c_str() ));
+		D(( "%s", (*it)->id().c_str() ));
 	}
 	D(("------------------"));
 	

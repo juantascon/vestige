@@ -14,20 +14,20 @@ namespace core {
 class Initializer
 {
 	protected:
-		osgART::Tracker* tracker;
-		osgART::Video* video;
-		osgART::Calibration* calibration;
-		osg::Camera* camera;
-		osgViewer::Viewer* viewer;
-		osg::Group* root;
+		osgART::Tracker* _tracker;
+		osgART::Video* _video;
+		osgART::Calibration* _calibration;
+		osg::Camera* _camera;
+		osgViewer::Viewer* _viewer;
+		osg::Group* _root;
 		
-		void initVideo();
-		void initTracker();
-		void initCalibration();
-		void initMarkers();
-		void initCamera();
-		void initViewer();
-		void initRoot();
+		void video();
+		void tracker();
+		void calibration();
+		void markers();
+		void camera();
+		void viewer();
+		void root();
 		
 		Initializer();
 		

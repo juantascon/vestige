@@ -6,20 +6,33 @@ namespace marker {
 
 Switch::Switch(std::string marker_args) : Marker(marker_args, "SWITCH") {
 	captured = 0;
-	active = 1;
 	
-	std::string msg = "INVALID INIT STATE:\nvariable L not found,\nexpected list with at least 2 items";
-	this->addChild(new draw::ToolTip(msg, 35));
-	this->addChild(osgDB::readNodeFile("data/model/switch.3ds"));
+	this->paint();
 }
 
-void Switch::deactivate() {
-	active = 0;
-	this->resetModel();
+void Switch::paint() {
+	this->reset();
+
+	//DEMO
+	//std::string msg = "INVALID INIT STATE:\nvariable L not found,\nexpected list with at least 2 items";
+	//this->add(new draw::ToolTip(msg, 35));
+	//this->add(osgDB::readNodeFile("data/model/switch.3ds"));
+	this->add(osgDB::readNodeFile("data/model/switch.osg"));
+}
+
+void Switch::alert(std::string message) {
+	D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
+	this->paint();
+	this->add(new draw::ToolTip(message, 80.0f));
+}
+
+void Switch::set_valid(int valid) {
+	_valid = valid;
+	if (!_valid) { this->reset(); }
 }
 
 void Switch::update() {
-	if (!active) { return; }
+	if (!_valid) { return; }
 	
 	if (!this->visible()) {
 		if (!captured) {

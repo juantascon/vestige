@@ -14,14 +14,13 @@ class Return : public Marker
 		Marker* _value;
 		void update_value();
 		
-		osg::Node* background();
-		
 	public:
 		Return (std::string marker_args);
 		
 		Marker* value();
 		
 		virtual void update();
+		virtual void paint();
 };
 
 }}
