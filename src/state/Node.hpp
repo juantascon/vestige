@@ -6,33 +6,41 @@
 namespace vestige {
 namespace state {
 
+class NodeSet;
+
 class Node
 {
-	private:
-		void _initialize(std::string id, marker::Marker* m, Node* parent, int index);
-	
 	protected:
-		marker::Marker* _m;
+		marker::Marker* _marker;
 		std::string _id;
+		
+		NodeSet* _children;
+		Node* _parent;
+		int _index;
 		
 	public:
 		typedef std::vector <Node*> Vector;
 		typedef std::list <Node*> List;
+		typedef std::map <std::string, Node*> Map;
+		typedef std::pair<std::string, Node*> MapPair;
 		
-		Node(marker::Marker *m);
-		Node(std::string id);
+		Node(marker::Marker* marker);
 		
+		void set_parent(Node* c);
+		void add_child(Node* c);
+		std::string path();
+		NodeSet* x;
+		
+		marker::Marker* marker();
 		std::string id();
+		int index();
+		Node* parent();
+		NodeSet* children();
 		
-		Node* parent;
-		int index;
+		std::string text();
+		int children_size();
 		
 		void alert(std::string message);
-		
-		virtual std::string text() = 0;
-		virtual Node::List* flat_view();
-		
-		std::string path();
 };
 
 }}

@@ -3,9 +3,6 @@
 
 #include "../lib/osgart.hpp"
 
-#include "GlobalStorage.hpp"
-
-#include "../marker/GlobalMarkers.hpp"
 #include "../marker/Types.hpp"
 
 namespace vestige {

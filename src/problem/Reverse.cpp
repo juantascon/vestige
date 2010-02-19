@@ -13,18 +13,21 @@ int Reverse::initialize(state::State* s) {
 	/***/
 	/* -- Check initial variables -- */
 	/***/
-
+	
+	state::NodeSet* _lists = s->nodes();
+	_lists->filter_by_no_parent();
+	
 	// exactly 2 items variables expected on the board:
 	// * L: list with at least 2 elements
 	// * R: empty list
-	_vars = new Variables(s);
-	if (!_vars->valid_size(2)) { return 0; }
+	if (_lists->size() != 2) { return 0; }
 	
-	state::List* L = _vars->next_list_by_size_range(2, (std::numeric_limits<int>::max)());
+	_lists->filter_by_type(0, 1);
+	state::Node* L = _lists->filter_single_by_size_range(2, (std::numeric_limits<int>::max)());
 	// variable L not found, expected list with at least 2 items
 	if (!L) { return 0; }
 	
-	state::List* R = _vars->next_list_by_size_range(0, 0);
+	state::Node* R = _lists->filter_single_by_size_range(0, 0);
 	// variable R not found, expected empty list
 	if (!R) { return 0;	}
 	
@@ -35,8 +38,8 @@ int Reverse::initialize(state::State* s) {
 	_rules = new rule::RuleSet();
 	
 	// Generate a reversed order of poppush instructions
-	BOOST_REVERSE_FOREACH(state::Node *n, *(L->items)) {
-		//D(("node: %s, from: %s, to: %s", n->id().c_str(), L->id().c_str(), R->id().c_str() ));
+	BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
+		D(("node: %s, from: %s, to: %s", n->id().c_str(), L->id().c_str(), R->id().c_str() ));
 		_rules->add(new rule::PopPush(n->id(), L->id(), R->id()));
 	}
 	
@@ -47,7 +50,7 @@ int Reverse::initialize(state::State* s) {
 	_return_items_ids = new std::vector<std::string>();
 	
 	// store an inverse order list of L's items ids
-	BOOST_REVERSE_FOREACH(state::Node *n, *(L->items)) {
+	BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
 		_return_items_ids->push_back(n->id());
 	}
 	
@@ -56,10 +59,7 @@ int Reverse::initialize(state::State* s) {
 }
 
 int Reverse::validate_return(state::Node* ret) {
-	state::List* l = dynamic_cast<state::List*>(ret);
-	if (!l) { return 0; }
-	
-	return l->check_items_ids(_return_items_ids);
+	return this->validate_return_list(ret, _return_items_ids);
 }
 
 }}

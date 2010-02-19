@@ -14,22 +14,26 @@ int Join::initialize(state::State* s) {
 	/* -- Check initial state -- */
 	/***/
 	
+	state::NodeSet* _lists = s->nodes();
+	_lists->filter_by_no_parent();
+	
 	// exactly 3 items expected on the board:
 	// * TMP: empty list
 	// * L: list with at least 2 elements
 	// * R: list with at least 2 elements
-	_vars = new Variables(s);
-	if (!_vars->valid_size(3)) { return 0; }
+	if (_lists->size() != 3) { return 0; }
+
+	_lists->filter_by_type(0, 1);
 	
-	state::List* TMP = _vars->next_list_by_size_range(0, 0);
+	state::Node* TMP = _lists->filter_single_by_size_range(0, 0);
 	// variable TMP not found, expected empty list
 	if (!TMP) { return 0; }
 	
-	state::List* R = _vars->next_list_by_size_range(2, (std::numeric_limits<int>::max)());
+	state::Node* R = _lists->filter_single_by_size_range(2, (std::numeric_limits<int>::max)());
 	// variable R not found, expected list with at least 2 elements
 	if (!R) { return 0; }
 	
-	state::List* L = _vars->next_list_by_size_range(2, (std::numeric_limits<int>::max)());
+	state::Node* L = _lists->filter_single_by_size_range(2, (std::numeric_limits<int>::max)());
 	// variable L not found, expected list with at least 2 elements
 	if (!L) { return 0; }
 	
@@ -40,14 +44,14 @@ int Join::initialize(state::State* s) {
 	_rules = new rule::RuleSet();
 	
 	// 1. move all the elements from L to TMP
-	BOOST_REVERSE_FOREACH(state::Node *n, *(L->items)) {
-		//D(("node: %s, from: %s, to: %s", n->id().c_str(), L->id().c_str(), TMP->id().c_str() ));
+	BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
+		D(("node: %s, from: %s, to: %s", n->id().c_str(), L->id().c_str(), TMP->id().c_str() ));
 		_rules->add(new rule::PopPush(n->id(), L->id(), TMP->id()));
 	}
 	
 	// 2. move the same elements from tmp to R
-	BOOST_FOREACH(state::Node *n, *(L->items)) {
-		//D(("node: %s, from: %s, to: %s", n->id().c_str(), TMP->id().c_str(), R->id().c_str() ));
+	BOOST_FOREACH(state::Node *n, *(L->children())) {
+		D(("node: %s, from: %s, to: %s", n->id().c_str(), TMP->id().c_str(), R->id().c_str() ));
 		_rules->add(new rule::PopPush(n->id(), TMP->id(), R->id()));
 	}
 	
@@ -58,10 +62,10 @@ int Join::initialize(state::State* s) {
 	_return_items_ids = new std::vector<std::string>();
 	
 	// items from R plus items from L
-	BOOST_FOREACH(state::Node *n, *(R->items)) {
+	BOOST_FOREACH(state::Node *n, *(R->children())) {
 		_return_items_ids->push_back(n->id());
 	}
-	BOOST_FOREACH(state::Node *n, *(L->items)) {
+	BOOST_FOREACH(state::Node *n, *(L->children())) {
 		_return_items_ids->push_back(n->id());
 	}
 	
@@ -70,10 +74,7 @@ int Join::initialize(state::State* s) {
 }
 
 int Join::validate_return(state::Node* ret) {
-	state::List* l = dynamic_cast<state::List*>(ret);
-	if (!l) { return 0; }
-	
-	return l->check_items_ids(_return_items_ids);
+	return validate_return_list(ret, _return_items_ids);
 }
 
 }}

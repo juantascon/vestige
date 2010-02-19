@@ -1,12 +1,10 @@
 #ifndef __VESTIGE_CORE_SUPERVISOR_HPP
 #define __VESTIGE_CORE_SUPERVISOR_HPP
 
-#include "../marker/GlobalMarkers.hpp"
-#include "../problem/Types.hpp"
-
-#include "../state/Capture.hpp"
-#include "../action/Detect.hpp"
+#include "../state/State.hpp"
+#include "../action/ActionSet.hpp"
 #include "../rule/RuleSet.hpp"
+#include "../problem/Types.hpp"
 
 namespace vestige {
 namespace core {

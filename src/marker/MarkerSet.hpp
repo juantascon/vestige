@@ -24,8 +24,6 @@ class MarkerSet : public Marker::List
 		void filter_by_over_marker(marker::Marker* m);
 		
 		std::string text();
-		
-		marker::Marker::List* sort_y_axis();
 };
 
 }}

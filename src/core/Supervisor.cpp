@@ -1,5 +1,7 @@
 #include "Supervisor.hpp"
 
+#include "../marker/GlobalMarkers.hpp"
+
 namespace vestige {
 namespace core {
 
@@ -11,19 +13,21 @@ Supervisor::Supervisor() {
 	previous_state = 0;
 	current_state = 0;
 	
-	p = new problem::Reverse();
-	//p = new problem::Join();
+	//p = new problem::Reverse();
+	p = new problem::Join();
 }
 
 void Supervisor::step() {
-	state::State *s = state::Capture::instance()->capture();
-	if (!s) { return; }
+	state::State *s = new state::State();
+	s->capture();
+	D(( s->text().c_str() ));
 	
-	// has been the problem activated
+	// has the problem been activated
 	if (!p->active()) {
 		// Check initial state, create rules and prepare final state
 		if (!p->initialize(s)) {
-			marker::GlobalMarkers::instance()->m_switch->alert("INVALID-INIT-STATE");
+			// TODO: mostrar esto mejor
+			//marker::GlobalMarkers::instance()->m_switch->alert("INVALID-INIT-STATE");
 			return;
 		}
 	}
@@ -31,9 +35,13 @@ void Supervisor::step() {
 	previous_state = current_state;
 	current_state = s;
 	
-	action::Action *a = action::Detect::instance()->detect(previous_state, current_state);
+	action::ActionSet *as = new action::ActionSet();
+	as->diff(previous_state, current_state);
+	D(( as->text().c_str() ));
+	
+	action::Action *a = as->single();
 	if (!a) {
-		//DEMO
+		// TODO: mostrar esto mejor
 		//marker::GlobalMarkers::instance()->m_switch->alert("EMPTY-ACTION");
 		return;
 	}
@@ -42,15 +50,13 @@ void Supervisor::step() {
 	// TODO: esto sólo se debe ejecutar en modo supervisado
 	if ( !a->valid() || !p->rules()->apply(a) ) {
 		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-LOSE");
-		//DEMO
-		//marker::GlobalMarkers::instance()->m_switch->set_valid(0);
+		marker::GlobalMarkers::instance()->m_switch->set_valid(0);
 	}
 	
 	// check if this state is the valid final state
-	if (p->validate_return(s->return_value)) {
+	if (p->validate_return(s->return_value())) {
 		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-WIN");
-		//DEMO
-		//marker::GlobalMarkers::instance()->m_switch->set_valid(0);
+		marker::GlobalMarkers::instance()->m_switch->set_valid(0);
 	}
 }
 

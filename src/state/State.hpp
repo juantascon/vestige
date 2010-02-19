@@ -1,29 +1,25 @@
 #ifndef __VESTIGE_STATE_STATE_HPP
 #define __VESTIGE_STATE_STATE_HPP
 
-#include "List.hpp"
-#include "../action/Types.hpp"
+#include "Node.hpp"
+#include "NodeSet.hpp"
 
 namespace vestige {
 namespace state {
 
-class State : public List
+class State : public Node::Map
 {
 	protected:
+		Node* _return_value;
 		
 	public:
 		State();
 		
-		Node::List* flat_items;
-		Node::List* invalid_items;
-		Node* return_value;
+		NodeSet* nodes();
+		Node* return_value();
+		std::string text();
 		
-		virtual void push(Node *n);
-		
-		virtual std::string text();
-		
-		void create_flat_view();
-		action::Action::Vector* diff(State* comp);
+		void capture();
 };
 
 }}

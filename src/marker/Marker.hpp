@@ -22,6 +22,7 @@ class Marker : public osg::NodeCallback
 	public:
 		typedef std::vector <Marker*> Vector;
 		typedef std::list <Marker*> List;
+		typedef std::map <std::string, Marker*> Map;
 		
 		Marker(std::string marker_args, std::string id);
 		

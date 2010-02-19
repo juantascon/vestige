@@ -1,6 +1,5 @@
 #include "MarkerSet.hpp"
 
-#include "../lib/osgart.hpp"
 #include "../lib/boost.hpp"
 
 namespace vestige {
@@ -45,37 +44,45 @@ void MarkerSet::filter_by_type(int blocks, int lists) {
 
 void MarkerSet::filter_by_visible(int visible) {
 	for (MarkerSet::iterator it = this->begin(); it != this->end(); ++it) {
-		if ((*it)->visible() != visible) {
-			this->erase(it);
-			it--;
+		if ((*it)->visible() == visible) {
+			continue;
 		}
+		
+		this->erase(it);
+		it--;
 	}
 }
 
 void MarkerSet::filter_by_aligned_with_marker(marker::Marker* m) {
 	for (iterator it = this->begin(); it != this->end(); ++it) {
-		if (! (*it)->aligned(m)) {
-			this->erase(it);
-			it--;
+		if ( (*it)->aligned(m) ) {
+			continue;
 		}
+
+		this->erase(it);
+		it--;
 	}
 }
 
 void MarkerSet::filter_by_under_marker(marker::Marker* m) {
 	for (MarkerSet::iterator it = this->begin(); it != this->end(); ++it) {
-		if ( ! (*it)->under(m) ) {
-			this->erase(it);
-			it--;
+		if ( (*it)->under(m) ) {
+			continue;
 		}
+		
+		this->erase(it);
+		it--;
 	}
 }
 
 void MarkerSet::filter_by_over_marker(marker::Marker* m) {
 	for (MarkerSet::iterator it = this->begin(); it != this->end(); ++it) {
-		if (! (*it)->over(m)) {
-			this->erase(it);
-			it--;
+		if ( (*it)->over(m) ) {
+			continue;
 		}
+		
+		this->erase(it);
+		it--;
 	}
 }
 
