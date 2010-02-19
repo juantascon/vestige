@@ -1,23 +1,23 @@
-#include "Supervisor.hpp"
+#include "Step.hpp"
 
 #include "../marker/GlobalMarkers.hpp"
 
 namespace vestige {
-namespace core {
+namespace recursion {
 
-Supervisor* Supervisor::instance() {
-	return &boost::serialization::singleton<core::Supervisor>::get_mutable_instance();
+Step* Step::instance() {
+	return &boost::serialization::singleton<recursion::Step>::get_mutable_instance();
 }
 
-Supervisor::Supervisor() {
+Step::Step() {
 	previous_state = 0;
 	current_state = 0;
 	
-	//p = new problem::Reverse();
-	p = new problem::Join();
+	p = new problem::Reverse();
+	//p = new problem::Join();
 }
 
-void Supervisor::step() {
+void Step::step() {
 	state::State *s = new state::State();
 	s->capture();
 	D(( s->text().c_str() ));

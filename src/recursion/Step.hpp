@@ -1,5 +1,5 @@
-#ifndef __VESTIGE_CORE_SUPERVISOR_HPP
-#define __VESTIGE_CORE_SUPERVISOR_HPP
+#ifndef __VESTIGE_RECURSION_STEP_HPP
+#define __VESTIGE_RECURSION_STEP_HPP
 
 #include "../state/State.hpp"
 #include "../action/ActionSet.hpp"
@@ -7,12 +7,12 @@
 #include "../problem/Types.hpp"
 
 namespace vestige {
-namespace core {
+namespace recursion {
 
-class Supervisor
+class Step
 {
 	protected:
-		Supervisor();
+		Step();
 		
 		problem::Problem* p;
 		
@@ -20,7 +20,7 @@ class Supervisor
 		state::State* current_state;
 		
 	public:
-		static Supervisor* instance();
+		static Step* instance();
 		
 		void step();
 };

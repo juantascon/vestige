@@ -1,5 +1,5 @@
 #include "Switch.hpp"
-#include "../core/Supervisor.hpp"
+#include "../recursion/Step.hpp"
 
 namespace vestige {
 namespace marker {
@@ -33,7 +33,7 @@ void Switch::update() {
 	
 	if (!this->visible()) {
 		if (!captured) {
-			core::Supervisor::instance()->step();
+			recursion::Step::instance()->step();
 			std::cout << std::endl << std::endl << std::endl;
 			
 			captured = 1;
