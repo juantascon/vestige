@@ -13,8 +13,8 @@ Step::Step() {
 	previous_state = 0;
 	current_state = 0;
 	
-	p = new problem::Reverse();
-	//p = new problem::Join();
+	//p = new problem::Reverse();
+	p = new problem::Join();
 }
 
 Step::Status Step::step() {
@@ -33,10 +33,15 @@ Step::Status Step::step() {
 	previous_state = current_state;
 	current_state = s;
 	
+	// check if this state is the valid final state
+	if (p->validate_return(current_state->return_value())) {
+		return WON;
+	}
+	
 	action::ActionSet *as = new action::ActionSet();
 	as->diff(previous_state, current_state);
 	D(( as->text().c_str() ));
-
+	
 	// Empty actions are ignored
 	action::Action *a = as->single();
 	if (!a) { return GOOD_EMPTY; }
@@ -50,11 +55,6 @@ Step::Status Step::step() {
 	// TODO: esto sólo se debe ejecutar en modo supervisado
 	if ( !p->rules()->apply(a) ) {
 		return FAIL_RULE;
-	}
-	
-	// check if this state is the valid final state
-	if (p->validate_return(current_state->return_value())) {
-		return WON;
 	}
 	
 	return GOOD_NORMAL;

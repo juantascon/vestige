@@ -36,12 +36,15 @@ void GlobalMarkers::items_initialize() {
 	
 	items_add( new marker::List(patt_format("patt.sample1"), "l.s1") );
 	items_add( new marker::List(patt_format("patt.sample2"), "l.s2") );
+	items_add( new marker::List(patt_format("4x4_6.patt"), "l.6") );
+	
 	items_add( new marker::Block(patt_format("patt.a"), "b.a", "a") );
 	items_add( new marker::Block(patt_format("patt.b"), "b.b", "b") );
 	items_add( new marker::Block(patt_format("patt.c"), "b.c", "c") );
 	items_add( new marker::Block(patt_format("patt.d"), "b.d", "d") );
 	items_add( new marker::Block(patt_format("patt.f"), "b.f", "f") );
 	items_add( new marker::Block(patt_format("patt.g"), "b.g", "g") );
+	
 	
 	/*
 	items_add( new marker::List(patt_format("patt.a"), "l.a") );

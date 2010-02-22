@@ -14,7 +14,7 @@ void Switch::paint() {
 	this->reset();
 	
 	//this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"data/model/switch.3ds"));
-	this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"data/model/switch.osg"));
+	this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/switch.osg"));
 }
 
 void Switch::alert(std::string message) {
@@ -33,7 +33,8 @@ void Switch::update() {
 	
 	if (!this->visible()) {
 		if (!captured) {
-			recursion::Step::instance()->step();
+			int x = recursion::Step::instance()->step();
+			D(("X: %i", x));
 			std::cout << std::endl << std::endl << std::endl;
 			
 			captured = 1;

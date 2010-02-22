@@ -532,3 +532,73 @@ movements are still detected, but rules doesn't apply.
 
 So, now that I have a base working system I can finally start designing the
 tests cases report before I continue with important program changes.
+
+
+=========================================================
+== 2010 / Week 04
+=========================================================
+
+HCI conference
+
+=========================================================
+== 2010 / Week 05
+=========================================================
+
+This week I worked on fixing a lot of small bugs related with proper detection
+of invalid actions.
+
+I also created a simplified problem definition interface helped by a new system
+responsible of recognize variables from the blocks abstract representation;
+with this new interface the process of adding a new problem is easier, you have
+to define only 2 methods, one in charge of validate the return value and another
+one in charge of check the validity of the initial state and based on this
+initialize the rule set.
+
+I experimented with the interface to add new markers but unfortunately I didn't
+have good results, I wasn't able to use the new markers created by this
+interface however I found 512 new markers on the Internet that are now available
+to use as blocks or lists, after I added this new markers I've been having
+problems with their detection, probably because of both visual similarities among
+the markers and wrong light conditions where I run the tests (too much light),
+more experiments have to be done in order to determine the real cause.
+
+A new problem definition has been added, its the Join problem, the user have to
+Join two lists into one preserving the same input order, this represents a small
+challenge to the student because of the obstacle created by the nature of list's
+movements (pop and push) when trying to move the blocks from one list to
+another, the problem support step-by-step rules and proper check of the final
+state.
+
+
+=========================================================
+== 2010 / Week 06
+=========================================================
+
+A new way of mark the output values is in testing, with this new feature
+students can use the output marker in a more natural way represented by an
+interactive process that imitates the behavior of the "return" statement found
+in almost every programming language.
+
+Support for floating tooltips has been added, this will provide a very useful
+visual interface, a link to communicate messages in a defined scope from the
+system to the user.
+
+The routine to draw rectangles was buggy when using transparencies, change this
+improper behavior was a requirement for the development of the tooltip feature,
+this was fixed by using a new set of OPENGL properties.
+
+
+=========================================================
+== 2010 / Week 07
+=========================================================
+
+Fixed minor bugs in the Join problem definition, it can now properly check every
+step of the interaction and also check the return value.
+
+The block on top of lists can be now identified by using a new collection that is in
+charge of store all the markers in the system, the collection is used to sort and
+filter the markers by parameters such as the position, visibility, type, etc.
+
+With the previously mentioned functionality the lists can now hide information, in this
+case they cover all the markers but the last one, properly simulating a list data type
+(a list can be only accessed by its last element).

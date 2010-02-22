@@ -11,6 +11,6 @@ Parameters::Parameters()
 
 float Parameters::ALIGN_FACTOR() { return 110.0; }
 float Parameters::BLOCK_SIZE() { return 110.0; }
-std::string Parameters::ROOT() { return "/home/jdi/dev/vestige"; }
+std::string Parameters::ROOT() { return "/home/jdi/dev/vestige/"; }
 
 }}

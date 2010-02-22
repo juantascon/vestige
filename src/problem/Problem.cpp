@@ -12,6 +12,10 @@ int Problem::active() { return _active; }
 rule::RuleSet* Problem::rules() { return _rules; }
 	
 int Problem::validate_return_list(state::Node* ret, std::vector<std::string>* ids) {
+	if ( ! ret ) {
+		return 0;
+	}
+	
 	if ( ! dynamic_cast<marker::List*>(ret->marker()) ) {
 		return 0;
 	}

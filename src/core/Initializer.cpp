@@ -14,10 +14,14 @@ Initializer* Initializer::instance() {
 }
 
 void Initializer::environment() {
+	//std::string file = "multi1.mov";
+	//std::string file = "reverse5_noprog_fail.mov";
+	std::string file = "reverse4_2l_3b_s_r.mov";
+	
 	//std::string file = "join1.mov";
 	//std::string file = "joifail/9.mov";
 	//std::string file = "new_markers.mov";
-	std::string file = "reverse3_2l_3b_s_o.mov";
+	//std::string file = "reverse3_2l_3b_s_o.mov";
 	//std::string file = "reverse2_2l_3b.mov";
 	//std::string file = "reverse1_2l_3b.mov";
 	//std::string file = "1list_2block_1switch.mov";
@@ -52,7 +56,7 @@ void Initializer::tracker() {
 void Initializer::calibration() {
 	_calibration = _tracker->getOrCreateCalibration();
 	
-	if (!_calibration->load("data/camera_para.dat")) {
+	if (!_calibration->load(core::Parameters::instance()->ROOT()+"/data/camera_para.dat")) {
 			D(("Non existing or incompatible calibration file!"));
 			exit(-1);
 	}

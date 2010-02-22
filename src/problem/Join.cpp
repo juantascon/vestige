@@ -29,13 +29,13 @@ int Join::initialize(state::State* s) {
 	// variable TMP not found, expected empty list
 	if (!TMP) { return 0; }
 	
-	state::Node* R = _lists->filter_single_by_size_range(2, (std::numeric_limits<int>::max)());
-	// variable R not found, expected list with at least 2 elements
-	if (!R) { return 0; }
-	
 	state::Node* L = _lists->filter_single_by_size_range(2, (std::numeric_limits<int>::max)());
-	// variable L not found, expected list with at least 2 elements
+	// variable R not found, expected list with at least 2 elements
 	if (!L) { return 0; }
+	
+	state::Node* R = _lists->filter_single_by_size_range(2, (std::numeric_limits<int>::max)());
+	// variable L not found, expected list with at least 2 elements
+	if (!R) { return 0; }
 	
 	/***/
 	/* -- Create Rules -- */

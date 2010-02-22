@@ -23,12 +23,12 @@ class Step
 		static Step* instance();
 		
 		typedef enum Status {
-			INVALID_INIT_STATE,
-			GOOD_NORMAL,
-			GOOD_EMPTY,
-			FAIL_INVALID,
-			FAIL_RULE,
-			WON
+			INVALID_INIT_STATE = -1,
+			GOOD_NORMAL = 1,
+			GOOD_EMPTY = 2,
+			FAIL_INVALID = -1,
+			FAIL_RULE = -2,
+			WON = 0
 		} Status;
 		
 		Status step();
