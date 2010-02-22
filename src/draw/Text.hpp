@@ -2,6 +2,7 @@
 #define __VESTIGE_DRAW_TEXT_HPP
 
 #include "../lib/osg.hpp"
+#include "../core/Parameters.hpp"
 
 namespace vestige {
 namespace draw {

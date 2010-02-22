@@ -16,6 +16,7 @@ class Parameters
 		
 		float ALIGN_FACTOR();
 		float BLOCK_SIZE();
+		std::string ROOT();
 
 };
 

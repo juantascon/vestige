@@ -12,6 +12,8 @@ class GlobalMarkers
 	protected:
 		GlobalMarkers();
 		
+		std::string patt_format(std::string patt);
+		
 		marker::MarkerSet* _items;
 		
 	public:
@@ -19,8 +21,7 @@ class GlobalMarkers
 		
 		void items_add(marker::Marker *m);
 		marker::MarkerSet* items_clone();
-
-		marker::MarkerSet* sort_y_axis();
+		void items_initialize();
 		
 		marker::Return* m_return;
 		marker::Switch* m_switch;

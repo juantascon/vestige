@@ -1,9 +1,10 @@
 #ifndef __VESTIGE_CORE_INITIALIZER_HPP
 #define __VESTIGE_CORE_INITIALIZER_HPP
 
+#include "../lib/osg.hpp"
 #include "../lib/osgart.hpp"
 
-#include "../marker/Types.hpp"
+#include "Parameters.hpp"
 
 namespace vestige {
 namespace core {
@@ -18,6 +19,7 @@ class Initializer
 		osgViewer::Viewer* _viewer;
 		osg::Group* _root;
 		
+		void environment();
 		void video();
 		void tracker();
 		void calibration();

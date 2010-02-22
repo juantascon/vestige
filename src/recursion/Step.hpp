@@ -22,7 +22,16 @@ class Step
 	public:
 		static Step* instance();
 		
-		void step();
+		typedef enum Status {
+			INVALID_INIT_STATE,
+			GOOD_NORMAL,
+			GOOD_EMPTY,
+			FAIL_INVALID,
+			FAIL_RULE,
+			WON
+		} Status;
+		
+		Status step();
 };
 
 }}

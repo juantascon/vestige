@@ -17,7 +17,7 @@ Step::Step() {
 	//p = new problem::Join();
 }
 
-void Step::step() {
+Step::Status Step::step() {
 	state::State *s = new state::State();
 	s->capture();
 	D(( s->text().c_str() ));
@@ -26,9 +26,7 @@ void Step::step() {
 	if (!p->active()) {
 		// Check initial state, create rules and prepare final state
 		if (!p->initialize(s)) {
-			// TODO: mostrar esto mejor
-			//marker::GlobalMarkers::instance()->m_switch->alert("INVALID-INIT-STATE");
-			return;
+			return INVALID_INIT_STATE;
 		}
 	}
 	
@@ -38,26 +36,28 @@ void Step::step() {
 	action::ActionSet *as = new action::ActionSet();
 	as->diff(previous_state, current_state);
 	D(( as->text().c_str() ));
-	
+
+	// Empty actions are ignored
 	action::Action *a = as->single();
-	if (!a) {
-		// TODO: mostrar esto mejor
-		//marker::GlobalMarkers::instance()->m_switch->alert("EMPTY-ACTION");
-		return;
+	if (!a) { return GOOD_EMPTY; }
+	
+	// Invalid action
+	if (!a->valid()) {
+		as->alert("invalid movement");
+		return FAIL_INVALID;
 	}
 	
-	// Invalid step end the game
 	// TODO: esto sólo se debe ejecutar en modo supervisado
-	if ( !a->valid() || !p->rules()->apply(a) ) {
-		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-LOSE");
-		marker::GlobalMarkers::instance()->m_switch->set_valid(0);
+	if ( !p->rules()->apply(a) ) {
+		return FAIL_RULE;
 	}
 	
 	// check if this state is the valid final state
-	if (p->validate_return(s->return_value())) {
-		marker::GlobalMarkers::instance()->m_switch->alert("GAME-OVER-WIN");
-		marker::GlobalMarkers::instance()->m_switch->set_valid(0);
+	if (p->validate_return(current_state->return_value())) {
+		return WON;
 	}
+	
+	return GOOD_NORMAL;
 }
 
 }}

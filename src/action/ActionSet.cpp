@@ -75,26 +75,25 @@ void ActionSet::diff(state::State* past, state::State* present) {
 	}
 }
 
+void ActionSet::alert(std::string message) {
+	BOOST_FOREACH(Action *a, *this) {
+		a->alert(message);
+	}
+}
+	
+
 Action* ActionSet::single() {
-	// no movements
-	if (this->size() == 0) {
-		return NULL;
-	}
-	
-	// 2 or more movements implies error
-	if (this->size() >= 2) {
-		BOOST_FOREACH(Action *a, *this) {
-			a->alert("INVALID-ACTION");
-		}
-		return new Invalid(NULL);
-	}
-	
-	// only 1 difference means good movement
+	// only 1 movement is perfect
 	if (this->size() == 1) {
 		return (*this)[0];
 	}
 	
-	// this point shouldnt be reached
+	// 2 or more movements implies error
+	if (this->size() >= 2) {
+		return new Invalid(NULL);
+	}
+	
+	// 0 movements
 	return NULL;
 }
 
