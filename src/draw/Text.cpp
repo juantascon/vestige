@@ -18,7 +18,6 @@ void Text::initialize(std::string value) {
 osg::Geode* Text::wrap() {
 	osg::Geode* g = new osg::Geode();
 	g->addDrawable(this);
-	
 	return g;
 }
 

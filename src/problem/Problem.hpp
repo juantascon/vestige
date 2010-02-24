@@ -5,27 +5,19 @@
 #include "../rule/Types.hpp"
 #include "../rule/RuleSet.hpp"
 
+#include <stdexcept>
+
 namespace vestige {
 namespace problem {
 
 class Problem
 {
 	protected:
-		int _active;;
-		rule::RuleSet* _rules;
-		
-		int validate_return_list(state::Node* ret, std::vector<std::string>* ids);
-		
-	public:
 		Problem();
 		
-		int active();
-		rule::RuleSet* rules();
-		
+	public:
+		virtual rule::RuleSet* create_rules() = 0;
 		virtual int validate_return(state::Node* ret) = 0;
-		virtual int initialize(state::State* s) = 0;
-
-		
 };
 
 }}

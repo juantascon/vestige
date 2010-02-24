@@ -1,4 +1,4 @@
 #! /bin/bash
 
-emacs $(find -type f)
+emacsclient -a '' -c $(find -type f)
 

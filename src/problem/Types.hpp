@@ -2,8 +2,11 @@
 #define __VESTIGE_PROBLEM_TYPES_HPP
 
 #include "Problem.hpp"
+#include "ListProblem.hpp"
 
 #include "Reverse.hpp"
 #include "Join.hpp"
+//#include "RemoveFirst.hpp"
+//#include "Compress.hpp"
 
 #endif

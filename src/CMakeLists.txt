@@ -5,8 +5,8 @@ add_executable( vestige
 	state/Node state/State state/NodeSet
 	action/Action action/Pop action/Push action/PopPush action/Invalid action/Discard action/ActionSet
 	rule/Rule rule/Pop rule/Push rule/PopPush rule/Discard rule/RuleSet
-	problem/Problem problem/Reverse problem/Join
-	recursion/Step
+	problem/Problem problem/ListProblem problem/Reverse problem/Join
+	recursion/Step recursion/StatusMessage
 	Main
 )
 

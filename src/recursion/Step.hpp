@@ -6,6 +6,8 @@
 #include "../rule/RuleSet.hpp"
 #include "../problem/Types.hpp"
 
+#include "StatusMessage.hpp"
+
 namespace vestige {
 namespace recursion {
 
@@ -15,6 +17,7 @@ class Step
 		Step();
 		
 		problem::Problem* p;
+		rule::RuleSet* r;
 		
 		state::State* previous_state;
 		state::State* current_state;
@@ -22,16 +25,7 @@ class Step
 	public:
 		static Step* instance();
 		
-		typedef enum Status {
-			INVALID_INIT_STATE = -1,
-			GOOD_NORMAL = 1,
-			GOOD_EMPTY = 2,
-			FAIL_INVALID = -1,
-			FAIL_RULE = -2,
-			WON = 0
-		} Status;
-		
-		Status step();
+		StatusMessage* step();
 };
 
 }}

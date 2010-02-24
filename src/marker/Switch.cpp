@@ -19,7 +19,6 @@ void Switch::paint() {
 
 void Switch::alert(std::string message) {
 	D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
-	this->paint();
 	this->add(new draw::ToolTip(message, 80.0f));
 }
 
@@ -33,9 +32,18 @@ void Switch::update() {
 	
 	if (!this->visible()) {
 		if (!captured) {
-			int x = recursion::Step::instance()->step();
-			D(("X: %i", x));
-			std::cout << std::endl << std::endl << std::endl;
+			recursion::StatusMessage* sm = recursion::Step::instance()->step();
+			D(( sm->text().c_str() ));
+			
+			if ( sm->stop()) {
+				set_valid(0);
+			}
+			
+			if (sm->message().size() >= 1) {
+				alert(sm->message());
+			}
+			
+			std::cout << std::endl << std::endl;
 			
 			captured = 1;
 		}

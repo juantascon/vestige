@@ -30,6 +30,10 @@ std::string State::text() {
 	
 	ret += "]]";
 	
+	if (_return_value) {
+		ret += " -> " + _return_value->id();
+	}
+	
 	return ret;
 }
 
@@ -40,9 +44,10 @@ void State::capture() {
 	
 	BOOST_FOREACH(marker::Marker* m, *markers) {
 		(*this)[m->id()] = new Node(m);
-		if (marker::GlobalMarkers::instance()->m_return->value() == m) {
-			_return_value = (*this)[m->id()];
-		}
+	}
+
+	if (marker::GlobalMarkers::instance()->m_return->value()) {
+		_return_value = (*this)[marker::GlobalMarkers::instance()->m_return->value()->id()];
 	}
 	
 	marker::MarkerSet* lists = markers->clone();
