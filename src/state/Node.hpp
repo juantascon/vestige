@@ -3,6 +3,7 @@
 
 #include "../marker/Marker.hpp"
 
+
 namespace vestige {
 namespace state {
 
@@ -13,10 +14,10 @@ class Node
     protected:
         marker::Marker* _marker;
         std::string _id;
-        
         NodeSet* _children;
         Node* _parent;
         int _index;
+        std::string _value;
         
     public:
         typedef std::vector <Node*> Vector;
@@ -28,18 +29,16 @@ class Node
         
         void set_parent(Node* c);
         void add_child(Node* c);
-        std::string path();
-        NodeSet* x;
         
         marker::Marker* marker();
         std::string id();
+        std::string value();
         int index();
         Node* parent();
         NodeSet* children();
         
+        std::string path();
         std::string text();
-        int children_size();
-        
         void alert(std::string message);
 };
 

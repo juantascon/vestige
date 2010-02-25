@@ -1,5 +1,6 @@
 #include "Node.hpp"
 #include "NodeSet.hpp"
+#include "../marker/Block.hpp"
 
 namespace vestige {
 namespace state {
@@ -7,14 +8,18 @@ namespace state {
 Node::Node(marker::Marker* marker) {
     this->_marker = marker;
     this->_id = marker->id();
-    
+    this->_value = "";
     this->_children = new NodeSet();
     this->_parent = NULL;
     this->_index = 0;
+
+    marker::Block* b = dynamic_cast<marker::Block*>(marker);
+    if (b) { this->_value = b->value(); }
 }
 
 marker::Marker* Node::marker() { return this->_marker; }
 std::string Node::id() { return this->_id; }
+std::string Node::value() { return this->_value; }
 int Node::index() { return this->_index; }
 Node* Node::parent() { return this->_parent; }
 NodeSet* Node::children() { return this->_children; }
@@ -26,11 +31,7 @@ void Node::add_child(Node* c) {
 
 void Node::set_parent(Node* p) {
     _parent = p;
-    _index = p->children_size();
-}
-    
-int Node::children_size() {
-    return this->_children->size();
+    _index = p->children()->size();
 }
 
 std::string Node::text() {

@@ -18,7 +18,6 @@ Reverse::Reverse(state::State* s) : ListProblem()
     if (lists->size() != 2) { throw std::runtime_error("2 items are expected on the table"); }
     
     lists->filter_by_type(0, 1);
-    if (lists->size() != 2) { throw std::runtime_error("2 lists are expected on the table"); }
     
     L = lists->filter_single_by_size_range(2, (std::numeric_limits<int>::max)());
     if (!L) { throw std::runtime_error("missing 1 list with at least 2 elements"); }

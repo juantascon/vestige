@@ -16,7 +16,7 @@ class Marker : public osg::NodeCallback
         osgART::Marker* _marker;
         osg::MatrixTransform* _model;
         
-        int _valid;
+        int _active;
         std::string _id;
         
     public:
@@ -44,7 +44,7 @@ class Marker : public osg::NodeCallback
         virtual void paint() = 0;
         virtual void update() = 0;
         virtual void alert(std::string message);
-        virtual void set_valid(int valid);
+        virtual void set_active(int active);
 };
 
 }}

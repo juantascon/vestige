@@ -1,4 +1,6 @@
 #! /bin/bash
 
-emacsclient -a '' -c $(find -type f)
+#killall emacs
+cd $(dirname $0)
 
+emacsclient -a '' -c $(find -type f)

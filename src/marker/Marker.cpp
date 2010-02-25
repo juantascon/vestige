@@ -7,13 +7,13 @@ namespace marker {
 Marker::Marker(std::string marker_args, std::string id)
 {
     this->_id = id;
-    this->set_valid(1);
+    this->set_active(1);
     
     // create marker
     _marker = core::GlobalStorage::instance()->tracker->addMarker(marker_args);
     if (!_marker) {    D(("invalid marker")); exit(-1); }
     _marker->setActive(true);
-
+    
     // create model
     _model = new osg::MatrixTransform();
     _model->getOrCreateStateSet()->setRenderBinDetails(100, "RenderBin");
@@ -75,8 +75,8 @@ int Marker::aligned(Marker* m) {
     return (abs(dpos.x()) < core::Parameters::instance()->ALIGN_FACTOR());
 }
 
-void Marker::set_valid(int valid) {
-    _valid = valid;
+void Marker::set_active(int active) {
+    _active = active;
 }
 
 void Marker::alert(std::string message) {

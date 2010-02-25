@@ -45,7 +45,7 @@ void State::capture() {
     BOOST_FOREACH(marker::Marker* m, *markers) {
         (*this)[m->id()] = new Node(m);
     }
-
+    
     if (marker::GlobalMarkers::instance()->m_return->value()) {
         _return_value = (*this)[marker::GlobalMarkers::instance()->m_return->value()->id()];
     }

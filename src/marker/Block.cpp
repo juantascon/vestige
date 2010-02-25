@@ -3,13 +3,14 @@
 namespace vestige {
 namespace marker {
 
-Block::Block(std::string marker_args, std::string id, std::string key) : Marker(marker_args, id)
+Block::Block(std::string marker_args, std::string id, std::string value) : Marker(marker_args, id)
 {
-    this->_key = key;
+    this->_value = value;
     this->_top = 1;
     this->paint();
 }
 
+std::string Block::value() { return this->_value; }
 
 void Block::set_top(int top) {
     this->_top = top;
@@ -21,7 +22,7 @@ void Block::paint() {
     float z = -20.0;
     
     osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 0.0f, 1.0f);
-    if (!_valid) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
+    if (!_active) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
     if (!_top) { color =  new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f); }
     
     draw::Rectangle* rectangle = new draw::Rectangle(
@@ -38,12 +39,12 @@ void Block::paint() {
     
     this->reset();
     this->add(geode);
-    if (_top) {    this->add((new draw::Text(_key))->wrap()); }
+    if (_top) {    this->add((new draw::Text(_value))->wrap()); }
 }
 
 void Block::alert(std::string message) {
     D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
-    this->set_valid(0);
+    this->set_active(0);
     this->paint();
     this->add(new draw::ToolTip(message));
 }

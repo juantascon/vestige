@@ -33,7 +33,7 @@ void List::paint() {
     float z = 2.0;
     
     osg::Vec4* color = new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f);
-    if (!_valid) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
+    if (!_active) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
     
     // RECTANGLE
     draw::Rectangle* rectangle = new draw::Rectangle(

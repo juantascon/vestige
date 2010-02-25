@@ -15,7 +15,7 @@ class Switch : public Marker
     public:
         Switch (std::string marker_args);
         
-        virtual void set_valid(int valid);
+        virtual void set_active(int active);
         virtual void alert(std::string message);
         virtual void paint();
         virtual void update();

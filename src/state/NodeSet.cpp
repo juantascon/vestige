@@ -33,7 +33,7 @@ void NodeSet::filter_by_type(int blocks, int lists) {
         if (blocks) {
             if ( dynamic_cast<marker::Block*>( (*it)->marker() ) ) { continue; }
         }
-
+        
         if (lists) {
             if ( dynamic_cast<marker::List*>( (*it)->marker() ) ) { continue; }
         }

@@ -22,13 +22,13 @@ void Switch::alert(std::string message) {
     this->add(new draw::ToolTip(message, 80.0f));
 }
 
-void Switch::set_valid(int valid) {
-    _valid = valid;
-    if (!_valid) { this->reset(); }
+void Switch::set_active(int active) {
+    _active = active;
+    if (!_active) { this->reset(); }
 }
 
 void Switch::update() {
-    if (!_valid) { return; }
+    if (!_active) { return; }
     
     if (!this->visible()) {
         if (!captured) {
@@ -36,7 +36,7 @@ void Switch::update() {
             D(( sm->text().c_str() ));
             
             if ( sm->stop()) {
-                set_valid(0);
+                set_active(0);
             }
             
             if (sm->message().size() >= 1) {
