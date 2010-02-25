@@ -12,7 +12,7 @@ List::List(std::string marker_args, std::string id) : Marker(marker_args, id) {
 void List::paint() {
     marker::MarkerSet* items = marker::GlobalMarkers::instance()->markers_clone();
     items->filter_by_visible(1);
-    items->filter_by_type(1, 0);
+    items->filter_by_type_items();
     items->filter_by_aligned_with_marker(this);
     items->filter_by_over_marker(this);
     items->sort_by_y_axis();

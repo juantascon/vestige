@@ -1,15 +1,15 @@
-#ifndef __VESTIGE_PROBLEM_LISTPROBLEM_HPP
-#define __VESTIGE_PROBLEM_LISTPROBLEM_HPP
+#ifndef __VESTIGE_PROBLEM_LISTRETURN_HPP
+#define __VESTIGE_PROBLEM_LISTRETURN_HPP
 
 #include "Problem.hpp"
 
 namespace vestige {
 namespace problem {
 
-class ListProblem : public Problem
+class ListReturn : public Problem
 {
     protected:
-        ListProblem();
+        ListReturn();
         std::vector<std::string>* _ids;
         
     public:

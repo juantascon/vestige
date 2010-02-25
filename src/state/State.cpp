@@ -11,7 +11,7 @@ State::State() : Node::Map()
 
 Node* State::return_value() { return this->_return_value; }
 
-NodeSet* State::nodes() {
+NodeSet* State::clone_nodes() {
     NodeSet* ret = new NodeSet();
     
     BOOST_FOREACH(Node::MapPair p, *this) {
@@ -42,27 +42,39 @@ void State::capture() {
     markers->filter_by_visible(1);
     markers->sort_by_y_axis();
     
-    BOOST_FOREACH(marker::Marker* m, *markers) {
-        (*this)[m->id()] = new Node(m);
+    // Add lists
+    marker::MarkerSet* lists = markers->clone();
+    lists->filter_by_type_lists();
+    
+    BOOST_FOREACH(marker::Marker* m, *lists) {
+        (*this)[m->id()] = new List(dynamic_cast<marker::List*>(m));
     }
     
+    // Add Items
+    marker::MarkerSet* items = markers->clone();
+    items->filter_by_type_items();
+    
+    BOOST_FOREACH(marker::Marker* m, *items) {
+        (*this)[m->id()] = new Item(dynamic_cast<marker::Item*>(m));
+    }
+    
+    // Set return value
     if (marker::GlobalMarkers::instance()->m_return->value()) {
         _return_value = (*this)[marker::GlobalMarkers::instance()->m_return->value()->id()];
     }
     
-    marker::MarkerSet* lists = markers->clone();
-    lists->filter_by_type(0, 1);
-    
-    marker::MarkerSet* items = markers->clone();
-    items->filter_by_type(1, 0);
-    
-    BOOST_FOREACH(marker::Marker* l, *lists) {
+    // TODO: posible bug, cuando un item este alineado con 2 listas
+    // Link Nodes
+    BOOST_FOREACH(marker::Marker* m, *lists) {
+        state::Node* n = (*this)[m->id()];
+        state::List* l = dynamic_cast<state::List*>( n );
+        
         marker::MarkerSet* children = items->clone();
-        children->filter_by_aligned_with_marker(l);
-        children->filter_by_over_marker(l);
+        children->filter_by_aligned_with_marker(m);
+        children->filter_by_over_marker(m);
         
         BOOST_FOREACH(marker::Marker* c, *children) {
-            (*this)[l->id()]->add_child( (*this)[c->id()] );
+            l->add_child( (*this)[c->id()] );
         }
     }
 }

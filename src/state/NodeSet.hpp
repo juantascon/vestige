@@ -3,8 +3,7 @@
 
 #include <limits>
 
-#include "Node.hpp"
-#include "../marker/Types.hpp"
+#include "Types.hpp"
 
 namespace vestige {
 namespace state {
@@ -18,9 +17,11 @@ class NodeSet : public Node::List
         
         NodeSet* clone();
         
-        void filter_by_type(int items, int lists);
+        void filter_by_type_items();
+        void filter_by_type_lists();
         void filter_by_no_parent();
-        state::Node* filter_single_by_size_range(int min, int max);
+        
+        state::List* remove_single_list_by_size_range(int min, int max);
         
         std::string text();
 };

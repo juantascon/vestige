@@ -28,39 +28,42 @@ void NodeSet::filter_by_no_parent() {
     }
 }
 
-void NodeSet::filter_by_type(int items, int lists) {
+void NodeSet::filter_by_type_items() {
     for (NodeSet::iterator it = this->begin(); it != this->end(); ++it) {
-        if (items) {
-            if ( dynamic_cast<marker::Item*>( (*it)->marker() ) ) { continue; }
-        }
-        
-        if (lists) {
-            if ( dynamic_cast<marker::List*>( (*it)->marker() ) ) { continue; }
-        }
+        if ( dynamic_cast<state::Item*>( *it ) ) { continue; }
         
         this->erase(it);
         it--;
     }
 }
 
-state::Node* NodeSet::filter_single_by_size_range(int min, int max) {
-    state::Node* ret = 0;
+void NodeSet::filter_by_type_lists() {
+    for (NodeSet::iterator it = this->begin(); it != this->end(); ++it) {
+        if ( dynamic_cast<state::List*>( *it ) ) { continue; }
+        
+        this->erase(it);
+        it--;
+    }
+}
+
+state::List* NodeSet::remove_single_list_by_size_range(int min, int max) {
+    if (max == -1) { max = (std::numeric_limits<int>::max)(); }
+    if (min == -1) { min = (std::numeric_limits<int>::max)(); }
     
     for (NodeSet::iterator it = this->begin(); it != this->end(); ++it) {
-        // validate size range
-        if (! ((*it)->children()->size() >= min && (*it)->children()->size() <= max) ) {
-            continue;
-        }
+        state::List* ret = dynamic_cast<state::List*>(*it);
         
-        ret = (*it);
+        if (!ret) { continue; }
+        if (! (ret->children()->size() >= min) ) { continue; }
+        if (! (ret->children()->size() <= max) ) { continue; }
         
         this->erase(it);
         it--;
         
-        break;
+        return ret;
     }
     
-    return ret;
+    return NULL;
 }
 
 std::string NodeSet::text() {

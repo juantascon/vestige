@@ -1,17 +1,17 @@
 #ifndef __VESTIGE_PROBLEM_JOIN_HPP
 #define __VESTIGE_PROBLEM_JOIN_HPP
 
-#include "ListProblem.hpp"
+#include "ListReturn.hpp"
 
 namespace vestige {
 namespace problem {
 
-class Join : public ListProblem
+class Join : public ListReturn
 {
     protected:
-        state::Node* TMP;
-        state::Node* L;
-        state::Node* R;
+        state::List* TMP;
+        state::List* L;
+        state::List* R;
         
     public:
         Join(state::State* s);

@@ -1,7 +1,6 @@
 #ifndef __VESTIGE_STATE_STATE_HPP
 #define __VESTIGE_STATE_STATE_HPP
 
-#include "Node.hpp"
 #include "NodeSet.hpp"
 
 namespace vestige {
@@ -15,7 +14,7 @@ class State : public Node::Map
     public:
         State();
         
-        NodeSet* nodes();
+        NodeSet* clone_nodes();
         Node* return_value();
         std::string text();
         

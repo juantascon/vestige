@@ -1,16 +1,16 @@
 #ifndef __VESTIGE_PROBLEM_REVERSE_HPP
 #define __VESTIGE_PROBLEM_REVERSE_HPP
 
-#include "ListProblem.hpp"
+#include "ListReturn.hpp"
 
 namespace vestige {
 namespace problem {
 
-class Reverse : public ListProblem
+class Reverse : public ListReturn
 {
     protected:
-        state::Node* L;
-        state::Node* R;
+        state::List* L;
+        state::List* R;
         
     public:
         Reverse(state::State* s);

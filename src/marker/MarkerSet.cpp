@@ -27,15 +27,18 @@ void MarkerSet::sort_by_y_axis() {
     this->sort(MarkerSet::compare_by_y_axis);
 }
 
-void MarkerSet::filter_by_type(int items, int lists) {
+void MarkerSet::filter_by_type_items() {
     for (MarkerSet::iterator it = this->begin(); it != this->end(); ++it) {
-        if (items) {
-            if (  dynamic_cast<marker::Item*>( (*it) ) ) { continue; }
-        }
+        if (  dynamic_cast<marker::Item*>( (*it) ) ) { continue; }
+        
+        this->erase(it);
+        it--;
+    }
+}
 
-        if (lists) {
-            if ( dynamic_cast<marker::List*>( (*it) ) ) { continue; }
-        }
+void MarkerSet::filter_by_type_lists() {
+    for (MarkerSet::iterator it = this->begin(); it != this->end(); ++it) {
+        if (  dynamic_cast<marker::List*>( (*it) ) ) { continue; }
         
         this->erase(it);
         it--;
