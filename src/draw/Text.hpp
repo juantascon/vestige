@@ -9,12 +9,12 @@ namespace draw {
 
 class Text : public osgText::Text
 {
-	protected:
-		void initialize(std::string value);
-		
-	public:
-		Text(std::string value);
-		osg::Geode* wrap();
+    protected:
+        void initialize(std::string value);
+        
+    public:
+        Text(std::string value);
+        osg::Geode* wrap();
 };
 
 }}

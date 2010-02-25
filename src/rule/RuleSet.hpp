@@ -8,15 +8,15 @@ namespace rule {
 
 class RuleSet
 {
-	protected:
-		Rule::Vector::iterator current;
-		Rule::Vector* items;
-		
-	public:
-		RuleSet();
-		
-		void add(Rule* rule);
-		int apply(action::Action* action);
+    protected:
+        Rule::Vector::iterator current;
+        Rule::Vector* items;
+        
+    public:
+        RuleSet();
+        
+        void add(Rule* rule);
+        int apply(action::Action* action);
 };
 
 }}

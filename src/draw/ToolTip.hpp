@@ -11,12 +11,12 @@ namespace draw {
 
 class ToolTip : public osg::Geode
 {
-	protected:
-		void initialize(std::string value, float size);
-		
-	public:
-		ToolTip(std::string value, float size);
-		ToolTip(std::string value);
+    protected:
+        void initialize(std::string value, float size);
+        
+    public:
+        ToolTip(std::string value, float size);
+        ToolTip(std::string value);
 };
 
 }}

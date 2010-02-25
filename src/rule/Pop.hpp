@@ -9,14 +9,14 @@ namespace rule {
 
 class Pop : public Rule
 {
-	protected:
-		std::string from;
-		
-	public:
-		Pop(std::string item, std::string from);
-		
-		virtual int valid(action::Action* action);
-		virtual std::string text();
+    protected:
+        std::string from;
+        
+    public:
+        Pop(std::string item, std::string from);
+        
+        virtual int valid(action::Action* action);
+        virtual std::string text();
 };
 
 }}

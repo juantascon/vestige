@@ -8,11 +8,11 @@ namespace action {
 
 class Invalid : public Action
 {
-	protected:
-	public:
-		Invalid(state::Node* item);
-		
-		virtual std::string text();
+    protected:
+    public:
+        Invalid(state::Node* item);
+        
+        virtual std::string text();
 };
 
 }}

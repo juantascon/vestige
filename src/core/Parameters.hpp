@@ -8,15 +8,15 @@ namespace core {
 
 class Parameters
 {
-	protected:
-		Parameters();
-				
-	public:
-		static Parameters* instance();
-		
-		float ALIGN_FACTOR();
-		float BLOCK_SIZE();
-		std::string ROOT();
+    protected:
+        Parameters();
+                
+    public:
+        static Parameters* instance();
+        
+        float ALIGN_FACTOR();
+        float BLOCK_SIZE();
+        std::string ROOT();
 
 };
 

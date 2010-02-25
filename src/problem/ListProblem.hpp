@@ -8,13 +8,13 @@ namespace problem {
 
 class ListProblem : public Problem
 {
-	protected:
-		ListProblem();
-		std::vector<std::string>* _ids;
-		
-	public:
-		virtual rule::RuleSet* create_rules() = 0;
-		virtual int validate_return(state::Node* ret);
+    protected:
+        ListProblem();
+        std::vector<std::string>* _ids;
+        
+    public:
+        virtual rule::RuleSet* create_rules() = 0;
+        virtual int validate_return(state::Node* ret);
 };
 
 }}

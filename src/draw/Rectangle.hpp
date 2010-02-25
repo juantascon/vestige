@@ -10,10 +10,10 @@ namespace draw {
 
 class Rectangle : public osg::Geometry
 {
-	protected:
-	
-	public:
-		 Rectangle(osg::Vec3 A, osg::Vec3 B, osg::Vec3 C, osg::Vec3 D, osg::Vec4 color);
+    protected:
+    
+    public:
+         Rectangle(osg::Vec3 A, osg::Vec3 B, osg::Vec3 C, osg::Vec3 D, osg::Vec4 color);
 };
 
 }}

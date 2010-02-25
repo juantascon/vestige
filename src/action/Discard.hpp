@@ -8,11 +8,11 @@ namespace action {
 
 class Discard : public Action
 {
-	protected:
-	public:
-		Discard(state::Node* item);
-		
-		std::string text();
+    protected:
+    public:
+        Discard(state::Node* item);
+        
+        std::string text();
 };
 
 }}

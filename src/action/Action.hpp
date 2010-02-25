@@ -23,20 +23,20 @@ namespace action {
 
 class Action
 {
-	protected:
-		state::Node* item;
-		int _valid;
-		
-	public:
-		typedef std::vector <Action*> Vector;
-		
-		Action(state::Node* item);
-		
-		std::string item_id();
-	  	int valid();
-		
-		void alert(std::string message);
-		virtual std::string text() = 0;
+    protected:
+        state::Node* item;
+        int _valid;
+        
+    public:
+        typedef std::vector <Action*> Vector;
+        
+        Action(state::Node* item);
+        
+        std::string item_id();
+          int valid();
+        
+        void alert(std::string message);
+        virtual std::string text() = 0;
 };
 
 }}

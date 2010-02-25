@@ -22,16 +22,16 @@ namespace rule {
 
 class Rule
 {
-	protected:
-		std::string item;
-		
-	public:
-		typedef std::vector <Rule*> Vector;
-		
-		Rule(std::string item);
-		
-		virtual int valid(action::Action* action);
-		virtual std::string text() = 0;
+    protected:
+        std::string item;
+        
+    public:
+        typedef std::vector <Rule*> Vector;
+        
+        Rule(std::string item);
+        
+        virtual int valid(action::Action* action);
+        virtual std::string text() = 0;
 };
 
 }}

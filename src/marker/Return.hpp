@@ -10,17 +10,17 @@ namespace marker {
 
 class Return : public Marker
 {
-	protected:
-		Marker* _value;
-		void update_value();
-		
-	public:
-		Return (std::string marker_args);
-		
-		Marker* value();
-		
-		virtual void update();
-		virtual void paint();
+    protected:
+        Marker* _value;
+        void update_value();
+        
+    public:
+        Return (std::string marker_args);
+        
+        Marker* value();
+        
+        virtual void update();
+        virtual void paint();
 };
 
 }}

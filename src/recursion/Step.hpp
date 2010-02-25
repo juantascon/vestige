@@ -13,19 +13,19 @@ namespace recursion {
 
 class Step
 {
-	protected:
-		Step();
-		
-		problem::Problem* p;
-		rule::RuleSet* r;
-		
-		state::State* previous_state;
-		state::State* current_state;
-		
-	public:
-		static Step* instance();
-		
-		StatusMessage* step();
+    protected:
+        Step();
+        
+        problem::Problem* p;
+        rule::RuleSet* r;
+        
+        state::State* previous_state;
+        state::State* current_state;
+        
+    public:
+        static Step* instance();
+        
+        StatusMessage* step();
 };
 
 }}

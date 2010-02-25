@@ -9,12 +9,12 @@ namespace rule {
 
 class Discard : public Rule
 {
-	protected:
-	public:
-		Discard(std::string item);
-		
-		virtual int valid(action::Action* action);
-		virtual std::string text();
+    protected:
+    public:
+        Discard(std::string item);
+        
+        virtual int valid(action::Action* action);
+        virtual std::string text();
 };
 
 }}

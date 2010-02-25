@@ -9,22 +9,22 @@ namespace marker {
 
 class GlobalMarkers
 {
-	protected:
-		GlobalMarkers();
-		
-		std::string patt_format(std::string patt);
-		
-		marker::MarkerSet* _items;
-		
-	public:
-		static GlobalMarkers* instance();
-		
-		void items_add(marker::Marker *m);
-		marker::MarkerSet* items_clone();
-		void items_initialize();
-		
-		marker::Return* m_return;
-		marker::Switch* m_switch;
+    protected:
+        GlobalMarkers();
+        
+        std::string patt_format(std::string patt);
+        
+        marker::MarkerSet* _items;
+        
+    public:
+        static GlobalMarkers* instance();
+        
+        void items_add(marker::Marker *m);
+        marker::MarkerSet* items_clone();
+        void items_initialize();
+        
+        marker::Return* m_return;
+        marker::Switch* m_switch;
 };
 
 }}

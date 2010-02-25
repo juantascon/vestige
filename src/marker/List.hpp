@@ -10,13 +10,13 @@ namespace marker {
 
 class List : public Marker
 {
-	protected:
-		
-	public:
-		List (std::string marker_args, std::string id);
-		
-		virtual void update();
-		virtual void paint();
+    protected:
+        
+    public:
+        List (std::string marker_args, std::string id);
+        
+        virtual void update();
+        virtual void paint();
 };
 
 }}

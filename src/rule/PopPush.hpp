@@ -9,15 +9,15 @@ namespace rule {
 
 class PopPush : public Rule
 {
-	protected:
-		std::string from;
-		std::string into;
-		
-	public:
-		PopPush(std::string item, std::string from, std::string into);
-		
-		virtual int valid(action::Action* action);
-		virtual std::string text();
+    protected:
+        std::string from;
+        std::string into;
+        
+    public:
+        PopPush(std::string item, std::string from, std::string into);
+        
+        virtual int valid(action::Action* action);
+        virtual std::string text();
 };
 
 }}

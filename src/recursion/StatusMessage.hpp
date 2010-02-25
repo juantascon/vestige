@@ -9,16 +9,16 @@ namespace recursion {
 
 class StatusMessage
 {
-	protected:
-		int _stop;
-		std::string _message;
-		
-	public:
-		StatusMessage(int stop, std::string message);
-		int stop();
-		std::string message();
-		
-		std::string text();
+    protected:
+        int _stop;
+        std::string _message;
+        
+    public:
+        StatusMessage(int stop, std::string message);
+        int stop();
+        std::string message();
+        
+        std::string text();
 };
 
 }}

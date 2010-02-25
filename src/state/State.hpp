@@ -9,17 +9,17 @@ namespace state {
 
 class State : public Node::Map
 {
-	protected:
-		Node* _return_value;
-		
-	public:
-		State();
-		
-		NodeSet* nodes();
-		Node* return_value();
-		std::string text();
-		
-		void capture();
+    protected:
+        Node* _return_value;
+        
+    public:
+        State();
+        
+        NodeSet* nodes();
+        Node* return_value();
+        std::string text();
+        
+        void capture();
 };
 
 }}

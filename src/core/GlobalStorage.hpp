@@ -10,15 +10,15 @@ namespace core {
 
 class GlobalStorage
 {
-	protected:
-		GlobalStorage();
-		
-	public:
-		static GlobalStorage* instance();
-		
-		// OSG General
-		osgART::Tracker* tracker;
-		osg::Camera* camera;
+    protected:
+        GlobalStorage();
+        
+    public:
+        static GlobalStorage* instance();
+        
+        // OSG General
+        osgART::Tracker* tracker;
+        osg::Camera* camera;
 };
 
 }}

@@ -9,16 +9,16 @@ namespace marker {
 
 class Switch : public Marker
 {
-	protected:
-		int captured;
-		
-	public:
-		Switch (std::string marker_args);
-		
-		virtual void set_valid(int valid);
-		virtual void alert(std::string message);
-		virtual void paint();
-		virtual void update();
+    protected:
+        int captured;
+        
+    public:
+        Switch (std::string marker_args);
+        
+        virtual void set_valid(int valid);
+        virtual void alert(std::string message);
+        virtual void paint();
+        virtual void update();
 };
 
 }}

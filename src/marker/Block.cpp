@@ -5,47 +5,47 @@ namespace marker {
 
 Block::Block(std::string marker_args, std::string id, std::string key) : Marker(marker_args, id)
 {
-	this->_key = key;
-	this->_top = 1;
-	this->paint();
+    this->_key = key;
+    this->_top = 1;
+    this->paint();
 }
 
 
 void Block::set_top(int top) {
-	this->_top = top;
-	this->paint();
+    this->_top = top;
+    this->paint();
 }
 
 void Block::paint() {
-	float size = core::Parameters::instance()->BLOCK_SIZE();
-	float z = -20.0;
-	
-	osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 0.0f, 1.0f);
-	if (!_valid) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
-	if (!_top) { color =  new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f); }
-	
-	draw::Rectangle* rectangle = new draw::Rectangle(
-		osg::Vec3(size, size, z),
-		osg::Vec3(size, -size, z),
-		osg::Vec3(-size, -size, z),
-		osg::Vec3(-size, size, z),
-		*color
-	);
-	
-	// Container
-	osg::Geode* geode = new osg::Geode();
-	geode->addDrawable(rectangle);
-	
-	this->reset();
-	this->add(geode);
-	if (_top) {	this->add((new draw::Text(_key))->wrap()); }
+    float size = core::Parameters::instance()->BLOCK_SIZE();
+    float z = -20.0;
+    
+    osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 0.0f, 1.0f);
+    if (!_valid) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
+    if (!_top) { color =  new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f); }
+    
+    draw::Rectangle* rectangle = new draw::Rectangle(
+        osg::Vec3(size, size, z),
+        osg::Vec3(size, -size, z),
+        osg::Vec3(-size, -size, z),
+        osg::Vec3(-size, size, z),
+        *color
+    );
+    
+    // Container
+    osg::Geode* geode = new osg::Geode();
+    geode->addDrawable(rectangle);
+    
+    this->reset();
+    this->add(geode);
+    if (_top) {    this->add((new draw::Text(_key))->wrap()); }
 }
 
 void Block::alert(std::string message) {
-	D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
-	this->set_valid(0);
-	this->paint();
-	this->add(new draw::ToolTip(message));
+    D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
+    this->set_valid(0);
+    this->paint();
+    this->add(new draw::ToolTip(message));
 }
 
 void Block::update() {

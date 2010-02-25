@@ -8,15 +8,15 @@ namespace action {
 
 class Push : public Action
 {
-	protected:
-		state::Node* into;
-		
-	public:
-		Push(state::Node* item, state::Node* into);
-		
-		std::string into_id();
-		
-		std::string text();
+    protected:
+        state::Node* into;
+        
+    public:
+        Push(state::Node* item, state::Node* into);
+        
+        std::string into_id();
+        
+        std::string text();
 };
 
 }}
