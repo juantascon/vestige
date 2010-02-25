@@ -27,6 +27,7 @@ class Rule
         
     public:
         typedef std::vector <Rule*> Vector;
+        typedef std::list <Rule*> List;
         
         Rule(std::string node);
         

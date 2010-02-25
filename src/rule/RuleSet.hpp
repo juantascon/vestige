@@ -6,11 +6,10 @@
 namespace vestige {
 namespace rule {
 
-class RuleSet
+class RuleSet : public Rule::List
 {
     protected:
-        Rule::Vector::iterator current;
-        Rule::Vector* nodes;
+        RuleSet::iterator current;
         
     public:
         RuleSet();

@@ -3,14 +3,13 @@
 namespace vestige {
 namespace rule {
 
-RuleSet::RuleSet() {
-    nodes = new Rule::Vector();
-    current = nodes->begin();
+RuleSet::RuleSet() : Rule::List() {
+    current = this->begin();
 }
 
 void RuleSet::add(Rule* rule) {
-    nodes->push_back(rule);
-    current = nodes->begin();
+    this->push_back(rule);
+    current = this->begin();
 }
 
 int RuleSet::apply(action::Action* action) {
