@@ -3,13 +3,13 @@
 namespace vestige {
 namespace action {
 
-Invalid::Invalid(state::Node* item) : Action(item)
+Invalid::Invalid(state::Node* node) : Action(node)
 {
     this->_valid = 0;
 }
 
 std::string Invalid::text() {
-    return "Action [Invalid] | Item: " + item->path();
+    return "Action [Invalid] | Node: " + node->path();
 }
 
 }}

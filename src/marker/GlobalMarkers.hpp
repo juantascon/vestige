@@ -14,14 +14,14 @@ class GlobalMarkers
         
         std::string patt_format(std::string patt);
         
-        marker::MarkerSet* _items;
+        marker::MarkerSet* _markers;
         
     public:
         static GlobalMarkers* instance();
         
-        void items_add(marker::Marker *m);
-        marker::MarkerSet* items_clone();
-        void items_initialize();
+        void markers_add(marker::Marker *m);
+        marker::MarkerSet* markers_clone();
+        void markers_initialize();
         
         marker::Return* m_return;
         marker::Switch* m_switch;

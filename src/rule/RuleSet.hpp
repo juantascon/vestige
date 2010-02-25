@@ -10,7 +10,7 @@ class RuleSet
 {
     protected:
         Rule::Vector::iterator current;
-        Rule::Vector* items;
+        Rule::Vector* nodes;
         
     public:
         RuleSet();

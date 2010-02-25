@@ -3,9 +3,9 @@
 namespace vestige {
 namespace rule {
 
-Rule::Rule(std::string item)
+Rule::Rule(std::string node)
 {
-    this->item = item;
+    this->node = node;
 }
 
 int Rule::valid(action::Action* action) {

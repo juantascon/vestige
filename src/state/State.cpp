@@ -38,7 +38,7 @@ std::string State::text() {
 }
 
 void State::capture() {
-    marker::MarkerSet* markers = marker::GlobalMarkers::instance()->items_clone();
+    marker::MarkerSet* markers = marker::GlobalMarkers::instance()->markers_clone();
     markers->filter_by_visible(1);
     markers->sort_by_y_axis();
     
@@ -53,11 +53,11 @@ void State::capture() {
     marker::MarkerSet* lists = markers->clone();
     lists->filter_by_type(0, 1);
     
-    marker::MarkerSet* blocks = markers->clone();
-    blocks->filter_by_type(1, 0);
+    marker::MarkerSet* items = markers->clone();
+    items->filter_by_type(1, 0);
     
     BOOST_FOREACH(marker::Marker* l, *lists) {
-        marker::MarkerSet* children = blocks->clone();
+        marker::MarkerSet* children = items->clone();
         children->filter_by_aligned_with_marker(l);
         children->filter_by_over_marker(l);
         

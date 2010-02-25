@@ -10,7 +10,7 @@ class Discard : public Action
 {
     protected:
     public:
-        Discard(state::Node* item);
+        Discard(state::Node* node);
         
         std::string text();
 };

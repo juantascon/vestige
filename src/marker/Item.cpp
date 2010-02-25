@@ -1,24 +1,24 @@
-#include "Block.hpp"
+#include "Item.hpp"
 
 namespace vestige {
 namespace marker {
 
-Block::Block(std::string marker_args, std::string id, std::string value) : Marker(marker_args, id)
+Item::Item(std::string marker_args, std::string id, std::string value) : Marker(marker_args, id)
 {
     this->_value = value;
     this->_top = 1;
     this->paint();
 }
 
-std::string Block::value() { return this->_value; }
+std::string Item::value() { return this->_value; }
 
-void Block::set_top(int top) {
+void Item::set_top(int top) {
     this->_top = top;
     this->paint();
 }
 
-void Block::paint() {
-    float size = core::Parameters::instance()->BLOCK_SIZE();
+void Item::paint() {
+    float size = core::Parameters::instance()->MARKER_SIZE();
     float z = -20.0;
     
     osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 0.0f, 1.0f);
@@ -42,14 +42,14 @@ void Block::paint() {
     if (_top) {    this->add((new draw::Text(_value))->wrap()); }
 }
 
-void Block::alert(std::string message) {
+void Item::alert(std::string message) {
     D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
     this->set_active(0);
     this->paint();
     this->add(new draw::ToolTip(message));
 }
 
-void Block::update() {
+void Item::update() {
 }
 
 }}

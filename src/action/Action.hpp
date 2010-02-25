@@ -1,14 +1,14 @@
 /**
  * Actions:
  *
- * - (pop) move a block from a list to the board
- * - (push) move a block from the board to a list
- * - (pop-push) move a block from a list to another
+ * - (pop) move a item from a list to the board
+ * - (push) move a item from the board to a list
+ * - (pop-push) move a item from a list to another
  *
- * - (discard) discard an item
+ * - (discard) discard a node
  * - (invalid) invalid movement
  *
- * ** Board is the base where all the items are on
+ * ** Board is the base where all the nodes are on
  *
  **
  */
@@ -24,16 +24,16 @@ namespace action {
 class Action
 {
     protected:
-        state::Node* item;
+        state::Node* node;
         int _valid;
         
     public:
         typedef std::vector <Action*> Vector;
         
-        Action(state::Node* item);
+        Action(state::Node* node);
         
-        std::string item_id();
-          int valid();
+        std::string node_id();
+        int valid();
         
         void alert(std::string message);
         virtual std::string text() = 0;

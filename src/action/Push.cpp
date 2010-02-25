@@ -3,7 +3,7 @@
 namespace vestige {
 namespace action {
 
-Push::Push(state::Node* item, state::Node* into) : Action(item)
+Push::Push(state::Node* node, state::Node* into) : Action(node)
 {
     this->into = into;
 }
@@ -11,7 +11,7 @@ Push::Push(state::Node* item, state::Node* into) : Action(item)
 std::string Push::into_id() { return into->id(); }
 
 std::string Push::text() {
-    return "Action [Push] || Item: " + item->path() + " || Into: " + into->path();
+    return "Action [Push] || Node: " + node->path() + " || Into: " + into->path();
 }
 
 }}

@@ -1,6 +1,6 @@
 #include "Node.hpp"
 #include "NodeSet.hpp"
-#include "../marker/Block.hpp"
+#include "../marker/Item.hpp"
 
 namespace vestige {
 namespace state {
@@ -13,7 +13,7 @@ Node::Node(marker::Marker* marker) {
     this->_parent = NULL;
     this->_index = 0;
 
-    marker::Block* b = dynamic_cast<marker::Block*>(marker);
+    marker::Item* b = dynamic_cast<marker::Item*>(marker);
     if (b) { this->_value = b->value(); }
 }
 

@@ -12,7 +12,7 @@ class Pop : public Action
         state::Node* from;
         
     public:
-        Pop(state::Node* item, state::Node* from);
+        Pop(state::Node* node, state::Node* from);
         
         std::string from_id();
         

@@ -10,24 +10,24 @@ List::List(std::string marker_args, std::string id) : Marker(marker_args, id) {
 }
 
 void List::paint() {
-    marker::MarkerSet* blocks = marker::GlobalMarkers::instance()->items_clone();
-    blocks->filter_by_visible(1);
-    blocks->filter_by_type(1, 0);
-    blocks->filter_by_aligned_with_marker(this);
-    blocks->filter_by_over_marker(this);
-    blocks->sort_by_y_axis();
+    marker::MarkerSet* items = marker::GlobalMarkers::instance()->markers_clone();
+    items->filter_by_visible(1);
+    items->filter_by_type(1, 0);
+    items->filter_by_aligned_with_marker(this);
+    items->filter_by_over_marker(this);
+    items->sort_by_y_axis();
     
-    BOOST_FOREACH(marker::Marker* m, *blocks) {
-        dynamic_cast<marker::Block*>(m)->set_top(0);
+    BOOST_FOREACH(marker::Marker* m, *items) {
+        dynamic_cast<marker::Item*>(m)->set_top(0);
     }
-    if ( blocks->size() > 0 ) {
-        dynamic_cast<marker::Block*>(blocks->back())->set_top(1);
+    if ( items->size() > 0 ) {
+        dynamic_cast<marker::Item*>(items->back())->set_top(1);
     }
     
-    float size = core::Parameters::instance()->BLOCK_SIZE();
+    float size = core::Parameters::instance()->MARKER_SIZE();
     float align_factor = core::Parameters::instance()->ALIGN_FACTOR();
-    float range = (size*2.0*(blocks->size()))+size;
-    float cover = (size*2.0*(blocks->size()-1.0));
+    float range = (size*2.0*(items->size()))+size;
+    float cover = (size*2.0*(items->size()-1.0));
     if (cover < 0) { cover = 0; }
     float line_width = 20.0;
     float z = 2.0;

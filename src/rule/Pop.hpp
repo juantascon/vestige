@@ -13,7 +13,7 @@ class Pop : public Rule
         std::string from;
         
     public:
-        Pop(std::string item, std::string from);
+        Pop(std::string node, std::string from);
         
         virtual int valid(action::Action* action);
         virtual std::string text();

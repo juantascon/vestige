@@ -9,14 +9,14 @@ Join::Join(state::State* s) : ListProblem()
     /* -- Check initial state -- */
     /***/
     
-    // exactly 3 items expected on the board:
-    // * TMP: empty list
-    // * L: list with at least 2 elements
-    // * R: list with at least 2 elements
+    // exactly 3 elements expected on the board:
+    // * TMP: list ( empty )
+    // * L: list ( at least 2 elements )
+    // * R: list ( at least 2 elements )
     
     state::NodeSet* lists = s->nodes();
     lists->filter_by_no_parent();
-    if (lists->size() != 3) { throw std::runtime_error("3 items are expected on the table"); }
+    if (lists->size() != 3) { throw std::runtime_error("3 elements are expected on the table"); }
     
     lists->filter_by_type(0, 1);
     

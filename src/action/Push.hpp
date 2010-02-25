@@ -12,7 +12,7 @@ class Push : public Action
         state::Node* into;
         
     public:
-        Push(state::Node* item, state::Node* into);
+        Push(state::Node* node, state::Node* into);
         
         std::string into_id();
         

@@ -3,17 +3,17 @@
 namespace vestige {
 namespace action {
 
-Action::Action(state::Node* item)
+Action::Action(state::Node* node)
 {
-    this->item = item;
+    this->node = node;
     this->_valid = 1;
 }
 
-std::string Action::item_id() { return item->id(); }
+std::string Action::node_id() { return node->id(); }
 int Action::valid() { return _valid; }
 
 void Action::alert(std::string message) {
-    item->alert(message);
+    node->alert(message);
 }
 
 }}

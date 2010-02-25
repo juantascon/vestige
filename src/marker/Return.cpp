@@ -53,7 +53,7 @@ void Return::paint() {
 void Return::update_value() {
     _value = 0;
     
-    marker::MarkerSet* _markers = marker::GlobalMarkers::instance()->items_clone();
+    marker::MarkerSet* _markers = marker::GlobalMarkers::instance()->markers_clone();
     _markers->filter_by_visible(1);
     _markers->filter_by_aligned_with_marker(this);
     _markers->filter_by_over_marker(this);

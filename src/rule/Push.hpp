@@ -13,7 +13,7 @@ class Push : public Rule
         std::string into;
         
     public:
-        Push(std::string item, std::string into);
+        Push(std::string node, std::string into);
         
         virtual int valid(action::Action* action);
         virtual std::string text();

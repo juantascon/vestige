@@ -3,7 +3,7 @@
 namespace vestige {
 namespace action {
 
-Pop::Pop(state::Node* item, state::Node* from) : Action(item)
+Pop::Pop(state::Node* node, state::Node* from) : Action(node)
 {
     this->from = from;
 }
@@ -11,7 +11,7 @@ Pop::Pop(state::Node* item, state::Node* from) : Action(item)
 std::string Pop::from_id() { return from->id(); }
 
 std::string Pop::text() {
-    return "Action [Pop] | Item: " + item->path() + " | From: " + from->path();
+    return "Action [Pop] | Node: " + node->path() + " | From: " + from->path();
 }
 
 }}

@@ -9,17 +9,17 @@ RemoveFirst::RemoveFirst(state::State* s) : ListProblem()
     /* -- Check initial state -- */
     /***/
     
-    // exactly 4 items expected on the board:
-    // * L: list with at least 2 elements
-    // * TMP1: empty list
-    // * TMP2: empty list
-    // * E: block to remove
+    // exactly 4 elements expected on the board:
+    // * L: list ( at least 2 elements )
+    // * TMP1: list ( empty )
+    // * TMP2: list ( empty )
+    // * E: item ( element to be removed )
     
-    state::NodeSet* items = s->nodes();
-    items->filter_by_no_parent();
-    if (lists->size() != 4) { throw std::runtime_error("4 items are expected on the table"); }
+    state::NodeSet* nodes = s->nodes();
+    nodes->filter_by_no_parent();
+    if (lists->size() != 4) { throw std::runtime_error("4 elements are expected on the table"); }
     
-    state::NodeSet* lists = items->clone();
+    state::NodeSet* lists = nodes->clone();
     lists->filter_by_type(0, 1);
 
     L = lists->filter_single_by_size_range(2, (std::numeric_limits<int>::max)());
@@ -31,10 +31,10 @@ RemoveFirst::RemoveFirst(state::State* s) : ListProblem()
     TMP2 = lists->filter_single_by_size_range(0, 0);
     if (!TMP2) { throw std::runtime_error("missing 1 empty list"); }
     
-    state::NodeSet* blocks = items->clone();
-    blocks->filter_by_type(1, 0);
-    E = blocks->back();
-    if (!E) { throw std::runtime_error("missing 1 block"); }
+    state::NodeSet* items = nodes->clone();
+    items->filter_by_type(1, 0);
+    E = items->back();
+    if (!E) { throw std::runtime_error("missing 1 item"); }
     
     /***/
     /* -- Prepare return list ids -- */

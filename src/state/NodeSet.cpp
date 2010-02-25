@@ -28,10 +28,10 @@ void NodeSet::filter_by_no_parent() {
     }
 }
 
-void NodeSet::filter_by_type(int blocks, int lists) {
+void NodeSet::filter_by_type(int items, int lists) {
     for (NodeSet::iterator it = this->begin(); it != this->end(); ++it) {
-        if (blocks) {
-            if ( dynamic_cast<marker::Block*>( (*it)->marker() ) ) { continue; }
+        if (items) {
+            if ( dynamic_cast<marker::Item*>( (*it)->marker() ) ) { continue; }
         }
         
         if (lists) {

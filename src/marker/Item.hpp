@@ -1,5 +1,5 @@
-#ifndef __VESTIGE_MARKER_BLOCK_HPP
-#define __VESTIGE_MARKER_BLOCK_HPP
+#ifndef __VESTIGE_MARKER_ITEM_HPP
+#define __VESTIGE_MARKER_ITEM_HPP
 
 #include "Marker.hpp"
 
@@ -10,14 +10,14 @@
 namespace vestige {
 namespace marker {
 
-class Block : public Marker
+class Item : public Marker
 {
     protected:
         int _top;
         std::string _value;
         
     public:
-        Block(std::string marker_args, std::string id, std::string value);
+        Item(std::string marker_args, std::string id, std::string value);
 
         void set_top(int top);
 

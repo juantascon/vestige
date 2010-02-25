@@ -13,7 +13,7 @@ class PopPush : public Action
         state::Node* into;
         
     public:
-        PopPush(state::Node* item, state::Node* from, state::Node* into);
+        PopPush(state::Node* node, state::Node* from, state::Node* into);
         
         std::string from_id();
         std::string into_id();

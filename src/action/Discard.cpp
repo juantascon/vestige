@@ -3,12 +3,12 @@
 namespace vestige {
 namespace action {
 
-Discard::Discard(state::Node* item) : Action(item)
+Discard::Discard(state::Node* node) : Action(node)
 {
 }
 
 std::string Discard::text() {
-    return "Action [Discard] | Item: " + item->path();
+    return "Action [Discard] | Node: " + node->path();
 }
 
 }}

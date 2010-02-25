@@ -14,7 +14,7 @@ class PopPush : public Rule
         std::string into;
         
     public:
-        PopPush(std::string item, std::string from, std::string into);
+        PopPush(std::string node, std::string from, std::string into);
         
         virtual int valid(action::Action* action);
         virtual std::string text();

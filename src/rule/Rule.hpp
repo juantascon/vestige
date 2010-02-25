@@ -1,13 +1,13 @@
 /**
  * Rules:
  *
- * - (pop) move a block from a list (*from*) to the board
- * - (push) move a block from the board to a list (*into*)
- * - (pop-push) move a block from a list (*from*) to another (*into*)
+ * - (pop) move a item from a list (*from*) to the board
+ * - (push) move a item from the board to a list (*into*)
+ * - (pop-push) move a item from a list (*from*) to another (*into*)
  *
- * - (discard) discard an item
+ * - (discard) discard a node
  *
- * ** Board is the base where all the items are on
+ * ** Board is the base where all the nodes are on
  *
  **
  */
@@ -23,12 +23,12 @@ namespace rule {
 class Rule
 {
     protected:
-        std::string item;
+        std::string node;
         
     public:
         typedef std::vector <Rule*> Vector;
         
-        Rule(std::string item);
+        Rule(std::string node);
         
         virtual int valid(action::Action* action);
         virtual std::string text() = 0;

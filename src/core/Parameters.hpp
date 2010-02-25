@@ -15,7 +15,7 @@ class Parameters
         static Parameters* instance();
         
         float ALIGN_FACTOR();
-        float BLOCK_SIZE();
+        float MARKER_SIZE();
         std::string ROOT();
 
 };

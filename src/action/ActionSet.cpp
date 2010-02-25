@@ -19,7 +19,7 @@ std::string ActionSet::text() {
     return ret;
 }
 
-// Type { PopPush, Pop, Push, DiscardBlock, DiscardList, Invalid, None }
+// Type { PopPush, Pop, Push, Discard, Invalid }
 void ActionSet::diff(state::State* past, state::State* present) {
     if (! past || ! present) {
         return;

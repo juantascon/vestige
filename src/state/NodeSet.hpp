@@ -18,7 +18,7 @@ class NodeSet : public Node::List
         
         NodeSet* clone();
         
-        void filter_by_type(int blocks, int lists);
+        void filter_by_type(int items, int lists);
         void filter_by_no_parent();
         state::Node* filter_single_by_size_range(int min, int max);
         

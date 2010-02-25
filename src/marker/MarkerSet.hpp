@@ -17,7 +17,7 @@ class MarkerSet : public Marker::List
         MarkerSet* clone();
         void sort_by_y_axis();
         
-        void filter_by_type(int blocks, int lists);
+        void filter_by_type(int items, int lists);
         void filter_by_visible(int visible);
         void filter_by_aligned_with_marker(marker::Marker* m);
         void filter_by_under_marker(marker::Marker* m);

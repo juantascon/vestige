@@ -3,7 +3,7 @@
 namespace vestige {
 namespace rule {
 
-Pop::Pop(std::string item, std::string from) : Rule(item)
+Pop::Pop(std::string node, std::string from) : Rule(node)
 {
     this->from = from;
 }
@@ -13,13 +13,13 @@ int Pop::valid(action::Action* action) {
     
     if (!a) { return 0; }
     
-    if (a->item_id() != from) { return 0; }
+    if (a->node_id() != from) { return 0; }
     
     return 1;
 }
 
 std::string Pop::text() {
-    return "Rule [Pop] | Item: " + item + " | From: " + from;
+    return "Rule [Pop] | Node: " + node + " | From: " + from;
 }
 
 }}

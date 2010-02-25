@@ -10,7 +10,7 @@ class Invalid : public Action
 {
     protected:
     public:
-        Invalid(state::Node* item);
+        Invalid(state::Node* node);
         
         virtual std::string text();
 };
