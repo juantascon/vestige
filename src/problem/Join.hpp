@@ -9,9 +9,9 @@ namespace problem {
 class Join : public ListReturn
 {
     protected:
-        state::List* TMP;
         state::List* L;
         state::List* R;
+        state::List* TMP;
         
     public:
         Join(state::State* s);

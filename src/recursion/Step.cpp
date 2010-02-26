@@ -18,7 +18,7 @@ StatusMessage* Step::step() {
     state::State *s = new state::State();
     s->capture();
     D(( s->text().c_str() ));
-
+    
     if (s->size() == 0) {
         return new StatusMessage(0, "");
     }

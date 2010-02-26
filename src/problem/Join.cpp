@@ -20,11 +20,11 @@ Join::Join(state::State* s) : ListReturn()
     
     lists->filter_by_type_lists();
     
-    L = lists->remove_single_list_by_size_range(2, -1);
-    if (!L) { throw std::runtime_error("missing 1 list with at least 2 elements"); }
-    
     R = lists->remove_single_list_by_size_range(2, -1);
     if (!R) { throw std::runtime_error("missing 1 list with at least 2 elements"); }
+    
+    L = lists->remove_single_list_by_size_range(2, -1);
+    if (!L) { throw std::runtime_error("missing 1 list with at least 2 elements"); }
     
     TMP = lists->remove_single_list_by_size_range(0, 0);
     if (!TMP) { throw std::runtime_error("missing 1 empty list"); }

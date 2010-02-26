@@ -13,24 +13,33 @@ Return::Return(std::string marker_args) : Marker(marker_args, "RETURN")
 Marker* Return::value() { return _value; }
 
 void Return::paint() {
-    float z = 2.0;
-    float line_width = 10.0;
+    this->reset();
     
+    if (!_value) { return; }
+    
+    if ( !( this->visible() && _value->visible() ) ) {
+        return;
+    }
+    
+    float z = 2.0;
     osg::Vec4* color = new osg::Vec4(0.0f, 0.0f, 0.0f, 1.0f);
     
-    //D(("VALUE: %s", _value->id.c_str()));
+    // Rectangle
+    float size = core::Parameters::instance()->MARKER_SIZE();
     
+    draw::Rectangle* rectangle = new draw::Rectangle (
+        osg::Vec3(size, size, z),
+        osg::Vec3(size, -size, z),
+        osg::Vec3(-size, -size, z),
+        osg::Vec3(-size, size, z),
+        *color
+    );
+    
+    // LINE
+    float line_width = 40.0;
     osg::Vec3 value_pos = _value->position();
     osg::Vec3 this_pos = this->position();
     
-    // LINE
-    /*draw::Rectangle* line = draw::Rectangle(
-        new osg::Vec3(abs(this_pos.x()-value_pos.x())+(line_width/2.0), abs(this_pos.y()-value_pos.y()), z),
-        new osg::Vec3(0+(line_width/2.0), 0, z),
-        new osg::Vec3(0-(line_width/2.0), 0, z),
-        new osg::Vec3(abs(this_pos.x()-value_pos.x())-(line_width/2.0), abs(this_pos.y()-value_pos.y()), z),
-        color
-    );*/
     draw::Rectangle* line = new draw::Rectangle(
         osg::Vec3(value_pos.x()-this_pos.x()+(line_width/2.0), value_pos.y()-this_pos.y(), z),
         osg::Vec3(0+(line_width/2.0), 0, z),
@@ -41,37 +50,35 @@ void Return::paint() {
     
     // Container
     osg::Geode* geode = new osg::Geode();
-    if ( this->visible() && _value->visible() ) {
-        geode->addDrawable(line);
-    }
-
-    this->reset();
+    geode->addDrawable(line);
+    geode->addDrawable(rectangle);
+    
     this->add(geode);
 }
 
 
 void Return::update_value() {
-    _value = 0;
+    _value = NULL;
     
     marker::MarkerSet* _markers = marker::GlobalMarkers::instance()->markers_clone();
     _markers->filter_by_visible(1);
     _markers->filter_by_aligned_with_marker(this);
-    _markers->filter_by_over_marker(this);
     _markers->sort_by_y_axis();
     
     if ( _markers->size() > 0 ) {
+        //D(( "return: %s", _markers->text().c_str() ));
         _value = _markers->front();
-        //D(( "return: %s", _value->id().c_str() ));
     }
 }
 
 void Return::update() {
+    this->paint();
+    
     if ( ! this->visible() ) {
         return;
     }
     
     if ( _value && this->aligned(_value) ) {
-        this->paint();
         return;
     }
     

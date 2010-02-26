@@ -18,6 +18,10 @@ void Item::set_top(int top) {
 }
 
 void Item::paint() {
+    if (! this->visible() ) {
+        return;
+    }
+    
     float size = core::Parameters::instance()->MARKER_SIZE();
     float z = -20.0;
     
@@ -39,7 +43,7 @@ void Item::paint() {
     
     this->reset();
     this->add(geode);
-    if (_top) {    this->add((new draw::Text(_value))->wrap()); }
+    if (_top) { this->add((new draw::Text(_value))->wrap()); }
 }
 
 void Item::alert(std::string message) {

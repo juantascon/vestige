@@ -10,6 +10,10 @@ List::List(std::string marker_args, std::string id) : Marker(marker_args, id) {
 }
 
 void List::paint() {
+    if (! this->visible() ) {
+        return;
+    }
+    
     marker::MarkerSet* items = marker::GlobalMarkers::instance()->markers_clone();
     items->filter_by_visible(1);
     items->filter_by_type_items();

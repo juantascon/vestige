@@ -3,8 +3,6 @@
 namespace vestige {
 namespace state {
 
-//TODO: cambiar los problemas para que usen los nuevos nodos
-//TODO: cambiar el nombre de NodeList por List y el de NodeItem por Item
 Node::Node(marker::Marker* marker) {
     this->_marker = marker;
     this->_id = marker->id();

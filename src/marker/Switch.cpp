@@ -11,8 +11,6 @@ Switch::Switch(std::string marker_args) : Marker(marker_args, "SWITCH") {
 }
 
 void Switch::paint() {
-    this->reset();
-    
     //this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"data/model/switch.3ds"));
     this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/switch.osg"));
 }
