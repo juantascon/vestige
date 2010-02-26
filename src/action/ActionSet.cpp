@@ -20,6 +20,7 @@ std::string ActionSet::text() {
 }
 
 // Type { PopPush, Pop, Push, Discard, Invalid }
+// TODO: maybe add support to CREATE item
 void ActionSet::diff(state::State* past, state::State* present) {
     if (! past || ! present) {
         return;
