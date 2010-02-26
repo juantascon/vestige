@@ -21,7 +21,7 @@ int PopPush::valid(action::Action* action) {
 }
 
 std::string PopPush::text() {
-    return "Rule [PopPush] | Node: " + node + " | From: " + from + " | Into: " + into;
+    return "PopPush(Node:" + node + "|From:" + from + "|Into:" + into + ")";
 }
 
 }}

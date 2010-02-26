@@ -19,7 +19,7 @@ int Pop::valid(action::Action* action) {
 }
 
 std::string Pop::text() {
-    return "Rule [Pop] | Node: " + node + " | From: " + from;
+    return "Pop(Node:" + node + "|From:" + from + ")";
 }
 
 }}

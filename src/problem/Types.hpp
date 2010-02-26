@@ -6,7 +6,7 @@
 
 #include "Reverse.hpp"
 #include "Join.hpp"
-//#include "RemoveFirst.hpp"
+#include "RemoveFirst.hpp"
 //#include "Compress.hpp"
 
 #endif

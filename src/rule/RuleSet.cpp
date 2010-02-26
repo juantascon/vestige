@@ -7,6 +7,18 @@ RuleSet::RuleSet() : Rule::List() {
     current = this->begin();
 }
 
+std::string RuleSet::text() {
+    std::string ret = "RULES: [[ ";
+    
+    BOOST_FOREACH(rule::Rule *r, *this) {
+        ret += r->text() + " ";
+    }
+    
+    ret += "]]";
+    
+    return ret;
+}
+
 void RuleSet::add(Rule* rule) {
     this->push_back(rule);
     current = this->begin();

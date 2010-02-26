@@ -54,6 +54,7 @@ void Item::alert(std::string message) {
 }
 
 void Item::update() {
+    this->paint();
 }
 
 }}

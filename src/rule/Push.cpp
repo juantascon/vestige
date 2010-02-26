@@ -19,7 +19,7 @@ int Push::valid(action::Action* action) {
 }
 
 std::string Push::text() {
-    return "Rule [Push] || Node: " + node + " || Into: " + into;
+    return "Push(Node:" + node + "|Into:" + into + ")";
 }
 
 }}

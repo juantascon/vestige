@@ -47,13 +47,11 @@ rule::RuleSet* Join::create_rules() {
     
     // 1. move all the elements from L to TMP
     BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
-        D(("node: %s, from: %s, to: %s", n->id().c_str(), L->id().c_str(), TMP->id().c_str() ));
         rules->add(new rule::PopPush(n->id(), L->id(), TMP->id()));
     }
     
     // 2. move the same elements from tmp to R
     BOOST_FOREACH(state::Node *n, *(L->children())) {
-        D(("node: %s, from: %s, to: %s", n->id().c_str(), TMP->id().c_str(), R->id().c_str() ));
         rules->add(new rule::PopPush(n->id(), TMP->id(), R->id()));
     }
     

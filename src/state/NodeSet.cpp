@@ -46,6 +46,21 @@ void NodeSet::filter_by_type_lists() {
     }
 }
 
+state::Item* NodeSet::remove_single_item() {
+    for (NodeSet::iterator it = this->begin(); it != this->end(); ++it) {
+        state::Item* ret = dynamic_cast<state::Item*>(*it);
+        
+        if (!ret) { continue; }
+        
+        this->erase(it);
+        it--;
+        
+        return ret;
+    }
+    
+    return NULL;
+}
+
 state::List* NodeSet::remove_single_list_by_size_range(int min, int max) {
     if (max == -1) { max = (std::numeric_limits<int>::max)(); }
     if (min == -1) { min = (std::numeric_limits<int>::max)(); }

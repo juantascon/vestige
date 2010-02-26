@@ -17,7 +17,7 @@ int Discard::valid(action::Action* action) {
 }
 
 std::string Discard::text() {
-    return "Rule [Discard] | Node: " + node;
+    return "Discard(Node:" + node + ")";
 }
 
 }}

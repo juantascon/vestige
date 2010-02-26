@@ -39,7 +39,6 @@ rule::RuleSet* Reverse::create_rules() {
 
     // Generate a reversed order of poppush instructions
     BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
-        D(("node: %s, from: %s, to: %s", n->id().c_str(), L->id().c_str(), R->id().c_str() ));
         rules->add(new rule::PopPush(n->id(), L->id(), R->id()));
     }
 

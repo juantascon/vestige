@@ -40,11 +40,10 @@ void GlobalMarkers::markers_initialize() {
     
     markers_add( new marker::Item(patt_format("patt.a"), "b.a", "a") );
     markers_add( new marker::Item(patt_format("patt.b"), "b.b", "b") );
-    markers_add( new marker::Item(patt_format("patt.c"), "b.c", "c") );
-    markers_add( new marker::Item(patt_format("patt.d"), "b.d", "d") );
+    markers_add( new marker::Item(patt_format("patt.c"), "b.c", "x") );
+    markers_add( new marker::Item(patt_format("patt.d"), "b.d", "x") );
     markers_add( new marker::Item(patt_format("patt.f"), "b.f", "f") );
-    markers_add( new marker::Item(patt_format("patt.g"), "b.g", "g") );
-    
+    markers_add( new marker::Item(patt_format("patt.g"), "b.g", "x") );
     
     /*
     markers_add( new marker::List(patt_format("patt.a"), "l.a") );

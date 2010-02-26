@@ -13,7 +13,8 @@ class RuleSet : public Rule::List
         
     public:
         RuleSet();
-        
+
+        std::string text();
         void add(Rule* rule);
         int apply(action::Action* action);
 };

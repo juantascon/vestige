@@ -8,7 +8,7 @@ ActionSet::ActionSet() : Action::Vector()
 }
 
 std::string ActionSet::text() {
-    std::string ret = "ACTIONSET: [[ ";
+    std::string ret = "ACTIONS: [[ ";
     
     BOOST_FOREACH(action::Action *a, *this) {
         ret += a->text() + " ";

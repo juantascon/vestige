@@ -30,12 +30,17 @@ StatusMessage* Step::step() {
     if (!p) {
         // Create problem and rules
         try {
-            p = new problem::Join(current_state);
-            r = p->create_rules();
+            //p = new problem::Reverse(current_state);
+            //p = new problem::Join(current_state);
+            p = new problem::RemoveFirst(current_state);
+            //p = new problem::Compress(current_state);
         }
         catch(std::runtime_error e) {
             return new StatusMessage(0, "Invalid initial state: " + std::string(e.what()));
         }
+        
+        r = p->create_rules();
+        D(( r->text().c_str() ));
     }
     
     // check if this state is the valid final state

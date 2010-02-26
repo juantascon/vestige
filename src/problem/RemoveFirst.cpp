@@ -3,7 +3,7 @@
 namespace vestige {
 namespace problem {
 
-RemoveFirst::RemoveFirst(state::State* s) : ListProblem()
+RemoveFirst::RemoveFirst(state::State* s) : ListReturn()
 {
     /***/
     /* -- Check initial state -- */
@@ -15,53 +15,47 @@ RemoveFirst::RemoveFirst(state::State* s) : ListProblem()
     // * TMP2: list ( empty )
     // * E: item ( element to be removed )
     
-    state::NodeSet* nodes = s->nodes();
+    state::NodeSet* nodes = s->clone_nodes();
     nodes->filter_by_no_parent();
-    if (lists->size() != 4) { throw std::runtime_error("4 elements are expected on the table"); }
+    if (nodes->size() != 4) { throw std::runtime_error("4 elements are expected on the table"); }
     
-    state::NodeSet* lists = nodes->clone();
-    lists->filter_by_type(0, 1);
-
-    L = lists->filter_single_by_size_range(2, (std::numeric_limits<int>::max)());
+    L = nodes->remove_single_list_by_size_range(2, (std::numeric_limits<int>::max)());
     if (!L) { throw std::runtime_error("missing 1 list with at least 2 elements"); }
     
-    TMP1 = lists->filter_single_by_size_range(0, 0);
+    TMP1 = nodes->remove_single_list_by_size_range(0, 0);
     if (!TMP1) { throw std::runtime_error("missing 1 empty list"); }
     
-    TMP2 = lists->filter_single_by_size_range(0, 0);
+    TMP2 = nodes->remove_single_list_by_size_range(0, 0);
     if (!TMP2) { throw std::runtime_error("missing 1 empty list"); }
     
-    state::NodeSet* items = nodes->clone();
-    items->filter_by_type(1, 0);
-    E = items->back();
+    E = nodes->remove_single_item();
     if (!E) { throw std::runtime_error("missing 1 item"); }
     
     /***/
     /* -- Prepare return list ids -- */
     /***/
     
-    // items from R plus items from L
-    BOOST_FOREACH(state::Node *n, *(R->children())) {
-        _ids->push_back(n->id());
-    }
+    // items from L minus items equals to E
     BOOST_FOREACH(state::Node *n, *(L->children())) {
-        _ids->push_back(n->id());
+        state::Item* item = dynamic_cast<state::Item*>(n);
+        if (E->value() != item->value()) {
+            D(( "node: %s", n->id().c_str() ));
+            _ids->push_back(n->id());
+        }
     }
 }
 
 rule::RuleSet* RemoveFirst::create_rules() {
     rule::RuleSet* rules = new rule::RuleSet();
     
-    // 1. move all the elements from L to TMP
+    // 1. move all the elements from L to TMP1 minus items equals to E
     BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
-        D(("node: %s, from: %s, to: %s", n->id().c_str(), L->id().c_str(), TMP->id().c_str() ));
-        rules->add(new rule::PopPush(n->id(), L->id(), TMP->id()));
+        rules->add(new rule::PopPush(n->id(), L->id(), TMP1->id()));
     }
     
-    // 2. move the same elements from tmp to R
+    // 2. move the same elements from TMP1 to TMP2
     BOOST_FOREACH(state::Node *n, *(L->children())) {
-        D(("node: %s, from: %s, to: %s", n->id().c_str(), TMP->id().c_str(), R->id().c_str() ));
-        rules->add(new rule::PopPush(n->id(), TMP->id(), R->id()));
+        rules->add(new rule::PopPush(n->id(), TMP1->id(), TMP2->id()));
     }
     
     return rules;
