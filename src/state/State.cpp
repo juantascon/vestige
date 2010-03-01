@@ -25,7 +25,7 @@ std::string State::text() {
     std::string ret = "STATE: [[ ";
     
     BOOST_FOREACH(Node::MapPair p, *this) {
-        ret += p.second->text() + " ";
+        ret += p.second->path() + " ";
     }
     
     ret += "]]";

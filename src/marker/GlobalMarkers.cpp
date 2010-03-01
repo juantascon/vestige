@@ -44,32 +44,6 @@ void GlobalMarkers::markers_initialize() {
     markers_add( new marker::Item(patt_format("patt.d"), "b.d", "x") );
     markers_add( new marker::Item(patt_format("patt.f"), "b.f", "f") );
     markers_add( new marker::Item(patt_format("patt.g"), "b.g", "x") );
-    
-    /*
-    markers_add( new marker::List(patt_format("patt.a"), "l.a") );
-    markers_add( new marker::List(patt_format("patt.b"), "l.b") );
-    markers_add( new marker::List(patt_format("patt.c"), "l.c") );
-    markers_add( new marker::List(patt_format("patt.d"), "l.d") );
-    markers_add( new marker::List(patt_format("patt.f"), "l.f") );
-    markers_add( new marker::List(patt_format("patt.g"), "l.g") );
-    
-    //markers_add( new marker::Item(patt_format("4x4_1.patt"), "b.1", "1") );
-    markers_add( new marker::Item(patt_format("4x4_2.patt"), "b.2", "2") );
-    markers_add( new marker::Item(patt_format("4x4_3.patt"), "b.3", "3") );
-    //markers_add( new marker::Item(patt_format("4x4_4.patt"), "b.4", "4") );
-    //markers_add( new marker::Item(patt_format("4x4_5.patt"), "b.5", "5") );
-    //markers_add( new marker::Item(patt_format("4x4_6.patt"), "b.6", "6") );
-    markers_add( new marker::Item(patt_format("4x4_7.patt"), "b.7", "7") );
-    //markers_add( new marker::Item(patt_format("4x4_8.patt"), "b.8", "8") );
-    //markers_add( new marker::Item(patt_format("4x4_9.patt"), "b.9", "9") );
-    //markers_add( new marker::Item(patt_format("4x4_10.patt"), "b.10", "10") );
-    markers_add( new marker::Item(patt_format("4x4_11.patt"), "b.11", "11") );
-    markers_add( new marker::Item(patt_format("4x4_12.patt"), "b.12", "12") );
-    //markers_add( new marker::Item(patt_format("4x4_12.patt"), "b.13", "13") );
-    //markers_add( new marker::Item(patt_format("4x4_12.patt"), "b.14", "14") );
-    //markers_add( new marker::Item(patt_format("4x4_12.patt"), "b.15", "15") );
-    //markers_add( new marker::Item(patt_format("4x4_12.patt"), "b.16", "16") );
-    */
 }
 
 }}

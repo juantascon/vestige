@@ -32,8 +32,8 @@ StatusMessage* Step::step() {
         try {
             //p = new problem::Reverse(current_state);
             //p = new problem::Join(current_state);
-            p = new problem::RemoveFirst(current_state);
-            //p = new problem::Compress(current_state);
+            //p = new problem::RemoveFirst(current_state);
+            p = new problem::Compress(current_state);
         }
         catch(std::runtime_error e) {
             return new StatusMessage(0, "Invalid initial state: " + std::string(e.what()));

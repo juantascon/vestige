@@ -16,9 +16,9 @@ Initializer* Initializer::instance() {
 void Initializer::environment() {
     //std::string file = "multi1.mov";
     //std::string file = "reverse4_noprog_fail.mov";
-    //std::string file = "compress1_3l_4i_s_r.mov";
-    std::string file = "remfst1_3l_5i_s_r.mov";
+    std::string file = "compress1_3l_4i_s_r.mov";
     
+    //std::string file = "remfst1_3l_5i_s_r.mov";
     //std::string file = "join3_3l_4i_s_r.mov";
     //std::string file = "join2_3l_5i_s_r.mov";
     //std::string file = "join1.mov";

@@ -21,7 +21,7 @@ void Node::set_parent(Node* parent, int index) {
 }
 
 std::string Node::text() {
-    return this->path();
+    return this->id();
 }
 
 void Node::alert(std::string message) {
