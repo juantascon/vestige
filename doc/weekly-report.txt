@@ -602,3 +602,40 @@ filter the markers by parameters such as the position, visibility, type, etc.
 With the previously mentioned functionality the lists can now hide information, in this
 case they cover all the markers but the last one, properly simulating a list data type
 (a list can be only accessed by its last element).
+
+
+=========================================================
+== 2010 / Week 08
+=========================================================
+
+My work of this week consists on some small changes, a big concept redesign and
+the implementation of 2 new problem definitions.
+
+The small changes are 3, the Step procedure has now status handling, this will
+allow it to show tooltips in different places in a more context related way, the
+mechanism to load external videos (or webcam) was embedded into the code, this
+used to be done by an external script that previously set the video options, and
+lastly a couple of fixes in marker/Return that didnt allow to properly calculate
+the return value when the value marker was bellow the return marker.
+
+The big concept redesign consist in the correct definition of the concepts:
+"Block", "Item", "Marker" and "Variable", to be clear:
+
+* A Marker is any object that can be captured and recognized by the system,
+usually an Artoolkit marker drew in a block (no name change was done)
+* An Item is a special marker that represents a value, it could be placed
+independently or above a list (it used to be called block).
+* A list is a special marker that doesn't represent any value but it can
+contains several items (no name change was done).
+* Block and variable are concepts that doesn't belong to the application, the
+use of this words has been changed in the code to correctly represent its real
+meaning (either Item, Marker or List).
+
+After this was clarified, I fixed a problem of type identification presented
+when I added support for internal Item values by adding the classes Item and
+List to respectively represent each type of marker, Item includes its value and
+List includes its child nodes.
+
+The two new problem definitions are: RemoveFirst and Compress, both were made
+with support for initial and final step checks and dynamic creation of rules to
+control step-by-step execution.
