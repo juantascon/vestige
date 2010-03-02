@@ -1,9 +1,9 @@
-#include "RemoveFirst.hpp"
+#include "RemoveAll.hpp"
 
 namespace vestige {
 namespace problem {
 
-RemoveFirst::RemoveFirst(state::State* s) : ListReturn()
+RemoveAll::RemoveAll(state::State* s) : ListReturn()
 {
     /***/
     /* -- Check initial state -- */
@@ -43,7 +43,7 @@ RemoveFirst::RemoveFirst(state::State* s) : ListReturn()
     }
 }
 
-rule::RuleSet* RemoveFirst::create_rules() {
+rule::RuleSet* RemoveAll::create_rules() {
     rule::RuleSet* rules = new rule::RuleSet();
     
     // 1. move all the elements from L to TMP1 minus items equals to E

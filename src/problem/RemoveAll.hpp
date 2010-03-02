@@ -1,12 +1,12 @@
-#ifndef __VESTIGE_PROBLEM_REMOVEFIRST_HPP
-#define __VESTIGE_PROBLEM_REMOVEFIRST_HPP
+#ifndef __VESTIGE_PROBLEM_REMOVEALL_HPP
+#define __VESTIGE_PROBLEM_REMOVEALL_HPP
 
 #include "ListReturn.hpp"
 
 namespace vestige {
 namespace problem {
 
-class RemoveFirst : public ListReturn
+class RemoveAll : public ListReturn
 {
     protected:
         state::List* TMP1;
@@ -15,7 +15,7 @@ class RemoveFirst : public ListReturn
         state::Item* E;
         
     public:
-        RemoveFirst(state::State* s);
+        RemoveAll(state::State* s);
         
         virtual rule::RuleSet* create_rules();
 };
