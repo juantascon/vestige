@@ -1,0 +1,172 @@
+REVERSE.
+
+Reverse the items in a list.
+
+The user will start the interaction by setting 2 lists on the table
+one containing an empty list used for temporary transactions (called from now on Tmp) and
+the other containing a list with at least 2 items(called from now on L), less than 2 items would
+not do an interesting problem.
+
+This is a very simple problem where the user only have
+to move the items from L to Tmp, once L is empty the user has to mark
+Tmp as the return value
+
+The Erlang code representation of this problem is the following:
+
+reverse(          [],Tmp) -> Tmp;
+reverse([TopL|RestL],Tmp) -> reverse(RestL,[TopL|Tmp]).
+
+================================================================================
+================================================================================
+
+JOIN
+
+Join the items of two lists into a new list
+
+The user will start the interaction by setting 3 lists on the table, two of these
+lists must contain at least 2 items (called from now on L1 and L2 respectively)
+and the other list must be empty (called from now on Tmp).
+
+The solution to this problem is to move one by one the items from L1 to Tmp, once
+in Tmp these items will be in reversed order because we did pop from L1 and push
+into Tmp, these items must be moved again from Tmp but this time into L2 the
+items will be in the original order has they were in L1 but this time will be
+on top of L2 items, L2 will contain the solution to the problem
+
+This code is the erlang version of the previous procedure:
+
+join(             Tmp,[TopL1|RestL1],L2) -> join([TopL1|Tmp], RestL1, L2);
+join([TopTmp|RestTmp],            [],L2) -> join(RestTmp, [], [TopTmp|L2]);
+join(              [],            [],L2) -> L2.
+
+This is an example interaction of a student using the interface:
+
+This is the initial state:
+
+Legend:
+
+|&|: is the return block, anything belows it points at the final return
+value of the function
+|X|: is a block that represents an item which value is X (a constant value)
+|-|: is a block that represents a list
+(L): is the name of the list, is shown only to ease the understanding of
+this example, in the real interface this is not visible
+
+L1 contains 3 items (A, B and C) and L2 contains 2(D and E), Tmp is an empty list,
+
+State 1:
+
+           |C|
+      |E|  |B|
+      |D|  |A|
+|-|   |-|  |-|
+(Tmp) (L1) (L2)
+
+
+The user start moving the items from L1 into Tmp, State 2 and 3 represents
+the first rule of the erlang code:
+
+join(Tmp,[TopL1|RestL1],L2) -> join([TopL1|Tmp], RestL1, L2);
+
+
+State 2:
+
+           |C|
+           |B|
+|E|   |D|  |A|
+|-|   |-|  |-|
+(Tmp) (L1) (L2)
+
+State 3:
+
+           |C|
+|D|        |B|
+|E|        |A|
+|-|   |-|  |-|
+(Tmp) (L1) (L2)
+
+
+When L1 is empty is time to move the items from Tmp into L2, State 4 and 5 represents
+the second rule of the erlang code:
+
+join([TopTmp|RestTmp],[],L2) -> join(RestTmp, [], [TopTmp|L2]);
+
+State 4:
+           
+           |D|
+           |C|
+           |B|
+|E|        |A|
+|-|   |-|  |-|
+(Tmp) (L1) (L2)
+
+State 5:
+
+           |E|
+           |D|
+           |C|
+           |B|
+           |A|
+|-|   |-|  |-|
+(Tmp) (L1) (L2)
+
+And, to finilize the problem, the user points at the return value, this state represents
+the last rule in the erlang code:
+
+join([],[],L2) -> L2.
+
+State 6
+           |&|
+           |E|
+           |D|
+           |C|
+           |B|
+           |A|
+|-|   |-|  |-|
+(Tmp) (L1) (L2)
+
+================================================================================
+================================================================================
+
+REMOVEALL
+
+Remove all the appearances of a value in a list
+
+The user begins by setting 4 blocks on the table, a list with at least 2 elements
+(called from now on L) and two temporary lists (called from now on Tmp1 and Tmp2)
+and finally an item that will represent the value to be removed from the list (called
+from now on E)
+
+The second step is to move the items from L into Tmp2, one conditions has to be
+considered before moving the items though, when the item of L is equal to E the
+Item has to be removed from the table instead of moved to Tmp2.
+
+Once all the items from L are in Tmp2 the user has to move them again into Tmp1
+to revert the items into their original order, when this step is done the result
+value will be the list Tmp1.
+
+The Erlang code representation of this problem is the following:
+
+rem_all(E,Tmp1,              Tmp2,   [E|RestL]) -> rem_all(E,Tmp1,Tmp2,RestL);
+rem_all(E,Tmp1,              Tmp2,[TopL|RestL]) -> rem_all(E,Tmp1,[TopL|Tmp2],RestL);
+rem_all(E,Tmp1,[TopTmp2|RestTmp2],          []) -> rem_all(E,[TopTmp2|Tmp1],RestTmp2,[]);
+rem_all(E,Tmp1,                [],          []) -> Tmp1.
+
+================================================================================
+================================================================================
+
+COMPRESS.
+
+Remove the repeating consecutive items in a list.
+
+This exercise is very similar to the REMOVEALL exercise, the only two differences are
+first, the initial setting does not contains an independent item (E), the second
+difference is that in the second step instead of comparing the Item of L against E
+we will compare it this time against the top item of Tmp2.
+
+The Erlang code representation of this problem is the following:
+
+compress(Tmp1,   [TopL|RestTmp2],[TopL|RestL]) -> compress(Tmp1,RestTmp2,[TopL|RestL]);
+compress(Tmp1,              Tmp2,[TopL|RestL]) -> compress(Tmp1,[TopL|Tmp2],RestL);
+compress(Tmp1,[TopTmp2|RestTmp2],          []) -> compress([TopTmp2|Tmp1],RestTmp2,[]);
+compress(Tmp1,                [],          []) -> Tmp1.

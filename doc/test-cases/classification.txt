@@ -10,8 +10,7 @@ concept they require.
  * Structural with equality. These programs are structural but also
    require the equality operator, which can be implicit in Erlang as
    non-linear patterns (where a variable occurs several
-   times). Example: rem_fst/2, rem_all/2, rem_last/2, compress/1,
-   dupli/1.
+   times). Example: rem_fst/2, rem_all/2, rem_last/2, compress/1.
 
  * Structural with nesting. These programs work on lists whose items
    are lists. (Two levels are enough for most cases.)

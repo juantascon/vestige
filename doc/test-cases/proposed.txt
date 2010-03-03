@@ -12,8 +12,9 @@ reverse([I|L],M) -> reverse(L,[I|M]);
 === APPEND
 ====================================================
 
-append the content of 2 lists
+append  the content of 2 lists
 
+TODO: adaptar este algoritmo a la interfaz
 append(   [],M) -> M;
 append([I|L],M) -> [I|append(L,M)];
 
@@ -32,7 +33,7 @@ remove_first([J|L],I) -> [J|remove_first(L,I)];
 
 
 ====================================================
-=== LENGHT
+=== LENGTH
 ====================================================
 
 the number of items in a list
@@ -40,8 +41,8 @@ the number of items in a list
 *** REQUIRED: a way to asign (=) internal values
 *** REQUIRED: mathematics -- the sum (+) function
 
-lenght(   []) -> 0;
-lenght([_|L]) -> 1 + lenght(L);
+length(   []) -> 0;
+length([_|L]) -> 1 + length(L);
 
 
 ====================================================
