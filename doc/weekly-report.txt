@@ -639,3 +639,20 @@ List includes its child nodes.
 The two new problem definitions are: RemoveFirst and Compress, both were made
 with support for initial and final step checks and dynamic creation of rules to
 control step-by-step execution.
+
+
+=========================================================
+== 2010 / Week 09
+=========================================================
+
+This week I begin to design and development a sorting problem, I started with a
+modified non-tail form version of the insertion sort algorithm, in a computing
+context this algorithm is probably not the most optimum but it is the most
+suitable for functional programming beginners because it allows to get acquainted
+and at the same time to understand how sorting problems could be solved without
+getting into the complications of other solutions such as quick sort (as a
+personal comment, quicksort is a little hard to understand, when I saw it for
+the first time I thought it was magic running on my computer)
+
+For this problem I still need to fix some minor bugs during this week, and also build
+the dynamic rules generator.
