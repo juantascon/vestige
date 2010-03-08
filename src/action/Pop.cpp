@@ -11,7 +11,7 @@ Pop::Pop(state::Node* node, state::Node* from) : Action(node)
 std::string Pop::from_id() { return from->id(); }
 
 std::string Pop::text() {
-    return "Pop(Node:" + node->path() + "|From:" + from->path() + ")";
+    return "Pop(Node:" + node->id() + "|From:" + from->id() + ")";
 }
 
 }}

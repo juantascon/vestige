@@ -11,7 +11,7 @@ Push::Push(state::Node* node, state::Node* into) : Action(node)
 std::string Push::into_id() { return into->id(); }
 
 std::string Push::text() {
-    return "Push(Node:" + node->path() + "|Into:" + into->path() + ")";
+    return "Push(Node:" + node->id() + "|Into:" + into->id() + ")";
 }
 
 }}

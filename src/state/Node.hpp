@@ -21,6 +21,9 @@ class Node
         typedef std::pair<std::string, Node*> MapPair;
         
         Node(marker::Marker* marker);
+        Node();
+        
+        Node* clone();
         
         virtual void set_parent(Node* parent, int index);
         

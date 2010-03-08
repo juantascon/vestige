@@ -8,5 +8,6 @@
 #include "Join.hpp"
 #include "RemoveAll.hpp"
 #include "Compress.hpp"
+#include "InsertionSort.hpp"
 
 #endif

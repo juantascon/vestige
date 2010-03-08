@@ -25,6 +25,7 @@ void RuleSet::add(Rule* rule) {
 }
 
 int RuleSet::apply(action::Action* action) {
+    D(( "RULE: [[ %s ]]", (*current)->text().c_str() ));
     if ( (*current)->valid(action) ) {
         ++current;
         return 1;

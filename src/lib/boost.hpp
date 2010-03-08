@@ -3,5 +3,5 @@
 
 #include <boost/serialization/singleton.hpp>
 #include <boost/foreach.hpp>
-
+#include <boost/lexical_cast.hpp>
 #endif

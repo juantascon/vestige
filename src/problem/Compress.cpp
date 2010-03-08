@@ -14,6 +14,9 @@ Compress::Compress(state::State* s) : ListReturn()
     // * TMP1: list ( empty )
     // * TMP2: list ( empty )
     // * E: item ( element to be removed )
+
+    // TODO: hay 2 casos uno por cada eleccion de elemento a eliminar
+    // las reglas solo funcionana para 1 caso
     
     state::NodeSet* nodes = s->clone_nodes();
     nodes->filter_by_no_parent();
@@ -54,13 +57,12 @@ rule::RuleSet* Compress::create_rules() {
         } else {
             rules->add(new rule::Discard(n->id()));
         }
-
+        
         last = dynamic_cast<state::Item*>(n);
     }
     
     // 2. move the same elements from TMP1 to TMP2
-    //TODO: arreglar el poppush de aqui
-    last = NULL;
+    last = NULL;;
     BOOST_FOREACH(state::Node* n, *(L->children())) {
         if ( !last || last->value() != dynamic_cast<state::Item*>(n)->value() ) {
             rules->add(new rule::PopPush(n->id(), TMP1->id(), TMP2->id()));

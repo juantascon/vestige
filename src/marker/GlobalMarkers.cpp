@@ -34,16 +34,15 @@ void GlobalMarkers::markers_initialize() {
     m_switch = new marker::Switch(patt_format("patt.kanji"));
     m_return = new marker::Return(patt_format("patt.hiro"));
     
-    markers_add( new marker::List(patt_format("patt.sample1"), "l.s1") );
-    markers_add( new marker::List(patt_format("patt.sample2"), "l.s2") );
-    markers_add( new marker::List(patt_format("4x4_6.patt"), "l.6") );
+    markers_add( new marker::List(patt_format("patt.sample1"), "ls1") );
+    markers_add( new marker::List(patt_format("patt.sample2"), "ls2") );
+    markers_add( new marker::List(patt_format("4x4_6.patt"), "l6") );
     
-    markers_add( new marker::Item(patt_format("patt.a"), "b.a", "a") );
-    markers_add( new marker::Item(patt_format("patt.b"), "b.b", "b") );
-    markers_add( new marker::Item(patt_format("patt.c"), "b.c", "x") );
-    markers_add( new marker::Item(patt_format("patt.d"), "b.d", "x") );
-    markers_add( new marker::Item(patt_format("patt.f"), "b.f", "f") );
-    markers_add( new marker::Item(patt_format("patt.g"), "b.g", "x") );
+    markers_add( new marker::Item(patt_format("patt.a"), "a", "1") );
+    markers_add( new marker::Item(patt_format("patt.b"), "b", "2") );
+    markers_add( new marker::Item(patt_format("patt.c"), "c", "3") );
+    markers_add( new marker::Item(patt_format("patt.d"), "d", "4") );
+    markers_add( new marker::Item(patt_format("patt.f"), "f", "5") );
 }
 
 }}

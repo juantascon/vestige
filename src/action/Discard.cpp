@@ -8,7 +8,7 @@ Discard::Discard(state::Node* node) : Action(node)
 }
 
 std::string Discard::text() {
-    return "Discard(Node:" + node->path() + ")";
+    return "Discard(Node:" + node->id() + ")";
 }
 
 }}

@@ -11,12 +11,14 @@ namespace state {
 class NodeSet : public Node::List
 {
     protected:
+        static bool compare_by_item_value(Node* n1, Node *n2);
         
     public:
         NodeSet();
         
         NodeSet* clone();
-        
+
+        void sort_by_item_value();
         void filter_by_type_items();
         void filter_by_type_lists();
         void filter_by_no_parent();
