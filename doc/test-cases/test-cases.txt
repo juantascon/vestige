@@ -1,4 +1,7 @@
+TODO: For each test case, you need to think and specify what you want to measure and what is expected. With this process, you will easily know in which area test cases are missing and in which area it is redundant. 
+
 REVERSE.
+
 
 Reverse the items in a list.
 
@@ -45,7 +48,7 @@ This is the initial state:
 
 Legend:
 
-|&|: is the return block, anything belows it points at the final return
+|&|: is the return block, anything below it points to the final return
 value of the function
 |X|: is a block that represents an item which value is X (a constant value)
 |-|: is a block that represents a list
@@ -170,3 +173,202 @@ compress(Tmp1,   [TopL|RestTmp2],[TopL|RestL]) -> compress(Tmp1,RestTmp2,[TopL|R
 compress(Tmp1,              Tmp2,[TopL|RestL]) -> compress(Tmp1,[TopL|Tmp2],RestL);
 compress(Tmp1,[TopTmp2|RestTmp2],          []) -> compress([TopTmp2|Tmp1],RestTmp2,[]);
 compress(Tmp1,                [],          []) -> Tmp1.
+
+================================================================================
+================================================================================
+
+INSERTION SORT.
+
+Sort the items in a list in ascending order.
+
+Sorting is a very well known problem, it is used in many computing areas and
+studied at least once in their lifes by every computer scientist around the
+world.
+
+The problem consists on putting the items of a list in a given order, for
+simplicity in our experiment we are going to focus on ascending numerical order
+using the insertion sort algorithm.
+
+In a computing context this algorithm is probably not the most optimum but it
+surely is the most suitable for functional programming beginners because it
+allows to get acquainted and at the same time understand how sorting problems
+could be solved without getting into the complications of other solutions such
+as quick sort (as a personal comment, quicksort is a little hard to understand,
+when I saw it for the first time I thought it was magic running on my computer)
+
+On insertion sort the user will remove an item from the input list to insert it
+in the correct position into the output list which will always be consistently
+ordered, once the input list is out of items this list will contains the
+solution.
+
+Inserting an item into a list is a very tedious action that requires first to
+pop out all the elements on top of the desired location, then push the item in
+the top of the list and the push back the removed items, because of this for
+practical purposes we will use 2 temporary lists, one in ascending order and one
+in descending order, so when inserting and item is required we will pop the
+items from the list with descending order into the list with ascending order
+allowing consistency and speed across movements.
+
+
+This is an example interaction using the insertion sort algorithm
+
+
+|&|: is the return block, anything below it points to the final return
+value of the function
+|X|: is a block that represents an item which value is X (a constant value)
+|-|: is a block that represents a list
+(L): is the name of the list, is shown only to ease the understanding of
+
+
+The user will start by moving the top item of L into DSC, in erlang code:
+
+isort([TopL|RestL], [], []) -> isort(RestL, [TopL], []);
+
+State 1:
+|5|
+|3|
+|1|
+|4|
+|2|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+
+After this he will pass the items from L into DSC until the top element of L is
+greater than the top element of DSC, in erlang code:
+
+isort([TopL|RestL], [TopDSC|RestDSC], []) when TopL < TopDSC -> isort(RestL, [TopL|TopDSC|RestDSC], []);
+
+State 2:
+|3|
+|1|
+|4|
+|2|  |5|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+State 3:
+|1|
+|4|  |3|
+|2|  |5|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+State 4:
+     |1|
+|4|  |3|
+|2|  |5|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+
+If this condition is true, the user will move the elements that are greater than
+the top element in L from DSC into ASC, in erlang code:
+
+isort([TopL|RestL], [TopDSC|RestDSC], []) when TopL > TopDSC -> isort([TopL|RestL], RestDSC, [TopDSC]);
+
+for state 5, and:
+
+isort([TopL|RestL], [TopDSC|RestDSC], [TopASC|RestASC]) when TopL > TopDSC -> isort([TopL|RestL], RestDSC, [TopDSC|[TopASC|RestASC]]);
+
+for state 6
+
+State 5:
+|4|  |3|
+|2|  |5|   |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+State 6:
+|4|        |3|
+|2|  |5|   |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+The next step is to move all the items from ASC that are lower than the top
+element of L back into DSC, in erlang code:
+
+isort([TopL|RestL], [TopDSC|RestDSC], [TopASC|RestASC]) when TopL < TopASC -> isort([TopL|RestL], [TopASC|TopDSC|RestDSC], RestASC);
+
+State 7:
+     |4|   |3|
+|2|  |5|   |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+State 8:
+     |3|
+     |4|
+|2|  |5|   |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+This process has to be repeated until L is empty, in erlang code:
+
+isort([TopL|RestL], [TopDSC|RestDSC], [TopASC|RestASC]) when TopL > TopASC -> isort(RestL, [TopL|TopDSC|RestDSC], [TopASC|RestASC]);
+
+State 9:
+     |2|
+     |3|
+     |4|
+     |5|   |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+When L is empty the final step is to move the items from DSC on top of the items
+of ASC, in erlang code:
+
+isort([], [TopDSC|RestDSC], [TopASC|RestASC]) when TopL < TopASC -> isort([], RestDSC, [TopDSC|TopASC|RestASC]);
+
+State 10:
+     |3|
+     |4|   |2|
+     |5|   |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+State 11:
+           |3|
+     |4|   |2|
+     |5|   |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+State 12:
+           |4|
+           |3|
+           |2|
+     |5|   |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+State 13:
+           |5|
+           |4|
+           |3|
+           |2|
+           |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+Finally, the solution will be in the list ASC, in erlang code:
+
+isort([], [], ASC) -> ASC.
+
+State 13:
+           |&|
+           |5|
+           |4|
+           |3|
+           |2|
+           |1|
+|-|  |-|   |-|
+(L) (DSC) (ASC)
+
+
+After analizing the code you can make a generalization of the state 1, this step
+is missing in the given example but is part of the general view of insertion
+sort, the user will eventually figure it out after doing more exercises of the
+same problem, realizing that one statement was missing, in erlang code:
+
+isort([TopL|RestL],[],[TopASC|RestASC]) -> isort(RestL,[TopL],[TopASC|RestASC]);
