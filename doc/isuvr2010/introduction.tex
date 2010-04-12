@@ -1,0 +1,90 @@
+%%-*-latex-*-
+
+\section{Introduction}
+
+Recursion is the syntactic property of a definition to be
+self\hyp{}referential. In high\hyp{}school mathematics, recursion is
+commonly found in the guise of \emph{progressions} and \emph{proofs by
+  induction}. Nevertheless, when college students are introduced to
+recursion both as a design and a programming method, they show great
+difficulties to understand it. Some researchers have been trying to
+tackle the issue through the lenses of \emph{cognitive sciences},
+inferring the mental models of
+recursion~\cite{SandersGalpinGotschi:2006, Mirolo:2009}, in particular
+the faulty ones that students construct by interacting with the
+teacher and the problem to solve. Often, these models posit a
+\emph{constructivist theory of learning},~\cite{Ben-Ari:2001,
+  WuDaleBethel:1998} where it is assumed that the learners build their
+knowledge based upon previous idiosyncratic conceptions. Within this
+framework, the self\hyp{}referential nature of recursive definitions
+might seem a priori a challenge; moreover, the curriculum followed by
+the learner must be analysed and compounded into the analysis.
+
+Some researchers insist more on the first aspect and bring to the fore
+the essentially linguistic nature of the didactical relationship
+between learners and teachers in a traditional classroom. They set up
+experiments, record all the interactions, sometimes including video,
+and analyse the transcripts to pinpoint the misunderstandings and
+trace them back to plausible causes~\cite{LevyLapidot:2000,
+  LevyLapidotPaz:2001, LevyLapidot:2002, Levy:2001}.
+
+Some other researchers focus more on the curricular aspect and note
+that most students are first taught \emph{iteration}, which
+presupposes loops and side\hyp{}effects, and that their model of
+execution of the programs is fixed early, thus hampering their later
+grasping of recursion which relies solely on function calls and
+perhaps not even on imperative features. Recursion is then thought as
+a kind of iteration, leading to errors, especially when functions are
+not tail\hyp{}recursive, that is, when the flow of control is
+bidirectional~\cite{Ginat:2005}. 
+
+Recursion is best conceptualised in a declarative model of the
+machine, allowing an easier analysis of the problem and bridging the
+gap with a program solving it, often called the \emph{Divide and
+  Conquer} method. This approach becomes the main feature in
+\emph{purely functional languages}, which rely on mathematical
+functions and immutable data, so recursion is the sole
+control\hyp{}flow mechanism. 
+
+But forcing recursive design upon students may not come without some
+drawbacks~\cite{Segal:1994,ClakMyers:1995}, therefore a more
+conservative option consists, within a course on procedural or
+object\hyp{}oriented programming, to teach structural recursion on
+singly\hyp{}linked lists before arrays and
+loops~\cite{TurbakRoydenStephanHerbst:1999}, or to rely on
+mathematical exercises dovetailing high\hyp{}school
+courses~\cite{RubioHernan:2007}, or to use fractal geometry as an
+intuitive support. The latter alternative resorts to the area of
+algorithm visualization and animation,~\cite{WilcoksSanders:1994}
+which has lead to the proposal of multimedia
+tools~\cite{Rosenthal:2005}, visual
+examples~\cite{Stephenson:2009a,WuLeeMei:1998} and programming
+environments~\cite{Kelso:2002} to support teaching and program
+development. As a contrast, little work has been done on the
+\emph{transfer of training} from visual interfaces to textual
+programming, an approach in which the interface is only a temporary
+tool~\cite{HundhausenFarleyBrown:2009}.
+
+Our proposal lies at the confluence of these different streams of
+investigation. We are interested in exploring the design of interfaces
+other than the commonplace monitors, mice and touchpads, and using
+them as an aid to learn recursive programming. More precisely, we
+designed and implemented a \emph{tangible user interface} (TUI). In
+order to provide \emph{software feedback} to the learner, we
+complemented the interface with \emph{augmented reality} (AR). The
+target language to which transfer of training skills is expected is
+the sequential subset of \erlang, which is purely functional. This
+election was motivated by the extremely simple syntax of this
+language. We only aim at teaching structural recursion on lists by
+means of a single tail\hyp{}recursive function and that is why a
+\emph{block\hyp{}world} analogy sustains the TUI: a list in \erlang is
+what is called a \emph{stack} in algorithms, so we rely upon a stack
+of physical blocks to represent it. Because of gravity, the
+interaction of the novice with the blocks is then naturally guided to
+the manipulation of the topmost blocks, paralleling the two basic
+\erlang operations of \emph{popping}, i.e., lifting a top block, and
+\emph{pushing}, i.e., putting a block on top. Manipulating another
+block would lead the whole stack to collapse. Tail\hyp{}recursion
+allows us to ignore all concerns about representing the \emph{control
+  stack}, which holds instances of the call contexts.
+

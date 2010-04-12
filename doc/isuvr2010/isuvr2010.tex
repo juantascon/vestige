@@ -1,0 +1,83 @@
+\documentclass[10pt,conference,compsocconf]{IEEEtran}
+
+% Language
+%
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyphenat}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+
+% Misc
+%
+\usepackage{xspace}
+\usepackage{url}
+
+% New commands
+%
+\newcommand\erlang{\textsf{Erlang}\xspace}
+\newcommand\artoolkit{\textsf{ARToolKit}\xspace}
+\newcommand\osgart{\textsf{OSGART}\xspace}
+\newcommand\osg{\textsf{OpenSceneGraph}\xspace}
+\newcommand{\cpp}{\textsf{C} \hspace*{-2.5mm} \raise 0.7mm \hbox {${\scriptscriptstyle ++}$}}
+\newcommand\logo{\textsf{Logo}\xspace}
+
+% Main
+%
+\begin{document}
+
+\title{A Tangible Interface for Learning Recursion and Functional
+  Programming}
+
+\author{%
+\IEEEauthorblockN{Juan Diego Tascón Vidarte}
+\IEEEauthorblockA{Department of Advanced\\
+Technology Fusion\\
+Konkuk University\\
+Seoul, Republic of Korea\\
+\url{jtascon@konkuk.ac.kr}}
+\and
+\IEEEauthorblockN{Christian Rinderknecht}
+\IEEEauthorblockA{Department of Internet\\
+and Multimedia Engineering\\
+Konkuk University\\
+Seoul, Republic of Korea\\
+\url{rinderkn@konkuk.ac.kr}}
+\and
+\IEEEauthorblockN{Jee-In Kim}
+\IEEEauthorblockA{Department of Internet\\
+and Multimedia Engineering\\
+Konkuk University\\
+Seoul, Republic of Korea\\
+\url{jnkm@konkuk.ac.kr}}
+\and
+\IEEEauthorblockN{HyungSeok Kim}
+\IEEEauthorblockA{Department of Internet\\
+and Multimedia Engineering\\
+Konkuk University\\
+Seoul, Republic of Korea\\
+\url{hyuskim@konkuk.ac.kr}}
+}
+
+\maketitle
+
+\input{abstract}
+
+\begin{IEEEkeywords}
+functional programming, tangible user interface, block world,
+augmented reality, software feedback
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\input{introduction}
+\input{methodology}
+\input{conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,isuvr2010}
+
+\end{document}

@@ -1,6 +1,31 @@
 \documentclass{beamer}
 
-\include{header}
+\mode<presentation>
+{
+  \usetheme{Hannover}
+  \usecolortheme{whale}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+
+\title{Vestige}
+%\subtitle{}
+\author{Juan Diego Tascón Vidarte}
+\institute{Konkuk University \\ HCI Lab}
+\date{\today{}}
+
+\AtBeginSection[]
+{
+  \begin{frame} <beamer>{}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
 
 \begin{document}
 
@@ -16,5 +41,6 @@
 
 \bibliographystyle{plain}
 \bibliography{master}
+\nocite{*}
 
 \end{document}

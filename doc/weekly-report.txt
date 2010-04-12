@@ -433,14 +433,14 @@ order that the user will have to follow in order to complete the game.
 I created a very rudimentary rules system, it works by matching each detected
 action across states with a set of ordered rules that are declared using as
 parameters the information expected from the detected action (ie: [Pop
-block "B" from list "L"] "B" and "L" are parameters for a POP rule).
+block "B" from list "L"] "B" and "L" are parameters of a POP rule).
 
 I added the capability of showing a red block as visual alert on invalid actions
 or invalid steps (as defined on the new rules system) as well as some small bugs
 fixed such as the action detection system can now detect invalid movements
 caused by wrong ordering of blocks in the same list.
 
-The next week Ill focus my work on fixing some small things such as:
+The next week I will focus my work on fixing some small things such as:
 
 * Improve the rules system to allow actions on the last element of lists.
 * Visually identify the input and output lists.

@@ -1,4 +1,6 @@
-TODO: For each test case, you need to think and specify what you want to measure and what is expected. With this process, you will easily know in which area test cases are missing and in which area it is redundant. 
+TODO: For each test case, you need to think and specify what you want to measure
+and what is expected. With this process, you will easily know in which area test
+cases are missing and in which area it is redundant. 
 
 REVERSE.
 
