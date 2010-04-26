@@ -18,9 +18,9 @@ class Item : public Marker
         
     public:
         Item(std::string marker_args, std::string id, std::string value);
-
+        
         void set_top(int top);
-
+        
         std::string value();
         
         virtual void update();

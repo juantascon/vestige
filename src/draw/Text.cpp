@@ -9,8 +9,9 @@ Text::Text(std::string value) : osgText::Text() {
 
 void Text::initialize(std::string value) {
     setFont(core::Parameters::instance()->ROOT() + "/data/fonts/verdana.ttf");
-    setAlignment( osgText::Text3D::CENTER_CENTER );
+    setAlignment( CENTER_CENTER );
     //setBackdropType(osgText::Text::OUTLINE);
+    setColor( osg::Vec4(0.0f, 0.0f, 0.0f, 1.0f) );
     setCharacterSize(100);
     setText(value);
 }

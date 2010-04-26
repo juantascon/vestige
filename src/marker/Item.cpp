@@ -25,7 +25,7 @@ void Item::paint() {
     float size = core::Parameters::instance()->MARKER_SIZE();
     float z = -20.0;
     
-    osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 0.0f, 1.0f);
+    osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 1.0f, 1.0f);
     if (!_active) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
     if (!_top) { color =  new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f); }
     

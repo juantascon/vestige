@@ -9,8 +9,8 @@ Parameters::Parameters()
 {
 }
 
-float Parameters::ALIGN_FACTOR() { return 150.0; }
-float Parameters::MARKER_SIZE() { return 95.0; }
+float Parameters::ALIGN_FACTOR() { return 30.0; }
+float Parameters::MARKER_SIZE() { return 90.0; }
 std::string Parameters::ROOT() { return "/home/jdi/dev/vestige/"; }
 
 }}
