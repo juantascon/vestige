@@ -12,12 +12,13 @@ Switch::Switch(std::string marker_args) : Marker(marker_args, "SWITCH") {
 
 void Switch::paint() {
     //this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"data/model/switch.3ds"));
-    this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/switch.osg"));
+    //this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/switch.osg"));
+    this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/camcorder/cam.osg"));
 }
 
 void Switch::alert(std::string message) {
     D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
-    this->add(new draw::ToolTip(message, 80.0f));
+    this->add(new draw::ToolTip(message, 60.0f));
 }
 
 void Switch::set_active(int active) {
