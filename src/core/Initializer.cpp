@@ -14,7 +14,10 @@ Initializer* Initializer::instance() {
 }
 
 void Initializer::environment() {
-    std::string file = "sort1_3l_5i_s_r.mov";
+    std::string file = "labseminar8.mov";
+    //std::string file = "isuvr/6.mov";
+    
+    //std::string file = "sort1_3l_5i_s_r.mov";
     //std::string file = "multi1.mov";
     //std::string file = "reverse4_noprog_fail.mov";
     //std::string file = "compress1_3l_4i_s_r.mov";
@@ -23,7 +26,7 @@ void Initializer::environment() {
     //std::string file = "join3_3l_4i_s_r.mov";
     //std::string file = "join2_3l_5i_s_r.mov";
     //std::string file = "join1.mov";
-    //std::string file = "joifail/9.mov";
+    //std::string file = "fail/4.mov";
     //std::string file = "new_markers.mov";
     //std::string file = "reverse3_2l_3i_s_o.mov";
     //std::string file = "reverse2_2l_3i.mov";

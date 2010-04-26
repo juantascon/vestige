@@ -4,6 +4,7 @@
 #include "Problem.hpp"
 #include "ListReturn.hpp"
 
+#include "PDebug.hpp"
 #include "Reverse.hpp"
 #include "Join.hpp"
 #include "RemoveAll.hpp"

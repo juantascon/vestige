@@ -30,11 +30,12 @@ StatusMessage* Step::step() {
     if (!p) {
         // Create problem and rules
         try {
+            p = new problem::PDebug(current_state);
             //p = new problem::Reverse(current_state);
             //p = new problem::Join(current_state);
             //p = new problem::RemoveAll(current_state);
             //p = new problem::Compress(current_state);
-            p = new problem::InsertionSort(current_state);
+            //p = new problem::InsertionSort(current_state);
         }
         catch(std::runtime_error e) {
             return new StatusMessage(0, "Invalid initial state: " + std::string(e.what()));
@@ -46,7 +47,7 @@ StatusMessage* Step::step() {
     
     // check if this state is the valid final state
     if (p->validate_return(current_state->return_value())) {
-        return new StatusMessage(1, "Game Over: you win");
+        return new StatusMessage(1, "Great! Problem solved");
     }
     
     action::ActionSet *as = new action::ActionSet();
@@ -60,13 +61,13 @@ StatusMessage* Step::step() {
     // Invalid action
     if (!a->valid()) {
         as->alert("invalid movement");
-        return new StatusMessage(1, "Invalid Action: too many movements");
+        return new StatusMessage(1, "Too many actions");
     }
     
     // TODO: esto sólo se debe ejecutar en modo supervisado
-    if ( !r->apply(a) ) {
-        return new StatusMessage(1, "Invalid Action: Step-by-Step wrong movement");
-    }
+    //if ( !r->apply(a) ) {
+    //    return new StatusMessage(1, "Invalid Action: Step-by-Step wrong movement");
+    //}
     
     return new StatusMessage(0, "");
 }
