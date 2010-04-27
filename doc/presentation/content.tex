@@ -1,0 +1,119 @@
+%*******************************************************************************
+\section{Introduction}
+%*******************************************************************************
+
+\begin{frame}{Goal}
+  Ease learning functional programming by means of an interactive
+  interface based on a tangible block-world with augmented reality
+  and software feedback.
+  \vskip2ex
+  \textsf{\bf Keywords:} \em{functional programming, tangible
+    user-interface, block world, augmented reality, software
+    feedback}
+\end{frame}
+
+\begin{frame}{Definition}
+  \emph{Functional programming} is a programming style that relies
+  mostly on mathematical functions and immutable data.
+  \vskip2ex
+  \begin{itemize}
+  \item No arrays
+  \item No loops
+  \item No variable assignations
+  \end{itemize}
+\end{frame}
+
+%*******************************************************************************
+\section{Related Works}
+%*******************************************************************************
+
+\begin{frame}{Recursion Issues}
+  \begin{itemize}
+  \item Cognitive load theory: limited work memory.\footnote{The effect of dynamic copies model in teaching recursive programming: Chen(1998)}.
+  \item Base cases are hard to identify\footnote{The case of bad cases: Haberman \& Averbuch(2002)}.
+  \item Students usually think in a ``loop'' model of
+    recursion and not a ``copies'' model\footnote{Mental models of recursion revisited: Sanders, Galpin \& Gotschi(2006)}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame} {TUIs used at Learning}
+  The use of physical materials per se could help on the
+  process of learning~\footnote{Do tangible interfaces enhance
+    learning: Marshall(2007)}.
+  \vskip2ex
+  
+  \begin{itemize}
+  \item Using material change the nature of the knowledge
+    because perception and cognition are closely interlinked.
+  \item 3D forms might be perceived and understood more readily
+    through haptic or other tangible representations than
+    through visual representation alone.
+  \item In young children manipulation of concrete
+    physical objects helps to support and develop thinking.
+  \end{itemize}
+\end{frame}
+
+%*******************************************************************************
+\section{Methodology}
+%*******************************************************************************
+
+\begin{frame}{Interaction}
+  \begin{description}
+  \item[What?] A block-world TUI with AR to provide feedback.
+  \item[How?] The learner must solve a programming exercise by
+    reorganizing a set of blocks forming stacks (lists). Blocks'
+    movements are guided and limited by gravity.
+  \end{description}
+\end{frame}
+
+\begin{frame}{Elements}
+  \begin{description}
+  \item[Board:] The captured surface.
+  \item[Blocks:] Any physical element above the board.
+    (Item, List, Switch).
+  \item[Actions:] A movement of blocks (Pop, Push, Pop-Push,
+    Create, Discard).
+  \item[Scenes:] An arrangements of blocks.
+  \end{description}
+\end{frame}
+
+\begin{frame}{Abstraction (1/2)}
+  When an action is triggered two scenes are identified:
+  \vskip2ex
+  \begin{description}
+  \item[Previous scene:] Before the action is executed.
+  \item[New scene:] After the action is executed.
+  \end{description}
+  \vskip4ex
+  Erlang functions($f(x)=y$) are then given as the new scene
+  ($y$) in terms of the previous scene($f(x)$).
+\end{frame}
+
+\begin{frame}{Abstraction (2/2)}
+  \emph{Reverse:}
+  
+  \begin{enumerate}
+  \item $\vestigefunction{rev(L)} {create} {rev(L,[])}$
+  \item $\vestigefunction{rev([T|R],O)} {poppush} {rev(R,[T|O])}$
+  \item $\vestigefunction{rev([\;],O)} {discard} {O}$
+  \end{enumerate}
+\end{frame}
+
+
+%*******************************************************************************
+\section{Future Work}
+%*******************************************************************************
+
+\begin{frame}{Future Work}
+    \begin{itemize}
+    \item The software still needs a bit of love.
+    \item Write thesis.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Q/A?}
+  \krtext{감사합니다}.
+  \vskip3ex
+  Q/A?
+\end{frame}
