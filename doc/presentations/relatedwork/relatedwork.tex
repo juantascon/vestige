@@ -1,0 +1,46 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Hannover}
+  \usecolortheme{whale}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{verbatim}
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+
+\title{Vestige}
+\subtitle{Related Work}
+\author{Juan Diego Tascón Vidarte}
+\institute{Konkuk University \\ HCI Lab}
+\date{\today{}}
+
+\AtBeginSection[]
+{
+  \begin{frame} <beamer>{}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{}
+	\tableofcontents
+\end{frame}
+
+\include{content}
+
+\bibliographystyle{plain}
+\bibliography{master}
+\nocite{*}
+
+\end{document}
