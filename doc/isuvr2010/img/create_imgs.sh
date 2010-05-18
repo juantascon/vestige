@@ -2,5 +2,5 @@
 
 for f in ./orig/*.png
 do
-	convert -scale 50% $f ./$(basename $f)
+	convert -scale 19% $f ./$(basename $f)
 done

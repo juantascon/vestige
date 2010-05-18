@@ -4,7 +4,7 @@ include(UseLATEX)
 
 add_latex_document(isuvr2010.tex
   INPUTS abstract.tex introduction.tex methodology.tex conclusion.tex
-  BIBFILES isuvr2010.bib
+  BIBFILES recursion.bib tui.bib
   IMAGE_DIRS img
   DEFAULT_PDF
   MANGLE_TARGET_NAMES
