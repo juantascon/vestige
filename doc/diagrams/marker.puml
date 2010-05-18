@@ -1,0 +1,10 @@
+@startuml marker.png
+
+namespace Marker #DDDDDD {
+  abstract class BaseMarker
+  BaseMarker <|-- Item
+  BaseMarker <|-- List
+  BaseMarker <|-- Switch
+}
+
+@enduml

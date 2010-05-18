@@ -1,0 +1,13 @@
+@startuml rule.png
+
+namespace Rule #DDDDDD {
+  class RuleSet
+  abstract class BaseRule
+  BaseRule <|-- Pop
+  BaseRule <|-- Push
+  BaseRule <|-- PopPush
+  BaseRule <|-- Create
+  BaseRule <|-- Discard
+}
+
+@enduml

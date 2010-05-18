@@ -1,0 +1,13 @@
+@startuml action.png
+
+namespace Action #DDDDDD {
+  abstract class BaseAction
+  BaseAction <|-- Pop
+  BaseAction <|-- Push
+  BaseAction <|-- PopPush
+  BaseAction <|-- Create
+  BaseAction <|-- Discard
+  BaseAction <|-- Invalid
+}
+
+@enduml

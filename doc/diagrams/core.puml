@@ -1,0 +1,20 @@
+@startuml core.png
+
+namespace Draw #DDDDDD {
+  class ToolTip
+  class Text
+  class Rectangle
+}
+
+namespace Data #DDDDDD {
+  class GlobalStorage
+  class Initializer
+  class Parameters
+}
+
+namespace Recursion #DDDDDD {
+  class Step
+  class StatusMessage
+}
+
+@enduml

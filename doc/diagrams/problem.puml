@@ -1,0 +1,12 @@
+@startuml problem.png
+
+namespace Problem #DDDDDD {
+  abstract class BaseProblem
+  BaseProblem <|-- Reverse
+  BaseProblem <|-- Join
+  BaseProblem <|-- RemoveAll
+  BaseProblem <|-- Compress
+  BaseProblem <|-- InsertionSort
+}
+
+@enduml

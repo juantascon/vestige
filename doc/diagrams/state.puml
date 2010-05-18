@@ -1,0 +1,10 @@
+@startuml state.png
+
+namespace State #DDDDDD {
+  class State
+  abstract class Node
+  Node <|-- Item
+  Node <|-- List
+}
+
+@enduml
