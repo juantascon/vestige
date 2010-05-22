@@ -6,10 +6,7 @@ namespace state {
 
 State::State() : Node::Map()
 {
-    _return_value = 0;
 }
-
-Node* State::return_value() { return this->_return_value; }
 
 NodeSet* State::clone_nodes() {
     NodeSet* ret = new NodeSet();
@@ -30,10 +27,6 @@ std::string State::text() {
     
     ret += "]]";
     
-    if (_return_value) {
-        ret += " -> " + _return_value->id();
-    }
-    
     return ret;
 }
 
@@ -47,7 +40,7 @@ void State::capture() {
     lists->filter_by_type_lists();
     
     BOOST_FOREACH(marker::Marker* m, *lists) {
-        (*this)[m->id()] = new List(dynamic_cast<marker::List*>(m));
+        (*this)[m->ar_id()] = new List(dynamic_cast<marker::List*>(m));
     }
     
     // Add Items
@@ -55,18 +48,14 @@ void State::capture() {
     items->filter_by_type_items();
     
     BOOST_FOREACH(marker::Marker* m, *items) {
-        (*this)[m->id()] = new Item(dynamic_cast<marker::Item*>(m));
-    }
-    
-    // Set return value
-    if (marker::GlobalMarkers::instance()->m_return->value()) {
-        _return_value = (*this)[marker::GlobalMarkers::instance()->m_return->value()->id()];
+        (*this)[m->ar_id()] = new Item(dynamic_cast<marker::Item*>(m));
     }
     
     // TODO: posible bug, cuando un item este alineado con 2 listas
+    
     // Link Nodes
     BOOST_FOREACH(marker::Marker* m, *lists) {
-        state::Node* n = (*this)[m->id()];
+        state::Node* n = (*this)[m->ar_id()];
         state::List* l = dynamic_cast<state::List*>( n );
         
         marker::MarkerSet* children = items->clone();
@@ -74,7 +63,7 @@ void State::capture() {
         children->filter_by_over_marker(m);
         
         BOOST_FOREACH(marker::Marker* c, *children) {
-            l->add_child( (*this)[c->id()] );
+            l->add_child( (*this)[c->ar_id()] );
         }
     }
 }

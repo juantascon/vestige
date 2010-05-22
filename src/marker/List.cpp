@@ -4,7 +4,7 @@
 namespace vestige {
 namespace marker {
 
-List::List(std::string marker_args, std::string id) : Marker(marker_args, id) {
+List::List(std::string marker_args, std::string ar_id) : Marker(marker_args, ar_id) {
     //this->add(osgDB::readNodeFile("data/model/list.osg"));
     this->paint();
 }
@@ -20,10 +20,11 @@ void List::paint() {
     items->filter_by_aligned_with_marker(this);
     items->filter_by_over_marker(this);
     items->sort_by_y_axis();
-    
-    BOOST_FOREACH(marker::Marker* m, *items) {
-        dynamic_cast<marker::Item*>(m)->set_top(0);
-    }
+
+    // TODO: reactivar esto para information hidding:
+    //BOOST_FOREACH(marker::Marker* m, *items) {
+    //    dynamic_cast<marker::Item*>(m)->set_top(0);
+    //}
     if ( items->size() > 0 ) {
         dynamic_cast<marker::Item*>(items->back())->set_top(1);
     }
@@ -32,6 +33,8 @@ void List::paint() {
     float align_factor = core::Parameters::instance()->ALIGN_FACTOR();
     float range = (size*2.0*(items->size()))+size;
     float cover = (size*2.0*(items->size()-1.0));
+    // TODO: quitar esto para information hidding:
+    cover = 0.0f;
     if (cover < 0) { cover = 0; }
     float line_width = 20.0;
     float z = 2.0;

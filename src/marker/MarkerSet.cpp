@@ -23,8 +23,16 @@ bool MarkerSet::compare_by_y_axis(Marker* m1, Marker *m2) {
     return ( m1->position().y() < m2->position().y() );
 }
 
+bool MarkerSet::compare_by_x_axis(Marker* m1, Marker *m2) {
+    return ( m1->position().x() < m2->position().x() );
+}
+
 void MarkerSet::sort_by_y_axis() {
     this->sort(MarkerSet::compare_by_y_axis);
+}
+
+void MarkerSet::sort_by_x_axis() {
+    this->sort(MarkerSet::compare_by_x_axis);
 }
 
 void MarkerSet::filter_by_type_items() {
@@ -61,7 +69,7 @@ void MarkerSet::filter_by_aligned_with_marker(marker::Marker* m) {
         if ( (*it)->aligned(m) ) {
             continue;
         }
-
+        
         this->erase(it);
         it--;
     }

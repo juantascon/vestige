@@ -9,8 +9,6 @@ namespace problem {
 class RemoveAll : public ListReturn
 {
     protected:
-        state::List* TMP1;
-        state::List* TMP2;
         state::List* L;
         state::Item* E;
         

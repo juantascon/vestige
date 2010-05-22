@@ -10,12 +10,14 @@ class MarkerSet : public Marker::List
 {
     protected:
         static bool compare_by_y_axis(Marker* m1, Marker *m2);
+        static bool compare_by_x_axis(Marker* m1, Marker *m2);
         
     public:
         MarkerSet();
         
         MarkerSet* clone();
         void sort_by_y_axis();
+        void sort_by_x_axis();
         
         void filter_by_type_items();
         void filter_by_type_lists();

@@ -11,7 +11,6 @@ class Join : public ListReturn
     protected:
         state::List* L;
         state::List* R;
-        state::List* TMP;
         
     public:
         Join(state::State* s);

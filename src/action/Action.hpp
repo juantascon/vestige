@@ -25,7 +25,6 @@ class Action
 {
     protected:
         state::Node* node;
-        int _valid;
         
     public:
         typedef std::vector <Action*> Vector;
@@ -33,7 +32,8 @@ class Action
         Action(state::Node* node);
         
         std::string node_id();
-        int valid();
+        
+        int valid_rules;
         
         void alert(std::string message);
         virtual std::string text() = 0;

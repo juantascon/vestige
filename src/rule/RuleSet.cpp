@@ -24,15 +24,23 @@ void RuleSet::add(Rule* rule) {
     current = this->begin();
 }
 
-int RuleSet::apply(action::Action* action) {
-    D(( "RULE: [[ %s ]]", (*current)->text().c_str() ));
+int RuleSet::verify(action::Action* action) {
     if ( (*current)->valid(action) ) {
+        D(( "RULE: [[ %s ]] OK", (*current)->text().c_str() ));
+        action->valid_rules = 1;
         ++current;
         return 1;
     }
-    
-    action->alert("APPLY-RULE");
+    D(( "RULE: [[ %s ]] FAIL", (*current)->text().c_str() ));
     return 0;
+}
+
+void RuleSet::verify(action::ActionSet* as) {
+    for (int i = 0; i < as->size(); i++) {
+        BOOST_FOREACH(action::Action *a, *as) {
+            if (verify(a)) { break; }
+        }
+    }
 }
 
 }}

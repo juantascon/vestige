@@ -15,7 +15,8 @@ class ActionSet : public Action::Vector
         ActionSet();
         
         void diff(state::State* past, state::State* present);
-        Action* single();
+        int valid_logic();
+        int valid_rules();
 
         void alert(std::string message);
         std::string text();

@@ -3,7 +3,7 @@
 namespace vestige {
 namespace marker {
 
-Item::Item(std::string marker_args, std::string id, std::string value) : Marker(marker_args, id)
+Item::Item(std::string marker_args, std::string ar_id, std::string value) : Marker(marker_args, ar_id)
 {
     this->_value = value;
     this->_top = 1;

@@ -10,11 +10,11 @@ class ListReturn : public Problem
 {
     protected:
         ListReturn();
-        std::vector<std::string>* _ids;
+        std::list<std::string>* _ids;
         
     public:
         virtual rule::RuleSet* create_rules() = 0;
-        virtual int validate_return(state::Node* ret);
+        virtual int validate_return(state::State* s);
 };
 
 }}

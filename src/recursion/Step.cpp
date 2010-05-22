@@ -15,27 +15,29 @@ Step::Step() {
 }
 
 StatusMessage* Step::step() {
+    // Capture state
     state::State *s = new state::State();
     s->capture();
+    
+    // fix ids of new markers
+    marker::GlobalMarkers::instance()->assign_empty_ids();
     D(( s->text().c_str() ));
     
+    // ignore states with no nodes
     if (s->size() == 0) {
         return new StatusMessage(0, "");
     }
-    
-    previous_state = current_state;
-    current_state = s;
     
     // initialize the problem specification
     if (!p) {
         // Create problem and rules
         try {
-            p = new problem::PDebug(current_state);
-            //p = new problem::Reverse(current_state);
-            //p = new problem::Join(current_state);
-            //p = new problem::RemoveAll(current_state);
-            //p = new problem::Compress(current_state);
-            //p = new problem::InsertionSort(current_state);
+            // p = new problem::PDebug(s);
+            // p = new problem::Reverse(s);
+            // p = new problem::Join(s);
+            p = new problem::RemoveAll(s);
+            // p = new problem::Compress(s);
+            // p = new problem::InsertionSort(s);
         }
         catch(std::runtime_error e) {
             return new StatusMessage(0, "Invalid initial state: " + std::string(e.what()));
@@ -44,9 +46,13 @@ StatusMessage* Step::step() {
         r = p->create_rules();
         D(( r->text().c_str() ));
     }
+
+    // at this poiint it is safe to switch states
+    previous_state = current_state;
+    current_state = s;
     
     // check if this state is the valid final state
-    if (p->validate_return(current_state->return_value())) {
+    if (p->validate_return(current_state)) {
         return new StatusMessage(1, "Great! Problem solved");
     }
     
@@ -55,19 +61,20 @@ StatusMessage* Step::step() {
     D(( as->text().c_str() ));
     
     // Empty actions are ignored
-    action::Action *a = as->single();
-    if (!a) { return new StatusMessage(0, ""); }
-    
-    // Invalid action
-    if (!a->valid()) {
-        as->alert("invalid movement");
-        return new StatusMessage(1, "Too many actions");
+    if (as->size() == 0) { return new StatusMessage(0, ""); }
+
+    // valid logic move
+    if (!as->valid_logic()) {
+        as->alert("Invalid move: logic");
+        return new StatusMessage(1, "Invalid move: check logic");
     }
-    
-    // TODO: esto sólo se debe ejecutar en modo supervisado
-    //if ( !r->apply(a) ) {
-    //    return new StatusMessage(1, "Invalid Action: Step-by-Step wrong movement");
-    //}
+
+    // valid rules move
+    r->verify(as);
+    if ( !as->valid_rules() ) {
+        as->alert("Invalid move: rules");
+        return new StatusMessage(1, "Invalid move: check step-by-step");
+    }
     
     return new StatusMessage(0, "");
 }

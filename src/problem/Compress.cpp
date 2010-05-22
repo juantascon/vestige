@@ -9,27 +9,15 @@ Compress::Compress(state::State* s) : ListReturn()
     /* -- Check initial state -- */
     /***/
     
-    // exactly 4 elements expected on the board:
+    // exactly 1 element expected on the board:
     // * L: list ( at least 2 elements )
-    // * TMP1: list ( empty )
-    // * TMP2: list ( empty )
-    // * E: item ( element to be removed )
-
-    // TODO: hay 2 casos uno por cada eleccion de elemento a eliminar
-    // las reglas solo funcionana para 1 caso
     
     state::NodeSet* nodes = s->clone_nodes();
     nodes->filter_by_no_parent();
-    if (nodes->size() != 3) { throw std::runtime_error("4 elements are expected on the table"); }
+    if (nodes->size() != 1) { throw std::runtime_error("1 list is expected"); }
     
     L = nodes->remove_single_list_by_size_range(2, (std::numeric_limits<int>::max)());
-    if (!L) { throw std::runtime_error("missing 1 list with at least 2 elements"); }
-    
-    TMP2 = nodes->remove_single_list_by_size_range(0, 0);
-    if (!TMP2) { throw std::runtime_error("missing 1 empty list"); }
-    
-    TMP1 = nodes->remove_single_list_by_size_range(0, 0);
-    if (!TMP1) { throw std::runtime_error("missing 1 empty list"); }
+    if (!L) { throw std::runtime_error("missing 1 list with at least 2 items"); }
     
     /***/
     /* -- Prepare return list ids -- */
@@ -37,9 +25,9 @@ Compress::Compress(state::State* s) : ListReturn()
     
     // items from L minus adjacent repeated items
     state::Item* last = NULL;
-    BOOST_FOREACH(state::Node* n, *(L->children())) {
+    BOOST_REVERSE_FOREACH(state::Node* n, *(L->children())) {
         if (!last || last->value() != dynamic_cast<state::Item*>(n)->value() ) {
-            _ids->push_back(n->id());
+            _ids->push_front(n->id());
         }
         
         last = dynamic_cast<state::Item*>(n);
@@ -49,11 +37,21 @@ Compress::Compress(state::State* s) : ListReturn()
 rule::RuleSet* Compress::create_rules() {
     rule::RuleSet* rules = new rule::RuleSet();
     
-    // 1. move all the elements from L to TMP1 minus adjacent repeated items
+    std::string TMP1_id = "L#1";
+    std::string TMP2_id = "L#2";
+    
+    std::list<std::string>* TMP1_items = new std::list<std::string>();
+    
+    // 1. create two tmp lists
+    rules->add(new rule::Create(TMP1_id));
+    rules->add(new rule::Create(TMP2_id));
+    
+    // 2. move all the elements from L to TMP1 minus adjacent repeated items
     state::Item* last = NULL;
     BOOST_REVERSE_FOREACH(state::Node* n, *(L->children())) {
         if ( !last || last->value() != dynamic_cast<state::Item*>(n)->value() ) {
-            rules->add(new rule::PopPush(n->id(), L->id(), TMP1->id()));
+            rules->add(new rule::PopPush(n->id(), L->id(), TMP1_id));
+            TMP1_items->push_front(n->id());
         } else {
             rules->add(new rule::Discard(n->id()));
         }
@@ -61,15 +59,14 @@ rule::RuleSet* Compress::create_rules() {
         last = dynamic_cast<state::Item*>(n);
     }
     
-    // 2. move the same elements from TMP1 to TMP2
-    last = NULL;;
-    BOOST_FOREACH(state::Node* n, *(L->children())) {
-        if ( !last || last->value() != dynamic_cast<state::Item*>(n)->value() ) {
-            rules->add(new rule::PopPush(n->id(), TMP1->id(), TMP2->id()));
-        }
-        
-        last = dynamic_cast<state::Item*>(n);
+    // 3. move the same elements from TMP1 to TMP2
+    BOOST_FOREACH(std::string id, *TMP1_items) {
+        rules->add(new rule::PopPush(id, TMP1_id, TMP2_id));
     }
+    
+    // 4. delete L and TMP1
+    rules->add(new rule::Discard(L->id()));
+    rules->add(new rule::Discard(TMP1_id));
     
     return rules;
 }

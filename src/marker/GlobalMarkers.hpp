@@ -15,15 +15,18 @@ class GlobalMarkers
         std::string patt_format(std::string patt);
         
         marker::MarkerSet* _markers;
+        int lists_count;
+        int items_count;
         
     public:
         static GlobalMarkers* instance();
         
+        void markers_initialize();        
         void markers_add(marker::Marker *m);
         marker::MarkerSet* markers_clone();
-        void markers_initialize();
+
+        void assign_empty_ids();
         
-        marker::Return* m_return;
         marker::Switch* m_switch;
 };
 

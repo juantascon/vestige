@@ -4,14 +4,15 @@
 namespace vestige {
 namespace marker {
 
-Marker::Marker(std::string marker_args, std::string id)
+Marker::Marker(std::string marker_args, std::string ar_id)
 {
-    this->_id = id;
+    this->_ar_id = ar_id;
+    this->_id = "";
     this->set_active(1);
     
     // create marker
     _marker = core::GlobalStorage::instance()->tracker->addMarker(marker_args);
-    if (!_marker) {    D(("invalid marker")); exit(-1); }
+    if (!_marker) { D(("invalid marker")); exit(-1); }
     _marker->setActive(true);
     
     // create model
@@ -28,6 +29,8 @@ Marker::Marker(std::string marker_args, std::string id)
 osgART::Marker* Marker::marker() { return this->_marker; }
 osg::MatrixTransform* Marker::model() { return this->_model; }
 std::string Marker::id() { return this->_id; }
+void Marker::set_id(std::string id) { this->_id = id; }
+std::string Marker::ar_id() { return this->_ar_id; }
 
 void Marker::add(osg::Node* child) {
     _model->addChild(child);

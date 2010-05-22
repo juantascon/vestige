@@ -10,8 +10,6 @@ class InsertionSort : public ListReturn
 {
     protected:
         state::List* L;
-        state::List* DSC;
-        state::List* ASC;
         
     public:
         InsertionSort(state::State* s);

@@ -10,7 +10,6 @@ class Node
 {
     protected:
         marker::Marker* _marker;
-        std::string _id;
         Node* _parent;
         int _index;
         

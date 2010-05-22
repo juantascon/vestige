@@ -17,7 +17,6 @@ NodeSet* NodeSet::clone() {
     return ret;
 }
 
-
 bool NodeSet::compare_by_item_value(Node* n1, Node *n2) {
     int n1_value = boost::lexical_cast<int>(dynamic_cast<state::Item*>(n1)->value());
     int n2_value = boost::lexical_cast<int>(dynamic_cast<state::Item*>(n2)->value());
@@ -58,10 +57,36 @@ void NodeSet::filter_by_type_lists() {
     }
 }
 
+state::Node* NodeSet::remove_by_id(std::string id) {
+    for (NodeSet::iterator it = this->begin(); it != this->end(); ++it) {
+        if ((*it)->id() != id) { continue; }
+        
+        this->erase(it);
+        it--;
+        
+        return (*it);
+    }
+    
+    return NULL;
+}
+
 state::Item* NodeSet::remove_single_item() {
     for (NodeSet::iterator it = this->begin(); it != this->end(); ++it) {
         state::Item* ret = dynamic_cast<state::Item*>(*it);
+        if (!ret) { continue; }
         
+        this->erase(it);
+        it--;
+        
+        return ret;
+    }
+    
+    return NULL;
+}
+
+state::List* NodeSet::remove_single_list() {
+    for (NodeSet::iterator it = this->begin(); it != this->end(); ++it) {
+        state::List* ret = dynamic_cast<state::List*>(*it);
         if (!ret) { continue; }
         
         this->erase(it);

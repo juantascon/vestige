@@ -18,17 +18,20 @@ class Marker : public osg::NodeCallback
         
         int _active;
         std::string _id;
+        std::string _ar_id;
         
     public:
         typedef std::vector <Marker*> Vector;
         typedef std::list <Marker*> List;
         typedef std::map <std::string, Marker*> Map;
         
-        Marker(std::string marker_args, std::string id);
+        Marker(std::string marker_args, std::string ar_id);
         
         osgART::Marker* marker();
         osg::MatrixTransform* model();
         std::string id();
+        void set_id(std::string id);
+        std::string ar_id();
         
         void add(osg::Node* child);
         virtual void reset();

@@ -17,7 +17,7 @@ class Item : public Marker
         std::string _value;
         
     public:
-        Item(std::string marker_args, std::string id, std::string value);
+        Item(std::string marker_args, std::string ar_id, std::string value);
         
         void set_top(int top);
         
