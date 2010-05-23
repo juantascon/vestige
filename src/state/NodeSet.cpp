@@ -18,8 +18,8 @@ NodeSet* NodeSet::clone() {
 }
 
 bool NodeSet::compare_by_item_value(Node* n1, Node *n2) {
-    int n1_value = boost::lexical_cast<int>(dynamic_cast<state::Item*>(n1)->value());
-    int n2_value = boost::lexical_cast<int>(dynamic_cast<state::Item*>(n2)->value());
+    int n1_value = dynamic_cast<state::Item*>(n1)->ivalue();
+    int n2_value = dynamic_cast<state::Item*>(n2)->ivalue();
     
     return ( n1_value < n2_value );
 }

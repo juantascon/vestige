@@ -16,6 +16,7 @@ class Item : public Node
         Item(marker::Item* marker);
         
         std::string value();
+        int ivalue();
 };
 
 }}

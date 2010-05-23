@@ -34,71 +34,100 @@ InsertionSort::InsertionSort(state::State* s) : ListReturn()
 }
 
 rule::RuleSet* InsertionSort::create_rules() {
+    D(("hola"));
     rule::RuleSet* rules = new rule::RuleSet();
     
-    std::string DSC_id = "L#1";
-    std::string ASC_id = "L#2";
+    std::string X_id = L->id();
+    std::string D_id = "L#1";
+    std::string A_id = "L#2";
+    
+    std::list<std::string>* D_ids = new std::list<std::string>();
+    std::list<std::string>* A_ids = new std::list<std::string>();
+    
+    rules->add(new rule::Create(A_id));
+    rules->add(new rule::Create(D_id));
+    
+    state::NodeSet* X = L->children()->clone();
+    state::NodeSet* D = new state::NodeSet();
+    state::NodeSet* A = new state::NodeSet();
 
-    rules->add(new rule::Create(ASC_id));
-    rules->add(new rule::Create(DSC_id));
-    
-    state::NodeSet* Ll = L->children()->clone();
-    
-    // discarded items
-    //std::list<std::string>* TMP1_items = new std::list<std::string>();
-    
     /*
-      %state 1
+      f(L) -> f(L, [], []).
       
-      f([TopL|RestL], [TopDSC|RestDSC], []) when TopL < TopDSC ->  f(RestL, [TopL|TopDSC|RestDSC], []);
-      %state 2, 3, 4
+      f(X=[I|L], D, []) -> f(L, D, [I]);
       
-      f([TopL|RestL], [TopDSC|RestDSC], []) when TopL > TopDSC ->  f([TopL|RestL], RestDSC, [TopDSC]);
-      %state 5
-
-      f([TopL|RestL], [TopDSC|RestDSC], [TopASC|RestASC]) when TopL > TopDSC -> f([TopL|RestL], RestDSC, [TopDSC|[TopASC|RestASC]]);
-      %state 6
-
-      f([TopL|RestL], [TopDSC|RestDSC], [TopASC|RestASC]) when TopL < TopASC ->  f([TopL|RestL], [TopASC|TopDSC|RestDSC], RestASC);
-      %state 7, 8
-
-      f([TopL|RestL], [TopDSC|RestDSC], [TopASC|RestASC]) when TopL > TopASC ->  f(RestL, [TopL|TopDSC|RestDSC], [TopASC|RestASC]);
-      %state 9
-
-      f([], [TopDSC|RestDSC], [TopASC|RestASC]) when TopL < TopASC ->  f([], RestDSC, [TopDSC|TopASC|RestASC]);
-      %state 10, 11, 12
-
-      f([], [], ASC) -> ASC.
-      %state 13
-
-      f([TopL|RestL],               [], [TopASC|RestASC])                    -> f(       RestL,                    [TopL],         [TopASC|RestASC]);
-      %added
+      f(X=[I|L], D, A=[AI|AL]) when (I < AI) -> f(X, [AI|D], AL);
+      
+      f(X=[I|L], [], A=[AI|AL]) when (I > AI) -> f(L, [], [I|A]);
+      f(X=[I|L], D=[DI|DL], A=[AI|AL]) when (I > AI) and (I < DI) -> f(L, D, [I|A]);
+      f(X=[I|L], D=[DI|DL], A=[AI|AL]) when (I > AI) and (I > DI) -> f(X, DL, [DI|A]);
+      
+      f([], D=[DI|DL], A=[AI|AL]) -> f([], DL, [DI|A]);
+      f([], [], AL) -> AL.
     */
     
-    /*while(DSCl->size() != 0 || DSCl->size() != 0) {
-        LTop = Ll->back();
-        DSCTop = DSCl->back();
-        ASCTop = ASCl->back();
-
-        // f([TopL|RestL], [], []) -> f(RestL, [TopL], []);
-        if ( !DSCTop && !ASCTop) {
-            Ll->pop_back();
-            DSCl->push_back(LTop);
-            rules->add(new rule::PopPush(LTop->id(), L->id(), DSC->id()));
-            continue;
-            }*/
+    while(true) {
+        state::Item* I = X->size() > 0 ? dynamic_cast<state::Item*>(X->back()) : NULL;
+        state::Item* AI = A->size() > 0 ? dynamic_cast<state::Item*>(A->back()) : NULL;
+        state::Item* DI = D->size() > 0 ? dynamic_cast<state::Item*>(D->back()) : NULL;
         
-        // TODO: continuar aqui
-        /*if ( !ASCTop && LTop) {
-            Ll->pop_back();
-            boost::lexical_cast<int>(dynamic_cast<state::Item*>()->value());
-            DSCl->push_back(LTop);
-            rules->add(new rule::PopPush(LTop->id(), L->id(), DSC->id()));
-            continue;
-            }*/
+        if (X->size() == 0) {
+            if (D->size() != 0) {
+                D(("poppush1"));
+                rules->add(new rule::PopPush( DI->id(), D_id, A_id ));
+                A->push_back(DI);
+                D->pop_back();
+                continue;
+            }
+            
+            if (D->size() == 0) {
+                D(("discard"));
+                rules->add(new rule::Discard(X_id));
+                rules->add(new rule::Discard(D_id));
+                break;
+            }
+        }
         
-    //break;
-    // }
+        if (A->size() == 0) {
+            D(("poppush2"));
+            rules->add(new rule::PopPush( I->id(), X_id, A_id ));
+            A->push_back(I);
+            X->pop_back();
+            continue;
+        }
+        
+        if (I->ivalue() < AI->ivalue()) {
+            D(("poppush3"));
+            rules->add(new rule::PopPush( AI->id(), A_id, D_id ));
+            D->push_back(AI);
+            A->pop_back();
+            continue;
+        }
+        
+        if (I->ivalue() > AI->ivalue()) {
+            if (D->size() == 0) {
+                D(("poppush4"));
+                rules->add(new rule::PopPush( I->id(), X_id, A_id ));
+                A->push_back(I);
+                X->pop_back();
+                continue;
+            }
+            if (I->ivalue() < DI->ivalue()) {
+                D(("poppush5"));
+                rules->add(new rule::PopPush( I->id(), X_id, A_id ));
+                A->push_back(I);
+                X->pop_back();
+                continue;
+            }
+            if (I->ivalue() > DI->ivalue()) {
+                D(("poppush6"));
+                rules->add(new rule::PopPush( DI->id(), D_id, A_id ));
+                A->push_back(DI);
+                D->pop_back();
+                continue;
+            }
+        }
+    }
     
     return rules;
 }

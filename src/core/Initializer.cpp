@@ -14,8 +14,10 @@ Initializer* Initializer::instance() {
 }
 
 void Initializer::environment() {
+    std::string file = "isuvr/isort_ini.mov";
+    
     // std::string file = "isuvr/compress.mov";
-    std::string file = "isuvr/removeall.mov";
+    // std::string file = "isuvr/removeall.mov";
     // std::string file = "isuvr/join.mov";
     // std::string file = "isuvr/reverse.mov";
     

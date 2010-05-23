@@ -35,9 +35,9 @@ StatusMessage* Step::step() {
             // p = new problem::PDebug(s);
             // p = new problem::Reverse(s);
             // p = new problem::Join(s);
-            p = new problem::RemoveAll(s);
+            // p = new problem::RemoveAll(s);
             // p = new problem::Compress(s);
-            // p = new problem::InsertionSort(s);
+            p = new problem::InsertionSort(s);
         }
         catch(std::runtime_error e) {
             return new StatusMessage(0, "Invalid initial state: " + std::string(e.what()));

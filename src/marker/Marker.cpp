@@ -29,8 +29,12 @@ Marker::Marker(std::string marker_args, std::string ar_id)
 osgART::Marker* Marker::marker() { return this->_marker; }
 osg::MatrixTransform* Marker::model() { return this->_model; }
 std::string Marker::id() { return this->_id; }
-void Marker::set_id(std::string id) { this->_id = id; }
 std::string Marker::ar_id() { return this->_ar_id; }
+
+void Marker::set_id(std::string id) {
+    this->_id = id;
+    D(("MARKER(%s) -> ID(%s)", this->ar_id().c_str(), this->id().c_str()));
+}
 
 void Marker::add(osg::Node* child) {
     _model->addChild(child);
