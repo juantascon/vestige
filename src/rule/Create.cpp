@@ -11,7 +11,7 @@ int Create::valid(action::Action* action) {
     action::Create* a = dynamic_cast<action::Create*>( action );
     if (!a) { return 0; }
     
-    if (a->node_id() != node) { return 0; }
+    if (a->node()->id() != node) { return 0; }
     
     return 1;
 }

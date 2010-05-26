@@ -3,15 +3,18 @@
 namespace vestige {
 namespace draw {
 
-ToolTip::ToolTip(std::string value, float size) {
-    initialize(value, size);
+ToolTip::ToolTip() {
 }
 
-ToolTip::ToolTip(std::string value) {
-    initialize(value, 35.0f);
+void ToolTip::alert(std::string value) {
+    alert(value, 35.0f);
 }
 
-void ToolTip::initialize(std::string value, float size) {
+void ToolTip::reset() {
+    this->removeDrawables(0, this->getNumDrawables());
+}
+
+void ToolTip::alert(std::string value, float size) {
     Text* text = new Text(value);
     text->setCharacterSize(size);
     text->setPosition(osg::Vec3(0.0f, 100.0f, 10.1f));
@@ -40,6 +43,7 @@ void ToolTip::initialize(std::string value, float size) {
         *color
     );
     
+    this->reset();
     this->addDrawable(text);
     this->addDrawable(box_g);
     this->addDrawable(arrow);

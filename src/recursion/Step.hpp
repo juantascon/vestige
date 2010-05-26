@@ -7,6 +7,7 @@
 #include "../problem/Types.hpp"
 
 #include "StatusMessage.hpp"
+#include "VariableSet.hpp"
 
 namespace vestige {
 namespace recursion {

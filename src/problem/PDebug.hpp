@@ -14,7 +14,7 @@ class PDebug : public Problem
         PDebug(state::State* s);
         
         virtual rule::RuleSet* create_rules();
-        virtual int validate_return(state::Node* ret);
+        virtual int validate_return(state::State* ret);
 };
 
 }}

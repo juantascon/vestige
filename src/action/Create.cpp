@@ -8,7 +8,7 @@ Create::Create(state::Node* node) : Action(node)
 }
 
 std::string Create::text() {
-    return "Create(Node:" + node->id() + ")";
+    return "Create(Node:" + _node->id() + ")";
 }
 
 }}

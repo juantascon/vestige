@@ -11,14 +11,18 @@ class Switch : public Marker
 {
     protected:
         int captured;
+        draw::ToolTip* tooltip;
         
     public:
         Switch (std::string marker_args);
+        
+        void capture();
         
         virtual void set_active(int active);
         virtual void alert(std::string message);
         virtual void paint();
         virtual void update();
+        virtual void reset();
 };
 
 }}

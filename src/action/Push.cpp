@@ -5,13 +5,13 @@ namespace action {
 
 Push::Push(state::Node* node, state::Node* into) : Action(node)
 {
-    this->into = into;
+    this->_into = into;
 }
 
-std::string Push::into_id() { return into->id(); }
+state::Node* Push::into() { return _into; }
 
 std::string Push::text() {
-    return "Push(Node:" + node->id() + "|Into:" + into->id() + ")";
+    return "Push(Node:" + _node->id() + "|Into:" + _into->id() + ")";
 }
 
 }}

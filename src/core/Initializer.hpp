@@ -6,6 +6,9 @@
 
 #include "Parameters.hpp"
 
+#include <fstream>
+#include <stdexcept>
+
 namespace vestige {
 namespace core {
 

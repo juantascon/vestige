@@ -34,7 +34,6 @@ class Marker : public osg::NodeCallback
         std::string ar_id();
         
         void add(osg::Node* child);
-        virtual void reset();
         osg::Vec3 position();
         int visible();
         
@@ -46,6 +45,7 @@ class Marker : public osg::NodeCallback
         
         virtual void paint() = 0;
         virtual void update() = 0;
+        virtual void reset();
         virtual void alert(std::string message);
         virtual void set_active(int active);
 };

@@ -11,7 +11,8 @@ class Node
     protected:
         marker::Marker* _marker;
         Node* _parent;
-        int _index;
+        int _index_x;
+        int _index_y;
         
     public:
         typedef std::vector <Node*> Vector;
@@ -24,15 +25,19 @@ class Node
         
         Node* clone();
         
-        virtual void set_parent(Node* parent, int index);
-        
         marker::Marker* marker();
         std::string id();
-        int index();
+        
         Node* parent();
+        int index_x();
+        int index_y();
+        
+        void set_parent(Node* parent);
+        void set_index_x(int index_x);
+        void set_index_y(int index_y);
         
         std::string path();
-        std::string text();
+        virtual std::string text();
         void alert(std::string message);
 };
 

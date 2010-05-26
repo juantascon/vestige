@@ -33,27 +33,28 @@ std::string State::text() {
 void State::capture() {
     marker::MarkerSet* markers = marker::GlobalMarkers::instance()->markers_clone();
     markers->filter_by_visible(1);
-    markers->sort_by_y_axis();
+    markers->sort_by_x_axis();
     
-    // Add lists
+    // Add items and lists
+    BOOST_FOREACH(marker::Marker* m, *markers) {
+        marker::List* ml = dynamic_cast<marker::List*>(m);
+        marker::Item* mi = dynamic_cast<marker::Item*>(m);
+        
+        Node* n = ml ? dynamic_cast<Node*>(new List(ml)) : dynamic_cast<Node*>(new Item(mi));
+        n->set_index_x(this->size());
+        
+        (*this)[m->ar_id()] = n;
+    }
+
     marker::MarkerSet* lists = markers->clone();
     lists->filter_by_type_lists();
     
-    BOOST_FOREACH(marker::Marker* m, *lists) {
-        (*this)[m->ar_id()] = new List(dynamic_cast<marker::List*>(m));
-    }
-    
-    // Add Items
     marker::MarkerSet* items = markers->clone();
     items->filter_by_type_items();
+    items->sort_by_y_axis();
     
-    BOOST_FOREACH(marker::Marker* m, *items) {
-        (*this)[m->ar_id()] = new Item(dynamic_cast<marker::Item*>(m));
-    }
-    
+    // Link child Nodes
     // TODO: posible bug, cuando un item este alineado con 2 listas
-    
-    // Link Nodes
     BOOST_FOREACH(marker::Marker* m, *lists) {
         state::Node* n = (*this)[m->ar_id()];
         state::List* l = dynamic_cast<state::List*>( n );
@@ -61,6 +62,8 @@ void State::capture() {
         marker::MarkerSet* children = items->clone();
         children->filter_by_aligned_with_marker(m);
         children->filter_by_over_marker(m);
+
+        D(("aligned to %s, size: %i", m->id().c_str(), children->size()));
         
         BOOST_FOREACH(marker::Marker* c, *children) {
             l->add_child( (*this)[c->ar_id()] );

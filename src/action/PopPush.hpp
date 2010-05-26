@@ -9,14 +9,14 @@ namespace action {
 class PopPush : public Action
 {
     protected:
-        state::Node* from;
-        state::Node* into;
+        state::Node* _from;
+        state::Node* _into;
         
     public:
         PopPush(state::Node* node, state::Node* from, state::Node* into);
         
-        std::string from_id();
-        std::string into_id();
+        state::Node* from();
+        state::Node* into();
         
         virtual std::string text();
 };

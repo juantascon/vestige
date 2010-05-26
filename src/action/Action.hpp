@@ -6,6 +6,7 @@
  * - (pop-push) move a item from a list to another
  *
  * - (discard) discard a node
+ * - (create) create a node
  * - (invalid) invalid movement
  *
  * ** Board is the base where all the nodes are on
@@ -24,14 +25,14 @@ namespace action {
 class Action
 {
     protected:
-        state::Node* node;
+        state::Node* _node;
         
     public:
         typedef std::vector <Action*> Vector;
         
         Action(state::Node* node);
         
-        std::string node_id();
+        state::Node* node();
         
         int valid_rules;
         

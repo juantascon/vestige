@@ -11,7 +11,8 @@ List::List(marker::List* marker) : Node(marker) {
 NodeSet* List::children() { return this->_children; }
 
 void List::add_child(Node* c) {
-    c->set_parent(this, _children->size());
+    c->set_parent(this);
+    c->set_index_y(_children->size());
     _children->push_back(c);
 }
 

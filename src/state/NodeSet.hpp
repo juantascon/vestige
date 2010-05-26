@@ -12,11 +12,16 @@ class NodeSet : public Node::List
 {
     protected:
         static bool compare_by_item_value(Node* n1, Node *n2);
+        static bool compare_by_index_x(Node* n1, Node *n2);
+        static bool compare_by_index_y(Node* n1, Node *n2);
         
     public:
         NodeSet();
         
         NodeSet* clone();
+        
+        void sort_by_index_x();
+        void sort_by_index_y();
         
         void sort_by_item_value();
         void filter_by_type_items();

@@ -9,12 +9,12 @@ namespace action {
 class Pop : public Action
 {
     protected:
-        state::Node* from;
+        state::Node* _from;
         
     public:
         Pop(state::Node* node, state::Node* from);
         
-        std::string from_id();
+        state::Node* from();
         
         virtual std::string text();
 };

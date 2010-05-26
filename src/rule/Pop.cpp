@@ -13,7 +13,8 @@ int Pop::valid(action::Action* action) {
     
     if (!a) { return 0; }
     
-    if (a->node_id() != from) { return 0; }
+    if (a->node()->id() != node) { return 0; }
+    if (a->from()->id() != from) { return 0; }
     
     return 1;
 }

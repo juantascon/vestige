@@ -5,13 +5,13 @@ namespace action {
 
 Pop::Pop(state::Node* node, state::Node* from) : Action(node)
 {
-    this->from = from;
+    this->_from = from;
 }
 
-std::string Pop::from_id() { return from->id(); }
+state::Node* Pop::from() { return _from; }
 
 std::string Pop::text() {
-    return "Pop(Node:" + node->id() + "|From:" + from->id() + ")";
+    return "Pop(Node:" + _node->id() + "|From:" + _from->id() + ")";
 }
 
 }}

@@ -101,7 +101,7 @@ std::string MarkerSet::text() {
     std::string ret = "MARKERS: [[ ";
     
     BOOST_FOREACH(Marker* m, *this) {
-        ret += m->id() + " ";
+        ret += m->id()+" ";
     }
     ret += "]]";
     

@@ -12,7 +12,7 @@ rule::RuleSet* PDebug::create_rules() {
     return (new rule::RuleSet());
 }
 
-int PDebug::validate_return(state::Node* ret) {
+int PDebug::validate_return(state::State* ret) {
     D(("calls: %i", calls));
     if (calls >= 5) {
         return 1;

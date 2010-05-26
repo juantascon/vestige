@@ -7,7 +7,7 @@ add_executable( vestige
   rule/Rule rule/Pop rule/Push rule/PopPush rule/Discard rule/Create rule/RuleSet
   problem/Problem problem/ListReturn problem/PDebug
   problem/Reverse problem/Join problem/RemoveAll problem/Compress problem/InsertionSort
-  recursion/Step recursion/StatusMessage
+  recursion/StatusMessage recursion/Variable recursion/VariableSet recursion/Step
   Main
 )
 

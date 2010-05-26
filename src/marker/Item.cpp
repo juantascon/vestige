@@ -50,7 +50,10 @@ void Item::alert(std::string message) {
     D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
     this->set_active(0);
     this->paint();
-    this->add(new draw::ToolTip(message));
+    
+    draw::ToolTip* t = new draw::ToolTip();
+    t->alert(message);
+    this->add(t);
 }
 
 void Item::update() {

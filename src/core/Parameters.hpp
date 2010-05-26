@@ -13,11 +13,11 @@ class Parameters
                 
     public:
         static Parameters* instance();
-        
         float ALIGN_FACTOR();
         float MARKER_SIZE();
         std::string ROOT();
-
+        std::string PROBLEM();
+        std::string VIDEOFILE();
 };
 
 }}

@@ -6,24 +6,48 @@ namespace marker {
 
 Switch::Switch(std::string marker_args) : Marker(marker_args, "SWITCH") {
     captured = 0;
-    
+    this->reset();
     this->paint();
 }
 
 void Switch::paint() {
-    //this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"data/model/switch.3ds"));
-    //this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/switch.osg"));
-    this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/camcorder/cam.osg"));
+    if (_active) {
+        this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/camcorder/cam.ive"));
+    }
+    this->add(tooltip);
+}
+
+void Switch::reset() {
+    Marker::reset();
+    tooltip = new draw::ToolTip();
 }
 
 void Switch::alert(std::string message) {
     D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
-    this->add(new draw::ToolTip(message, 60.0f));
+    tooltip->alert(message);
 }
 
 void Switch::set_active(int active) {
     _active = active;
-    if (!_active) { this->reset(); }
+    if (!_active) {
+        this->reset();
+        this->paint();
+    }
+}
+
+void Switch::capture() {
+    recursion::StatusMessage* sm = recursion::Step::instance()->step();
+    D(( "STATUSMESSAGE [[ %s ]]", sm->text().c_str() ));
+    
+    if ( sm->stop()) {
+        set_active(0);
+    }
+    
+    if (sm->message().size() >= 1) {
+        alert(sm->message());
+    }
+    
+    std::cout << std::endl << std::endl;
 }
 
 void Switch::update() {
@@ -31,18 +55,7 @@ void Switch::update() {
     
     if (!this->visible()) {
         if (!captured) {
-            recursion::StatusMessage* sm = recursion::Step::instance()->step();
-            D(( sm->text().c_str() ));
-            
-            if ( sm->stop()) {
-                set_active(0);
-            }
-            
-            if (sm->message().size() >= 1) {
-                alert(sm->message());
-            }
-            
-            std::cout << std::endl << std::endl;
+            capture();
             
             captured = 1;
         }

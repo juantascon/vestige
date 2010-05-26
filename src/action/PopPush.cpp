@@ -5,15 +5,15 @@ namespace action {
 
 PopPush::PopPush(state::Node* node, state::Node* from, state::Node* into) : Action(node)
 {
-    this->from = from;
-    this->into = into;
+    this->_from = from;
+    this->_into = into;
 }
 
-std::string PopPush::from_id() { return from->id(); }
-std::string PopPush::into_id() { return into->id(); }
+state::Node* PopPush::from() { return _from; }
+state::Node* PopPush::into() { return _into; }
 
 std::string PopPush::text() {
-    return "PopPush(Node:" + node->id() + "|From:" + from->id() + "|Into:" + into->id() + ")";
+    return "PopPush(Node:" + _node->id() + "|From:" + _from->id() + "|Into:" + _into->id() + ")";
 }
 
 }}

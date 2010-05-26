@@ -12,8 +12,8 @@ int Push::valid(action::Action* action) {
     action::Push* a = dynamic_cast<action::Push*>( action );
     if (!a) { return 0; }
     
-    if (a->node_id() != node) { return 0; }
-    if (a->into_id() != into) { return 0; }
+    if (a->node()->id() != node) { return 0; }
+    if (a->into()->id() != into) { return 0; }
     
     return 1;
 }

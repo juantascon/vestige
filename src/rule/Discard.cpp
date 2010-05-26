@@ -11,7 +11,7 @@ int Discard::valid(action::Action* action) {
     action::Discard* a = dynamic_cast<action::Discard*>( action );
     if (!a) { return 0; }
     
-    if (a->node_id() != node) { return 0; }
+    if (a->node()->id() != node) { return 0; }
     
     return 1;
 }

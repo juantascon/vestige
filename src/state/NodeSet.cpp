@@ -17,6 +17,14 @@ NodeSet* NodeSet::clone() {
     return ret;
 }
 
+bool NodeSet::compare_by_index_x(Node* n1, Node *n2) {
+    return ( n1->index_x() < n2->index_x() );
+}
+
+bool NodeSet::compare_by_index_y(Node* n1, Node *n2) {
+    return ( n1->index_y() < n2->index_y() );
+}
+
 bool NodeSet::compare_by_item_value(Node* n1, Node *n2) {
     int n1_value = dynamic_cast<state::Item*>(n1)->ivalue();
     int n2_value = dynamic_cast<state::Item*>(n2)->ivalue();
@@ -26,6 +34,14 @@ bool NodeSet::compare_by_item_value(Node* n1, Node *n2) {
 
 void NodeSet::sort_by_item_value() {
     this->sort(NodeSet::compare_by_item_value);
+}
+
+void NodeSet::sort_by_index_x() {
+    this->sort(NodeSet::compare_by_index_x);
+}
+
+void NodeSet::sort_by_index_y() {
+    this->sort(NodeSet::compare_by_index_y);
 }
 
 void NodeSet::filter_by_no_parent() {

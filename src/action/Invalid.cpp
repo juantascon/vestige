@@ -8,7 +8,7 @@ Invalid::Invalid(state::Node* node) : Action(node)
 }
 
 std::string Invalid::text() {
-    return "Invalid(Node:" + node->path() + ")";
+    return "Invalid(Node:" + _node->path() + ")";
 }
 
 }}

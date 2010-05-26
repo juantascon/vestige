@@ -59,8 +59,8 @@ void ActionSet::diff(state::State* past, state::State* present) {
                         this->push_back( new action::PopPush( present_n, past_n->parent(), present_n->parent() ) );
                     }
                 }
-                else if (past_n->index() != present_n->index()) {
-                    D(("invalid: %s (index0: %i index1: %i)", present_n->id().c_str(), past_n->index(), present_n->index() ));
+                else if (past_n->index_y() != present_n->index_y()) {
+                    D(("invalid: %s (index_y0: %i index_y1: %i)", present_n->id().c_str(), past_n->index_y(), present_n->index_y() ));
                     this->push_back( new action::Invalid( present_n ) );
                 }
                 

@@ -9,12 +9,12 @@ namespace action {
 class Push : public Action
 {
     protected:
-        state::Node* into;
+        state::Node* _into;
         
     public:
         Push(state::Node* node, state::Node* into);
         
-        std::string into_id();
+        state::Node* into();
         
         std::string text();
 };

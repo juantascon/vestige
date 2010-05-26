@@ -13,9 +13,9 @@ int PopPush::valid(action::Action* action) {
     action::PopPush* a = dynamic_cast<action::PopPush*>( action );
     if (!a) { return 0; }
     
-    if (a->node_id() != node) { return 0; }
-    if (a->from_id() != from) { return 0; }
-    if (a->into_id() != into) { return 0; }
+    if (a->node()->id() != node) { return 0; }
+    if (a->from()->id() != from) { return 0; }
+    if (a->into()->id() != into) { return 0; }
     
     return 1;
 }

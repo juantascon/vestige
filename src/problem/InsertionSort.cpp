@@ -34,7 +34,6 @@ InsertionSort::InsertionSort(state::State* s) : ListReturn()
 }
 
 rule::RuleSet* InsertionSort::create_rules() {
-    D(("hola"));
     rule::RuleSet* rules = new rule::RuleSet();
     
     std::string X_id = L->id();
@@ -73,7 +72,6 @@ rule::RuleSet* InsertionSort::create_rules() {
         
         if (X->size() == 0) {
             if (D->size() != 0) {
-                D(("poppush1"));
                 rules->add(new rule::PopPush( DI->id(), D_id, A_id ));
                 A->push_back(DI);
                 D->pop_back();
@@ -81,7 +79,6 @@ rule::RuleSet* InsertionSort::create_rules() {
             }
             
             if (D->size() == 0) {
-                D(("discard"));
                 rules->add(new rule::Discard(X_id));
                 rules->add(new rule::Discard(D_id));
                 break;
@@ -89,7 +86,6 @@ rule::RuleSet* InsertionSort::create_rules() {
         }
         
         if (A->size() == 0) {
-            D(("poppush2"));
             rules->add(new rule::PopPush( I->id(), X_id, A_id ));
             A->push_back(I);
             X->pop_back();
@@ -97,7 +93,6 @@ rule::RuleSet* InsertionSort::create_rules() {
         }
         
         if (I->ivalue() < AI->ivalue()) {
-            D(("poppush3"));
             rules->add(new rule::PopPush( AI->id(), A_id, D_id ));
             D->push_back(AI);
             A->pop_back();
@@ -106,21 +101,18 @@ rule::RuleSet* InsertionSort::create_rules() {
         
         if (I->ivalue() > AI->ivalue()) {
             if (D->size() == 0) {
-                D(("poppush4"));
                 rules->add(new rule::PopPush( I->id(), X_id, A_id ));
                 A->push_back(I);
                 X->pop_back();
                 continue;
             }
             if (I->ivalue() < DI->ivalue()) {
-                D(("poppush5"));
                 rules->add(new rule::PopPush( I->id(), X_id, A_id ));
                 A->push_back(I);
                 X->pop_back();
                 continue;
             }
             if (I->ivalue() > DI->ivalue()) {
-                D(("poppush6"));
                 rules->add(new rule::PopPush( DI->id(), D_id, A_id ));
                 A->push_back(DI);
                 D->pop_back();

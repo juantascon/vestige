@@ -14,34 +14,20 @@ Initializer* Initializer::instance() {
 }
 
 void Initializer::environment() {
-    std::string file = "isuvr/isort_ini.mov";
+    std::string src = "v4l2src device=/dev/video0 use-fixed-fps=false";
     
-    // std::string file = "isuvr/compress.mov";
-    // std::string file = "isuvr/removeall.mov";
-    // std::string file = "isuvr/join.mov";
-    // std::string file = "isuvr/reverse.mov";
+    std::ifstream* video = new std::ifstream();
     
-    // std::string file = "labseminar8.mov";
-    
-    // std::string file = "sort1_3l_5i_s_r.mov";
-    // std::string file = "multi1.mov";
-    // std::string file = "reverse4_noprog_fail.mov";
-    // std::string file = "compress1_3l_4i_s_r.mov";
-    
-    // std::string file = "remfst1_3l_5i_s_r.mov";
-    // std::string file = "join3_3l_4i_s_r.mov";
-    // std::string file = "join2_3l_5i_s_r.mov";
-    // std::string file = "join1.mov";
-    // std::string file = "fail/4.mov";
-    // std::string file = "new_markers.mov";
-    // std::string file = "reverse3_2l_3i_s_o.mov";
-    // std::string file = "reverse2_2l_3i.mov";
-    // std::string file = "reverse1_2l_3i.mov";
-    // std::string file = "1l_2i_1s.mov";
-    // std::string file = "2hiro_1switch.mov";
-    
-    std::string src = "filesrc location="+core::Parameters::instance()->ROOT()+"/video/"+file+" ! decodebin";
-    // std::string src = "v4l2src device=/dev/video0 use-fixed-fps=false";
+    try {
+        video->open(core::Parameters::instance()->VIDEOFILE().c_str(), std::ifstream::in);
+        if (video->good()) {
+            src = "filesrc location="+core::Parameters::instance()->VIDEOFILE()+" ! decodebin";
+            video->close();
+        }
+    }
+    catch (std::runtime_error e) {
+        video->close();
+    }
     
     std::string artoolkit_config = src+" ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink";
     setenv("ARTOOLKIT_CONFIG", artoolkit_config.c_str(), 0);
@@ -106,7 +92,9 @@ void Initializer::viewer() {
     _viewer->addEventHandler(new osgViewer::ThreadingHandler);
     _viewer->addEventHandler(new osgViewer::HelpHandler);
     
-    _viewer->setUpViewInWindow(0, 0, 800, 600);
+    _viewer->setUpViewInWindow(0, 0, 960, 540);
+
+    // 1280x720 800x600
     _viewer->realize();
 }
 
