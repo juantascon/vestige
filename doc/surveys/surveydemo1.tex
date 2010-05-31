@@ -1,0 +1,101 @@
+\documentclass{article}
+
+\usepackage[nosolutions,forcolorpaper,noparttotals]{eqexam}
+\usepackage[margin=2.5cm]{geometry}
+
+\title[T1]{FIRST DEMO SURVEY}
+\subject[C1]{VESTIGE}
+\university{Konkuk University}
+
+\hfuzz = .7pt
+
+\begin{document}
+\maketitle
+
+\begin{exam}{Survey}
+
+\vskip 4ex
+
+\begin{problem*}[\auto]\sqForms
+  Please fill the following private information:
+  \begin{parts}
+  \item Age: \fillin{1cm}{}
+  \item Gender:
+    \begin{manswers}{8}
+      \bChoices
+      \Ans0 Male\eAns
+      \Ans1 Female\eAns
+      \eChoices
+      \end{manswers}
+  \item Number of years studying computing: \fillin{1cm}{}
+  \end{parts}
+\end{problem*}
+
+\vskip 4ex
+
+\begin{problem*}[\auto]\sqForms
+  Please rate how strongly you agree or disagree with each of the
+  following statements by placing a (X) mark in the appropriate box:
+  \begin{parts}
+    
+  \item I understand the concept of functional programming.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item I had previous experiences with functional programming.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item Functional Programming is an important computer paradigm.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item The proposed exercises were easy to solve.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item The block-world helped me to solve the proposed exercises.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item Augmented reality information helped me to solve the proposed problems.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item The interface (as a whole) helped me to find a solution to the problems.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item The interface (as a whole) could help me to program in Erlang.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item Overall, my experience with the interface was satisfactory.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item Some parts of the interface could be improved.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \item I'm willing to participate in further experiments of this interface.
+    \begin{answers}{5}
+      \Ans1 Strongly Agree &\Ans1 Agree &\Ans1 Neutral &\Ans1 Disagree &\Ans1 Strongly Disagree
+    \end{answers}
+    
+  \end{parts}
+\end{problem*}
+  
+\end{exam}
+
+\end{document}
