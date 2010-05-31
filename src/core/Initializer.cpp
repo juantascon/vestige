@@ -92,9 +92,8 @@ void Initializer::viewer() {
     _viewer->addEventHandler(new osgViewer::ThreadingHandler);
     _viewer->addEventHandler(new osgViewer::HelpHandler);
     
-    _viewer->setUpViewInWindow(0, 0, 960, 540);
-
-    // 1280x720 800x600
+    //_viewer->setUpViewInWindow(0, 0, 960, 540);
+    
     _viewer->realize();
 }
 

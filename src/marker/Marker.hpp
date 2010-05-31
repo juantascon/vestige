@@ -45,7 +45,7 @@ class Marker : public osg::NodeCallback
         
         virtual void paint() = 0;
         virtual void update() = 0;
-        virtual void reset();
+        virtual void model_reset();
         virtual void alert(std::string message);
         virtual void set_active(int active);
 };

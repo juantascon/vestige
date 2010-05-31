@@ -41,7 +41,7 @@ void Item::paint() {
     osg::Geode* geode = new osg::Geode();
     geode->addDrawable(rectangle);
     
-    this->reset();
+    this->model_reset();
     this->add(geode);
     if (_top) { this->add((new draw::Text(_value))->wrap()); }
 }

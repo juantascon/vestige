@@ -27,6 +27,7 @@ class Step
         static Step* instance();
         
         StatusMessage* step();
+        void reset();
 };
 
 }}

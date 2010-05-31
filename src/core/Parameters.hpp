@@ -18,6 +18,7 @@ class Parameters
         std::string ROOT();
         std::string PROBLEM();
         std::string VIDEOFILE();
+        int USE_INFORMATION_HIDDING();
 };
 
 }}

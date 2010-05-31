@@ -46,6 +46,13 @@ void GlobalMarkers::markers_initialize() {
     markers_add( new marker::Item(patt_format("patt.g"), "ar_g", "3") );
 }
 
+void GlobalMarkers::markers_reset() {
+    BOOST_FOREACH(marker::Marker* m, *_markers) {
+        m->set_active(1);
+        m->set_id("");
+    }
+}
+
 void GlobalMarkers::assign_empty_ids() {
     marker::MarkerSet* all = markers_clone();
     all->filter_by_visible(1);

@@ -22,7 +22,7 @@ class Switch : public Marker
         virtual void alert(std::string message);
         virtual void paint();
         virtual void update();
-        virtual void reset();
+        virtual void model_reset();
 };
 
 }}

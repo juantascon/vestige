@@ -3,17 +3,17 @@
 namespace vestige {
 namespace recursion {
 
-StatusMessage::StatusMessage(int stop, std::string message) {
-    _stop = stop;
+StatusMessage::StatusMessage(MessageType type, std::string message) {
+    _type = type;
     _message = message;
 }
 
-int StatusMessage::stop() { return this->_stop; }
+StatusMessage::MessageType StatusMessage::type() { return this->_type; }
 std::string StatusMessage::message() { return this->_message; }
 
 std::string StatusMessage::text() {
     std::stringstream ss;
-    ss << "stop: " << _stop << " message: " << _message;
+    ss << "type: " << _type << " message: " << _message;
     return ss.str();
 }
 

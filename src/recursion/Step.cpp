@@ -10,8 +10,15 @@ Step* Step::instance() {
 }
 
 Step::Step() {
+    reset();
+}
+
+void Step::reset() {
     previous_state = 0;
     current_state = 0;
+    
+    p = NULL;
+    r = NULL;
 }
 
 StatusMessage* Step::step() {
@@ -25,8 +32,12 @@ StatusMessage* Step::step() {
     
     // ignore states with no nodes
     if (s->size() == 0) {
-        return new StatusMessage(0, "");
+        return new StatusMessage(StatusMessage::CONTINUE, "empty state");
     }
+
+    // at this point is safe to switch states
+    previous_state = current_state;
+    current_state = s;
     
     // initialize the problem specification
     if (!p) {
@@ -44,42 +55,44 @@ StatusMessage* Step::step() {
             }
         }
         catch(std::runtime_error e) {
-            return new StatusMessage(0, "Invalid initial state: " + std::string(e.what()));
+            reset();
+            return new StatusMessage(StatusMessage::CONTINUE, "Invalid initial state: " + std::string(e.what()));
         }
         
         r = p->create_rules();
         D(( r->text().c_str() ));
+        
+        marker::GlobalMarkers::instance()->reset_markers();
+        
+        return new StatusMessage(StatusMessage::CONTINUE, "good initial state");
     }
     
-    // at this point is safe to switch states
-    previous_state = current_state;
-    current_state = s;
-
     // get the executed actions
     action::ActionSet *as = new action::ActionSet();
     as->diff(previous_state, current_state);
     D(( as->text().c_str() ));
     
     // Empty actions are ignored
-    if (as->size() == 0) { return new StatusMessage(0, ""); }
+    if (as->size() == 0) { return new StatusMessage(StatusMessage::CONTINUE, ""); }
     
     // valid logic move
     if (!as->valid_logic()) {
         as->alert("Invalid move: logic");
-        return new StatusMessage(1, "Invalid move: check logic");
+        this->reset();
+        return new StatusMessage(StatusMessage::STANDBY, "Invalid move: check logic");
     }
     
     // valid rules move
     r->verify(as);
     if ( !as->valid_rules() ) {
         as->alert("Invalid move: rules");
-        return new StatusMessage(1, "Invalid move: check step-by-step");
+        this->reset();
+        return new StatusMessage(StatusMessage::STANDBY, "Invalid move: check step-by-step");
     }
     
     // check if this state is the valid final state
     if (p->validate_return(current_state)) {
-        D(( "problem solved" ));
-        // return new StatusMessage(1, "Great! Problem solved");
+        return new StatusMessage(StatusMessage::STOP, "Great! Problem solved");
     }
     
     // create erlang code message
@@ -90,7 +103,7 @@ StatusMessage* Step::step() {
     std::string msg = vars->erlang();
     D(( "ERLANG = [[ %s ]]", msg.c_str() ));
     
-    return new StatusMessage(0, msg);
+    return new StatusMessage(StatusMessage::CONTINUE, msg);
 }
 
 }}

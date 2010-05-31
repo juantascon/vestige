@@ -16,7 +16,7 @@ class ToolTip : public osg::Geode
     public:
         ToolTip();
         
-        void reset();
+        void model_reset();
         
         void alert(std::string value, float size);
         void alert(std::string value);

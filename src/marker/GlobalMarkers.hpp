@@ -21,10 +21,11 @@ class GlobalMarkers
     public:
         static GlobalMarkers* instance();
         
-        void markers_initialize();        
+        void markers_initialize();
+        void markers_reset();
         void markers_add(marker::Marker *m);
         marker::MarkerSet* markers_clone();
-
+        
         void assign_empty_ids();
         
         marker::Switch* m_switch;

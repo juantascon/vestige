@@ -6,7 +6,7 @@ namespace marker {
 
 Switch::Switch(std::string marker_args) : Marker(marker_args, "SWITCH") {
     captured = 0;
-    this->reset();
+    this->model_reset();
     this->paint();
 }
 
@@ -17,8 +17,8 @@ void Switch::paint() {
     this->add(tooltip);
 }
 
-void Switch::reset() {
-    Marker::reset();
+void Switch::model_reset() {
+    Marker::model_reset();
     tooltip = new draw::ToolTip();
 }
 
@@ -30,7 +30,7 @@ void Switch::alert(std::string message) {
 void Switch::set_active(int active) {
     _active = active;
     if (!_active) {
-        this->reset();
+        this->model_reset();
         this->paint();
     }
 }
@@ -39,8 +39,14 @@ void Switch::capture() {
     recursion::StatusMessage* sm = recursion::Step::instance()->step();
     D(( "STATUSMESSAGE [[ %s ]]", sm->text().c_str() ));
     
-    if ( sm->stop()) {
+    switch(sm->type()) {
+    case recursion::StatusMessage::STOP:
         set_active(0);
+        break;
+    case recursion::StatusMessage::CONTINUE:
+        break;
+    case recursion::StatusMessage::STANDBY:
+        break;
     }
     
     if (sm->message().size() >= 1) {

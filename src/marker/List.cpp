@@ -79,7 +79,7 @@ void List::paint() {
     geode->addDrawable(line1);
     geode->addDrawable(line2);
     
-    this->reset();
+    this->model_reset();
     this->add(geode);
 }
 

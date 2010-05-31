@@ -10,7 +10,7 @@ void ToolTip::alert(std::string value) {
     alert(value, 35.0f);
 }
 
-void ToolTip::reset() {
+void ToolTip::model_reset() {
     this->removeDrawables(0, this->getNumDrawables());
 }
 
@@ -43,7 +43,7 @@ void ToolTip::alert(std::string value, float size) {
         *color
     );
     
-    this->reset();
+    this->model_reset();
     this->addDrawable(text);
     this->addDrawable(box_g);
     this->addDrawable(arrow);

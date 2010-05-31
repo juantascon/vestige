@@ -99,7 +99,7 @@ std::string VariableSet::erlang() {
         ret += (v->in_head.size() == 0) ? v->in_main : "["+v->in_head+"|"+v->in_main+"]";
     }
     
-    ret += ") ->\n f(";
+    ret += ") -> f(";
     
     first = 1;
     BOOST_FOREACH(Variable* v, *this) {

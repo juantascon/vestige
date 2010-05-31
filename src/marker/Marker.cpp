@@ -40,7 +40,7 @@ void Marker::add(osg::Node* child) {
     _model->addChild(child);
 }
 
-void Marker::reset() {
+void Marker::model_reset() {
     _model->removeChildren(0, _model->getNumChildren());
 }
 

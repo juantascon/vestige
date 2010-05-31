@@ -122,7 +122,7 @@ int ActionSet::valid_logic() {
                 all_create = 0;
             }
         }
-
+        
         if (!all_create && !all_discard) {
             return 0;
         }
