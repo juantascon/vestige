@@ -42,6 +42,11 @@ std::string Parameters::VIDEOFILE() {
     // std::string file = "sort1_3l_5i_s_r.mov";
     
     return ROOT()+"/video/"+file;
+    // return "";
+}
+
+int Parameters::USE_INFORMATION_HIDDING() {
+    return 0;
 }
 
 }}
