@@ -3,6 +3,7 @@
 
 #include "../state/State.hpp"
 #include "../action/ActionSet.hpp"
+#include "../action/Logic.hpp"
 #include "../rule/RuleSet.hpp"
 #include "../problem/Types.hpp"
 

@@ -11,6 +11,7 @@ class Switch : public Marker
 {
     protected:
         int captured;
+        int reset_next;
         draw::ToolTip* tooltip;
         
     public:

@@ -19,15 +19,18 @@ void Step::reset() {
     
     p = NULL;
     r = NULL;
+    
+    marker::GlobalMarkers::instance()->markers_reset();
 }
 
 StatusMessage* Step::step() {
+    // fix ids of new markers
+    marker::GlobalMarkers::instance()->assign_empty_ids();
+    
     // Capture state
     state::State *s = new state::State();
     s->capture();
     
-    // fix ids of new markers
-    marker::GlobalMarkers::instance()->assign_empty_ids();
     D(( s->text().c_str() ));
     
     // ignore states with no nodes
@@ -62,8 +65,6 @@ StatusMessage* Step::step() {
         r = p->create_rules();
         D(( r->text().c_str() ));
         
-        marker::GlobalMarkers::instance()->reset_markers();
-        
         return new StatusMessage(StatusMessage::CONTINUE, "good initial state");
     }
     
@@ -76,9 +77,9 @@ StatusMessage* Step::step() {
     if (as->size() == 0) { return new StatusMessage(StatusMessage::CONTINUE, ""); }
     
     // valid logic move
+    action::Logic::instance()->verify(as);
     if (!as->valid_logic()) {
         as->alert("Invalid move: logic");
-        this->reset();
         return new StatusMessage(StatusMessage::STANDBY, "Invalid move: check logic");
     }
     
@@ -86,7 +87,6 @@ StatusMessage* Step::step() {
     r->verify(as);
     if ( !as->valid_rules() ) {
         as->alert("Invalid move: rules");
-        this->reset();
         return new StatusMessage(StatusMessage::STANDBY, "Invalid move: check step-by-step");
     }
     

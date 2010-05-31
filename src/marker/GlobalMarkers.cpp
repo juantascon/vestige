@@ -47,6 +47,9 @@ void GlobalMarkers::markers_initialize() {
 }
 
 void GlobalMarkers::markers_reset() {
+    lists_count = 0;
+    items_count = 0;
+    
     BOOST_FOREACH(marker::Marker* m, *_markers) {
         m->set_active(1);
         m->set_id("");

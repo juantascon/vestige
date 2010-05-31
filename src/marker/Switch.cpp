@@ -6,13 +6,14 @@ namespace marker {
 
 Switch::Switch(std::string marker_args) : Marker(marker_args, "SWITCH") {
     captured = 0;
+    reset_next = 0;
     this->model_reset();
     this->paint();
 }
 
 void Switch::paint() {
     if (_active) {
-        this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/camcorder/cam.ive"));
+        this->add(osgDB::readNodeFile(core::Parameters::instance()->ROOT()+"/data/model/camcorder/cam.osg"));
     }
     this->add(tooltip);
 }
@@ -36,6 +37,11 @@ void Switch::set_active(int active) {
 }
 
 void Switch::capture() {
+    if (reset_next) {
+        reset_next = 0;
+        recursion::Step::instance()->reset();
+    }
+    
     recursion::StatusMessage* sm = recursion::Step::instance()->step();
     D(( "STATUSMESSAGE [[ %s ]]", sm->text().c_str() ));
     
@@ -46,6 +52,7 @@ void Switch::capture() {
     case recursion::StatusMessage::CONTINUE:
         break;
     case recursion::StatusMessage::STANDBY:
+        reset_next = 1;
         break;
     }
     

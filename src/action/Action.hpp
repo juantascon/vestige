@@ -35,6 +35,7 @@ class Action
         state::Node* node();
         
         int valid_rules;
+        int valid_logic;
         
         void alert(std::string message);
         virtual std::string text() = 0;

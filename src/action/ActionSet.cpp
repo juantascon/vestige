@@ -103,27 +103,7 @@ void ActionSet::alert(std::string message) {
 
 int ActionSet::valid_logic() {
     BOOST_FOREACH(Action *a, *this) {
-        if ( dynamic_cast<action::Invalid*>(a) ) {
-            return 0;
-        }
-    }
-    
-    // 2 or more movements implies error unless:
-    // they are all discard
-    // they are all create
-    if (this->size() >= 2) {
-        int all_discard = 1;
-        int all_create = 1;
-        BOOST_FOREACH(Action *a, *this) {
-            if ( ! dynamic_cast<action::Discard*>(a) ) {
-                all_discard = 0;
-            }
-            if ( ! dynamic_cast<action::Create*>(a) ) {
-                all_create = 0;
-            }
-        }
-        
-        if (!all_create && !all_discard) {
+        if (! a->valid_logic) {
             return 0;
         }
     }
