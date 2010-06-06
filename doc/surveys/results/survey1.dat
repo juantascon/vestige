@@ -1,0 +1,12 @@
+Question                 Student1 Student2 Student3 Student4 Student5 Student6 Student7 Average
+"Understand FP"          1 2 1  1 1  0  2  1.2
+"Experienced FP"         1 1 -1 2 -1 1  2  1.2
+"FP is important"        0 2 1  2 1  2  0  1.2
+"Easy exercises"         1 2 1  1 1  1  1  1.2
+"BW helped exercises"    0 1 2  1 1  1  1  1.2
+"AR helped exercises"    1 2 1  2 2  1  -1 1.2
+"Iface helped exercises" 1 2 1  2 0  0  1  1.2
+"Iface helped erlang"    0 1 2  1 -1 -1 1  1.2
+"Good experience"        0 2 1  2 0  0  0  1.2
+"Iface could improve"    2 1 0  1 1  1  1  1.2
+"Participate again"      1 2 2  2 0  2  1  1.2
