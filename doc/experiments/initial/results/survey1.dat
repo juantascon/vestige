@@ -1,12 +1,11 @@
-Question                 Student1 Student2 Student3 Student4 Student5 Student6 Student7 Average
-"Understand FP"          1 2 1  1 1  0  2  1.2
-"Experienced FP"         1 1 -1 2 -1 1  2  1.2
-"FP is important"        0 2 1  2 1  2  0  1.2
-"Easy exercises"         1 2 1  1 1  1  1  1.2
-"BW helped exercises"    0 1 2  1 1  1  1  1.2
-"AR helped exercises"    1 2 1  2 2  1  -1 1.2
-"Iface helped exercises" 1 2 1  2 0  0  1  1.2
-"Iface helped erlang"    0 1 2  1 -1 -1 1  1.2
-"Good experience"        0 2 1  2 0  0  0  1.2
-"Iface could improve"    2 1 0  1 1  1  1  1.2
-"Participate again"      1 2 2  2 0  2  1  1.2
+q1,I understand the concept of functional programming,1,2,1,1,1,0,2,1,1,1,1
+q2,I had previous experiences with functional programming,1,1,-1,2,-1,1,2,1,2,1,0
+q3,Functional programming is an important computer paradigm,0,2,1,2,1,2,0,0,0,0,0
+q4,The proposed exercises were easy to solve,1,2,1,1,1,1,1,1,1,0,-1
+q5,The Block-world helped me to solve the proposed exercises,0,1,2,1,1,1,1,1,2,0,0
+q6,AR information helped me to solve the proposed exercises,1,2,1,2,2,1,-1,0,2,1,1
+q7,The interface helped me to find a solution to the problems,1,2,1,2,0,0,1,0,2,0,0
+q8,The interface helped me to program in Erlang,0,1,2,1,-1,-1,1,0,1,0,1
+q9,My experience with the interface was satisfactory,0,2,1,2,0,0,0,2,1,0,0
+q10,Some parts of the interface could be improved,2,1,0,1,1,1,1,1,0,1,1
+q11,I am willing to participate in future tests of this interface,1,2,2,2,0,2,1,2,2,0,1
