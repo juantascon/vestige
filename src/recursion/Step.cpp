@@ -18,12 +18,15 @@ void Step::reset() {
     current_state = 0;
     
     p = NULL;
-    r = NULL;
+    rs = NULL;
     
     marker::GlobalMarkers::instance()->markers_reset();
 }
 
 StatusMessage* Step::step() {
+    // capture position and visibility of markers
+    marker::GlobalMarkers::instance()->capture_info();
+    
     // fix ids of new markers
     marker::GlobalMarkers::instance()->assign_empty_ids();
     
@@ -62,8 +65,8 @@ StatusMessage* Step::step() {
             return new StatusMessage(StatusMessage::CONTINUE, "Invalid initial state: " + std::string(e.what()));
         }
         
-        r = p->create_rules();
-        D(( r->text().c_str() ));
+        rs = p->create_rules();
+        D(( rs->text().c_str() ));
         
         return new StatusMessage(StatusMessage::CONTINUE, "good initial state");
     }
@@ -84,26 +87,28 @@ StatusMessage* Step::step() {
     }
     
     // valid rules move
-    r->verify(as);
+    rs->verify(as);
     if ( !as->valid_rules() ) {
         as->alert("Invalid move: rules");
         return new StatusMessage(StatusMessage::STANDBY, "Invalid move: check step-by-step");
     }
     
+    // // create erlang code message
+    // VariableSet* vars = new VariableSet();
+    // vars->fill(previous_state);
+    // vars->parse(as);
+    // std::string msg = vars->erlang();
+    
+    std::string msg = rs->clause();
+    D(( "ERLANG = [[ %s ]]", msg.c_str() ));
+
     // check if this state is the valid final state
     if (p->validate_return(current_state)) {
-        return new StatusMessage(StatusMessage::STOP, "Great! Problem solved");
+        return new StatusMessage(StatusMessage::STOP, msg+"\n\nGreat! Problem solved");
     }
-    
-    // create erlang code message
-    VariableSet* vars = new VariableSet();
-    vars->fill(previous_state);
-    vars->parse(as);
-    
-    std::string msg = vars->erlang();
-    D(( "ERLANG = [[ %s ]]", msg.c_str() ));
-    
-    return new StatusMessage(StatusMessage::CONTINUE, msg);
+    else {
+        return new StatusMessage(StatusMessage::CONTINUE, msg);
+    }
 }
 
 }}

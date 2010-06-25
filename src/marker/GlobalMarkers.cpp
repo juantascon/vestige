@@ -56,6 +56,12 @@ void GlobalMarkers::markers_reset() {
     }
 }
 
+void GlobalMarkers::capture_info() {
+    BOOST_FOREACH(marker::Marker* m, *_markers) {
+        m->capture_info();
+    }
+}
+
 void GlobalMarkers::assign_empty_ids() {
     marker::MarkerSet* all = markers_clone();
     all->filter_by_visible(1);

@@ -16,6 +16,7 @@ class MarkerSet : public Marker::List
         MarkerSet();
         
         MarkerSet* clone();
+        
         void sort_by_y_axis();
         void sort_by_x_axis();
         

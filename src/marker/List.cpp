@@ -10,6 +10,8 @@ List::List(std::string marker_args, std::string ar_id) : Marker(marker_args, ar_
 }
 
 void List::paint() {
+    marker::GlobalMarkers::instance()->capture_info();
+
     if (! this->visible() ) {
         return;
     }

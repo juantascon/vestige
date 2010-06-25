@@ -55,7 +55,7 @@ void MarkerSet::filter_by_type_lists() {
 
 void MarkerSet::filter_by_visible(int visible) {
     for (MarkerSet::iterator it = this->begin(); it != this->end(); ++it) {
-        if ((*it)->visible() == visible) {
+        if ((*it) && (*it)->visible() == visible) {
             continue;
         }
         

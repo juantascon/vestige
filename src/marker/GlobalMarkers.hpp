@@ -26,6 +26,7 @@ class GlobalMarkers
         void markers_add(marker::Marker *m);
         marker::MarkerSet* markers_clone();
         
+        void capture_info();
         void assign_empty_ids();
         
         marker::Switch* m_switch;

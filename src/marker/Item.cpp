@@ -18,6 +18,8 @@ void Item::set_top(int top) {
 }
 
 void Item::paint() {
+    this->capture_info();
+    
     if (! this->visible() ) {
         return;
     }

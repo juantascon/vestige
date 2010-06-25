@@ -20,6 +20,9 @@ class Marker : public osg::NodeCallback
         std::string _id;
         std::string _ar_id;
         
+        osg::Vec3 _position;
+        int _visible;
+        
     public:
         typedef std::vector <Marker*> Vector;
         typedef std::list <Marker*> List;
@@ -33,13 +36,15 @@ class Marker : public osg::NodeCallback
         void set_id(std::string id);
         std::string ar_id();
         
-        void add(osg::Node* child);
         osg::Vec3 position();
         int visible();
+        void capture_info();
         
         int aligned(Marker* m);
         int under(Marker* m);
         int over(Marker* m);
+
+        void add(osg::Node* child);
         
         void operator()(osg::Node* node, osg::NodeVisitor* nv);
         

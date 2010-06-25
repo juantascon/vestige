@@ -65,7 +65,8 @@ void Switch::capture() {
 
 void Switch::update() {
     if (!_active) { return; }
-    
+
+    this->capture_info();
     if (!this->visible()) {
         if (!captured) {
             capture();

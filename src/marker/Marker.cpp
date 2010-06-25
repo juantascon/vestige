@@ -44,12 +44,12 @@ void Marker::model_reset() {
     _model->removeChildren(0, _model->getNumChildren());
 }
 
-int Marker::visible() {
-    return _marker->valid();
-}
+int Marker::visible() { return _visible; }
+osg::Vec3 Marker::position() { return _position; }
 
-osg::Vec3 Marker::position() {
-    return _marker->getTransform().getTrans();
+void Marker::capture_info() {
+    _visible = _marker->valid();
+    _position = _marker->getTransform().getTrans();
 }
 
 int Marker::under(Marker* m) {

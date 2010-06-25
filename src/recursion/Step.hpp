@@ -19,7 +19,7 @@ class Step
         Step();
         
         problem::Problem* p;
-        rule::RuleSet* r;
+        rule::RuleSet* rs;
         
         state::State* previous_state;
         state::State* current_state;
