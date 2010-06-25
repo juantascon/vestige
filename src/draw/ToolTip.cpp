@@ -6,10 +6,6 @@ namespace draw {
 ToolTip::ToolTip() {
 }
 
-void ToolTip::alert(std::string value) {
-    alert(value, 35.0f);
-}
-
 void ToolTip::model_reset() {
     this->removeDrawables(0, this->getNumDrawables());
 }
@@ -17,12 +13,12 @@ void ToolTip::model_reset() {
 void ToolTip::alert(std::string value, float size) {
     Text* text = new Text(value);
     text->setCharacterSize(size);
-    text->setPosition(osg::Vec3(0.0f, 100.0f, 10.1f));
+    text->setPosition(osg::Vec3(100.0f, 100.0f, 100.0f));
     
     osg::BoundingBox* box = new osg::BoundingBox();
     box->expandBy(text->getBound());
     
-    float extra = size / 5.0f;
+    float extra = size/1.5f;
     
     osg::Vec4* color = new osg::Vec4(1.0f, 1.0, 0.8f, 0.4f);
     

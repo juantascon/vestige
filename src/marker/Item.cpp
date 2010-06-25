@@ -52,7 +52,7 @@ void Item::alert(std::string message) {
     this->paint();
     
     draw::ToolTip* t = new draw::ToolTip();
-    t->alert(message);
+    t->alert(message, 35.0f);
     this->add(t);
 }
 

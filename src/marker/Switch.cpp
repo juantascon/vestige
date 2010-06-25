@@ -25,7 +25,7 @@ void Switch::model_reset() {
 
 void Switch::alert(std::string message) {
     D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
-    tooltip->alert(message);
+    tooltip->alert(message, 30.0f);
 }
 
 void Switch::set_active(int active) {
