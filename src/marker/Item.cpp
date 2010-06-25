@@ -14,6 +14,11 @@ std::string Item::value() { return this->_value; }
 
 void Item::set_top(int top) {
     this->_top = top;
+    
+    if (core::Parameters::instance()->PHASE() == core::Parameters::PHASE_CONCRETE) {
+        this->_top = 1;
+    }
+    
     this->paint();
 }
 
@@ -29,7 +34,11 @@ void Item::paint() {
     
     osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 1.0f, 1.0f);
     if (!_active) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
-    if (!_top) { color =  new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f); }
+    if (!_top) {
+        if (core::Parameters::instance()->PHASE() != core::Parameters::PHASE_CONCRETE) {
+            color = new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f);
+        }
+    }
     
     draw::Rectangle* rectangle = new draw::Rectangle(
         osg::Vec3(size, size, z),
@@ -45,7 +54,9 @@ void Item::paint() {
     
     this->model_reset();
     this->add(geode);
-    if (_top) { this->add((new draw::Text(_value))->wrap()); }
+    if (_top) {
+        this->add((new draw::Text(_value))->wrap());
+    }
 }
 
 void Item::alert(std::string message) {

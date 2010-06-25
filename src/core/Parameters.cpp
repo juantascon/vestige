@@ -11,7 +11,7 @@ Parameters::Parameters()
 
 // factor of alignment, used to calculate when an item belongs to a list
 // bigger values could mean more items
-float Parameters::ALIGN_FACTOR() { return 40.0; }
+float Parameters::ALIGN_FACTOR() { return 60.0; }
 
 // blocks size when drawing
 float Parameters::MARKER_SIZE() { return 90.0; }
@@ -21,23 +21,22 @@ std::string Parameters::ROOT() { return "/home/jdi/dev/vestige/"; }
 
 // problem to execute
 std::string Parameters::PROBLEM() {
-    return "insertionsort";
+    // return "insertionsort";
     // return "compress";
     // return "removeall";
     // return "join";
-    // return "reverse";
+    return "reverse";
     // return "pdebug";
 }
 
 // location of the video, if the file is not found then it will
 // fallback to /dev/video0
 std::string Parameters::VIDEOFILE() {
-    std::string file = "isuvr/insertionsort.mov";
-    // std::string file = "isuvr/isort_ini.mov";
+    // std::string file = "isuvr/insertionsort.mov";
     // std::string file = "isuvr/compress.mov";
     // std::string file = "isuvr/removeall.mov";
     // std::string file = "isuvr/join.mov";
-    // std::string file = "isuvr/reverse.mov";
+    std::string file = "isuvr/reverse.mov";
     
     // std::string file = "sort1_3l_5i_s_r.mov";
     
@@ -45,8 +44,8 @@ std::string Parameters::VIDEOFILE() {
     // return "";
 }
 
-int Parameters::USE_INFORMATION_HIDDING() {
-    return 0;
+int Parameters::PHASE() {
+    return PHASE_INFORMATION_HIDDING;
 }
 
 }}

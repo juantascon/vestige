@@ -23,24 +23,21 @@ void List::paint() {
     items->filter_by_over_marker(this);
     items->sort_by_y_axis();
     
-    if (core::Parameters::instance()->USE_INFORMATION_HIDDING()) {
-        BOOST_FOREACH(marker::Marker* m, *items) {
-            dynamic_cast<marker::Item*>(m)->set_top(0);
-        }
+    // Mark items that are on the top of the list
+    BOOST_FOREACH(marker::Marker* m, *items) {
+        dynamic_cast<marker::Item*>(m)->set_top(0);
     }
-    
-    if ( items->size() > 0 ) {
-        dynamic_cast<marker::Item*>(items->back())->set_top(1);
-    }
+    if ( items->size() > 0 ) { dynamic_cast<marker::Item*>(items->back())->set_top(1); }
     
     float size = core::Parameters::instance()->MARKER_SIZE();
     float align_factor = core::Parameters::instance()->ALIGN_FACTOR();
     float range = (size*2.0*(items->size()))+size;
     float cover = (size*2.0*(items->size()-1.0));
-
-    if (! core::Parameters::instance()->USE_INFORMATION_HIDDING()) {
+    
+    if (core::Parameters::instance()->PHASE() == core::Parameters::PHASE_CONCRETE) {
         cover = 0.0f;
     }
+    
     if (cover < 0) { cover = 0; }
     float line_width = 20.0;
     float z = 2.0;
