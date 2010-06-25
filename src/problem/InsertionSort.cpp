@@ -35,89 +35,71 @@ InsertionSort::InsertionSort(state::State* s) : ListReturn()
 
 rule::RuleSet* InsertionSort::create_rules() {
     rule::RuleSet* rules = new rule::RuleSet();
+    rule::Rule* r = 0;
     
-    std::string X_id = L->id();
-    std::string D_id = "L#1";
-    std::string A_id = "L#2";
+    std::string LL_id = L->id();
+    std::string P_id = "L#1";
+    std::string Q_id = "L#2";
     
-    std::list<std::string>* D_ids = new std::list<std::string>();
-    std::list<std::string>* A_ids = new std::list<std::string>();
+    std::list<std::string>* P_ids = new std::list<std::string>();
+    std::list<std::string>* Q_ids = new std::list<std::string>();
     
-    rules->add(new rule::Create(A_id));
-    rules->add(new rule::Create(D_id));
+    r = new rule::Create(Q_id);
+    r->set_clause("isort(L) -> isort(L,[],[]).");
+    rules->add(r);
+    r = new rule::Create(P_id);
+    r->set_clause("isort(L) -> isort(L,[],[]).");
+    rules->add(r);
     
-    state::NodeSet* X = L->children()->clone();
-    state::NodeSet* D = new state::NodeSet();
-    state::NodeSet* A = new state::NodeSet();
-
-    /*
-      f(L) -> f(L, [], []).
-      
-      f(X=[I|L], D, []) -> f(L, D, [I]);
-      
-      f(X=[I|L], D, A=[AI|AL]) when (I < AI) -> f(X, [AI|D], AL);
-      
-      f(X=[I|L], [], A=[AI|AL]) when (I > AI) -> f(L, [], [I|A]);
-      f(X=[I|L], D=[DI|DL], A=[AI|AL]) when (I > AI) and (I < DI) -> f(L, D, [I|A]);
-      f(X=[I|L], D=[DI|DL], A=[AI|AL]) when (I > AI) and (I > DI) -> f(X, DL, [DI|A]);
-      
-      f([], D=[DI|DL], A=[AI|AL]) -> f([], DL, [DI|A]);
-      f([], [], AL) -> AL.
-    */
+    state::NodeSet* LL = L->children()->clone();
+    state::NodeSet* P = new state::NodeSet();
+    state::NodeSet* Q = new state::NodeSet();
     
     while(true) {
-        state::Item* I = X->size() > 0 ? dynamic_cast<state::Item*>(X->back()) : NULL;
-        state::Item* AI = A->size() > 0 ? dynamic_cast<state::Item*>(A->back()) : NULL;
-        state::Item* DI = D->size() > 0 ? dynamic_cast<state::Item*>(D->back()) : NULL;
+        state::Item* I = LL->size() > 0 ? dynamic_cast<state::Item*>(LL->back()) : NULL;
+        state::Item* J = P->size() > 0 ? dynamic_cast<state::Item*>(P->back()) : NULL;
+        state::Item* K = Q->size() > 0 ? dynamic_cast<state::Item*>(Q->back()) : NULL;
         
-        if (X->size() == 0) {
-            if (D->size() != 0) {
-                rules->add(new rule::PopPush( DI->id(), D_id, A_id ));
-                A->push_back(DI);
-                D->pop_back();
-                continue;
-            }
-            
-            if (D->size() == 0) {
-                rules->add(new rule::Discard(X_id));
-                rules->add(new rule::Discard(D_id));
-                break;
-            }
+        if (LL->size() == 0 && P->size() == 0) {
+            r = new rule::Discard(LL_id);
+            r->set_clause("isort([],[],Q) -> Q;");
+            rules->add(r);
+            r = new rule::Discard(P_id);
+            r->set_clause("");
+            rules->add(r);
+            break;
         }
-        
-        if (A->size() == 0) {
-            rules->add(new rule::PopPush( I->id(), X_id, A_id ));
-            A->push_back(I);
-            X->pop_back();
+        else if (LL->size() == 0 && J) {
+            r = new rule::PopPush( J->id(), P_id, Q_id );
+            r->set_clause("isort([],[J|P],Q) -> isort([],P,[J|Q]);");
+            rules->add(r);
+            P->pop_back();
+            Q->push_back(J);
             continue;
         }
-        
-        if (I->ivalue() < AI->ivalue()) {
-            rules->add(new rule::PopPush( AI->id(), A_id, D_id ));
-            D->push_back(AI);
-            A->pop_back();
+        else if (I && K && K->ivalue() > I->ivalue()) {
+            r = new rule::PopPush( K->id(), Q_id, P_id );
+            r->set_clause("isort([I|L],P,[K|Q]) when K>I -> isort([I|L],[K|P],Q);");
+            rules->add(r);
+            Q->pop_back();
+            P->push_back(K);
             continue;
         }
-        
-        if (I->ivalue() > AI->ivalue()) {
-            if (D->size() == 0) {
-                rules->add(new rule::PopPush( I->id(), X_id, A_id ));
-                A->push_back(I);
-                X->pop_back();
-                continue;
-            }
-            if (I->ivalue() < DI->ivalue()) {
-                rules->add(new rule::PopPush( I->id(), X_id, A_id ));
-                A->push_back(I);
-                X->pop_back();
-                continue;
-            }
-            if (I->ivalue() > DI->ivalue()) {
-                rules->add(new rule::PopPush( DI->id(), D_id, A_id ));
-                A->push_back(DI);
-                D->pop_back();
-                continue;
-            }
+        else if (I && J && I->ivalue() > J->ivalue()) {
+            r = new rule::PopPush( J->id(), P_id, Q_id );
+            r->set_clause("isort([I|L],[J|P],Q) when I>J -> isort([I|L],P,[J|Q]);");
+            rules->add(r);
+            Q->push_back(J);
+            P->pop_back();
+            continue;
+        }
+        else if (I) {
+            r = new rule::PopPush( I->id(), LL_id, Q_id );
+            r->set_clause("isort([I|L],P,Q) -> isort(L,P,[I|Q]).");
+            rules->add(r);
+            Q->push_back(I);
+            LL->pop_back();
+            continue;
         }
     }
     

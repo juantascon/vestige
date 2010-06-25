@@ -24,12 +24,16 @@ class Rule
 {
     protected:
         std::string node;
+        std::string _clause;
         
     public:
         typedef std::vector <Rule*> Vector;
         typedef std::list <Rule*> List;
         
         Rule(std::string node);
+        
+        std::string clause();
+        void set_clause(std::string);
         
         virtual int valid(action::Action* action);
         virtual std::string text() = 0;
