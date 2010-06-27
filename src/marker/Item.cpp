@@ -6,11 +6,13 @@ namespace marker {
 Item::Item(std::string marker_args, std::string ar_id, std::string value) : Marker(marker_args, ar_id)
 {
     this->_value = value;
+    this->_label = value;
     this->_top = 1;
     this->paint();
 }
 
 std::string Item::value() { return this->_value; }
+std::string Item::label() { return this->_label; }
 
 void Item::set_top(int top) {
     this->_top = top;
@@ -55,7 +57,7 @@ void Item::paint() {
     this->model_reset();
     this->add(geode);
     if (_top) {
-        this->add((new draw::Text(_value))->wrap());
+        this->add((new draw::Text(_label))->wrap());
     }
 }
 
