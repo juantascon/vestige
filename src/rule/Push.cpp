@@ -3,23 +3,23 @@
 namespace vestige {
 namespace rule {
 
-Push::Push(std::string node, std::string into) : Rule(node)
+Push::Push(std::string node, std::string into, std::string clause) : Rule(node, clause)
 {
-    this->into = into;
+    this->_into = into;
 }
 
 int Push::valid(action::Action* action) {
     action::Push* a = dynamic_cast<action::Push*>( action );
     if (!a) { return 0; }
     
-    if (a->node()->id() != node) { return 0; }
-    if (a->into()->id() != into) { return 0; }
+    if (a->node()->id() != _node) { return 0; }
+    if (a->into()->id() != _into) { return 0; }
     
     return 1;
 }
 
 std::string Push::text() {
-    return "Push(Node:" + node + "|Into:" + into + ")";
+    return "Push(Node:" + _node + "|Into:" + _into + ")";
 }
 
 }}

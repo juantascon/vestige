@@ -35,7 +35,6 @@ InsertionSort::InsertionSort(state::State* s) : ListReturn()
 
 rule::RuleSet* InsertionSort::create_rules() {
     rule::RuleSet* rules = new rule::RuleSet();
-    rule::Rule* r = 0;
     
     std::string LL_id = L->id();
     std::string P_id = "L#1";
@@ -44,12 +43,8 @@ rule::RuleSet* InsertionSort::create_rules() {
     std::list<std::string>* P_ids = new std::list<std::string>();
     std::list<std::string>* Q_ids = new std::list<std::string>();
     
-    r = new rule::Create(Q_id);
-    r->set_clause("isort(L) -> isort(L,[],[]).");
-    rules->add(r);
-    r = new rule::Create(P_id);
-    r->set_clause("isort(L) -> isort(L,[],[]).");
-    rules->add(r);
+    rules->add(new rule::Create(Q_id, "isort(L) -> isort(L,[],[])."));
+    rules->add(new rule::Create(P_id, "isort(L) -> isort(L,[],[])."));
     
     state::NodeSet* LL = L->children()->clone();
     state::NodeSet* P = new state::NodeSet();
@@ -61,42 +56,30 @@ rule::RuleSet* InsertionSort::create_rules() {
         state::Item* K = Q->size() > 0 ? dynamic_cast<state::Item*>(Q->back()) : NULL;
         
         if (LL->size() == 0 && P->size() == 0) {
-            r = new rule::Discard(LL_id);
-            r->set_clause("isort([],[],Q) -> Q;");
-            rules->add(r);
-            r = new rule::Discard(P_id);
-            r->set_clause("");
-            rules->add(r);
+            rules->add(new rule::Discard(LL_id, "isort([],[],Q) -> Q;"));
+            rules->add(new rule::Discard(P_id, "isort([],[],Q) -> Q;"));
             break;
         }
         else if (LL->size() == 0 && J) {
-            r = new rule::PopPush( J->id(), P_id, Q_id );
-            r->set_clause("isort([],[J|P],Q) -> isort([],P,[J|Q]);");
-            rules->add(r);
+            rules->add(new rule::PopPush( J->id(), P_id, Q_id, "isort([],[J|P],Q) -> isort([],P,[J|Q]);" ));
             P->pop_back();
             Q->push_back(J);
             continue;
         }
         else if (I && K && K->ivalue() > I->ivalue()) {
-            r = new rule::PopPush( K->id(), Q_id, P_id );
-            r->set_clause("isort([I|L],P,[K|Q]) when K>I -> isort([I|L],[K|P],Q);");
-            rules->add(r);
+            rules->add(new rule::PopPush( K->id(), Q_id, P_id, "isort([I|L],P,[K|Q]) when K>I -> isort([I|L],[K|P],Q);" ));
             Q->pop_back();
             P->push_back(K);
             continue;
         }
         else if (I && J && I->ivalue() > J->ivalue()) {
-            r = new rule::PopPush( J->id(), P_id, Q_id );
-            r->set_clause("isort([I|L],[J|P],Q) when I>J -> isort([I|L],P,[J|Q]);");
-            rules->add(r);
+            rules->add(new rule::PopPush( J->id(), P_id, Q_id, "isort([I|L],[J|P],Q) when I>J -> isort([I|L],P,[J|Q]);" ));
             Q->push_back(J);
             P->pop_back();
             continue;
         }
         else if (I) {
-            r = new rule::PopPush( I->id(), LL_id, Q_id );
-            r->set_clause("isort([I|L],P,Q) -> isort(L,P,[I|Q]).");
-            rules->add(r);
+            rules->add(new rule::PopPush( I->id(), LL_id, Q_id, "isort([I|L],P,Q) -> isort(L,P,[I|Q])." ));
             Q->push_back(I);
             LL->pop_back();
             continue;

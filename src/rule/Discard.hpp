@@ -11,7 +11,7 @@ class Discard : public Rule
 {
     protected:
     public:
-        Discard(std::string node);
+        Discard(std::string node, std::string clause);
         
         virtual int valid(action::Action* action);
         virtual std::string text();

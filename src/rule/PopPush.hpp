@@ -10,11 +10,11 @@ namespace rule {
 class PopPush : public Rule
 {
     protected:
-        std::string from;
-        std::string into;
+        std::string _from;
+        std::string _into;
         
     public:
-        PopPush(std::string node, std::string from, std::string into);
+        PopPush(std::string node, std::string from, std::string into, std::string clause);
         
         virtual int valid(action::Action* action);
         virtual std::string text();

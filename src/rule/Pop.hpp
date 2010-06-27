@@ -10,10 +10,10 @@ namespace rule {
 class Pop : public Rule
 {
     protected:
-        std::string from;
+        std::string _from;
         
     public:
-        Pop(std::string node, std::string from);
+        Pop(std::string node, std::string from, std::string clause);
         
         virtual int valid(action::Action* action);
         virtual std::string text();

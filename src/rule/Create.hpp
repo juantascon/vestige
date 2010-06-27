@@ -11,7 +11,7 @@ class Create : public Rule
 {
     protected:
     public:
-        Create(std::string node);
+        Create(std::string node, std::string clause);
         
         virtual int valid(action::Action* action);
         virtual std::string text();
