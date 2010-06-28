@@ -1,6 +1,7 @@
 #ifndef __VESTIGE_RULE_TYPES_HPP
 #define __VESTIGE_RULE_TYPES_HPP
 
+#include "Move.hpp"
 #include "Rule.hpp"
 
 #include "Pop.hpp"

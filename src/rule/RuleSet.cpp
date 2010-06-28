@@ -24,8 +24,12 @@ void RuleSet::add(Rule* rule) {
     current = this->begin();
 }
 
+std::string RuleSet::clause() {
+    return last->clause();
+}
+
 int RuleSet::verify(action::Action* action) {
-    if ( (*current)->valid(action) ) {
+    if ( (*current)->move()->valid(action) ) {
         D(( "RULE: [[ %s ]] OK", (*current)->text().c_str() ));
         action->valid_rules = 1;
         last = *current;
@@ -42,10 +46,6 @@ void RuleSet::verify(action::ActionSet* as) {
             if (verify(a)) { break; }
         }
     }
-}
-
-std::string RuleSet::clause() {
-    return last->clause();
 }
 
 }}

@@ -3,7 +3,7 @@
 namespace vestige {
 namespace rule {
 
-PopPush::PopPush(std::string node, std::string from, std::string into, std::string clause) : Rule(node, clause)
+PopPush::PopPush(std::string node, std::string from, std::string into) : Move(node)
 {
     this->_from = from;
     this->_into = into;

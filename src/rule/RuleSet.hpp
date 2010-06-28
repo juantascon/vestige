@@ -2,6 +2,7 @@
 #define __VESTIGE_RULE_RULESET_HPP
 
 #include "Rule.hpp"
+#include "Move.hpp"
 #include "../action/ActionSet.hpp"
 
 namespace vestige {
@@ -16,14 +17,15 @@ class RuleSet : public Rule::List
     public:
         RuleSet();
         
-        std::string text();
         void add(Rule* rule);
+        std::string clause();
         
         void verify(action::ActionSet* as);
         int verify(action::Action* action);
         
-        std::string clause();
+        std::string text();
 };
+
 
 }}
 

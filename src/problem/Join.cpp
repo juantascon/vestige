@@ -44,21 +44,21 @@ rule::RuleSet* Join::create_rules() {
     std::string TMP_id = "L#2";
     
     // 1. create the TMP list
-    rules->add(new rule::Create(TMP_id, "join(L,M) -> join(L,M,[])."));
+    rules->add(new rule::Rule(new rule::Create(TMP_id), "join(L,M) -> join(L,M,[])."));
     
     // 2. move all the elements from L to TMP
     BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
-        rules->add(new rule::PopPush(n->id(), L->id(), TMP_id, "join(L,[I|M],T) -> join(L,M,[I|T]);"));
+        rules->add(new rule::Rule(new rule::PopPush(n->id(), L->id(), TMP_id), "join(L,[I|M],T) -> join(L,M,[I|T]);"));
     }
     
     // 3. move the same elements from tmp to R
     BOOST_FOREACH(state::Node *n, *(L->children())) {
-        rules->add(new rule::PopPush(n->id(), TMP_id, R->id(), "join(L,[],[I|T]) -> join([I|L],[],T);"));
+        rules->add(new rule::Rule(new rule::PopPush(n->id(), TMP_id, R->id()), "join(L,[],[I|T]) -> join([I|L],[],T);"));
     }
     
     // 4. delete L and TMP lists
-    rules->add(new rule::Discard(TMP_id, "join(L,[],[]) -> L."));
-    rules->add(new rule::Discard(L->id(), "join(L,[],[]) -> L."));
+    rules->add(new rule::Rule(new rule::Discard(TMP_id), "join(L,[],[]) -> L."));
+    rules->add(new rule::Rule(new rule::Discard(L->id()), "join(L,[],[]) -> L."));
     
     return rules;
 }

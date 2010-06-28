@@ -3,7 +3,7 @@
 namespace vestige {
 namespace rule {
 
-Push::Push(std::string node, std::string into, std::string clause) : Rule(node, clause)
+Push::Push(std::string node, std::string into) : Move(node)
 {
     this->_into = into;
 }

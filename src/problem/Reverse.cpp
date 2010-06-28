@@ -33,14 +33,14 @@ rule::RuleSet* Reverse::create_rules() {
     
     std::string R_id = "L#1";
     
-    rules->add(new rule::Create(R_id, "rev(L) -> rev(L,[])."));
+    rules->add(new rule::Rule(new rule::Create(R_id), "rev(L) -> rev(L,[])."));
     
     // Generate a reversed order of poppush instructions
     BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
-        rules->add(new rule::PopPush(n->id(), L->id(), R_id, "rev([I|L],T) -> rev(L,[I|T]);"));
+        rules->add(new rule::Rule(new rule::PopPush(n->id(), L->id(), R_id), "rev([I|L],T) -> rev(L,[I|T]);"));
     }
     
-    rules->add(new rule::Discard(L->id(), "rev([],T) -> T."));
+    rules->add(new rule::Rule(new rule::Discard(L->id()), "rev([],T) -> T."));
     
     return rules;
 }

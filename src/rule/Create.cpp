@@ -3,7 +3,7 @@
 namespace vestige {
 namespace rule {
 
-Create::Create(std::string node, std::string clause) : Rule(node, clause)
+Create::Create(std::string node) : Move(node)
 {
 }
 

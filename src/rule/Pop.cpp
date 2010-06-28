@@ -3,7 +3,7 @@
 namespace vestige {
 namespace rule {
 
-Pop::Pop(std::string node, std::string from, std::string clause) : Rule(node, clause)
+Pop::Pop(std::string node, std::string from) : Move(node)
 {
     this->_from = from;
 }

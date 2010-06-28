@@ -3,7 +3,7 @@
 namespace vestige {
 namespace rule {
 
-Discard::Discard(std::string node, std::string clause) : Rule(node, clause)
+Discard::Discard(std::string node) : Move(node)
 {
 }
 
