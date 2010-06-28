@@ -21,22 +21,22 @@ std::string Parameters::ROOT() { return "/home/jdi/dev/vestige/"; }
 
 // problem to execute
 std::string Parameters::PROBLEM() {
-    // return "insertionsort";
+    return "insertionsort";
     // return "compress";
     // return "removeall";
     // return "join";
-    return "reverse";
+    // return "reverse";
     // return "pdebug";
 }
 
 // location of the video, if the file is not found then it will
 // fallback to /dev/video0
 std::string Parameters::VIDEOFILE() {
-    // std::string file = "isuvr/insertionsort.mov";
+    std::string file = "isuvr/insertionsort.mov";
     // std::string file = "isuvr/compress.mov";
     // std::string file = "isuvr/removeall.mov";
     // std::string file = "isuvr/join.mov";
-    std::string file = "isuvr/reverse.mov";
+    // std::string file = "isuvr/reverse.mov";
     
     // std::string file = "actions.mov";
     

@@ -36,36 +36,54 @@ RemoveAll::RemoveAll(state::State* s) : ListReturn()
 }
 
 rule::RuleSet* RemoveAll::create_rules() {
-    rule::RuleSet* rules = new rule::RuleSet();
+    std::string T_id = "L#1";
+    std::string P_id = "L#2";
+    std::string last_id = "";
     
-    std::string TMP1_id = "L#1";
-    std::string TMP2_id = "L#2";
+    rule::RuleSet* rules = new rule::RuleSet();
+    rule::Names* names = new rule::Names();
     
     // 1. create two tmp lists
-    rules->add(new rule::Rule(new rule::Create(TMP1_id), "remall(L,E) -> remall(L,E,[],[])."));
-    rules->add(new rule::Rule(new rule::Create(TMP2_id), "remall(L,E) -> remall(L,E,[],[])."));
+    (*names)[L->id()] = "L";
+    (*names)[E->id()] = "E";
+    rules->add(new rule::Rule(new rule::Create(T_id), names->clone(), "remall(L,E) -> remall(L,E,[],[])."));
+    rules->add(new rule::Rule(new rule::Create(P_id), names->clone(), "remall(L,E) -> remall(L,E,[],[])."));
     
-    // 2. move all the elements from L to TMP1 minus items equals to E
+    (*names)[T_id] = "T";
+    (*names)[P_id] = "P";
+    
+    // 2. move all the elements from L to T minus items equals to E
     BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
+        (*names)[last_id] = "";
+        last_id = n->id();
         if ( E->value() != dynamic_cast<state::Item*>(n)->value() ) {
-            rules->add(new rule::Rule(new rule::PopPush(n->id(), L->id(), TMP1_id), "remall([I|L],E,T,P) -> remall(L,E,[I|T],P)."));
+            (*names)[n->id()] = "I";
+            rules->add(new rule::Rule(new rule::PopPush(n->id(), L->id(), T_id), names->clone(),
+                                      "remall([I|L],E,T,P) -> remall(L,E,[I|T],P)."));
         } else {
-            rules->add(new rule::Rule(new rule::Discard(n->id()), "remall([E|L],E,T,P) -> remall(L,E,T,P);"));
+            (*names)[n->id()] = "E";
+            rules->add(new rule::Rule(new rule::Discard(n->id()), names->clone(),
+                                      "remall([E|L],E,T,P) -> remall(L,E,T,P);"));
         }
     }
     
-    // 3. move the same elements from TMP1 to TMP2
+    // 3. move the same elements from T to P
     BOOST_FOREACH(state::Node *n, *(L->children())) {
-        if ( E->value() != dynamic_cast<state::Item*>(n)->value() ) {
-            rules->add(new rule::Rule(new rule::PopPush(n->id(), TMP1_id, TMP2_id), "remall([],E,[I|T],P) -> remall([],E,T,[I|P]);"));
+        if ( E->value() == dynamic_cast<state::Item*>(n)->value() ) {
+            continue;
         }
+        (*names)[n->id()] = "I";
+        (*names)[last_id] = "";
+        last_id = n->id();
+        rules->add(new rule::Rule(new rule::PopPush(n->id(), T_id, P_id), names->clone(),
+                                  "remall([],E,[I|T],P) -> remall([],E,T,[I|P]);"));
     }
     
-    // 4. delete E L and TMP1
-    rules->add(new rule::Rule(new rule::Discard(E->id()), "remall([],_,[],P) -> P;"));
-    rules->add(new rule::Rule(new rule::Discard(L->id()), "remall([],_,[],P) -> P;"));
-    rules->add(new rule::Rule(new rule::Discard(TMP1_id), "remall([],_,[],P) -> P;"));
-
+    // 4. delete E L and T
+    (*names)[last_id] = "";
+    rules->add(new rule::Rule(new rule::Discard(E->id()), names->clone(), "remall([],_,[],P) -> P;"));
+    rules->add(new rule::Rule(new rule::Discard(L->id()), names->clone(), "remall([],_,[],P) -> P;"));
+    rules->add(new rule::Rule(new rule::Discard(T_id), names->clone(), "remall([],_,[],P) -> P;"));
     
     return rules;
 }

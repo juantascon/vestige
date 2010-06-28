@@ -30,6 +30,7 @@ Reverse::Reverse(state::State* s) : ListReturn()
 
 rule::RuleSet* Reverse::create_rules() {
     std::string R_id = "L#1";
+    std::string last_id = "";
     
     rule::RuleSet* rules = new rule::RuleSet();
     rule::Names* names = new rule::Names();
@@ -39,16 +40,14 @@ rule::RuleSet* Reverse::create_rules() {
     rules->add(new rule::Rule(new rule::Create(R_id), names->clone(), "rev(L) -> rev(L,[])."));
     
     // Generate a reversed order of poppush instructions
-    std::string prev = "";
     BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
         (*names)[n->id()] = "I";
-        (*names)[prev] = "";
+        (*names)[last_id] = "";
+        last_id = n->id();
         rules->add(new rule::Rule(new rule::PopPush(n->id(), L->id(), R_id), names->clone(), "rev([I|L],T) -> rev(L,[I|T]);"));
-        
-        prev = n->id();
     }
     
-    (*names)[prev] = "";
+    (*names)[last_id] = "";
     rules->add(new rule::Rule(new rule::Discard(L->id()), names->clone(), "rev([],T) -> T."));
     
     return rules;

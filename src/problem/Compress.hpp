@@ -9,8 +9,6 @@ namespace problem {
 class Compress : public ListReturn
 {
     protected:
-        state::List* TMP1;
-        state::List* TMP2;
         state::List* L;
         
     public:

@@ -11,7 +11,7 @@ Join::Join(state::State* s) : ListReturn()
     
     // exactly 2 elements expected on the board:
     // * L: list ( at least 2 elements )
-    // * R: list ( at least 2 elements )
+    // * M: list ( at least 2 elements )
     
     state::NodeSet* lists = s->clone_nodes();
     lists->filter_by_no_parent();
@@ -19,8 +19,8 @@ Join::Join(state::State* s) : ListReturn()
     
     lists->filter_by_type_lists();
     
-    R = lists->remove_single_list_by_size_range(2, -1);
-    if (!R) { throw std::runtime_error("missing 1 list with at least 2 items"); }
+    M = lists->remove_single_list_by_size_range(2, -1);
+    if (!M) { throw std::runtime_error("missing 1 list with at least 2 items"); }
     
     L = lists->remove_single_list_by_size_range(2, -1);
     if (!L) { throw std::runtime_error("missing 1 list with at least 2 items"); }
@@ -29,8 +29,8 @@ Join::Join(state::State* s) : ListReturn()
     /* -- Prepare return list ids -- */
     /***/
     
-    // items from R plus items from L
-    BOOST_FOREACH(state::Node *n, *(R->children())) {
+    // items from M plus items from L
+    BOOST_FOREACH(state::Node *n, *(M->children())) {
         _ids->push_back(n->id());
     }
     BOOST_FOREACH(state::Node *n, *(L->children())) {
@@ -39,26 +39,41 @@ Join::Join(state::State* s) : ListReturn()
 }
 
 rule::RuleSet* Join::create_rules() {
+    std::string T_id = "L#2";
+    std::string last_id = "";
+    
     rule::RuleSet* rules = new rule::RuleSet();
+    rule::Names* names = new rule::Names();
     
-    std::string TMP_id = "L#2";
+    // 1. create the T list
+    (*names)[L->id()] = "M";
+    (*names)[M->id()] = "L";
+    rules->add(new rule::Rule(new rule::Create(T_id), names->clone(), "join(L,M) -> join(L,M,[])."));
     
-    // 1. create the TMP list
-    rules->add(new rule::Rule(new rule::Create(TMP_id), "join(L,M) -> join(L,M,[])."));
-    
-    // 2. move all the elements from L to TMP
+    (*names)[T_id] = "T";
+    // 2. move all the elements from L to T
     BOOST_REVERSE_FOREACH(state::Node *n, *(L->children())) {
-        rules->add(new rule::Rule(new rule::PopPush(n->id(), L->id(), TMP_id), "join(L,[I|M],T) -> join(L,M,[I|T]);"));
+        (*names)[n->id()] = "I";
+        (*names)[last_id] = "";
+        last_id = n->id();
+        rules->add(new rule::Rule(new rule::PopPush(n->id(), L->id(), T_id), names->clone(),
+                                  "join(L,[I|M],T) -> join(L,M,[I|T]);"));
     }
     
-    // 3. move the same elements from tmp to R
+    // 3. move the same elements from T to M
     BOOST_FOREACH(state::Node *n, *(L->children())) {
-        rules->add(new rule::Rule(new rule::PopPush(n->id(), TMP_id, R->id()), "join(L,[],[I|T]) -> join([I|L],[],T);"));
+        (*names)[n->id()] = "I";
+        rules->add(new rule::Rule(new rule::PopPush(n->id(), T_id, M->id()), names->clone(),
+                                  "join(L,[],[I|T]) -> join([I|L],[],T);"));
+        
+        (*names)[last_id] = "";
+        last_id = n->id();
     }
     
-    // 4. delete L and TMP lists
-    rules->add(new rule::Rule(new rule::Discard(TMP_id), "join(L,[],[]) -> L."));
-    rules->add(new rule::Rule(new rule::Discard(L->id()), "join(L,[],[]) -> L."));
+    // 4. delete L and T lists
+    (*names)[last_id] = "";
+    rules->add(new rule::Rule(new rule::Discard(T_id), names->clone(), "join(L,[],[]) -> L."));
+    rules->add(new rule::Rule(new rule::Discard(L->id()), names->clone(), "join(L,[],[]) -> L."));
     
     return rules;
 }

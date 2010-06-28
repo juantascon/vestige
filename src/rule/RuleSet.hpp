@@ -10,7 +10,7 @@ namespace rule {
 class RuleSet : public Rule::List
 {
     protected:
-        // Moves are matched with iter but names and clause are with current
+        // Moves and names are matched with iter but and clause with current
         RuleSet::iterator iter;
         Rule* _current;
         

@@ -35,38 +35,54 @@ Compress::Compress(state::State* s) : ListReturn()
 }
 
 rule::RuleSet* Compress::create_rules() {
+    std::string T_id = "L#1";
+    std::string P_id = "L#2";
+    std::string last_id = "";
+    
     rule::RuleSet* rules = new rule::RuleSet();
+    rule::Names* names = new rule::Names();
     
-    std::string TMP1_id = "L#1";
-    std::string TMP2_id = "L#2";
-    
-    std::list<std::string>* TMP1_items = new std::list<std::string>();
+    std::list<std::string>* T_items = new std::list<std::string>();
     
     // 1. create two tmp lists
-    rules->add(new rule::Rule(new rule::Create(TMP1_id), "compress(L) -> compress(L,[],[])."));
-    rules->add(new rule::Rule(new rule::Create(TMP2_id), "compress(L) -> compress(L,[],[])."));
+    (*names)[L->id()] = "L";
+    rules->add(new rule::Rule(new rule::Create(T_id), names->clone(), "compress(L) -> compress(L,[],[])."));
+    rules->add(new rule::Rule(new rule::Create(P_id), names->clone(), "compress(L) -> compress(L,[],[])."));
     
-    // 2. move all the elements from L to TMP1 minus adjacent repeated items
+    (*names)[T_id] = "T";
+    (*names)[P_id] = "P";
+    
+    // 2. move all the elements from L to T minus adjacent repeated items
     state::Item* last = NULL;
     BOOST_REVERSE_FOREACH(state::Node* n, *(L->children())) {
+        (*names)[n->id()] = "I";
         if ( !last || last->value() != dynamic_cast<state::Item*>(n)->value() ) {
-            rules->add(new rule::Rule(new rule::PopPush(n->id(), L->id(), TMP1_id), "compress([I|L],T,P) -> compress(L,[I|T],P)."));
-            TMP1_items->push_front(n->id());
+            (*names)[last_id] = "";
+            rules->add(new rule::Rule(new rule::PopPush(n->id(), L->id(), T_id), names->clone(),
+                                      "compress([I|L],T,P) -> compress(L,[I|T],P)."));
+            T_items->push_front(n->id());
         } else {
-            rules->add(new rule::Rule(new rule::Discard(n->id()), "compress([I|L],[I|T],P) -> compress(L,[I|T],P);"));
+            rules->add(new rule::Rule(new rule::Discard(n->id()), names->clone(),
+                                      "compress([I|L],[I|T],P) -> compress(L,[I|T],P);"));
         }
         
+        last_id = n->id();
         last = dynamic_cast<state::Item*>(n);
     }
     
-    // 3. move the same elements from TMP1 to TMP2
-    BOOST_FOREACH(std::string id, *TMP1_items) {
-        rules->add(new rule::Rule(new rule::PopPush(id, TMP1_id, TMP2_id), "compress([],[I|T],P) -> compress([],T,[I|P]);"));
+    // 3. move the same elements from T to P
+    BOOST_FOREACH(std::string id, *T_items) {
+        (*names)[id] = "I";
+        (*names)[last_id] = "";
+        last_id = id;
+        rules->add(new rule::Rule(new rule::PopPush(id, T_id, P_id), names->clone(),
+                                  "compress([],[I|T],P) -> compress([],T,[I|P]);"));
     }
     
-    // 4. delete L and TMP1
-    rules->add(new rule::Rule(new rule::Discard(L->id()), "compress([],[],P) -> P;"));
-    rules->add(new rule::Rule(new rule::Discard(TMP1_id), "compress([],[],P) -> P;"));
+    // 4. delete L and T
+    (*names)[last_id] = "";
+    rules->add(new rule::Rule(new rule::Discard(L->id()), names->clone(), "compress([],[],P) -> P;"));
+    rules->add(new rule::Rule(new rule::Discard(T_id), names->clone(), "compress([],[],P) -> P;"));
     
     return rules;
 }
