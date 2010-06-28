@@ -15,15 +15,12 @@ class Item : public Marker
     protected:
         int _top;
         std::string _value;
-        std::string _label;
         
     public:
         Item(std::string marker_args, std::string ar_id, std::string value);
         
-        void set_top(int top);
-        
         std::string value();
-        std::string label();
+        void set_top(int top);
         
         virtual void update();
         virtual void paint();

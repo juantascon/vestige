@@ -24,6 +24,9 @@ class Step
         state::State* previous_state;
         state::State* current_state;
         
+        StatusMessage* initial();
+        StatusMessage* recursive();
+        
     public:
         static Step* instance();
         

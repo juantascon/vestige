@@ -38,14 +38,14 @@ std::string Parameters::VIDEOFILE() {
     // std::string file = "isuvr/join.mov";
     std::string file = "isuvr/reverse.mov";
     
-    // std::string file = "sort1_3l_5i_s_r.mov";
+    // std::string file = "actions.mov";
     
     return ROOT()+"/video/"+file;
     // return "";
 }
 
 int Parameters::PHASE() {
-    return PHASE_INFORMATION_HIDDING;
+    return PHASE_VARIABLES;
 }
 
 }}

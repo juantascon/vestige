@@ -2,7 +2,6 @@
 #define __VESTIGE_RULE_RULESET_HPP
 
 #include "Rule.hpp"
-#include "Move.hpp"
 #include "../action/ActionSet.hpp"
 
 namespace vestige {
@@ -11,15 +10,18 @@ namespace rule {
 class RuleSet : public Rule::List
 {
     protected:
-        RuleSet::iterator current;
-        Rule* last;
+        // Moves are matched with iter but names and clause are with current
+        RuleSet::iterator iter;
+        Rule* _current;
         
     public:
         RuleSet();
         
         void add(Rule* rule);
-        std::string clause();
+        void sync();
         
+        std::string clause();
+        void set_labels(state::State* s);
         void verify(action::ActionSet* as);
         int verify(action::Action* action);
         

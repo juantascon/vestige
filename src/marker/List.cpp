@@ -5,17 +5,13 @@ namespace vestige {
 namespace marker {
 
 List::List(std::string marker_args, std::string ar_id) : Marker(marker_args, ar_id) {
-    //this->add(osgDB::readNodeFile("data/model/list.osg"));
-    this->paint();
+    this->_label = "";
+    this->_items_size = 0;
+    
+    this->update();
 }
 
-void List::paint() {
-    marker::GlobalMarkers::instance()->capture_info();
-
-    if (! this->visible() ) {
-        return;
-    }
-    
+void List::update_items() {
     marker::MarkerSet* items = marker::GlobalMarkers::instance()->markers_clone();
     items->filter_by_visible(1);
     items->filter_by_type_items();
@@ -23,24 +19,39 @@ void List::paint() {
     items->filter_by_over_marker(this);
     items->sort_by_y_axis();
     
-    // Mark items that are on the top of the list
+    _items_size = items->size();
+    
+    // Set all items as not on top
     BOOST_FOREACH(marker::Marker* m, *items) {
         dynamic_cast<marker::Item*>(m)->set_top(0);
     }
-    if ( items->size() > 0 ) { dynamic_cast<marker::Item*>(items->back())->set_top(1); }
     
+
+    if ( _items_size > 0 ) {
+        // Set top item
+        dynamic_cast<marker::Item*>(items->back())->set_top(1);
+        
+        // Hide the last item if it has no label
+        if (dynamic_cast<marker::Item*>(items->back())->label().empty() &&
+            core::Parameters::instance()->PHASE() == core::Parameters::PHASE_VARIABLES) {
+            _items_size++;
+        }
+    }
+
+    
+}
+
+void List::paint() {
     float size = core::Parameters::instance()->MARKER_SIZE();
+    float z = -2.0;
     float align_factor = core::Parameters::instance()->ALIGN_FACTOR();
-    float range = (size*2.0*(items->size()))+size;
-    float cover = (size*2.0*(items->size()-1.0));
+    float line_width = 20.0;
+    float range = (size*2.0*(_items_size))+size;
+    float cover = (size*2.0*(_items_size-1.0));
     
-    if (core::Parameters::instance()->PHASE() == core::Parameters::PHASE_CONCRETE) {
+    if (cover < 0 || core::Parameters::instance()->PHASE() == core::Parameters::PHASE_CONCRETE) {
         cover = 0.0f;
     }
-    
-    if (cover < 0) { cover = 0; }
-    float line_width = 20.0;
-    float z = 2.0;
     
     osg::Vec4* color = new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f);
     if (!_active) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
@@ -78,11 +89,17 @@ void List::paint() {
     geode->addDrawable(line1);
     geode->addDrawable(line2);
     
-    this->model_reset();
     this->add(geode);
+    this->add((new draw::Text(this->label()))->wrap());
 }
 
 void List::update() {
+    marker::GlobalMarkers::instance()->capture_info();
+    
+    if (! this->visible() ) { return; }
+    
+    this->update_items();
+    this->model_reset();
     this->paint();
 }
 

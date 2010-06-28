@@ -64,13 +64,12 @@ void Switch::capture() {
 }
 
 void Switch::update() {
-    if (!_active) { return; }
-
     this->capture_info();
+    if (!_active) { return; }
+    
     if (!this->visible()) {
         if (!captured) {
             capture();
-            
             captured = 1;
         }
         

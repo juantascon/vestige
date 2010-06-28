@@ -4,10 +4,10 @@
 namespace vestige {
 namespace marker {
 
-Marker::Marker(std::string marker_args, std::string ar_id)
-{
+Marker::Marker(std::string marker_args, std::string ar_id) {
     this->_ar_id = ar_id;
     this->_id = "";
+    this->_label = "";
     this->set_active(1);
     
     // create marker
@@ -30,6 +30,8 @@ osgART::Marker* Marker::marker() { return this->_marker; }
 osg::MatrixTransform* Marker::model() { return this->_model; }
 std::string Marker::id() { return this->_id; }
 std::string Marker::ar_id() { return this->_ar_id; }
+std::string Marker::label() { return this->_label; }
+void Marker::set_label(std::string label) { this->_label = label; }
 
 void Marker::set_id(std::string id) {
     this->_id = id;

@@ -75,12 +75,13 @@ void NodeSet::filter_by_type_lists() {
 
 state::Node* NodeSet::remove_by_id(std::string id) {
     for (NodeSet::iterator it = this->begin(); it != this->end(); ++it) {
-        if ((*it)->id() != id) { continue; }
+        state::Node* ret = *it;
+        if (ret->id() != id) { continue; }
         
         this->erase(it);
         it--;
         
-        return (*it);
+        return ret;
     }
     
     return NULL;

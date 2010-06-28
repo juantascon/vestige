@@ -10,7 +10,6 @@ class Reverse : public ListReturn
 {
     protected:
         state::List* L;
-        state::List* R;
         
     public:
         Reverse(state::State* s);

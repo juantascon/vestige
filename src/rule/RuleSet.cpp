@@ -4,7 +4,43 @@ namespace vestige {
 namespace rule {
 
 RuleSet::RuleSet() : Rule::List() {
-    current = this->begin();
+    iter = this->begin();
+}
+
+void RuleSet::sync() {
+    _current = *iter;
+}
+
+void RuleSet::add(Rule* rule) {
+    this->push_back(rule);
+    iter = this->begin();
+}
+
+std::string RuleSet::clause() {
+    return _current->clause();
+}
+
+void RuleSet::set_labels(state::State* s) {
+    return (*iter)->names()->set_labels(s);
+}
+
+int RuleSet::verify(action::Action* action) {
+    if ( (*iter)->move()->valid(action) ) {
+        D(( "RULE: [[ %s ]] OK", (*iter)->text().c_str() ));
+        action->valid_rules = 1;
+        ++iter;
+        return 1;
+    }
+    D(( "RULE: [[ %s ]] FAIL", (*iter)->text().c_str() ));
+    return 0;
+}
+
+void RuleSet::verify(action::ActionSet* as) {
+    for (int i = 0; i < as->size(); i++) {
+        BOOST_FOREACH(action::Action *a, *as) {
+            if (verify(a)) { break; }
+        }
+    }
 }
 
 std::string RuleSet::text() {
@@ -17,35 +53,6 @@ std::string RuleSet::text() {
     ret += "]]";
     
     return ret;
-}
-
-void RuleSet::add(Rule* rule) {
-    this->push_back(rule);
-    current = this->begin();
-}
-
-std::string RuleSet::clause() {
-    return last->clause();
-}
-
-int RuleSet::verify(action::Action* action) {
-    if ( (*current)->move()->valid(action) ) {
-        D(( "RULE: [[ %s ]] OK", (*current)->text().c_str() ));
-        action->valid_rules = 1;
-        last = *current;
-        ++current;
-        return 1;
-    }
-    D(( "RULE: [[ %s ]] FAIL", (*current)->text().c_str() ));
-    return 0;
-}
-
-void RuleSet::verify(action::ActionSet* as) {
-    for (int i = 0; i < as->size(); i++) {
-        BOOST_FOREACH(action::Action *a, *as) {
-            if (verify(a)) { break; }
-        }
-    }
 }
 
 }}

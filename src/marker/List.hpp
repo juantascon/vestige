@@ -11,9 +11,12 @@ namespace marker {
 class List : public Marker
 {
     protected:
+        int _items_size;
         
     public:
         List (std::string marker_args, std::string id);
+        
+        void update_items();
         
         virtual void update();
         virtual void paint();

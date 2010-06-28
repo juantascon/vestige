@@ -19,6 +19,7 @@ class Marker : public osg::NodeCallback
         int _active;
         std::string _id;
         std::string _ar_id;
+        std::string _label;
         
         osg::Vec3 _position;
         int _visible;
@@ -35,6 +36,8 @@ class Marker : public osg::NodeCallback
         std::string id();
         void set_id(std::string id);
         std::string ar_id();
+        std::string label();
+        void set_label(std::string label);
         
         osg::Vec3 position();
         int visible();

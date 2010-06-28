@@ -3,43 +3,33 @@
 namespace vestige {
 namespace marker {
 
-Item::Item(std::string marker_args, std::string ar_id, std::string value) : Marker(marker_args, ar_id)
-{
+Item::Item(std::string marker_args, std::string ar_id, std::string value) : Marker(marker_args, ar_id) {
     this->_value = value;
-    this->_label = value;
+    
+    if (core::Parameters::instance()->PHASE() != core::Parameters::PHASE_VARIABLES) {
+        this->_label = value;
+    }
+    
     this->_top = 1;
-    this->paint();
+    
+    this->update();
 }
 
 std::string Item::value() { return this->_value; }
-std::string Item::label() { return this->_label; }
-
-void Item::set_top(int top) {
-    this->_top = top;
-    
-    if (core::Parameters::instance()->PHASE() == core::Parameters::PHASE_CONCRETE) {
-        this->_top = 1;
-    }
-    
-    this->paint();
-}
+void Item::set_top(int top) { this->_top = top; }
 
 void Item::paint() {
-    this->capture_info();
+    float size = core::Parameters::instance()->MARKER_SIZE();
+    float z = -1.0;
     
-    if (! this->visible() ) {
-        return;
+    osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 1.0f, 1.0f); // green
+    if (!_active) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); } // red
+    if (!_top && core::Parameters::instance()->PHASE() != core::Parameters::PHASE_CONCRETE) {
+        color = new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f); // yellow
     }
     
-    float size = core::Parameters::instance()->MARKER_SIZE();
-    float z = -20.0;
-    
-    osg::Vec4* color = new osg::Vec4(0.0f, 1.0f, 1.0f, 1.0f);
-    if (!_active) { color =  new osg::Vec4(1.0f, 0.0f, 0.0f, 1.0f); }
-    if (!_top) {
-        if (core::Parameters::instance()->PHASE() != core::Parameters::PHASE_CONCRETE) {
-            color = new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f);
-        }
+    if (this->label().empty() && core::Parameters::instance()->PHASE() == core::Parameters::PHASE_VARIABLES) {
+        color = new osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f); // yellow
     }
     
     draw::Rectangle* rectangle = new draw::Rectangle(
@@ -53,10 +43,9 @@ void Item::paint() {
     // Container
     osg::Geode* geode = new osg::Geode();
     geode->addDrawable(rectangle);
-    
-    this->model_reset();
     this->add(geode);
-    if (_top) {
+    
+    if (_top || core::Parameters::instance()->PHASE() == core::Parameters::PHASE_CONCRETE) {
         this->add((new draw::Text(_label))->wrap());
     }
 }
@@ -64,7 +53,7 @@ void Item::paint() {
 void Item::alert(std::string message) {
     D(("ALERT [%s]: %s", message.c_str(), _id.c_str()));
     this->set_active(0);
-    this->paint();
+    this->update();
     
     draw::ToolTip* t = new draw::ToolTip();
     t->alert(message, 35.0f);
@@ -72,6 +61,10 @@ void Item::alert(std::string message) {
 }
 
 void Item::update() {
+    this->capture_info();
+    if (! this->visible() ) { return; }
+    
+    this->model_reset();
     this->paint();
 }
 
