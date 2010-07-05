@@ -7,6 +7,7 @@ namespace marker {
 List::List(std::string marker_args, std::string ar_id) : Marker(marker_args, ar_id) {
     this->_label = "";
     this->_items_size = 0;
+    this->running = 0;
     
     this->update();
 }
@@ -94,13 +95,17 @@ void List::paint() {
 }
 
 void List::update() {
+    if (running) {return;}
+
     marker::GlobalMarkers::instance()->capture_info();
     
     if (! this->visible() ) { return; }
     
+    running = 1;
     this->update_items();
     this->model_reset();
     this->paint();
+    running = 0;
 }
 
 }}

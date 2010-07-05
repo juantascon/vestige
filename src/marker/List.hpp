@@ -12,6 +12,7 @@ class List : public Marker
 {
     protected:
         int _items_size;
+        int running;
         
     public:
         List (std::string marker_args, std::string id);

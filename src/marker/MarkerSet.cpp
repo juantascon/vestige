@@ -37,7 +37,7 @@ void MarkerSet::sort_by_x_axis() {
 
 void MarkerSet::filter_by_type_items() {
     for (MarkerSet::iterator it = this->begin(); it != this->end(); ++it) {
-        if (  dynamic_cast<marker::Item*>( (*it) ) ) { continue; }
+        if ( (*it) && dynamic_cast<marker::Item*>( (*it) ) ) { continue; }
         
         this->erase(it);
         it--;
