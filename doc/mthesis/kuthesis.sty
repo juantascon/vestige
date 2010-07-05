@@ -1,0 +1,24 @@
+\ProvidesPackage{kuthesis}
+
+\def\section{\@startsection {section}{1}{\z@}{\z@}{1pt}{\large\bf}}
+\def\subsection{\@startsection{subsection}{2}{\z@}{\z@}{1pt}{\bf}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{\z@}{1pt}{\bf}}
+
+%% Korean
+%
+\usepackage[encapsulated]{CJK}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\newcommand{\textkr}[1]{\begin{CJK}{UTF8}{mj}#1\end{CJK}}
+
+% Margins
+\usepackage[top=2.5cm, bottom=1.5cm, left=2.5cm, right=2.5cm]{geometry}
+\addtolength{\footskip}{1cm}
+\addtolength{\textheight}{-1cm}
+
+\setlength{\parskip}{2ex}
+\setlength{\parindent}{2ex}
+\usepackage{setspace}
+\onehalfspacing
+
+\newenvironment{keywords} {\hrule \noindent \emph{Keywords}: \begin{em}} {\end{em}}

@@ -1,0 +1,522 @@
+%%-*-latex-*-
+
+%*******************************************************************************
+\section{Test Cases}\label{sec:testcases}
+%*******************************************************************************
+
+In order to validate these points five problems have been implemented:
+\emph{Reverse}, \emph{Join}, \emph{Remove all}, \emph{Compress} and
+\emph{Insertion sort}. \emph{Reverse} consists in rearrange the items
+of an input list in the opposite order. The student is expected to
+create an empty temporary list and proceed to pop the elements from
+the original input list and push them into the temporary list. The
+effect of popping and pushing items among lists will cause the
+resulting elements to be in reverse order as it is required. The next
+exercise consists in \emph{joining} two stacks, that is, forming a new
+stack by moving all the items of one stack onto the top of another,
+while retaining their original order. Another is \emph{Remove all},
+which objective is to purge the items from a list that are equal to
+a given value, the list must preserve its initial order. Similar to
+the latter is \emph{Compress}, where consecutive repeated elements of
+an input list are to be removed. Finally, the most interesting
+problem, \emph{Insertion sort}, where an input list must be
+reorganized in ascending numerical order. The problems where choose
+because each one provide different levels of difficult, being Join the
+easiest and Insertion sort the hardest. Hence, the student can adapt
+to the system in a progressive way.
+
+\newcommand\stepfig[5]{
+  \subfigure[{\scriptsize\texttt{#1}} {\scriptsize(#2)}]
+            {\includegraphics[width=0.45\textwidth]{img/#4/#3/#3#5.png}\label{fig:#3:#4:#5}}
+}
+
+%*******************************************************************************
+\subsection{Reverse}
+%*******************************************************************************
+
+\renewcommand*\FancyVerbStartString{BEGIN-REV}
+\renewcommand*\FancyVerbStopString{END-REV}
+\begin{figure}[h!]
+  \fvset{frame=leftline,numbers=left,firstnumber=1,xleftmargin=3ex}
+  \VerbatimInput{testcases.erl}
+  \caption{Reverse source code}
+  \label{fig:code:rev}
+\end{figure}
+
+This is the most simple problem. The student will start the
+interaction by placing one list with at least two elements on the
+table. The second step consists in creating a temporary list \emph{T}
+and afterward moving the items one by one from the input list into
+\emph{T}. The last step is to remove the initial list once it is
+empty. The \erlang code representation of this problem can be seen
+in~\fig{fig:code:rev}.
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{reverse(L)}{1}{rev}{p1}{1}
+  \stepfig{reverse(L,[])}{1}{rev}{p1}{2}
+  \stepfig{reverse(L,[I\textbar T])}{2}{rev}{p1}{3}
+  \stepfig{reverse([I\textbar L],T)}{2}{rev}{p1}{4}
+  \stepfig{reverse([],T)}{3}{rev}{p1}{5}
+  \stepfig{T}{3}{rev}{p1}{6}
+  \caption{Reverse in the first didactic phase}
+\end{figure}
+
+\FloatBarrier
+
+\Fig{fig:rev:p1:1} shows a concrete step by step interaction when
+\emph{L} denotes \texttt{[1, 2, 3]} where \texttt{1} is the head and
+\texttt{[2, 3]} is the tail. Its counterparts of the second and third
+phases are shown in~\fig{fig:rev:p2:1} and in~\fig{fig:rev:p3:1}
+respectively.
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{reverse(L)}{1}{rev}{p2}{1}
+  \stepfig{reverse(L,[])}{1}{rev}{p2}{2}
+  \stepfig{reverse(L,[I\textbar T])}{2}{rev}{p2}{3}
+  \stepfig{reverse([I\textbar L],T)}{2}{rev}{p2}{4}
+  \stepfig{reverse([],T)}{3}{rev}{p2}{5}
+  \stepfig{T}{3}{rev}{p2}{6}
+  \caption{Reverse in the second didactic phase}
+\end{figure}
+
+\FloatBarrier
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{reverse(L)}{1}{rev}{p3}{1}
+  \stepfig{reverse(L,[])}{1}{rev}{p3}{2}
+  \stepfig{reverse(L,[I\textbar T])}{2}{rev}{p3}{3}
+  \stepfig{reverse([I\textbar L],T)}{2}{rev}{p3}{4}
+  \stepfig{reverse([],T)}{3}{rev}{p3}{5}
+  \stepfig{T}{3}{rev}{p3}{6}
+  \caption{Reverse in the third didactic phase}
+\end{figure}
+
+In the first step, a temporary list \emph{T} is created as shown by
+the movement from~\figs{fig:rev:p1:1}{fig:rev:p1:2} and also in
+the~\figs{fig:rev:p2:1}{fig:rev:p2:2}
+and~\figs{fig:rev:p3:1}{fig:rev:p3:2}. Steps two, three and four
+consists of moving the items into the new list, these are equivalent
+to the line 2 of the \erlang statement of~\fig{fig:code:rev} and also
+to~\figs{fig:rev:p1:3}{fig:rev:p1:5}. Here, the contents of \emph{T}
+change from an empty list to \texttt{[3]}, then, in the third step to
+\texttt{[3, 2]} and \texttt{[3, 2, 1]} in the fourth step.
+
+Finally, \fig{fig:rev:p1:6} illustrates the discard of the \emph{L}
+list. At this point, the temporary lists contains the answer to the
+problem.
+
+\FloatBarrier
+%*******************************************************************************
+\subsection{Join}
+%*******************************************************************************
+
+\renewcommand*\FancyVerbStartString{BEGIN-JOIN}
+\renewcommand*\FancyVerbStopString{END-JOIN}
+\begin{figure}[h!]
+  \fvset{frame=leftline,numbers=left,firstnumber=1,xleftmargin=3ex}
+  \VerbatimInput{testcases.erl}
+  \caption{Join source code}
+  \label{fig:code:join}
+\end{figure}
+
+Initially, the user will set two lists, \emph{L} and \emph{M}, on the
+table, each with two or more items as seen in~\fig{fig:join:p3:1}.
+The followed actions consist in doing \poppush of the elements of
+\emph{M} into a temporary list leading to a list with reverse order,
+this step can be seen in~\figs{fig:join:p3:2}{fig:join:p3:4}. Moving
+the items of this list on top of \emph{L},
+as~\figs{fig:join:p3:5}{fig:join:p3:6} show, will give the expected
+result. Thereafter, the final step is to discard both the temporary
+list and \emph{M}. This is represented in the code
+of~\fig{fig:code:join}.
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{join(L,M)}{1}{join}{p1}{1}
+  \stepfig{join(L,M,[])}{1}{join}{p1}{2}
+  \stepfig{join(L,[I\textbar M],T)}{2}{join}{p1}{3}
+  \stepfig{join(L,M,[I\textbar T])}{2}{join}{p1}{4}
+  \stepfig{join(L,[],[I\textbar T])}{3}{join}{p1}{5}
+  \stepfig{join(L,[],[])}{4}{join}{p1}{6}
+  \stepfig{L}{4}{join}{p1}{7}
+  \caption{Join in the first didactic phase}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{join(L,M)}{1}{join}{p2}{1}
+  \stepfig{join(L,M,[])}{1}{join}{p2}{2}
+  \stepfig{join(L,[I\textbar M],T)}{2}{join}{p2}{3}
+  \stepfig{join(L,M,[I\textbar T])}{2}{join}{p2}{4}
+  \stepfig{join(L,[],[I\textbar T])}{3}{join}{p2}{5}
+  \stepfig{join(L,[],[])}{4}{join}{p2}{6}
+  \stepfig{L}{4}{join}{p2}{7}
+  \caption{Join in the second didactic phase}
+  \label{fig:join:p2}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{join(L,M)}{1}{join}{p3}{1}
+  \stepfig{join(L,M,[])}{1}{join}{p3}{2}
+  \stepfig{join(L,[I\textbar M],T)}{2}{join}{p3}{3}
+  \stepfig{join(L,M,[I\textbar T])}{2}{join}{p3}{4}
+  \stepfig{join(L,[],[I\textbar T])}{3}{join}{p3}{5}
+  \stepfig{join(L,[],[])}{4}{join}{p3}{6}
+  \stepfig{L}{4}{join}{p3}{7}
+  \caption{Join in the third didactic phase}
+\end{figure}
+
+In a trivial exercise the student is given two input lists denoting
+\texttt{[3, 4]} and \texttt{[1, 2]} as \emph{L} and \emph{M}
+respectively. \Figs{fig:join:p1:1}{fig:join:p1:2} show the creation of the
+temporary list \emph{T} and~\figs{fig:join:p1:3}{fig:join:p1:4} show how the
+items of \emph{M} must be dumped into \emph{T}, which, because of the
+movements, is now composed of \texttt{[2, 1]}.
+
+When \emph{T} is emptied out on top of \emph{L}, as seen
+in the~\figs{fig:join:p1:5}{fig:join:p1:6} or line 3 of the code
+of~\fig{fig:code:join}, \emph{T} and \emph{M} will then have no
+contents and on the other side \emph{L} will contain
+\texttt{[1, 2, 3, 4]}. For this reason, the final step
+of~\fig{fig:join:p1:7} consists in discarding these empty lists,
+highlighting \emph{L} as the solution.
+
+The two final steps are represented in \erlang code in the lines 3
+and 4 of~\fig{fig:code:join} and also in the second didactic phase in
+the~\fig{fig:join:p2}.
+
+\FloatBarrier
+%*******************************************************************************
+\subsection{Remove All} \label{sec:removeall}
+%*******************************************************************************
+
+\renewcommand*\FancyVerbStartString{BEGIN-REMALL}
+\renewcommand*\FancyVerbStopString{END-REMALL}
+\begin{figure}[h!]
+  \fvset{frame=leftline,numbers=left,firstnumber=1,xleftmargin=3ex}
+  \VerbatimInput{testcases.erl}
+  \caption{Remove All source code}
+  \label{fig:code:remall}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{remall(L,E)}{1}{remall}{p1}{1}
+  \stepfig{remall([I\textbar L],E,T,P)}{5}{remall}{p1}{2}
+  \stepfig{remall(L,E,[I\textbar T],P)}{5}{remall}{p1}{3}
+  \stepfig{remall([E\textbar L],E,T,P)}{4}{remall}{p1}{4}
+  \stepfig{remall(L,E,T,P)}{4}{remall}{p1}{5}
+  \stepfig{remall([],E,[I\textbar T],P)}{3}{remall}{p1}{6}
+  \stepfig{remall([],\_,[],P)}{2}{remall}{p1}{7}
+  \stepfig{P}{2}{remall}{p1}{8}
+  \caption{Remove All in the first didactic phase}
+\end{figure}
+
+In \emph{Remove all} the elements of an input stack \emph{L} are
+eliminated when they are equal to a base value \emph{E}. In order to
+solve this, the student will create two temporary lists \emph{T} and
+\emph{P} respectively. The next step is conditional, \emph{L}'s top
+element must be discarded when it is equals to \emph{E}, otherwise
+it must be moved on top of the \emph{T} stack. Once \emph{L} contains
+no items, \emph{T} elements have to be dump into \emph{P}. \emph{P}
+will be the solution at the end of this process, thus, \emph{E},
+\emph{L} and \emph{T} must be discarded. The \erlang code
+representation of this problem is shown in~\fig{fig:code:remall}.
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{remall(L,E)}{1}{remall}{p2}{1}
+  \stepfig{remall([I\textbar L],E,T,P)}{5}{remall}{p2}{2}
+  \stepfig{remall(L,E,[I\textbar T],P)}{5}{remall}{p2}{3}
+  \stepfig{remall([E\textbar L],E,T,P)}{4}{remall}{p2}{4}
+  \stepfig{remall(L,E,T,P)}{4}{remall}{p2}{5}
+  \stepfig{remall([],E,[I\textbar T],P)}{3}{remall}{p2}{6}
+  \stepfig{remall([],\_,[],P)}{2}{remall}{p2}{7}
+  \stepfig{P}{2}{remall}{p2}{8}
+  \caption{Remove All in the second didactic phase}
+  \label{fig:remall:p2}
+\end{figure}
+
+To exemplify this problem, the data \texttt{[1, 2, 3]} and the base
+value \texttt{3} represent the input parameters \emph{L} and
+\emph{E} respectively.
+
+This exercise requires two intermediary lists
+which are created between the~\figs{fig:remall:p1:1}{fig:remall:p1:2}. After
+this, a conditional statement takes place, this is, \emph{L} items
+equals to \texttt{3} must be discarded, the rest of the items must be
+pushed into \emph{T}. \Figs{fig:remall:p1:4}{fig:remall:p1:5} show how the
+item \texttt{3} is discarded and~\fig{fig:remall:p1:4} shows how the
+items \texttt{1} and \texttt{2} are pushed into \emph{T}. The first
+condition is corresponded in \erlang code in the line 4
+of~\fig{fig:code:remall} and the second in the line 5.
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{remall(L,E)}{1}{remall}{p3}{1}
+  \stepfig{remall([I\textbar L],E,T,P)}{5}{remall}{p3}{2}
+  \stepfig{remall(L,E,[I\textbar T],P)}{5}{remall}{p3}{3}
+  \stepfig{remall([E\textbar L],E,T,P)}{4}{remall}{p3}{4}
+  \stepfig{remall(L,E,T,P)}{4}{remall}{p3}{5}
+  \stepfig{remall([],E,[I\textbar T],P)}{3}{remall}{p3}{6}
+  \stepfig{remall([],\_,[],P)}{2}{remall}{p3}{7}
+  \stepfig{P}{2}{remall}{p3}{8}
+  \caption{Remove All in the third didactic phase}
+  \label{fig:remall:p3}
+\end{figure}
+
+When \emph{L} is empty \emph{T} items, \texttt{[2, 1]} are dumped into
+\emph{P} as seen in~\figs{fig:remall:p1:5}{fig:remall:p1:7} and line 3
+of~\fig{fig:code:remall}. Subsequently, is necessary to discard the
+left over elements: \emph{E}, \emph{L} and \emph{T}. The final result
+is then \texttt{[1, 2]} contained in \emph{P}, this step is shown
+in~\fig{fig:remall:p1:8}. This full example can be seen
+in~\fig{fig:remall:p2} and~\fig{fig:remall:p3} as it is represented in
+the second and third phase respectively.
+
+\FloatBarrier
+%*******************************************************************************
+\subsection{Compress}
+%*******************************************************************************
+
+\renewcommand*\FancyVerbStartString{BEGIN-COMPRESS}
+\renewcommand*\FancyVerbStopString{END-COMPRESS}
+\begin{figure}[h!]
+  \fvset{frame=leftline,numbers=left,firstnumber=1,xleftmargin=3ex}
+  \VerbatimInput{testcases.erl}
+  \caption{Compress source code}
+  \label{fig:code:compress}
+\end{figure}
+
+\emph{Compress} consists in eliminating the consecutively repeated
+elements from a stack \emph{L}. This exercise is logically similar
+to \vref{sec:removeall} because items \emph{flow} with the same
+pattern. The main differences lies in the condition of the second step
+as here the items are compared with each other instead of to a base
+value.
+
+First two temporary stacks \emph{T} and \emph{P} must be
+created as seen in~\fig{fig:compress:p3:1}. Second, the user must
+proceed to move \emph{L}'s items into \emph{T}, except when the
+element is equal to \emph{T}'s top element as in
+the~\figs{fig:compress:p3:2}{fig:compress:p3:5}. The third step, as
+shown by~\figs{fig:compress:p3:5}{fig:compress:p3:7}, is to dump
+\emph{T} into \emph{P} and as a final step \emph{L} and \emph{T}
+must be discarded. The non\hyp{}optimized \erlang code representation
+of this problem is shown by~\fig{fig:code:compress}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{compress(L)}{1}{compress}{p1}{1}
+  \stepfig{compress(L,[],[])}{1}{compress}{p1}{2}
+  \stepfig{compress([I\textbar L],T,P)}{5}{compress}{p1}{3}
+  \stepfig{compress([I\textbar L],[I\textbar T],P)}{4}{compress}{p1}{4}
+  \stepfig{compress(L,[I\textbar T],P)}{4}{compress}{p1}{5}
+  \stepfig{compress([],T,[I\textbar P])}{3}{compress}{p1}{6}
+  \stepfig{compress([],[],P)}{2}{compress}{p1}{7}
+  \stepfig{P}{2}{compress}{p1}{8}
+  \caption{Compress in the first didactic phase}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{compress(L)}{1}{compress}{p2}{1}
+  \stepfig{compress(L,[],[])}{1}{compress}{p2}{2}
+  \stepfig{compress([I\textbar L],T,P)}{5}{compress}{p2}{3}
+  \stepfig{compress([I\textbar L],[I\textbar T],P)}{4}{compress}{p2}{4}
+  \stepfig{compress(L,[I\textbar T],P)}{4}{compress}{p2}{5}
+  \stepfig{compress([],T,[I\textbar P])}{3}{compress}{p2}{6}
+  \stepfig{compress([],[],P)}{2}{compress}{p2}{7}
+  \stepfig{P}{2}{compress}{p2}{8}
+  \caption{Compress in the second didactic phase}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{compress(L)}{1}{compress}{p3}{1}
+  \stepfig{compress(L,[],[])}{1}{compress}{p3}{2}
+  \stepfig{compress([I\textbar L],T,P)}{5}{compress}{p3}{3}
+  \stepfig{compress([I\textbar L],[I\textbar T],P)}{4}{compress}{p3}{4}
+  \stepfig{compress(L,[I\textbar T],P)}{4}{compress}{p3}{5}
+  \stepfig{compress([],T,[I\textbar P])}{3}{compress}{p3}{6}
+  \stepfig{compress([],[],P)}{2}{compress}{p3}{7}
+  \stepfig{P}{2}{compress}{p3}{8}
+  \caption{Compress in the third didactic phase}
+\end{figure}
+
+The input list \texttt{[1, 3, 3]} is probably the easiest version of
+this exercise. Using this input, the first step, as seen
+in~\figs{fig:compress:p1:1}{fig:compress:p1:2} is to create two lists
+\emph{T} and \emph{P}.
+
+\Figs{fig:compress:p1:4}{fig:compress:p1:5} exemplifies the condition of
+line 4 of the \erlang code in~\fig{fig:code:compress} where the top
+item of the input list is removed for being equal to the top of
+\emph{T}. On the other hand, \figs{fig:compress:p1:3}{fig:compress:p1:4}
+correspond to the line 5 of the same code which consists in moving
+the elements that does not match the condition of the previous step.
+Once the input list is empty the content of \emph{T} is:
+\texttt{[3, 1]}, this is, a reverse view of the initial elements minus
+the ones consecutively repeated.
+
+Finally, dumping \emph{T} on top of \emph{P}, as seen
+in~\figs{fig:compress:p1:5}{fig:compress:p1:7} and which logic process
+can be seen in line 3 of~\fignov{fig:code:compress}, will lead to the final
+answer shown in~\fignov{fig:compress:p1:8}: \texttt{[1, 3]}.
+
+\FloatBarrier
+%*******************************************************************************
+\subsection{Insertion Sort}
+%*******************************************************************************
+
+\emph{Sorting} consists in arranging the items of a list in a given
+order. Sorting algorithms are always present in introductory
+programming classes where the wide variety of solutions to the problem
+is a good base to present common concepts like
+\emph{divide\hyp{}and\hyp{}conquer strategy}, computational
+delay analysis, asymptotics, etc. Its pervasiveness in
+real\hyp{}life situations makes it a highly studied problem.
+
+\renewcommand*\FancyVerbStartString{BEGIN-ISORT}
+\renewcommand*\FancyVerbStopString{END-ISORT}
+\begin{figure}
+  \fvset{frame=leftline,numbers=left,firstnumber=1,xleftmargin=3ex}
+  {\footnotesize \VerbatimInput{testcases.erl}}
+  \caption{Insertion Sort source code}
+  \label{fig:code:isort}
+\end{figure}
+
+For the sake of simplicity, the experiment focuses on ascending
+numerical order with \emph{insertion sort}. Regarding of computational
+delay and memory usage, insertion sort is not the most optimum.
+However, it is simple and plain, thus, perfectly suitable for
+novices in recursion.
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{isort(L)}{1}{isort}{p1}{1}
+  \stepfig{isort(L,[],[])}{1}{isort}{p1}{2}
+  \stepfig{isort([I\textbar L],P,[K\textbar Q]) when K>I}{4}{isort}{p1}{3}
+  \stepfig{isort([I\textbar L],[K\textbar P],Q)}{4}{isort}{p1}{4}
+  \stepfig{isort([I\textbar L],[J\textbar P],Q) when I>J}{5}{isort}{p1}{5}
+  \stepfig{isort([I\textbar L],P,[J\textbar Q])}{5}{isort}{p1}{6}
+  \stepfig{isort([I\textbar L],P,[K\textbar Q]) when K>I}{4}{isort}{p1}{7}
+  \stepfig{isort([I\textbar L],[K\textbar P],Q)}{4}{isort}{p1}{8}
+  \caption{Insertion Sort in the first didactic phase (Part 1/2)}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{isort([I\textbar L],[K\textbar P],Q)}{4}{isort}{p1}{9}
+  \stepfig{isort([I\textbar L],P,Q)}{6}{isort}{p1}{10}
+  \stepfig{isort(L,P,[I\textbar Q])}{6}{isort}{p1}{11}
+  \stepfig{isort([],[J\textbar P],Q)}{3}{isort}{p1}{12}
+  \stepfig{isort([],P,[J\textbar Q])}{3}{isort}{p1}{13}
+  \stepfig{isort([],[],Q)}{2}{isort}{p1}{14}
+  \stepfig{Q}{2}{isort}{p1}{15}
+  \caption{Insertion Sort in the first didactic phase (Part 2/2)}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{isort(L)}{1}{isort}{p2}{1}
+  \stepfig{isort(L,[],[])}{1}{isort}{p2}{2}
+  \stepfig{isort([I\textbar L],P,[K\textbar Q]) when K>I}{4}{isort}{p2}{3}
+  \stepfig{isort([I\textbar L],[K\textbar P],Q)}{4}{isort}{p2}{4}
+  \stepfig{isort([I\textbar L],[J\textbar P],Q) when I>J}{5}{isort}{p2}{5}
+  \stepfig{isort([I\textbar L],P,[J\textbar Q])}{5}{isort}{p2}{6}
+  \stepfig{isort([I\textbar L],P,[K\textbar Q]) when K>I}{4}{isort}{p2}{7}
+  \stepfig{isort([I\textbar L],[K\textbar P],Q)}{4}{isort}{p2}{8}
+  \caption{Insertion Sort in the second didactic phase (Part 1/2)}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{isort([I\textbar L],[K\textbar P],Q)}{4}{isort}{p2}{9}
+  \stepfig{isort([I\textbar L],P,Q)}{6}{isort}{p2}{10}
+  \stepfig{isort(L,P,[I\textbar Q])}{6}{isort}{p2}{11}
+  \stepfig{isort([],[J\textbar P],Q)}{3}{isort}{p2}{12}
+  \stepfig{isort([],P,[J\textbar Q])}{3}{isort}{p2}{13}
+  \stepfig{isort([],[],Q)}{2}{isort}{p2}{14}
+  \stepfig{Q}{2}{isort}{p2}{15}
+  \caption{Insertion Sort in the second didactic phase (Part 2/2)}
+  \label{fig:isort:p2}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{isort(L)}{1}{isort}{p3}{1}
+  \stepfig{isort(L,[],[])}{1}{isort}{p3}{2}
+  \stepfig{isort([I\textbar L],P,[K\textbar Q]) when K>I}{4}{isort}{p3}{3}
+  \stepfig{isort([I\textbar L],[K\textbar P],Q)}{4}{isort}{p3}{4}
+  \stepfig{isort([I\textbar L],[J\textbar P],Q) when I>J}{5}{isort}{p3}{5}
+  \stepfig{isort([I\textbar L],P,[J\textbar Q])}{5}{isort}{p3}{6}
+  \stepfig{isort([I\textbar L],P,[K\textbar Q]) when K>I}{4}{isort}{p3}{7}
+  \stepfig{isort([I\textbar L],[K\textbar P],Q)}{4}{isort}{p3}{8}
+  \caption{Insertion Sort in the third didactic phase (Part 1/2)}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \stepfig{isort([I\textbar L],[K\textbar P],Q)}{4}{isort}{p3}{9}
+  \stepfig{isort([I\textbar L],P,Q)}{6}{isort}{p3}{10}
+  \stepfig{isort(L,P,[I\textbar Q])}{6}{isort}{p3}{11}
+  \stepfig{isort([],[J\textbar P],Q)}{3}{isort}{p3}{12}
+  \stepfig{isort([],P,[J\textbar Q])}{3}{isort}{p3}{13}
+  \stepfig{isort([],[],Q)}{2}{isort}{p3}{14}
+  \stepfig{Q}{2}{isort}{p3}{15}
+  \caption{Insertion Sort in the third didactic phase (Part 2/2)}
+  \label{fig:isort:p3}
+\end{figure}
+
+The student is expected to start by creating two temporary lists
+\emph{A} and \emph{D} as seen in~\figs{fig:isort:p1:1}{fig:isort:p1:2}.
+For a better understanding, the following logic rules must be
+considered: \emph{A} has the special property of always being in
+ascending order, as for \emph{D}, its elements will persistently be in
+descending order. Therefore, The goal consists in trespassing the
+elements from the initial list \emph{L} into \emph{A} by obeying these
+rules.
+
+All in all, \emph{D} will be used as an exchange mechanism
+to dump \emph{A}'s items when pushing a new item on it would break the
+first rule. This process is show by~\fig{fig:isort:p3}.
+
+\emph{L}'s items, must be pushed into \emph{A} only on three cases:
+(1) when \emph{A} is an empty list, as
+in~\figs{fig:isort:p1:2}{fig:isort:p1:3}; (2) when \emph{D} is an empty list
+and the item is greater than \emph{A}'s top, as seen
+in~\figs{fig:isort:p1:6}{fig:isort:p1:7}; and (3) when the item is greater
+than \emph{A}'s top and lower than \emph{D}'s top, as shown
+by~\figs{fig:isort:p1:4}{fig:isort:p1:5}. Respectively, this condition is
+stated in~\fig{fig:code:isort} in lines 2, 5 and the clause formed by
+lines 6 and 7.
+
+As shown in lines 3 and 4 of the code in~\fig{fig:code:isort}, if the
+item is lower than \emph{A}'s top, then \emph{A}'s elements must be
+dumped into \emph{D} until one of the firsts conditions is met. In the
+given exercise this is seen several times, first
+in~\figsnov{fig:isort:p1:3}{fig:isort:p1:4} and then repeatedly
+in~\figs{fig:isort:p1:7}{fig:isort:p1:10}.
+
+Line 8 of the code states
+that if at any given point the top item of the input list is bigger
+than \emph{A}'s top and at the same time bigger than \emph{D}'s top
+then \emph{D}'s items must be dumped back into \emph{A} until one
+of the three conditions is met. An example of this situation can be
+observed in~\figs{fig:isort:p1:5}{fig:isort:p1:6} and later in the steps
+of~\figs{fig:isort:p1:11}{fig:isort:p1:14}.
+
+Finally, when the original list is empty all of \emph{D}'s items must
+be pushed into \emph{A}, then, the final step is to discard the
+initial list and \emph{D}, like shown
+in~\figs{fig:isort:p1:14}{fig:isort:p1:15} and coded in the line 9.
+The~\fig{fig:code:isort} shows the complete \erlang representation of
+the previous process and~\fig{fig:isort:p2} shows the process of the
+second didactic phase.
+
+\FloatBarrier

@@ -1,0 +1,80 @@
+\documentclass[12pt,b5paper]{article}
+
+\usepackage{kuthesis}
+
+\usepackage[english]{babel}
+%% \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyphenat}
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{varioref}
+\usepackage{framed}
+
+%% Figures
+%
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{placeins}
+
+%% verbatim
+\usepackage{fancyvrb}
+\newcommand*\FancyVerbStartString{BEGIN}
+\newcommand*\FancyVerbStopString{END}
+
+% New commands
+%
+\newcommand\erlang{\textsf{Erlang}\xspace}
+\newcommand\lisp{\textsf{Lisp}\xspace}
+\newcommand\artoolkit{\textsf{ARToolKit}\xspace}
+\newcommand\osgart{\textsf{OSGART}\xspace}
+\newcommand\osg{\textsf{OpenSceneGraph}\xspace}
+\newcommand{\cpp}{\textsf{C} \hspace*{-2.5mm} \raise 0.7mm \hbox {${\scriptscriptstyle ++}$}}
+\newcommand\logo{\textsf{Logo}\xspace}
+\newcommand\tern{\textsf{Tern}\xspace}
+\newcommand\constructd{\textsf{Construct3D}\xspace}
+\newcommand\vestige{\textsf{Vestige}\xspace}
+\newcommand\pop{\textsl{Pop}\xspace}
+\newcommand\push{\textsl{Push}\xspace}
+\newcommand\poppush{\textsl{PopPush}\xspace}
+\newcommand\create{\textsl{Create}\xspace}
+\newcommand\discard{\textsl{Discard}\xspace}
+
+\newcommand\fig[1]{\textsc{figure}~\vref{#1}}
+\newcommand\Fig[1]{\textsc{Figure}~\vref{#1}}
+\newcommand\figs[2]{\textsc{figures}~\vrefrange{#1}{#2}}
+\newcommand\Figs[2]{\textsc{Figures}~\vrefrange{#1}{#2}}
+\newcommand\fignov[1]{\textsc{figure}~\ref{#1}}
+\newcommand\figsnov[2]{\textsc{figures}~\ref{#1} to~\ref{#2}}
+
+\newenvironment{fminipage} {\begin{center}\begin{minipage}{0.9\textwidth}\begin{framed}} {\end{framed}\end{minipage}\end{center}}
+
+\begin{document}
+
+\input{cover}
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+\input{abstract} \newpage
+\input{ack} \newpage
+\begin{singlespacing}
+  \tableofcontents \newpage
+  \listoffigures \newpage
+\end{singlespacing}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{introduction}
+\input{relatedworks}
+\input{methodology}
+\input{testcases}
+\input{evaluation}
+\input{conclusions}
+
+\newpage\addcontentsline{toc}{section}{References}
+\bibliographystyle{plain}
+\bibliography{recursion,tui}
+
+\end{document}

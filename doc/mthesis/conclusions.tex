@@ -1,0 +1,88 @@
+%%-*-latex-*-
+
+\section{Conclusion}
+
+\vestige is a tangible interface to help students in the process of
+learning recursion which main interaction mechanism consists of
+arranging blocks by forming stacks. The interface is accompanied by a
+didactic methodology where the learning is acquired progressively.
+Finally, users of the interface who follow the methodology are
+expected to transfer their learning to write \erlang programs.
+
+Many technical efforts have been spent in order have the application
+run on \textsf{GNU/Linux} and be licensed as open source, so the
+interested researchers may benefit from the freedom to study it, use
+it, modify it and redistribute it under the same terms.
+
+An initial experimental session involving several computer science
+students was conducted. A progressive learning was observed in the
+majority of the participants, their skills improved as they advanced
+through the proposed exercises. They were also asked to complete
+an exploratory survey in order to gather their opinions and feedback.
+In general, positive answers were collected among all the
+participants concluding a successful pilot study.
+
+A subsequent observation of this process suggests that even though
+a great number of students have notions of understanding the
+concept of functional programming only a minority considers it an
+important computer paradigm. Computer science programs curricula
+should emphasize more on teaching its benefits and importance.
+
+The positive answers gathered from the participants are an incentive
+to take the interface further. The next logical step is to test
+with a group of recursion students the whole system by following the
+proposed didactic phases for progressive learning.
+
+%*******************************************************************************
+\subsection{Scope \& Limitations}
+%*******************************************************************************
+
+This study is limited by several methodological and practical
+restrictions. The interface focuses on problems that stress the use of
+lists and their structural order. For this reason, many algorithms are
+left out the scope of the interface and can not be simulated.
+Nevertheless, some of these limitations are planned to be solve in
+possible future works.
+
+The first of these limitations lies in the type of recursion used.
+In short, only algorithms coded in \emph{tail recursion} form can be
+simulated in the interface. Tail recursion implies that the last
+operation of the function is a recursive call and for this reason,
+this kind of algorithms require the use of extra features such as a
+\emph{control stack}. A future solution is planned in order to
+overcome this impediment.
+
+Problems that require arithmetic operations are also out of the scope
+of the interface. For this reason, simple exercises such as
+\emph{fibonacci} or \emph{factorial} can not be implemented.
+
+Finally, the solution must define only one complete function. A
+function is complete when it is valid for every possible input data.
+An example of an incomplete function is shown
+in~\fig{fig:code:firstg}. In this case, the use of \erlang
+\emph{atoms} is required for it to be valid on empty lists. In
+addition, only single functions are supported because the system
+represents only one function at the time.
+
+%*******************************************************************************
+\subsection{Future Work}
+%*******************************************************************************
+
+In the technical aspect, future work would involve increasing the
+application's domain by exceeding its limitations. An initial idea
+consists in the simulation of the \emph{control stack}. This stack
+is where data of undergoing function calls are stored. This would
+required adding special markers where the \push and \pop operations
+are done top\hyp{}down as a contrast of normal stacks that are filled
+bottom\hyp{}up).
+
+Additionally, more exercises could be implemented. Initial ideas
+suggests that problems such as \emph{Hanoi Towers} or different
+versions of \emph{Insertion Sort} could be easily programmed. However,
+this depends on extra features such as allowing multiple actions per
+step, which are not currently implemented.
+
+Finally, further experiments must be done in order to validate the
+effectiveness of the didactic phases. This requires to conduct the
+tests along with the students of a real class of functional
+programming.
