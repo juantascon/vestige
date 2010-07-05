@@ -17,6 +17,10 @@ Names* Names::clone() {
 }
 
 void Names::set_labels(state::State* s) {
+    if (core::Parameters::instance()->PHASE() != core::Parameters::PHASE_VARIABLES) {
+        return;
+    }
+    
     state::NodeSet* ns = s->clone_nodes();
     
     D(( this->text().c_str() ));
