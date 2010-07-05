@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import matplotlib.pyplot as mpl
 import csv
 
@@ -64,4 +66,4 @@ for q in questions:
     mpl.clf()
     mpl.pie(q.fracs(), explode=q.explode(), labels=q.labels(), colors=q.colors(), autopct='%1.1f%%', shadow=True)
     mpl.title(q.title, bbox={'facecolor':'0.8', 'pad':10})
-    mpl.savefig("img/{0}.pdf".format(q.fname))
+    mpl.savefig("img/{0}.png".format(q.fname))
