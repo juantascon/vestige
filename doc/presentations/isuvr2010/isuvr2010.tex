@@ -1,0 +1,56 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Antibes}
+  \usecolortheme{whale}
+  \setbeamercovered{transparent}
+}
+
+\AtBeginSection[] {
+  \begin{frame} <beamer>{}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage[encapsulated]{CJK}
+\usepackage{ucs}
+\newcommand{\krtext}[1]{\begin{CJK}{UTF8}{mj}#1\end{CJK}}
+\usepackage[utf8x]{inputenc}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath,amssymb}
+
+\newcommand{\vestigef}[3]{
+  {
+    \texttt{#1} $\overbrace{->}^{#2}$ \texttt{#3}
+  }
+}
+
+\newcommand{\itemn}[1]{ \setcounter{enumi}{#1} \item }
+
+\title{Vestige}
+\subtitle{A Tangible Interface for Learning Recursion and Functional Programming}
+\author{Juan Diego \textsc{Tascón Vidarte}}
+\institute{Konkuk University \\ HCI Lab}
+\date{\today{}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%% \begin{frame}{}
+%%   \tableofcontents
+%% \end{frame}
+
+\include{content}
+
+\bibliographystyle{plain}
+\bibliography{master}
+\nocite{*}
+
+\end{document}
